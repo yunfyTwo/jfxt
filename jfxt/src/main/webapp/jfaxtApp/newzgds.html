@@ -262,7 +262,7 @@
 		$(function() {
 			FastClick.attach(document.body);
 			//根据参数显示整改网元
-		findGg(id);
+		findGg(xjId);
 		});
 	</script>
 	<script>
@@ -270,14 +270,13 @@
 		var displayValues = $("#years-monthes").val();
 
 		function toXunjian() {
-			//重新跳转到巡检页面，并携带之前巡检页面的ggid
-			window.location.href = "xunjian.html?ggid=" + id;
+			window.location.href = "index1.html";
 		}
 
 		  //查询公告以及对应网元
 	    function findGg(id){
 	        $.post(
-	            getContextPath()+"/app/findJfbygg",
+	            getContextPath()+"/app/findJfInfo",
 	            {
 	                "id": id
 	            },

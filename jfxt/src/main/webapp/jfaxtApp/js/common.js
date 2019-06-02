@@ -7,14 +7,14 @@ function getContextPath() {
     var result = pathName.substr(0, index + 1);
     //return result;*/
    
-    return "http://192.168.31.179:8080/jfxt";
+    return "http://192.168.31.201:8888/jfxt";
     //return "http://192.168.1.64:8080/jfxt";
 //  return "http://116.255.175.24:8888/jfxt";
 }
 
 //获取文件地址
 function getFilePath(){
-	return "http://192.168.31.179:8080/jfxt";
+	return "http://192.168.31.201:8888/jfxt";
 //	 return "http://116.255.175.24:8888/jfxt";
 }
 

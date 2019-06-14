@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+        <div class="weui-cell__hd"><label for="years-monthes" class="weui-label">日期</label></div>
         <div class="weui-cell__bd">
             <input class="weui-input" id="years-monthes" type="text" value="" readonly="readonly" >
             <!--<input class="weui-input" type="date" value=" " id="cfrq">-->
@@ -91,7 +91,7 @@
     <div class="weui-uploader__bd">
         <ul class="weui-uploader__files" id="img2x">
         </ul>
-        <div class="weui-uploader__input-box">
+        <div id="addImg" class="weui-uploader__input-box" style="display: none">
             <form id="uploadImgForm">
                 <div id="img">
                     <div class="weui-uploader__input" type="file" id="imgFile" name="imgFile" accept="image/jpg,image/jpeg,image/png,image/gif" multiple></div>
@@ -99,7 +99,9 @@
             </form>
         </div>
     </div>
+    <div id="clearImg" style="display: none">
       <input type="button" value="清空图片" onclick="deleteImg()"/>
+    </div>
 </div>
 <div class="weui-cells__title">处罚原因</div>
 
@@ -111,7 +113,7 @@
         </div>
     </div>
 </div>
-<div class="weui-cells">
+<div class="weui-cells" id="btnSubmit" style="display: none">
     <a href="#"  class="weui-btn weui-btn_primary" onclick="saveCf()">提交</a>
 
 </div>
@@ -175,6 +177,13 @@
         //获取存储在本地的会员Id
         var storage=window.localStorage;
         var userId = storage.getItem("loginName");
+        var permissions = storage.getItem("permissions");
+        var dataedit = "merchant:jfCf:edit";
+        if(permissions.indexOf(dataedit)>-1){
+            $("#btnSubmit").show();
+            $("#clearImg").show();
+            $("#addImg").show();
+        }
         findUser(userId);
         cfDetail();
     });
@@ -511,7 +520,8 @@
 
             function (data) {
                 if(data.code == 1) {
-                    $.toast(data.msg,'forbidden', 8000);
+                    // $.toast(data.msg, 'forbidden', 8000);
+                    $.toast(data.msg);
                     window.location.href = "index1.html";
                 } else {
                     $.toast(data.msg,'forbidden', 8000);

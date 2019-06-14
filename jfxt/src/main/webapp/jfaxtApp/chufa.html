@@ -45,11 +45,14 @@
          FastClick.attach(document.body);
     });
     function onLoad() {
+    	var jfCf={};
+    	var storage = window.localStorage;
+    	var userId = storage.getItem("loginName");
+    	jfCf.userId = userId;
+    	
         $.post(
             getContextPath()+"/app/cfList",
-            {
-
-            },
+            jfCf,
             function (data) {
                 if(data.code == 1) {
                 	//查询成功

@@ -15,7 +15,7 @@
     <script src="js/common.js"></script>
 </head>
 <body ontouchstart>
-    <div class="weui-cells weui-cells_form wcs">
+    <div class="weui-cells weui-cells_form wcs" id="loginDiv">
         <div class="kong"></div>
         <div class="weui-cell wc">
             <img src="images/logo.png" alt="">
@@ -40,6 +40,32 @@
 </body>
 
 <script type="text/javascript"> 
+	$(function(){
+		$("#loginDiv").hide();
+		var loginName = localStorage.getItem("loginName");		
+		if(loginName){
+            $.post(
+                getContextPath()+"/app/getPermissions",
+                {
+                    "id": loginName
+                },
+                function (data) {
+                    if(data.code == 1) {
+                        var obj = data.data;
+                        localStorage.removeItem("permissions");
+                        localStorage.setItem("permissions",obj.permissions);
+                        // $.toast(data.msg, 'forbidden', 8000);
+                        $.toast(data.msg);
+                        window.location.href = "index1.html";
+                    } else {
+                        $.toast("登录失效,请重新登录",'forbidden', 8000);
+                        window.location.href = "index.html";
+                    }
+                });
+		}
+		$("#loginDiv").show();
+	});
+
 	function login() {
 
      var loginName = $("#loginName").val();
@@ -55,7 +81,10 @@
                  if(data.code == 1) {
                      var obj = data.data;
                      localStorage.setItem("loginName",obj.id);
-                     $.toast(data.msg,'forbidden', 8000);
+                     localStorage.removeItem("permissions");
+                     localStorage.setItem("permissions",obj.permissions);
+                     // $.toast(data.msg, 'forbidden', 8000);
+                     $.toast(data.msg);
                      window.location.href = "index1.html";
                  } else {
                      $.toast(data.msg,'forbidden', 8000);

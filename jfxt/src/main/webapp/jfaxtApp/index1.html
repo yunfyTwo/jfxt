@@ -20,7 +20,7 @@
 
 <div class="weui_btn_primary weui-header ">
     <!--<div class="weui-header-left"> <a class="icon icon-109 f-white"></a>  </div>-->
-  
+
     <h1 class="weui-header-title">首页</h1>
     <!--<div class="weui-header-right"><a class="icon icon-22 f-white"></a></div>-->
 </div>
@@ -39,6 +39,7 @@
                         公告
                     </p>
                 </a>
+
                 <a href="chufa.html" class="weui-grid js_grid">
                     <div class="weui-grid__icon">
                         <img src="images/chufa.png" alt="">
@@ -388,6 +389,8 @@
 
 <script src="js/jquery-weui.js"></script>
 <script type="text/javascript">
+    var dataedit = 'merchant:jfCf:edit';//处罚单按钮权限
+    var permissions = "";
     $(function (){
         onLoad();
         perCenter();
@@ -397,6 +400,7 @@
         //获取存储在本地的会员Id
         var storage=window.localStorage;
         var userId = storage.getItem("loginName");
+        permissions = storage.getItem("permissions");
         findUser(userId);
     }
 
@@ -455,32 +459,39 @@
                 }
             });
     }
-</script>
-<script>
-    $(document).on("click", "#show-actions", function() {
+    
+	$(document).on("click", "#show-actions", function() {
         $.actions({
             title: "选择操作",
             onClose: function() {
-                console.log("close");
+//              console.log("close");
             },
             actions: [
-            	{
+                {
                     text: "巡检",
                     className: "color-primary",
                     onClick: function() {
-                        location.href='newxunjian.html';
+                     	location.href='newxunjian.html';
                     }
                 },
                 {
                     text: "处罚单",
                     className: "color-primary",
                     onClick: function() {
-                        location.href='newcfd.html';
+                        if(permissions.indexOf(dataedit)>-1){
+                            location.href='newcfd.html';
+                        }else {
+                            $.toast('没有操作权限，请联系管理员','forbidden', 8000);
+                        }
                     }
                 }
             ]
         });
     });
+
+</script>
+<script>
+
     $('.zgd').hide();
     $('.weui_navbar_item').on('click',function(){
         $(this).addClass('tab-green').siblings().removeClass('tab-green');

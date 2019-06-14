@@ -27,6 +27,9 @@
 </body>
 <script type="text/javascript">
     var id = GetArgsFromHref("ggid");
+    var storage=window.localStorage;
+    var permissions = storage.getItem("permissions");
+    var dataedit = "merchant:jfZg:edit";
     $(function (){
             $.post(
                 getContextPath()+"/app/ggDetail",
@@ -45,10 +48,12 @@
                             '<em class="weui-weixin-em" >'+obj.fbrq+'</em>'+
                             '</div>'+
                             '<div class="weui-weixin-content">'+obj.ggnr+'</div>'+
-                            '<div class="weui-weixin-img">'+
-                            '<a href="xunjian.html?ggid='+obj.id+'" class="weui-btn weui-btn_primary">上传现场照片</a>'+
-                            '</div>'+
-                            '</div>'
+                            '<div class="weui-weixin-img">';
+                            if(permissions.indexOf(dataedit)>-1){
+                                gg_detail_html += '<a href="xunjian.html?ggid='+obj.id+'" class="weui-btn weui-btn_primary">上传现场照片</a>';
+                            }
+                            gg_detail_html += '</div>'+
+                                              '</div>';
                         $("#gg_detail").html(gg_detail_html);
                     } else {
                         $.toast(data.msg,'forbidden', 8000);

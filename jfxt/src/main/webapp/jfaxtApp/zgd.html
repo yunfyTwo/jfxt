@@ -50,6 +50,108 @@
     </div>
 </div>
 
+<div class="weui-cells__title">安全隐患</div>
+
+<div class="weui-cells__title">是否存在安全隐患</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否存在安全隐患" rows="1" id="isSafetyHazard" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">隐患简要说明</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入简要说明" rows="2" id="briefDescription" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">隐患原因</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入隐患原因" rows="2" id="reason" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<div class="weui-cells__title">设备类整治</div>
+<div class="weui-cells__title">是否有ODF架/柜</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否有ODF架/柜" rows="1" id="isODF" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">是否需要网络设备整治割接</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否需要网络设备整治割接" rows="1" id="isCutOver" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">网络设备整治割接内容描述</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="网络设备整治割接内容描述" rows="2" id="isCutOverContent" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">光缆类整治</div>
+<div class="weui-cells__title">是否需要光缆割接</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入是否需要光缆割接" rows="1" id="isOpticalCable" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">光缆割接量（条/芯）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入光缆割接量" rows="3" id="opticalCableCutting" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">光缆整治割接内容描述</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入光缆整治割接内容描述" rows="3" id="opticalCableContent" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">环境类整治</div>
+<div class="weui-cells__title">是否需要环境整治</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea"  rows="1" id="needRemediation" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">环境整治内容描述（门、窗、墙面等）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入环境整治内容描述" rows="2" id="contentDescription" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
 
 
 <div class="weui-gallery" id="gallery">
@@ -162,6 +264,17 @@
                     
                      //处罚原因
                     $("#zgyqms").val(obj.zgyq);
+                    $("#isSafetyHazard").val(obj.isSafetyHazard);//是否存在安全隐患
+                    $("#briefDescription").val(obj.briefDescription);//隐患简要说明
+                    $("#reason").val(obj.reason);//隐患原因
+                    $("#isODF").val(obj.isODF);//是否有ODF架/柜
+                    $("#isCutOver").val(obj.isCutOver);//是否需要网络设备整治割接
+                    $("#isCutOverContent").val(obj.isCutOverContent);//网络设备整治割接内容描述
+                    $("#isOpticalCable").val(obj.isOpticalCable);//是否需要光缆割接
+                    $("#opticalCableCutting").val(obj.opticalCableCutting);//光缆割接量（条/芯）
+                    $("#opticalCableContent").val(obj.opticalCableContent);//光缆整治割接内容描述
+                    $("#needRemediation").val(obj.needRemediation);//光缆割接量（条/芯）
+                    $("#contentDescription").val(obj.contentDescription);//光缆整治割接内容描述
                     
                     //图片展示，需要判断是否是多张
                     if(obj.cfxczp!=null){
@@ -227,6 +340,18 @@
         var sedDate = $("#years-monthes").val();
         jfZG.zgrq = new Date(sedDate);		// 日期
         jfZG.zgyq = $("#zgyqms").val();		// 处罚原因描述
+        jfZG.isSafetyHazard = $("#isSafetyHazard").val();//是否存在安全隐患
+        jfZG.briefDescription = $("#briefDescription").val();//隐患简要说明
+        jfZG.reason = $("#reason").val();//隐患原因
+        jfZG.isODF = $("#isODF").val();//是否有ODF架/柜
+        jfZG.isCutOver = $("#isCutOver").val();//是否需要网络设备整治割接
+        jfZG.isCutOverContent = $("#isCutOverContent").val();//网络设备整治割接内容描述
+        jfZG.isOpticalCable = $("#isOpticalCable").val();//是否需要光缆割接
+        jfZG.opticalCableCutting = $("#opticalCableCutting").val();//光缆割接量（条/芯）
+        jfZG.opticalCableContent = $("#opticalCableContent").val();//光缆整治割接内容描述
+        jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
+        jfZG.contentDescription = $("#contentDescription").val();//光缆整治割接内容描述
+
         jfZG.userId = userId;
           
         if(imgArr.length > 0) {

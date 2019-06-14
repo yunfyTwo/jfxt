@@ -72,4 +72,6 @@ public interface UserDao extends CrudDao<User> {
 	 */
 	public int updateUserInfo(User user);
 
+	public List<User> findUserPermissions(User user);
+
 }

@@ -19,7 +19,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class JfZg extends DataEntity<JfZg> {
 	
 	private static final long serialVersionUID = 1L;
-	private JfXx zgjf;		// 整改网元
+	private JfXx zgjf;		// 整改机房
 	private String zgdh;		// 整改单号
 	private Date zgrq;		// 日期
 	private String zgyq;		// 整改要求
@@ -41,7 +41,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private String opticalCableContent;		// 光缆整治割接内容描述
 	private String needRemediation;		// 是否需要环境整治
 	private String contentDescription;		// 环境整治内容描述（门、窗、墙面等）
-	
+	private String userId;      //当前登录用户Id
 	public String getIsCutOverContent() {
 		return isCutOverContent;
 	}
@@ -130,7 +130,6 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setIsSafetyHazard(String isSafetyHazard) {
 		this.isSafetyHazard = isSafetyHazard;
 	}
-
 	private String limit;//app分页
 
 	public String getLimit () {
@@ -252,5 +251,12 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setKzzd4(String kzzd4) {
 		this.kzzd4 = kzzd4;
 	}
-	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }

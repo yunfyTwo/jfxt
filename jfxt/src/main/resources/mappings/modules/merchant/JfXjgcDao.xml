@@ -22,12 +22,16 @@
 		a.kzzd3 AS "kzzd3",
 		a.kzzd4 AS "kzzd4",
 		b.name as "xjjf.name",
-		c.name as "xjry.name"
+		c.name as "xjry.name",
+		o.id AS "createBy.office.id",
+		o.name AS "createBy.office.name"
 	</sql>
 	
 	<sql id="jfXjgcJoins">
 		left join jf_xx b on b.id=a.xjjf
 		left join sys_user c on c.id=a.xjry
+		JOIN sys_user u ON u.id = a.create_by
+		JOIN sys_office o ON o.id = u.office_id
 	</sql>
     
 	<select id="get" resultType="JfXjgc">
@@ -55,6 +59,7 @@
 			<if test="overDate != null and overDate != ''">
 				AND DATE_FORMAT(#{overDate}, '%Y-%m-%d') &gt;= DATE_FORMAT(a.xjsj, '%Y-%m-%d')
 			</if>
+			${sqlMap.dsf}
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

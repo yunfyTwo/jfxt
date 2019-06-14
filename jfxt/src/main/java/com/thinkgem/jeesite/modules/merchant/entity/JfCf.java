@@ -19,7 +19,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class JfCf extends DataEntity<JfCf> {
 	
 	private static final long serialVersionUID = 1L;
-	private JfXx cfjf;		// 处罚网元
+	private JfXx cfjf;		// 处罚机房
 	private String cftzd;		// 处罚通知单号
 	private Date cfrq;		// 日期
 	private String cfdx;		// 处罚对象
@@ -31,6 +31,7 @@ public class JfCf extends DataEntity<JfCf> {
 	private String kzzd2;		// 扩展字段2
 	private String kzzd3;		// 扩展字段3
 	private String kzzd4;		// 扩展字段4
+	private String userId;      //当前登录用户Id
 
 	private List<String> xctps;
 
@@ -184,5 +185,12 @@ public class JfCf extends DataEntity<JfCf> {
 	public void setKzzd4(String kzzd4) {
 		this.kzzd4 = kzzd4;
 	}
-	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }

@@ -30,12 +30,15 @@
 		a.optical_Cable_Cutting AS "opticalCableCutting",
 		a.optical_Cable_Content AS "opticalCableContent",
 		a.need_Remediation AS "needRemediation",
-		a.content_Description AS "contentDescription"
-		
+		a.content_Description AS "contentDescription",
+		o.id AS "createBy.office.id",
+		o.name AS "createBy.office.name"
 	</sql>
 	
 	<sql id="jfZgJoins">
 		left join jf_xx b on b.id=a.zgjf
+		JOIN sys_user u ON u.id = a.create_by
+		JOIN sys_office o ON o.id = u.office_id
 	</sql>
     
 	<select id="get" resultType="JfZg">
@@ -69,6 +72,7 @@
 			<if test="overDate != null and overDate != ''">
 				AND DATE_FORMAT(#{overDate}, '%Y-%m-%d') &gt;= DATE_FORMAT(a.zgrq, '%Y-%m-%d')
 			</if>
+			${sqlMap.dsf}
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -130,8 +134,6 @@
 			optical_Cable_Content,
 			need_Remediation,
 			content_Description
-			
-			
 		) VALUES (
 			#{id},
 			#{zgjf.id},
@@ -191,7 +193,6 @@
 			optical_Cable_Content = #{opticalCableContent},
 			need_Remediation = #{needRemediation},
 			content_Description = #{contentDescription}
-			
 		WHERE id = #{id}
 	</update>
 	

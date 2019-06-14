@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.merchant.entity.JfCf;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
@@ -28,6 +29,7 @@ public class JfXjgcService extends CrudService<JfXjgcDao, JfXjgc> {
 	}
 	
 	public List<JfXjgc> findList(JfXjgc jfXjgc) {
+		jfXjgc.getSqlMap().put("dsf",dataScopeFilter(jfXjgc.getCurrentUser(), "o", "u"));
 		List<JfXjgc> jfXjgcList=super.findList(jfXjgc);
 		if(jfXjgcList!=null && jfXjgcList.size()>0){
 			for(int i=0;i<jfXjgcList.size();i++){
@@ -51,6 +53,7 @@ public class JfXjgcService extends CrudService<JfXjgcDao, JfXjgc> {
 	}
 	
 	public Page<JfXjgc> findPage(Page<JfXjgc> page, JfXjgc jfXjgc) {
+		jfXjgc.getSqlMap().put("dsf",dataScopeFilter(jfXjgc.getCurrentUser(), "o", "u"));
 		Page<JfXjgc> pageList = super.findPage(page, jfXjgc);
 		if(pageList!=null && pageList.getList()!=null && pageList.getList().size()>0){
 			for(int i=0;i<pageList.getList().size();i++){

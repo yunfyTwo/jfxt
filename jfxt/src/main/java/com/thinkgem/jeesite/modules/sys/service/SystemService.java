@@ -546,5 +546,9 @@ public class SystemService extends BaseService implements InitializingBean {
 	}
 	
 	///////////////// Synchronized to the Activiti end //////////////////
+
+	public List<User> findUserPermissions(User user){
+		return userDao.findUserPermissions(user);
+	}
 	
 }

@@ -30,6 +30,7 @@ public class JfZgService extends CrudService<JfZgDao, JfZg> {
 	}
 	
 	public List<JfZg> findList(JfZg jfZg) {
+		jfZg.getSqlMap().put("dsf",dataScopeFilter(jfZg.getCurrentUser(), "o", "u"));
 		List<JfZg> jfZgList=super.findList(jfZg);
 		if(jfZgList!=null && jfZgList.size()>0){
 			for(int i=0;i<jfZgList.size();i++){
@@ -53,6 +54,7 @@ public class JfZgService extends CrudService<JfZgDao, JfZg> {
 	}
 	
 	public Page<JfZg> findPage(Page<JfZg> page, JfZg jfZg) {
+		jfZg.getSqlMap().put("dsf",dataScopeFilter(jfZg.getCurrentUser(), "o", "u"));
 		Page<JfZg> pageList = super.findPage(page, jfZg);
 		if(pageList!=null && pageList.getList()!=null && pageList.getList().size()>0){
 			for(int i=0;i<pageList.getList().size();i++){

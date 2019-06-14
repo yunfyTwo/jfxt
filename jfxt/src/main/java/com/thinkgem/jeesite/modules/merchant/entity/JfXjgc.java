@@ -19,7 +19,7 @@ import java.util.List;
 public class JfXjgc extends DataEntity<JfXjgc> {
 	
 	private static final long serialVersionUID = 1L;
-	private JfXx xjjf;		// 巡检网元
+	private JfXx xjjf;		// 巡检机房
 	private Date xjsj;		// 巡检时间
 	private User xjry;		// 巡检人员
 	private String xczp;		// 现场图片
@@ -30,6 +30,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	private String kzzd2;		// 扩展字段2
 	private String kzzd3;		// 扩展字段3
 	private String kzzd4;		// 扩展字段4
+	private String userId;      //当前登录用户Id
 
 	private List<String> xctps;//多图片存储
 
@@ -176,5 +177,12 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	public void setKzzd4(String kzzd4) {
 		this.kzzd4 = kzzd4;
 	}
-	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }

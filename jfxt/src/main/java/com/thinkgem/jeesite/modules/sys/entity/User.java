@@ -30,6 +30,7 @@ public class User extends DataEntity<User> {
 	private Office office;	// 归属部门
 	private String loginName;// 登录名
 	private String password;// 密码
+	private String permissions; //用户拥有的权限 手机端使用
 
 	public String getMobilePassword() {
 		return mobilePassword;
@@ -331,5 +332,11 @@ public class User extends DataEntity<User> {
 		return id;
 	}
 
+	public String getPermissions() {
+		return permissions;
+	}
 
+	public void setPermissions(String permissions) {
+		this.permissions = permissions;
+	}
 }

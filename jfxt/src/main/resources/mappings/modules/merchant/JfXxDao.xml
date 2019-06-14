@@ -45,11 +45,11 @@
 					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
 			</if>
-			<if test="jfjj != null and jfjj != ''">
-				AND a.jfjj LIKE 
-					<if test="dbName == 'oracle'">'%'||#{jfjj}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{jfjj}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{jfjj},'%')</if>
+			<if test="jfwz != null and jfwz != ''">
+				AND a.jfwz LIKE 
+					<if test="dbName == 'oracle'">'%'||#{jfwz}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{jfwz}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{jfwz},'%')</if>
 			</if>
 		</where>
 		<choose>

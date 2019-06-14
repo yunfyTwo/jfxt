@@ -30,6 +30,7 @@ public class JfCfService extends CrudService<JfCfDao, JfCf> {
 	}
 	
 	public List<JfCf> findList(JfCf jfCf) {
+		jfCf.getSqlMap().put("dsf",dataScopeFilter(jfCf.getCurrentUser(), "o", "u"));
 		List<JfCf> jfCfList=super.findList(jfCf);
 		if(jfCfList!=null && jfCfList.size()>0){
 			for(int i=0;i<jfCfList.size();i++){
@@ -54,6 +55,7 @@ public class JfCfService extends CrudService<JfCfDao, JfCf> {
 	}
 	
 	public Page<JfCf> findPage(Page<JfCf> page, JfCf jfCf) {
+		jfCf.getSqlMap().put("dsf",dataScopeFilter(jfCf.getCurrentUser(), "o", "u"));
 		Page<JfCf> pageList = super.findPage(page, jfCf);
 		if(pageList!=null && pageList.getList()!=null && pageList.getList().size()>0){
 			for(int i=0;i<pageList.getList().size();i++){

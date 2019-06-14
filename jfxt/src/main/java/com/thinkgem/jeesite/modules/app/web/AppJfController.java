@@ -5,10 +5,12 @@ package com.thinkgem.jeesite.modules.app.web;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.filemanage.FileUpload;
 import com.thinkgem.jeesite.common.persistence.Page;
+import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.app.util.AppResult;
 import com.thinkgem.jeesite.modules.merchant.entity.*;
 import com.thinkgem.jeesite.modules.merchant.service.*;
 import com.thinkgem.jeesite.modules.sys.entity.Dict;
+import com.thinkgem.jeesite.modules.sys.entity.Role;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.DictService;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
@@ -63,6 +65,14 @@ public class AppJfController {
     public Object saveZgd(HttpServletResponse response,JfZg jfZg){
         response.setHeader("Access-Control-Allow-Origin", "*");
         try {
+            User user = null;
+            if(StringUtils.isNotBlank(jfZg.getUserId())){
+                user = systemService.getUser(jfZg.getUserId());
+                jfZg.setCreateBy(user);
+            }else {
+                return AppResult.writeResultRep(null,"未登录或登录失效");
+            }
+
             if (jfZg.getId()==null|| jfZg.getId()==""){//新整改单
                 String tzd=""+new Date().getTime();
                 jfZg.setZgdh(tzd);//生成新的单号
@@ -72,14 +82,21 @@ public class AppJfController {
                 //查询巡检单进行状态修改以及照片添加
                 JfXjgc jfXjgc=jfXjgcService.get(xjId);
                 jfXjgc.setXczp(jfZg.getCfxczp());//照片
-                jfXjgc.setDelFlag("0");
+
+                //2019-05-16 chelly add  整改同时开具处罚单 则整改单与巡检结果暂时不生效
+                if("cfd".equals(jfZg.getKzzd2())){
+                    jfZg.setDelFlag("1");
+                }else{
+                    jfXjgc.setDelFlag("0");
+                }
+
                 jfXjgcService.save(jfXjgc);
             }
             //保存整改单
             jfZgService.save(jfZg);
-            return AppResult.writeResultRep(jfZg,"保存处罚单成功");
+            return AppResult.writeResultRep(jfZg,"保存整改单成功");
         } catch (Exception e) {
-            return AppResult.writeResultFailure("保存处罚单失败");
+            return AppResult.writeResultFailure("保存整改单失败");
         }
     }
 
@@ -95,10 +112,32 @@ public class AppJfController {
     public Object saveCfd(HttpServletResponse response,JfCf jfCf){
         response.setHeader("Access-Control-Allow-Origin", "*");
         try {
+            User user = null;
+            if(StringUtils.isNotBlank(jfCf.getUserId())){
+                user = systemService.getUser(jfCf.getUserId());
+                jfCf.setCreateBy(user);
+            }else {
+                return AppResult.writeResultRep(null,"未登录或登录失效");
+            }
 
             if (jfCf.getId()==null|| jfCf.getId()==""){//新处罚单
                 String tzd=""+new Date().getTime();
                 jfCf.setCftzd(tzd);//生成新的单号
+            }
+
+            //2019-05-16 chelly add 保存处罚单时判断是否从整改单过来，并更改巡检结果及整改单的有效状态
+            if(jfCf.getKzzd1()!=null && !"".equals(jfCf.getKzzd1())){
+                String xjId = jfCf.getKzzd1();
+                JfXjgc jfXjgc=jfXjgcService.get(xjId);
+                jfXjgc.setDelFlag("0");
+                jfXjgcService.save(jfXjgc);
+            }
+            if(jfCf.getKzzd2()!=null && !"".equals(jfCf.getKzzd2())){
+                String zgId = jfCf.getKzzd2();
+                JfZg jfZg = jfZgService.get(zgId);
+                jfCf.setCfxczp(jfZg.getCfxczp());
+                jfZg.setDelFlag("0");
+                jfZgService.save(jfZg);
             }
 
             jfCfService.save(jfCf);
@@ -195,6 +234,10 @@ public class AppJfController {
     public Object cfList(HttpServletResponse response,HttpServletRequest request , JfCf jfCf) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         try {
+            if(jfCf!=null && StringUtils.isNotBlank(jfCf.getUserId())){
+                User user = systemService.getUser(jfCf.getUserId());
+                jfCf.setCurrentUser(user);
+            }
             Page<JfCf> page = jfCfService.findPage(new Page<JfCf>(request, response), jfCf);
             List<JfCf> jfCfs = page.getList();
             return AppResult.writeResultRep(jfCfs, "获取处罚单列表失败");
@@ -214,11 +257,14 @@ public class AppJfController {
     public Object zgList(HttpServletResponse response,HttpServletRequest request , JfZg jfZg) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         try {
-
+            if(jfZg!=null && StringUtils.isNotBlank(jfZg.getUserId())){
+                User user = systemService.getUser(jfZg.getUserId());
+                jfZg.setCurrentUser(user);
+            }
             List<JfZg> jfZgs = jfZgService.findList(jfZg);
-            return AppResult.writeResultRep(jfZgs, "获取处罚单列表失败");
+            return AppResult.writeResultRep(jfZgs, "获取整改单列表失败");
         } catch (Exception e) {
-            return AppResult.writeResultFailure("获取处罚单列表失败");
+            return AppResult.writeResultFailure("获取整改单列表失败");
         }
     }
 
@@ -233,6 +279,13 @@ public class AppJfController {
     public Object saveXj(HttpServletResponse response,JfXjgc jfXjgc){
               response.setHeader("Access-Control-Allow-Origin", "*");
         try {
+            User user = null;
+            if(StringUtils.isNotBlank(jfXjgc.getUserId())){
+                user = systemService.getUser(jfXjgc.getUserId());
+                jfXjgc.setCreateBy(user);
+            }else {
+                return AppResult.writeResultRep(null,"未登录或登录失效");
+            }
 
             if (jfXjgc.getXjsftg().equals("0")){
                 //说明是需要整改，先判断为无效，整改单保存后修改有效，存储照片
@@ -269,7 +322,6 @@ public class AppJfController {
         }
     }
 
-    
     /**
      * 通过巡检ID查询网元信息
      *
@@ -290,7 +342,6 @@ public class AppJfController {
         }
     }
     
-
     /**
      * 公告列表
      *
@@ -342,6 +393,7 @@ public class AppJfController {
             User appUser = systemService.getUser(id);
             return AppResult.writeResultRep(appUser, "返回公告详情成功");
         } catch (Exception e) {
+            e.printStackTrace();
             return AppResult.writeResultFailure("返回公告详情失败");
         }
     }
@@ -379,9 +431,48 @@ public class AppJfController {
             user.setLoginName(loginName);
             user.setMobilePassword(password);
             User user1 = systemService.findUserApp(user);
-            return AppResult.writeResultRep(user1,"登录成功");
+            if(null == user1){
+                return AppResult.writeResultFailure("用户名或密码不正确！");
+            }
+//            return AppResult.writeResultRep(user1,"登录成功");
+            return this.getPermissions(response,request,user1.getId());
         } catch (Exception e) {
+            e.printStackTrace();
             return AppResult.writeResultFailure("登录失败");
+        }
+    }
+
+
+    /**
+     * 获取用户权限
+     * @param response
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping("/getPermissions")
+    @ResponseBody
+    public Object getPermissions(HttpServletResponse response,HttpServletResponse request,String id) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        try {
+            User user1 = new User();
+            user1.setId(id);
+            List<User> list = systemService.findUserPermissions(user1);
+            String permissions="";
+
+            for(User u:list){
+                if(u!=null && StringUtils.isNotBlank(u.getPermissions())){
+                    permissions+=u.getPermissions()+",";
+                }
+            }
+            if(permissions.length()>1){
+                permissions = permissions.substring(0,permissions.length()-1);
+            }
+            user1.setPermissions(permissions);
+            return AppResult.writeResultRep(user1,"获取权限成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AppResult.writeResultFailure("获取权限失败");
         }
     }
 

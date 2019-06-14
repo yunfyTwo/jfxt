@@ -26,7 +26,6 @@
         }
 
         function showCfImg(id) {
-            alert(id);
             layer.open({
                 type: 2,
                 title: '图片展示',
@@ -158,6 +157,5 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
-	<div id="fade" class="black_overlay"  onClick="closeImgWindow()"/>
 </body>
 </html>

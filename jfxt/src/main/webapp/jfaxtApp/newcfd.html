@@ -20,7 +20,7 @@
 <body ontouchstart>
 <div class="weui_btn_primary weui-header ">
     <div class="weui-header-left"> <a href="index1.html" class="icon icon-109 f-white"></a>  </div>
-    <h1 class="weui-header-title">new处罚单</h1>
+    <h1 class="weui-header-title">新增处罚单</h1>
     <input type="text" value="" style="display: none" id="cfId">
 </div>
 <div class="kong2"></div>
@@ -32,7 +32,7 @@
         </div>
     </div>-->
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+        <div class="weui-cell__hd"><label for="years-monthes" class="weui-label">日期</label></div>
         <div class="weui-cell__bd">
             <input class="weui-input" id="years-monthes" type="text" value="" placeholder="请选日期时间" readonly="readonly" >
             <!--<input class="weui-input" type="date" value=" " id="cfrq">-->
@@ -84,24 +84,28 @@
         </div>
     </div>
 </div>
-<div class="weui-gallery" id="gallery">
-    <span class="weui-gallery__img" id="galleryImg"></span>
-</div>
-<div class="weui-cells__title">上传现场照片</div>
-<div class="weui-cells sczp">
-    <div class="weui-uploader__bd">
-        <ul class="weui-uploader__files" id="img2x">
-        </ul>
-        <div class="weui-uploader__input-box">
-            <form id="uploadImgForm">
-                <div id="img">
-                    <div class="weui-uploader__input" type="file" id="imgFile" name="imgFile" accept="image/jpg,image/jpeg,image/png,image/gif" multiple></div>
-                </div>
-            </form>
+<div id="cfdxczp">
+	<div class="weui-gallery" id="gallery">
+	    <span class="weui-gallery__img" id="galleryImg"></span>
+	</div>
+	<div class="weui-cells__title">上传现场照片</div>
+	<div class="weui-cells sczp">
+	    <div class="weui-uploader__bd">
+	        <ul class="weui-uploader__files" id="img2x">
+	        </ul>
+	        <div id="addImg" class="weui-uploader__input-box" style="display: none">
+	            <form id="uploadImgForm">
+	                <div id="img">
+	                    <div class="weui-uploader__input" type="file" id="imgFile" name="imgFile" accept="image/jpg,image/jpeg,image/png,image/gif" multiple></div>
+	                </div>
+	            </form>
+	        </div>
+	        
+	    </div>
+        <div id="clearImg" style="display: none">
+	        <input type="button" value="清空图片" onclick="deleteImg()"/>
         </div>
-        
-    </div>
-    <input type="button" value="清空图片" onclick="deleteImg()"/>
+	</div>
 </div>
 <div class="weui-cells__title">处罚原因</div>
 
@@ -113,14 +117,35 @@
         </div>
     </div>
 </div>
-<div class="weui-cells">
+<div class="weui-cells" id="btnSubmit" style="display: none">
     <a href="#"  class="weui-btn weui-btn_primary" onclick="saveCf()">提交</a>
 
 </div>
 </body>
 
-
 <script type="text/javascript">
+	function perCenter(){
+        //获取存储在本地的会员Id
+        var storage=window.localStorage;
+        var userId = storage.getItem("loginName");
+        var permissions = storage.getItem("permissions");
+        var dataedit = "merchant:jfCf:edit";
+        if(permissions.indexOf(dataedit)>-1){
+            $("#btnSubmit").show();
+            $("#clearImg").show();
+            $("#addImg").show();
+        }
+    }
+
+</script>
+<script type="text/javascript">
+
+    //获取路径中的参数
+    var id = GetArgsFromHref("cfid");
+    var ggId = GetArgsFromHref("ggid");
+    var xjId = GetArgsFromHref("xunjianid");
+    var zgId = GetArgsFromHref("zgid");
+    var userId = "";
     $(function(){
     	
     	//实例化fastClick插件
@@ -129,8 +154,9 @@
     	 //获取浏览器本地存储空间对象localStrage
         var storage=window.localStorage;
         //通过localStrage获取到存储其中的登录名
-        var userId = storage.getItem("loginName");
+        userId = storage.getItem("loginName");
         findUser(userId);
+        perCenter();
         
         //c初始化网元选项
         findAlljf();
@@ -139,6 +165,11 @@
     	findDict();
     	findDict1();
     	
+    	if(ggId!=null && ggId!='' && xjId!=null && xjId!=''){
+    		$("#cfdxczp").hide();
+	    	findGg(ggId);
+	    }
+	    	
         var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
             $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
             $uploaderInput = $("#uploaderInput"),
@@ -171,10 +202,6 @@
     });
 </script>
 <script type="text/javascript">
-   
-  //获取路径中的参数
-    var id = GetArgsFromHref("cfid");
-
 	//时间日期的值
 	 var displayValues = $("#years-monthes").val();
 
@@ -187,6 +214,25 @@
         values = $("#years-monthes").val();
         console.log(values);
     }});
+    
+  //查询公告以及对应网元
+    function findGg(id){
+        $.post(
+            getContextPath()+"/app/findJfbygg",
+            {
+                "id": id
+            },
+            function (data) {
+                if(data.code == 1) {
+                    var obj = data.data;
+                    selectedJf(obj.id);
+                    $("#jfXx_list").val(obj.id);
+                    $("#jfXx_list").attr("disabled","true");
+                } else {
+                    $.toast(data.msg,'forbidden', 8000);
+                }
+            });
+    };
 
     //选中网元
     function selectedJf(a) {
@@ -258,8 +304,11 @@
                 }
             });
     }
+
     //查询登录用户
     function findUser(userId){
+        // var dataedit = "merchant:jfCf:edit";//权限
+        // var permissions = "";
         $.post(
             getContextPath()+"/app/findUser",
             {
@@ -268,7 +317,12 @@
             function (data) {
                 if(data.code == 1) {
                     var obj = data.data;
-                    $("#user_name").text(obj.name);
+                    // permissions = obj.permissions;
+                    // if(permissions.indexOf(dataedit)>-1){
+                    //     $("#btnSubmit").show();
+                    // }
+                    $("#user_name").text(obj.loginName);
+                    $("#user_nameTp").text(obj.name);
                     $("#user_id").val(obj.id);
                 } else {
                     $.toast(data.msg,'forbidden', 8000);
@@ -452,6 +506,30 @@
 
     //提交新处罚单信息
     function saveCf(){
+    	var jfid = $("#jf_ids").val();	
+    	if(jfid==null||jfid==''){
+    		alert('请选择网元');
+    		return;
+    	}
+    	
+    	var cfdx = $("#cfdx_ids").val();	
+    	if(cfdx==null || cfdx==''){
+    		alert("请选择处罚对象");
+    		return;
+    	}
+    	
+    	var cftd = $("#cftd_ids").val();
+    	if(cftd==null || cftd==''){
+    		alert("请选择处罚梯度");
+    		return;
+    	}
+    	
+    	var cfyy = $("#cfyyms").val();
+    	if(cfyy==null || cfyy==''){
+    		alert("请填写处罚原因");
+    		return;
+    	}
+    	
         var jfCf = {};
         jfCf.id = $("#cfId").val();		// 处罚单ID
         jfCf.cfjf = $("#jf_ids").val();		// 处罚网元
@@ -461,13 +539,19 @@
         jfCf.cftd = $("#cftd_ids").val();		// 处罚梯度      //jfCf.cfqxyyz = $().val();		// 处罚权限拥有者
         jfCf.cfyyms = $("#cfyyms").val();		// 处罚原因描述
         jfCf.createBy= $("#user_id").val();		//处罚人
-        if(imgArr.length > 4) {
-            imgUrls = imgArr.join("|");//把‘|’拼接到图片路径后面
-            jfCf.cfxczp = imgUrls;
-        }/* else{
-         	alert("图片至少五张");
-       	return;
-         }  */
+        jfCf.kzzd1 = xjId;
+        jfCf.kzzd2 = zgId;
+        jfCf.userId = userId;
+        
+        if(!ggId&&!xjId&&!zgId){
+        	if(imgArr.length > 4) {
+	            imgUrls = imgArr.join("|");//把‘|’拼接到图片路径后面
+	            jfCf.cfxczp = imgUrls;
+	        }else{
+	         	alert("图片至少五张");
+	       	return;
+	         }
+        }
         
        	//说明只有一张或者没有图片
     	if(imgUrls != "") {
@@ -481,7 +565,8 @@
 
             function (data) {
                 if(data.code == 1) {
-                    $.toast(data.msg,'forbidden', 8000);
+                    // $.toast(data.msg, 'forbidden', 8000);
+                    $.toast(data.msg);
                     window.location.href = "index1.html";
                 } else {
                     $.toast(data.msg,'forbidden', 8000);

@@ -1,7 +1,7 @@
 {
     "@platforms": ["android", "iPhone", "iPad"],
-    "id": "H59A2F9BD",/*应用的标识，创建应用时自动生成，勿手动修改*/
-    "name": "网元巡检系统",/*应用名称，程序桌面图标名称*/
+    "id": "H5FF15CBD",/*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name": "机房巡检系统",/*应用名称，程序桌面图标名称*/
     "version": {
         "name": "1.0",/*应用版本名称*/
         "code": ""
@@ -131,7 +131,7 @@
                     "ldpi": ""/*1080P高分屏启动图片，分辨率：1080x1882*/
                 }
             }
-        },"adid":"125621060506"
+        },"adid":"124205280905"
     },
 	"dependencies": {
 		"pages": {
@@ -245,7 +245,8 @@
 					"xunjian.html",
 					"newxunjian.html",
 					"zhichengfang.html",
-					"index1.html"
+					"index1.html",
+					"newcfd.html"
 				],
 				"priority": 0
 			},

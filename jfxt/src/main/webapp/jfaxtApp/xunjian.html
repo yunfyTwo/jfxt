@@ -63,11 +63,13 @@
         </div>
     </div>
 </div>
-<div class="weui-cells__title">整改判断</div>
-<div class="weui-cells">
-    <div class="weui-cell weui-cell_select">
-        <textarea id="zgpd" name="textfield3" cols="100%" rows="6" placeholder="请填写巡检判断！"></textarea>
-    </div>
+<div id="zgpddiv" style="display: none;">
+	<div class="weui-cells__title">整改判断</div>
+	<div class="weui-cells">
+	    <div class="weui-cell weui-cell_select">
+	        <textarea id="zgpd" name="textfield3" cols="100%" rows="6" placeholder="请填写整改判断！"></textarea>
+	    </div>
+	</div>
 </div>
 <div class="weui-cells">
     <div class="weui-cell">
@@ -193,13 +195,14 @@
 </script>
 <script type="text/javascript">
     var id = GetArgsFromHref("ggid");
+    var userId = "";
     $(function(){
         var back_html = '';
         back_html += '<a href="ggxq.html?ggid='+id+'" class="icon icon-109 f-white"></a>'
         $("#back").html(back_html);
         //获取存储在本地的会员Id
         var storage=window.localStorage;
-        var userId = storage.getItem("loginName");
+        userId = storage.getItem("loginName");
          $('.zhenggai').css('display','none');
          $('.sczp').css('display','none');
          $('.tijiao').css('display','block');
@@ -217,14 +220,26 @@
 			       	return;
 			       }
 			       
+			       var zgpd = $("#zgpd").val();
+			       if(zgpd==null || zgpd==''){
+			       	alert("请填写整改判断！");
+			       	return;
+			       }
+			       
+			       var fenshu = $("#fen").text();
+			       if(fenshu==null || fenshu==''){
+			       		fenshu = 1;
+			       }
+			       
 			        var jfXjgc = {};
 			        jfXjgc.xjjf =  $("#jf_xx_id").val();
 			        jfXjgc.xjsj =  new Date();
 			        jfXjgc.xjry =  $("#user_id").val();
 			        jfXjgc.zgpd =  $("#zgpd").val();
 			        jfXjgc.xjsftg = b;
-			        jfXjgc.xjdf =  $("#fen").text();
+			        jfXjgc.xjdf =  fenshu;
 			        jfXjgc.xjjf =  $("#jf_xx_id").val();
+                    jfXjgc.userId = userId;
 			   		
 			        $.post(
 			            getContextPath()+"/app/saveXj",
@@ -233,7 +248,8 @@
 			
 			            function (data) {
 			                if(data.code == 1) {
-			                	$.toast(data.msg,'forbidden', 8000);
+                                // $.toast(data.msg, 'forbidden', 8000);
+                                $.toast(data.msg);
 			                    	var url = "newzgd.html?ggid="+id+"&&xunjianid="+data.data.id;
          							window.open(url);
 			                } else {
@@ -288,6 +304,7 @@
                $('.sczp').css('display','none');
                $("#zgjg").val("0");
                $('.tijiao').css('display','none');
+               $('#zgpddiv').show();
            }
            if(a == '不整改'){
                $('.zhenggai').css('display','none');
@@ -456,11 +473,15 @@
     function saveXj(){
     	
      var b =$("#zgjg").val();
-       if(b=='2'){
+       if(b=='0'){
        	alert("请选择整改结果");
        	return;
-       }
+       }   
        
+       var fenshu = $("#fen").text();
+       if(fenshu==null || fenshu==''){
+       		fenshu=1;
+       }
        
         var jfXjgc = {};
         jfXjgc.xjjf =  $("#jf_xx_id").val();
@@ -468,8 +489,9 @@
         jfXjgc.xjry =  $("#user_id").val();
         jfXjgc.zgpd =  $("#zgpd").val();
         jfXjgc.xjsftg = b;
-        jfXjgc.xjdf =  $("#fen").text();
+        jfXjgc.xjdf =  fenshu;
         jfXjgc.xjjf =  $("#jf_xx_id").val();
+        jfXjgc.userId = userId;
          if(imgArr.length > 4) {
              imgUrls = imgArr.join("|");
              jfXjgc.xczp = imgUrls;
@@ -481,7 +503,6 @@
             jfXjgc.xczp = imgUrls;
         }
         
-        
         $.post(
             getContextPath()+"/app/saveXj",
 
@@ -489,7 +510,8 @@
 
             function (data) {
                 if(data.code == 1) {
-                    $.toast(data.msg,'forbidden', 8000);
+                    // $.toast(data.msg, 'forbidden', 8000);
+                    $.toast(data.msg);
                     window.location.href = "index1.html";
                 } else {
                     $.toast(data.msg,'forbidden', 8000);

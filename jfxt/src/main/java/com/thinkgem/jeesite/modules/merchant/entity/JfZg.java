@@ -25,8 +25,8 @@ public class JfZg extends DataEntity<JfZg> {
 	private String zgyq;		// 整改要求
 	private String cfxczp;		// 整改现场照片
 	private String kzzd1;		// 扩展字段1
-	private String kzzd2;		// 扩展字段2
-	private String kzzd3;		// 扩展字段3
+	private String kzzd2;	   // 是否已经整改
+	private String kzzd3;		// 整改费用
 	private String kzzd4;		// 扩展字段4
 	private Date startDate;		// 开始日期
 	private Date overDate;		// 结束日期
@@ -42,6 +42,8 @@ public class JfZg extends DataEntity<JfZg> {
 	private String needRemediation;		// 是否需要环境整治
 	private String contentDescription;		// 环境整治内容描述（门、窗、墙面等）
 	private String userId;      //当前登录用户Id
+	
+
 	public String getIsCutOverContent() {
 		return isCutOverContent;
 	}

@@ -145,18 +145,18 @@
 				<%--<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>--%>
 			<%--</div>--%>
 		<%--</div>--%>
-		<%--<div class="control-group">--%>
-			<%--<label class="control-label">扩展字段1：</label>--%>
-			<%--<div class="controls">--%>
-				<%--<form:input path="kzzd1" htmlEscape="false" maxlength="255" class="input-xlarge "/>--%>
-			<%--</div>--%>
-		<%--</div>--%>
-		<%--<div class="control-group">--%>
-			<%--<label class="control-label">扩展字段2：</label>--%>
-			<%--<div class="controls">--%>
-				<%--<form:input path="kzzd2" htmlEscape="false" maxlength="255" class="input-xlarge "/>--%>
-			<%--</div>--%>
-		<%--</div>--%>
+		<div class="control-group">
+			<label class="control-label">是否已整改：</label>
+			<div class="controls">
+				<form:input path="kzzd2" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">费用：</label>
+			<div class="controls">
+				<form:input path="kzzd3" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+			</div>
+		</div>
 		<%--<div class="control-group">--%>
 			<%--<label class="control-label">扩展字段3：</label>--%>
 			<%--<div class="controls">--%>

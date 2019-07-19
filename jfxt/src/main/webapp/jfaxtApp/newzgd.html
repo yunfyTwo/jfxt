@@ -186,7 +186,26 @@
         </div>
     </div>
 </div>
-	
+<div class="weui-cells__title">是否整改完成</div>
+<div class="weui-cells" id="messages">
+    <div class="weui-cell weui-cell_select">
+        <div class="weui-cell__bd" >
+            <select class="weui-select" name="select1"  id="kzzd2" onchange="se(this,'messages')">
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">整改费用</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="若已产生整改费用 ，请输入整改费用" rows="1" id="kzzd3"></textarea>
+            <div class="weui-textarea-counter"><span>0</span>/200</div>
+        </div>
+    </div>
+</div>	
 		<div class="weui-gallery" id="gallery">
 			<span class="weui-gallery__img" id="galleryImg"></span>
 		</div>
@@ -347,8 +366,8 @@
 
 		//保存整改单
 		function saveZg(type) {
-			var zgyq = $("#zgyqms").val();
-			if(zgyq==null && zgyq==''){
+			var isZg = $("#kzzd2").val();
+			if(isZg=='否'){
 				alert("请填写整改要求");
 				return;
 			}
@@ -378,6 +397,8 @@
 	        jfZG.opticalCableContent = $("#opticalCableContent").val();//光缆整治割接内容描述
 	        jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
 	        jfZG.contentDescription = $("#contentDescription").val();//光缆整治割接内容描述
+	        jfZG.kzzd2 = $("#kzzd2").val();//是否整改完成
+	        jfZG.kzzd3 = $("#kzzd3").val();//整改花费费用
 	        
 			var storage = window.localStorage;
 			var userId = storage.getItem("loginName");

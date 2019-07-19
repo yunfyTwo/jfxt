@@ -56,15 +56,22 @@
 	<form:form id="searchForm" modelAttribute="jfZg" action="${ctx}/merchant/jfZg/list" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-			<li>整改网元：
-				<form:select path="zgjf" class="input-xlarge"  cssStyle="width:176px;">
+		<ul class="ul-form" >
+			<li><label>整改网元：</label>
+				<form:select path="zgjf" class="input-xlarge"  cssStyle="width:150px;">
 					<form:option value="" label="请选择"/>
 					<form:options items="${jfXxList}" itemLabel="name" itemValue="id" htmlEscape="false"/>
 				</form:select>
 			</li>
-			<li><label>整改单号：</label>
-				<form:input path="zgdh" htmlEscape="false" maxlength="255" class="input-medium"/>
+			<li><label>是否已整改：</label>
+				<form:select path="kzzd2" class="input-xlarge"  cssStyle="width:80px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select> 
+			</li>
+			<li><label>单号：</label>
+				<form:input path="zgdh" htmlEscape="false" maxlength="55" class="input-medium"/>
 			</li>
 			<li><label>日期：</label>
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
@@ -101,6 +108,8 @@
 				<th>光缆整治割接内容描述</th>
 				<th>是否需要环境整治</th>
 				<th>环境整治内容描述（门、窗、墙面等）</th>
+				<th>是否已整改</th>
+				<th>整改费用</th>
 				<shiro:hasPermission name="merchant:jfZg:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -154,6 +163,8 @@
 					<td>${jfZg.opticalCableContent}</td>
 					<td>${jfZg.needRemediation}</td>
 					<td>${jfZg.contentDescription}</td>
+					<td>${jfZg.kzzd2}</td>
+					<td>${jfZg.kzzd3}</td>
 
 
 					<shiro:hasPermission name="merchant:jfZg:edit"><td>

@@ -523,6 +523,9 @@
         jfXjgc.xjsftg = b;
         jfXjgc.xjdf =  $("#fen").text();
 //        jfXjgc.xjjf =  $("#jf_xx_id").val();
+		var storage = window.localStorage;
+		var userId = storage.getItem("loginName");
+		jfXjgc.userId = userId; //当前登录用户ID
          if(imgArr.length > 4) {
              imgUrls = imgArr.join("|");
              jfXjgc.xczp = imgUrls;

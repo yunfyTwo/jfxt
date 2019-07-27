@@ -77,12 +77,15 @@ public class AppJfController {
                 String tzd=""+new Date().getTime();
                 jfZg.setZgdh(tzd);//生成新的单号
             }
-            if (jfZg.getKzzd1()!=null){
+            JfXjgc jfXjgc = new JfXjgc();
+            if (jfZg.getKzzd1()!=null && !"newzgd".equals(jfZg.getKzzd1())){
                 String xjId=jfZg.getKzzd1();
                 //查询巡检单进行状态修改以及照片添加
-                JfXjgc jfXjgc=jfXjgcService.get(xjId);
-                jfXjgc.setXczp(jfZg.getCfxczp());//照片
-
+                jfXjgc=jfXjgcService.get(xjId);
+            }
+                if(jfZg.getCfxczp() !=null) {
+                	jfXjgc.setXczp(jfZg.getCfxczp());//照片
+                }
                 //2019-05-16 chelly add  整改同时开具处罚单 则整改单与巡检结果暂时不生效
                 if("cfd".equals(jfZg.getKzzd2())){
                     jfZg.setDelFlag("1");
@@ -91,7 +94,7 @@ public class AppJfController {
                 }
 
                 jfXjgcService.save(jfXjgc);
-            }
+           
             //保存整改单
             jfZgService.save(jfZg);
             return AppResult.writeResultRep(jfZg,"保存整改单成功");

@@ -367,7 +367,9 @@
 		//保存整改单
 		function saveZg(type) {
 			var isZg = $("#kzzd2").val();
-			if(isZg=='否'){
+			var zgyq = $("#zgyqms").val(); // 整改要求描述
+			if(isZg=='否' && zgyq==null){
+				$("#kzzd3").val("");
 				alert("请填写整改要求");
 				return;
 			}
@@ -397,8 +399,12 @@
 	        jfZG.opticalCableContent = $("#opticalCableContent").val();//光缆整治割接内容描述
 	        jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
 	        jfZG.contentDescription = $("#contentDescription").val();//光缆整治割接内容描述
-	        jfZG.kzzd2 = $("#kzzd2").val();//是否整改完成
-	        jfZG.kzzd3 = $("#kzzd3").val();//整改花费费用
+	        var isUpdate =$("#kzzd2").val();
+	        jfZG.kzzd2 = isUpdate;//是否整改完成
+	        if("是"==isUpdate){
+	        	jfZG.kzzd3 = $("#kzzd3").val();//整改花费费用
+	        }
+	        
 	        
 			var storage = window.localStorage;
 			var userId = storage.getItem("loginName");

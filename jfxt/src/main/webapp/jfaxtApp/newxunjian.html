@@ -226,11 +226,11 @@
         $("#txzgd").click(function(){
         	//保存已有的巡检过程
         	    var b =$("#zgjg").val();
+        	    var jf_id =  $("#jf_ids").val();
 			       if(b=='2'){
 			       	alert("请选择整改结果");
 			       	return;
 			       }
-			       
 			        var jfXjgc = {};
 			        jfXjgc.xjjf =  $("#jf_ids").val();
 			        jfXjgc.xjsj =  new Date();
@@ -238,6 +238,10 @@
 			        jfXjgc.zgpd =  $("#zgpd").val();
 			        jfXjgc.xjsftg = b;
 			        jfXjgc.xjdf =  $("#fen").text();
+			        
+			        var storage = window.localStorage;
+					var userId = storage.getItem("loginName");
+					jfXjgc.userId = userId; //当前登录用户ID
 			   		
 			        $.post(
 			            getContextPath()+"/app/saveXj",
@@ -247,7 +251,7 @@
 			            function (data) {
 			                if(data.code == 1) {
 			                	$.toast(data.msg,'forbidden', 8000);
-			                    	var url = "newzgds.html?ggid="+id+"&&xunjianid="+data.data.id;
+			                    	var url = "newzgds.html?ggid="+jf_id+"&&xunjianid="+data.data.id+"&&jf_id="+jf_id;
          							window.open(url);
 			                } else {
 			                    $.toast(data.msg,'forbidden', 8000);

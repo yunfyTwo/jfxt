@@ -279,12 +279,19 @@
 	<script>
 		//获取路径中的整改单的id
 		var id = GetArgsFromHref("ggid");
+		var jf_id = GetArgsFromHref("jf_id");//无公告的巡检机房名
+		if(jf_id != "undefined" && jf_id != ""){
+			$("#jf_name").val(jf_id);
+		}
 		var xjId = GetArgsFromHref("xunjianid");
 		//初始化页面
 		$(function() {
 			FastClick.attach(document.body);
-			//根据参数显示整改网元
-		findGg(xjId);
+		//根据参数显示整改网元
+		if(xjId != "undefined" && xjId != ""){//无公告的巡检没有id
+			findGg(xjId);
+		}
+		
 		});
 	</script>
 	<script>
@@ -352,8 +359,14 @@
 	        jfZG.kzzd2 = $("#kzzd2").val();//是否整改完成
 	        jfZG.kzzd3 = $("#kzzd3").val();//整改花费费用
 	        
-			if(xjId!=null){
+	        var storage = window.localStorage;
+			var userId = storage.getItem("loginName");
+			jfZG.userId = userId; //当前登录用户ID
+	        
+			if(xjId!=null && ""!=xjId && xjId != "undefined"){
 				jfZG.kzzd1=xjId;//将巡检单和整改单绑定
+			}else{
+				jfZG.kzzd1="newzgd";
 			}
 			
 	        

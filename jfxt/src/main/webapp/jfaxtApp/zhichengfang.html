@@ -94,19 +94,7 @@
                     //查询成功
                     cfList = data.data;
                     var list_html = '';
-                    if (cfList.length > 5) {
-                        for (var i = 0; i < 5; i++) {
-                            var obj = cfList[i];
-                            list_html +=
-                                '<a class="weui-cell weui-cell_access" href="cfd.html?cfid=' + obj.id + '">' +
-                                '<div class="weui-cell__bd">' +
-                                '<p>' + obj.cftzd + '(单号)</p>' +
-                                '</div>' +
-                                '<div class="weui-cell__ft">' + obj.cfrq + '</div>' +
-                                '</a>'
-                        }
-                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
-                    } else {
+                    if (cfList.length > 0) {
                         for (var i = 0; i < cfList.length; i++) {
                             var obj = cfList[i];
                             list_html +=
@@ -134,19 +122,7 @@
                     //查询成功
                     zgList = data.data;
                     var list_html = '';
-                    if (zgList.length > 5) {
-                        for (var i = 0; i < 5; i++) {
-                            var obj = zgList[i];
-                            list_html +=
-                                '<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
-                                '<div class="weui-cell__bd">' +
-                                '<p>' + obj.zgdh + '(单号)</p>' +
-                                '</div>' +
-                                '<div class="weui-cell__ft">' + obj.zgrq + '</div>' +
-                                '</a>'
-                        }
-                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
-                    } else {
+                    if (zgList.length > 0) {
                         for (var i = 0; i < zgList.length; i++) {
                             var obj = zgList[i];
                             list_html +=

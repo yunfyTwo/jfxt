@@ -544,7 +544,7 @@ public class AppJfController {
             //String destPath = request.getSession().getServletContext().getRealPath("");
             String destPath="";
             String returnPath="";
-            returnPath = "/userfiles/1/images/app/xjxcimg/";
+            returnPath = "/userfiles/1/_thumbs/images/app/xjxcimg/";
             destPath = Global.getUserfilesBaseDir() + returnPath;
             File dirFile = new File(destPath);
             if (!dirFile.exists()) {    //创建文件夹

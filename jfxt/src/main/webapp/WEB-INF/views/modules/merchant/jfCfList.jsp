@@ -157,5 +157,6 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
+	<div id="fade" class="black_overlay"  onClick="closeImgWindow()"/>
 </body>
 </html>

@@ -224,13 +224,32 @@
 //打开新窗口填写整改单
 
         $("#txzgd").click(function(){
+      	  var xjjf = $("#jf_ids").val();
+	    if(xjjf==null || xjjf==''){
+	       	alert("请选择巡检网元！");
+	       	return;
+	   }
+   	
+    	var b =$("#zgjg").val();
+     	if(b=='2'){
+      		alert("请选择整改结果");
+      		return;
+     	 }
+      	var zgpd = $("#zgpd").val();
+        if(zgpd==null || zgpd==''){
+      		alert("请填写整改判断！");
+      		return;
+     	 }
+      	var fenshu = $("#fen").text();
+      	if(fenshu==null || fenshu==''){
+      		fenshu = 1;
+     	}
+        	
+        	
         	//保存已有的巡检过程
-        	    var b =$("#zgjg").val();
+
         	    var jf_id =  $("#jf_ids").val();
-			       if(b=='2'){
-			       	alert("请选择整改结果");
-			       	return;
-			       }
+
 			        var jfXjgc = {};
 			        jfXjgc.xjjf =  $("#jf_ids").val();
 			        jfXjgc.xjsj =  new Date();
@@ -507,13 +526,26 @@
     
     //保存巡检结果
     function saveXj(){
+	  var xjjf = $("#jf_ids").val();
+	       if(xjjf==null || xjjf==''){
+	       	alert("请选择巡检网元！");
+	       	return;
+	   }
     	
      var b =$("#zgjg").val();
-       if(b=='2'){
+       if(b=='0'){
        	alert("请选择整改结果");
        	return;
        }
-       
+       var zgpd = $("#zgpd").val();
+       if(zgpd==null || zgpd==''){
+       	alert("请填写整改判断！");
+       	return;
+       }
+       var fenshu = $("#fen").text();
+       if(fenshu==null || fenshu==''){
+       		fenshu = 1;
+       }
        
         var jfXjgc = {};
         jfXjgc.xjjf =  $("#jf_ids").val();
@@ -521,7 +553,7 @@
         jfXjgc.xjry =  $("#user_id").val();
         jfXjgc.zgpd =  $("#zgpd").val();
         jfXjgc.xjsftg = b;
-        jfXjgc.xjdf =  $("#fen").text();
+        jfXjgc.xjdf =  fenshu;
 //        jfXjgc.xjjf =  $("#jf_xx_id").val();
 		var storage = window.localStorage;
 		var userId = storage.getItem("loginName");

@@ -103,19 +103,9 @@
 				</td>
 				<td>
 					<c:if test="${not empty jfXjgc.xctps}">
-							<div class="top_contact_us">
-								<div class="top_img">
-									<a href="#" id="contact_img" onmousedown="openImgWindow(this)">
-										 图片详情
-									</a>
-								</div>
-							</div>
-							<div id="light_img" class="white_content">  
-							<c:forEach items="${jfXjgc.xctps}" var="jfimg">
-					    			<%-- <img src ="images/GitHub.jpg" style="width: 500px;height: 500px;"/>  --%> 
-					    			<img src ="${jfimg}" style="width: 200px;height: 200px;"/>  
-							</c:forEach>
-							</div>	
+						<c:forEach items="${jfXjgc.xctps}" var="jfimg">
+							<img src="${jfimg}" width="40px" height="50px" onclick="showImg(this.src)">
+						</c:forEach>	
 					</c:if>
 					<c:if test="${empty jfXjgc.xctps}">
 						暂未上传图片
@@ -139,6 +129,9 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
-	<div id="fade" class="black_overlay"  onClick="closeImgWindow()"/>
+	<!-- <div id="fade" class="black_overlay"  onClick="closeImgWindow()"/> -->
+	<div class="img_content" id="imgContent">
+	<div style="margin-left: 10px;margin-top: 10px;"><img src="" width="400px" height="500px" id="imgCon"></div>
+	<div  class="colse_btn" onclick="col()">关闭</div>
 </body>
 </html>

@@ -139,7 +139,7 @@
 					</c:if>
 				</td>
 				<shiro:hasPermission name="merchant:jfCf:edit"><td>
-    				<%--<a href="${ctx}/merchant/jfCf/form?id=${jfCf.id}">修改</a>--%>
+    				<a href="${ctx}/merchant/jfCf/form?id=${jfCf.id}">修改</a>
 					<a href="${ctx}/merchant/jfCf/delete?id=${jfCf.id}" onclick="return confirmx('确认要删除该处罚吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
@@ -147,7 +147,6 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
-	<!-- <div id="fade" class="black_overlay"  onClick="closeImgWindow()"/> -->
 	<div class="img_content" id="imgContent">
 	<div style="margin-left: 10px;margin-top: 10px;"><img src="" width="400px" height="500px" id="imgCon"></div>
 	<div  class="colse_btn" onclick="col()">关闭</div>

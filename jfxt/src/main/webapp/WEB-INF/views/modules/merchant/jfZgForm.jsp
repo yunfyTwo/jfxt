@@ -103,7 +103,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">网络设备整治割接内容描述：</label>
+			<label class="control-label">隐患级别：</label>
 			<div class="controls">
 				<form:textarea path="isCutOverContent" htmlEscape="false" rows="1" maxlength="10" class="input-xlarge "/>
 			</div>
@@ -121,7 +121,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">光缆整治割接内容描述：</label>
+			<label class="control-label">整治批次：</label>
 			<div class="controls">
 				<form:textarea path="opticalCableContent" htmlEscape="false" rows="4" maxlength="1000" class="input-xlarge "/>
 			</div>

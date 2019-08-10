@@ -35,10 +35,10 @@ public class JfZg extends DataEntity<JfZg> {
 	private String reason;		// 隐患原因
 	private String isODF;		// 是否有ODF架/柜
 	private String isCutOver;		// 是否需要网络设备整治割接
-	private String isCutOverContent;		// 网络设备整治割接内容描述
+	private String isCutOverContent;		// 隐患级别
 	private String isOpticalCable;		// 是否需要光缆割接
 	private String opticalCableCutting;		// 光缆割接量（条/芯）
-	private String opticalCableContent;		// 光缆整治割接内容描述
+	private String opticalCableContent;		// 整治批次
 	private String needRemediation;		// 是否需要环境整治
 	private String contentDescription;		// 环境整治内容描述（门、窗、墙面等）
 	private String userId;      //当前登录用户Id

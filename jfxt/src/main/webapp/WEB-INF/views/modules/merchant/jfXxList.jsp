@@ -55,6 +55,15 @@
 				<form:input path="name" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
 			<li>
+			<label class="control-label" >网元属性：</label>
+				<form:select path="jfwz" htmlEscape="false" maxlength="255" class="input-xlarge " style="width: 100px;">
+				<form:option value="" label="请选择"/>
+				<form:option value="机房" label="机房"/>
+				<form:option value="基站" label="基站"/>
+				<form:option value="线路" label="线路"/>
+				</form:select>
+			</li>
+			<li>
 			<label class="control-label">所属区域：</label>
 				<form:select path="jfjj" htmlEscape="false" maxlength="255" class="input-xlarge ">
 				<form:option value="" label="请选择"/>

@@ -97,11 +97,11 @@
     </div>
 </div>
 
-<div class="weui-cells__title">网络设备整治割接内容描述</div>
+<div class="weui-cells__title">隐患级别</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="网络设备整治割接内容描述" rows="2" id="isCutOverContent" readonly="readonly"></textarea>
+            <textarea class="weui-textarea" placeholder="隐患级别" rows="2" id="isCutOverContent" readonly="readonly"></textarea>
         </div>
     </div>
 </div>
@@ -125,11 +125,11 @@
     </div>
 </div>
 
-<div class="weui-cells__title">光缆整治割接内容描述</div>
+<div class="weui-cells__title">整治批次</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="光缆整治割接内容描述" rows="3" id="opticalCableContent" readonly="readonly"></textarea>
+            <textarea class="weui-textarea" placeholder="整治批次" rows="3" id="opticalCableContent" readonly="readonly"></textarea>
         </div>
     </div>
 </div>
@@ -285,12 +285,12 @@
                     $("#reason").val(obj.reason);//隐患原因
                     $("#isODF").val(obj.isODF);//是否有ODF架/柜
                     $("#isCutOver").val(obj.isCutOver);//是否需要网络设备整治割接
-                    $("#isCutOverContent").val(obj.isCutOverContent);//网络设备整治割接内容描述
+                    $("#isCutOverContent").val(obj.isCutOverContent);//隐患级别
                     $("#isOpticalCable").val(obj.isOpticalCable);//是否需要光缆割接
                     $("#opticalCableCutting").val(obj.opticalCableCutting);//光缆割接量（条/芯）
-                    $("#opticalCableContent").val(obj.opticalCableContent);//光缆整治割接内容描述
+                    $("#opticalCableContent").val(obj.opticalCableContent);//整治批次
                     $("#needRemediation").val(obj.needRemediation);//光缆割接量（条/芯）
-                    $("#contentDescription").val(obj.contentDescription);//光缆整治割接内容描述
+                    $("#contentDescription").val(obj.contentDescription);//整治批次
                     $("#kzzd2").val(obj.kzzd2);//是否整改完成
                     $("#kzzd3").val(obj.kzzd3);//整改花费费用
                     
@@ -363,12 +363,12 @@
         jfZG.reason = $("#reason").val();//隐患原因
         jfZG.isODF = $("#isODF").val();//是否有ODF架/柜
         jfZG.isCutOver = $("#isCutOver").val();//是否需要网络设备整治割接
-        jfZG.isCutOverContent = $("#isCutOverContent").val();//网络设备整治割接内容描述
+        jfZG.isCutOverContent = $("#isCutOverContent").val();//隐患级别
         jfZG.isOpticalCable = $("#isOpticalCable").val();//是否需要光缆割接
         jfZG.opticalCableCutting = $("#opticalCableCutting").val();//光缆割接量（条/芯）
-        jfZG.opticalCableContent = $("#opticalCableContent").val();//光缆整治割接内容描述
+        jfZG.opticalCableContent = $("#opticalCableContent").val();//整治批次
         jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
-        jfZG.contentDescription = $("#contentDescription").val();//光缆整治割接内容描述
+        jfZG.contentDescription = $("#contentDescription").val();//整治批次
 
         jfZG.userId = userId;
           

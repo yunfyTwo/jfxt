@@ -120,11 +120,11 @@
     </div>
 </div>
 
-<div class="weui-cells__title">网络设备整治割接内容描述</div>
+<div class="weui-cells__title">隐患级别</div>
 <div class="weui-cells" id="messages">
     <div class="weui-cell weui-cell_select">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="网络设备整治割接内容描述" rows="3" id="isCutOverContent"></textarea>
+            <textarea class="weui-textarea" placeholder="隐患级别" rows="3" id="isCutOverContent"></textarea>
             <div class="weui-textarea-counter"><span>0</span>/200</div>
         </div>
     </div>
@@ -154,11 +154,11 @@
     </div>
 </div>
 
-<div class="weui-cells__title">光缆整治割接内容描述</div>
+<div class="weui-cells__title">整治批次</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入光缆整治割接内容描述" rows="3" id="opticalCableContent"></textarea>
+            <textarea class="weui-textarea" placeholder="请输入整治批次" rows="3" id="opticalCableContent"></textarea>
             <div class="weui-textarea-counter"><span>0</span>/200</div>
         </div>
     </div>
@@ -393,12 +393,12 @@
 	        jfZG.reason = $("#reason").val();//隐患原因
 	        jfZG.isODF = $("#isODF").val();//是否有ODF架/柜
 	        jfZG.isCutOver = $("#isCutOver").val();//是否需要网络设备整治割接
-	        jfZG.isCutOverContent = $("#isCutOverContent").val();//网络设备整治割接内容描述
+	        jfZG.isCutOverContent = $("#isCutOverContent").val();//隐患级别
 	        jfZG.isOpticalCable = $("#isOpticalCable").val();//是否需要光缆割接
 	        jfZG.opticalCableCutting = $("#opticalCableCutting").val();//光缆割接量（条/芯）
-	        jfZG.opticalCableContent = $("#opticalCableContent").val();//光缆整治割接内容描述
+	        jfZG.opticalCableContent = $("#opticalCableContent").val();//整治批次
 	        jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
-	        jfZG.contentDescription = $("#contentDescription").val();//光缆整治割接内容描述
+	        jfZG.contentDescription = $("#contentDescription").val();//整治批次
 	        var isUpdate =$("#kzzd2").val();
 	        jfZG.kzzd2 = isUpdate;//是否整改完成
 	        if("是"==isUpdate){

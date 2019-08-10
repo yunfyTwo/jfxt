@@ -117,7 +117,7 @@
 				<td>
 					<c:if test="${not empty jfXx.xctps}">
 						<c:forEach items="${jfXx.xctps}" var="jfimg">
-							<img src="${jfimg}" width="40px" height="50px" onclick="showImg(this.src)">
+							<img src="${jfimg}" style="width:20px; height:20px" onclick="showImg(this.src)">
 						</c:forEach>	
 					</c:if>
 					<c:if test="${empty jfXx.xctps}">

@@ -153,7 +153,7 @@
 				<td>
 					<c:if test="${not empty jfZg.xctps}">
 						<c:forEach items="${jfZg.xctps}" var="jfimg">
-							<img src="${jfimg}" width="40px" height="50px" onclick="showImg(this.src)">
+							<img src="${jfimg}" style="width:20px; height:20px" onclick="showImg(this.src)">
 						</c:forEach>	
 					</c:if>
 					<c:if test="${empty jfZg.xctps}">
@@ -185,7 +185,7 @@
 	</table>
 	<div class="pagination">${page}</div>
 	<div class="img_content" id="imgContent">
-	<div style="margin-left: 10px;margin-top: 10px;"><img src="" width="400px" height="500px" id="imgCon"></div>
+	<div style="margin-left: 10px;margin-top: 10px;"><img src="" style="width:400px; height:500px" id="imgCon"></div>
 	<div  class="colse_btn" onclick="col()">关闭</div>
 </div>
 </body>

@@ -173,4 +173,10 @@
 					<if test="dbName == 'mysql'">CONCAT('%,', #{id}, ',%')</if>
 	</update>
 	
+	<select id="findByLoginName" resultType="Office">
+         SELECT b.* from sys_user a INNER JOIN sys_office b
+         ON  a.office_id = b.id
+         WHERE a.login_name = #{name}
+	</select>
+	
 </mapper>

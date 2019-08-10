@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.merchant.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +23,8 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
+import com.thinkgem.jeesite.modules.sys.entity.Office;
+import com.thinkgem.jeesite.modules.sys.service.OfficeService;
 
 /**
  * 网元信息Controller
@@ -33,6 +37,9 @@ public class JfXxController extends BaseController {
 
 	@Autowired
 	private JfXxService jfXxService;
+	
+	@Autowired
+	private OfficeService officeService;
 	
 	@ModelAttribute
 	public JfXx get(@RequestParam(required=false) String id) {
@@ -49,6 +56,13 @@ public class JfXxController extends BaseController {
 	@RequiresPermissions("merchant:jfXx:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfXx jfXx, HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		String loginName = String.valueOf(request.getSession().getAttribute("loginName"));
+		List<Office> list = officeService.findByLoginName(loginName);
+		if (!list.isEmpty()) {
+			jfXx.setJfjj(list.get(0).getName());
+		}
+		
 		Page<JfXx> page = jfXxService.findPage(new Page<JfXx>(request, response), jfXx); 
 		model.addAttribute("page", page);
 		return "modules/merchant/jfXxList";

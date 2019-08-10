@@ -105,7 +105,13 @@
 		<div class="control-group">
 			<label class="control-label">隐患级别：</label>
 			<div class="controls">
-				<form:textarea path="isCutOverContent" htmlEscape="false" rows="1" maxlength="10" class="input-xlarge "/>
+				<form:select path="isCutOverContent" htmlEscape="false" maxlength="25" class="input-xlarge " style="width: 100px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="特级" label="特级"/>
+					<form:option value="紧急" label="紧急"/>
+					<form:option value="重要" label="重要"/>
+					<form:option value="一般 " label="一般"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
@@ -123,7 +129,13 @@
 		<div class="control-group">
 			<label class="control-label">整治批次：</label>
 			<div class="controls">
-				<form:textarea path="opticalCableContent" htmlEscape="false" rows="4" maxlength="1000" class="input-xlarge "/>
+				<form:select path="opticalCableContent" htmlEscape="false" maxlength="25" class="input-xlarge " style="width: 100px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="1" label="1"/>
+					<form:option value="2" label="2"/>
+					<form:option value="3" label="3"/>
+					<form:option value="4 " label="4"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">

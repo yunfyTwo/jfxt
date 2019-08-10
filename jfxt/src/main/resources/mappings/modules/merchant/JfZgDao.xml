@@ -75,6 +75,12 @@
 			<if test="overDate != null and overDate != ''">
 				AND DATE_FORMAT(#{overDate}, '%Y-%m-%d') &gt;= DATE_FORMAT(a.zgrq, '%Y-%m-%d')
 			</if>
+			<if test="isCutOverContent != null and isCutOverContent!= ''">
+				AND a.is_Cut_Over_Content = #{isCutOverContent}
+			</if>
+			<if test="opticalCableContent != null and opticalCableContent!= ''">
+				AND a.optical_Cable_Content = #{opticalCableContent}
+			</if>
 			${sqlMap.dsf}
 		</where>
 		<choose>

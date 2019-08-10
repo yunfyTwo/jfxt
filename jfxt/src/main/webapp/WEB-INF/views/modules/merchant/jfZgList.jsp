@@ -83,6 +83,24 @@
 					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 
 			</li>
+			<li><label>隐患级别：</label>
+				<form:select path="isCutOverContent" class="input-xlarge"  cssStyle="width:80px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="特级" label="特级"/>
+					<form:option value="紧急" label="紧急"/>
+					<form:option value="重要" label="重要"/>
+					<form:option value="一般 " label="一般"/>
+				</form:select> 
+			</li>
+			<li><label>整治批次：</label>
+				<form:select path="opticalCableContent" class="input-xlarge"  cssStyle="width:80px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="1" label="1"/>
+					<form:option value="2" label="2"/>
+					<form:option value="3" label="3"/>
+					<form:option value="4 " label="4"/>
+				</form:select> 
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>

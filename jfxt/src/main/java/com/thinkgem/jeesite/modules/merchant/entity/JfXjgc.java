@@ -110,9 +110,9 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	public String getXczp() {
 		return xczp;
 	}
-
+	//网页端系统在页面修改的时候上传的图片自带了系统名称，暂时找不到怎么解决，强行替换
 	public void setXczp(String xczp) {
-		this.xczp = xczp;
+		this.xczp = xczp.replace("/jfxt/userfiles/", "/userfiles/");
 	}
 	
 	@Length(min=0, max=1000, message="整改判断长度必须介于 0 和 1000 之间")

@@ -145,9 +145,9 @@ public class JfCf extends DataEntity<JfCf> {
 	public String getCfxczp() {
 		return cfxczp;
 	}
-
+	//网页端系统在页面修改的时候上传的图片自带了系统名称，暂时找不到怎么解决，强行替换
 	public void setCfxczp(String cfxczp) {
-		this.cfxczp = cfxczp;
+		this.cfxczp = cfxczp.replace("/jfxt/userfiles/", "/userfiles/");
 	}
 	
 	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")

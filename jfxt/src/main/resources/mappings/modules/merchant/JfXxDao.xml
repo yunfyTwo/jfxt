@@ -32,6 +32,7 @@
 		WHERE a.id = #{id}
 	</select>
 	
+	<!-- 查询机房网元信息 -->
 	<select id="findList" resultType="JfXx">
 		SELECT 
 			<include refid="jfXxColumns"/>
@@ -39,6 +40,17 @@
 		<include refid="jfXxJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="userId != null and userId != ''">
+				AND a.jfjj = (SELECT
+                    a.name
+                  FROM jfxx.sys_user u,
+                    jfxx.sys_office a
+                  WHERE u.office_id = a.id
+                      AND u.id = #{userId}
+                      AND u.del_flag = #{DEL_FLAG_NORMAL}
+    				  AND a.del_flag = #{DEL_FLAG_NORMAL})
+				
+			</if>
 			<if test="name != null and name != ''">
 				AND a.name LIKE 
 					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>

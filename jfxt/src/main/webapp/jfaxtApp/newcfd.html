@@ -159,7 +159,7 @@
         perCenter();
         
         //c初始化网元选项
-        findAlljf();
+        findAlljf(userId);
     	
     	//初始化处罚对象和处罚梯度
     	findDict();
@@ -330,12 +330,12 @@
             });
     }
     //查询所有网元
-    function findAlljf(){
+    function findAlljf(userId){
        var jfId =  $("#jf_ids").val();
             $.post(
-                getContextPath()+"/app/jfList",
+                getContextPath()+"/app/jfListByUserId",
                 {
-
+                	"userId":userId
                 },
                 function (data) {
                     if(data.code == 1) {

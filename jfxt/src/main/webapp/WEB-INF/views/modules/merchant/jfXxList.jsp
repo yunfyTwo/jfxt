@@ -59,14 +59,13 @@
 				<form:select path="jfjj" htmlEscape="false" maxlength="255" class="input-xlarge ">
 				<form:option value="" label="请选择"/>
 				<form:option value="苍溪网络运营分局" label="苍溪网络运营分局"/>
-				<form:option value="朝天网运分局" label="朝天网运分局"/>
+				<form:option value="朝天网络运营分局" label="朝天网络运营分局"/>
 				<form:option value="城区网络运营分局" label="城区网络运营分局"/>
 				<form:option value="剑阁网络运营分局" label="剑阁网络运营分局"/>
 				<form:option value="郊区网络运营分局" label="郊区网络运营分局"/>
-				<form:option value="青川网运分局" label="青川网运分局"/>
+				<form:option value="青川网络运营分局" label="青川网络运营分局"/>
 				<form:option value="旺苍网络运营分局" label="旺苍网络运营分局"/>
 				<form:option value="昭化网络运营分局" label="昭化网络运营分局"/>
-				<form:option value="青川运营分局" label="青川运营分局"/>
 				</form:select>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
@@ -79,7 +78,7 @@
 			<tr>
 				<th>编号</th>
 				<th>网元名称</th>
-				<th>费用</th>
+				<th>网元属性</th>
 				<th>所属区域</th>
 				<th>问题描述</th>
 				<th>现场图片</th>

@@ -52,14 +52,13 @@
 				<form:select path="jfjj" htmlEscape="false" maxlength="255" class="input-xlarge ">
 				<form:option value="" label="请选择"/>
 				<form:option value="苍溪网络运营分局" label="苍溪网络运营分局"/>
-				<form:option value="朝天网运分局" label="朝天网运分局"/>
+				<form:option value="朝天网络运营分局" label="朝天网络运营分局"/>
 				<form:option value="城区网络运营分局" label="城区网络运营分局"/>
 				<form:option value="剑阁网络运营分局" label="剑阁网络运营分局"/>
 				<form:option value="郊区网络运营分局" label="郊区网络运营分局"/>
-				<form:option value="青川网运分局" label="青川网运分局"/>
 				<form:option value="旺苍网络运营分局" label="旺苍网络运营分局"/>
 				<form:option value="昭化网络运营分局" label="昭化网络运营分局"/>
-				<form:option value="青川运营分局" label="青川运营分局"/>
+				<form:option value="青川网络运营分局" label="青川网络运营分局"/>
 				</form:select>
 			</div>
 		</div>
@@ -71,7 +70,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">费用：</label>
+			<label class="control-label">网元属性：</label>
 			<div class="controls">
 				<form:input path="jfwz" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
@@ -80,19 +79,8 @@
 		<div class="control-group">
 			<label class="control-label">问题描述：</label>
 			<div class="controls">
-				<form:select path="remarks" htmlEscape="false" maxlength="255" class="input-xlarge ">
-				<form:option value="" label="请选择"/>
-				<form:option value="更换箱体" label="更换箱体"/>
-				<form:option value="修复管道" label="修复管道"/>
-				<form:option value="需新建杆路（KM）" label="需新建杆路（KM）"/>
-				<form:option value="更换吊线（KM）" label="更换吊线（KM）"/>
-				<form:option value="更换或新增电杆（根）" label="更换或新增电杆（根）"/>
-				<form:option value="安装升高架（双槽）" label="安装升高架（双槽）"/>
-				<form:option value="扶正（偏杆、倒杆）（根）" label="扶正（偏杆、倒杆）（根）"/>
-				<form:option value="新建拉线（条）" label="新建拉线（条）"/>
-				<form:option value="更换拉线（条）" label="更换拉线（条）"/>
-				<form:option value="需更换光缆（KM）" label="需更换光缆（KM）"/>
-				</form:select>
+				<form:input path="remarks" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">

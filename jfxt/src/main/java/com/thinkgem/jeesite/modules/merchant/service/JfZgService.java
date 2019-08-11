@@ -67,7 +67,7 @@ public class JfZgService extends CrudService<JfZgDao, JfZg> {
 							String sj=imgs[j];
 							if(StringUtils.isNotBlank(sj)){
 								StringBuffer img=new StringBuffer(sj);
-								//img.insert(0,"/jfxt");
+								img.insert(0,"/jfxt");
 								list.add(img.toString());
 							}
 						}

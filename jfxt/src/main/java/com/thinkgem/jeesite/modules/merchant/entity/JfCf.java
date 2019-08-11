@@ -147,7 +147,7 @@ public class JfCf extends DataEntity<JfCf> {
 	}
 	
 	public void setCfxczp(String cfxczp) {
-		this.cfxczp = cfxczp;
+		this.cfxczp = cfxczp.replace("/jfxt/userfiles/", "/userfiles/");
 	}
 	
 	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")

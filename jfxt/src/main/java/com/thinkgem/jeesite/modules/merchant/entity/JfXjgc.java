@@ -112,7 +112,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	}
 	
 	public void setXczp(String xczp) {
-		this.xczp = xczp;
+		this.xczp = xczp.replace("/jfxt/userfiles/", "/userfiles/");
 	}
 	
 	@Length(min=0, max=1000, message="整改判断长度必须介于 0 和 1000 之间")

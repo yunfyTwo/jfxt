@@ -50,6 +50,8 @@ public class UserUtils {
 	public static final String CACHE_AREA_LIST = "areaList";
 	public static final String CACHE_OFFICE_LIST = "officeList";
 	public static final String CACHE_OFFICE_ALL_LIST = "officeAllList";
+	//所属部门、分局
+	public static final String NETWORK_OPERATIONS_BRANCH = "网络运营分局";
 	
 	/**
 	 * 根据ID获取用户

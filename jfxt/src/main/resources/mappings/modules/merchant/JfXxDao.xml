@@ -48,7 +48,7 @@
                   WHERE u.office_id = a.id
                       AND u.id = #{userId}
                       AND u.del_flag = #{DEL_FLAG_NORMAL}
-    				  AND a.del_flag = #{DEL_FLAG_NORMAL})
+    				  )
 				
 			</if>
 			<if test="name != null and name != ''">

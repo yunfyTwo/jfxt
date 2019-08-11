@@ -25,6 +25,7 @@ import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
 import com.thinkgem.jeesite.modules.sys.entity.Office;
 import com.thinkgem.jeesite.modules.sys.service.OfficeService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 网元信息Controller
@@ -60,7 +61,11 @@ public class JfXxController extends BaseController {
 		String loginName = String.valueOf(request.getSession().getAttribute("loginName"));
 		List<Office> list = officeService.findByLoginName(loginName);
 		if (!list.isEmpty()) {
-			jfXx.setJfjj(list.get(0).getName());
+			String jfjjName = list.get(0).getName();
+			if(jfjjName.contains(UserUtils.NETWORK_OPERATIONS_BRANCH)) {
+				jfXx.setJfjj(list.get(0).getName());
+			}
+			
 		}
 		
 		Page<JfXx> page = jfXxService.findPage(new Page<JfXx>(request, response), jfXx); 

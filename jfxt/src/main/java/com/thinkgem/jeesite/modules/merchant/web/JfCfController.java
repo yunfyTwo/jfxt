@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
+import com.thinkgem.jeesite.modules.sys.entity.Office;
+import com.thinkgem.jeesite.modules.sys.service.OfficeService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +45,9 @@ public class JfCfController extends BaseController {
 
 	@Autowired
 	private JfXxService jfXxService;
+	
+	@Autowired
+	private OfficeService officeService;
 
 	@ModelAttribute
 	public JfCf get(@RequestParam(required=false) String id) {
@@ -54,23 +61,47 @@ public class JfCfController extends BaseController {
 		return entity;
 	}
 	
+	/**
+	 * 通过登录名获取所属区域
+	 * @param request
+	 * @return
+	 */
+	public  String findJfxxByLoginName(HttpServletRequest request) {
+		String loginName = String.valueOf(request.getSession().getAttribute("loginName"));
+		List<Office> list = officeService.findByLoginName(loginName);
+		String jfjj ="";
+		if (!list.isEmpty()) {
+			String jfjjName = list.get(0).getName();
+			if(jfjjName.contains(UserUtils.NETWORK_OPERATIONS_BRANCH)) {
+				jfjj = jfjjName;
+			}
+		}
+		return jfjj;
+
+	}
+	
+	
 	@RequiresPermissions("merchant:jfCf:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfCf jfCf, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfCf> page = jfCfService.findPage(new Page<JfCf>(request, response), jfCf); 
 		model.addAttribute("page", page);
-
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+		String jfjj = this.findJfxxByLoginName(request);
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(jfjj);
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfCfList";
 	}
 
 	@RequiresPermissions("merchant:jfCf:view")
 	@RequestMapping(value = "form")
-	public String form(JfCf jfCf, Model model) {
+	public String form(JfCf jfCf, Model model, HttpServletRequest request) {
 		model.addAttribute("jfCf", jfCf);
-
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+		String jfjj = this.findJfxxByLoginName(request);
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(jfjj);
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfCfForm";
 	}
@@ -79,7 +110,7 @@ public class JfCfController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(JfCf jfCf, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, jfCf)){
-			return form(jfCf, model);
+			return form(jfCf, model,null);
 		}
 		jfCf.setCreateDate(new Date());
 		jfCf.setUpdateDate(new Date());

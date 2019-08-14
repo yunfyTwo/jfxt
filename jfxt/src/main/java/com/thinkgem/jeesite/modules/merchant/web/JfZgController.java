@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.merchant.entity.JfZg;
 import com.thinkgem.jeesite.modules.merchant.service.JfZgService;
+import com.thinkgem.jeesite.modules.sys.entity.Office;
+import com.thinkgem.jeesite.modules.sys.service.OfficeService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 import java.util.List;
 
@@ -40,6 +44,11 @@ public class JfZgController extends BaseController {
 
 	@Autowired
 	private JfXxService jfXxService;
+	
+	@Autowired
+	private OfficeService officeService;
+	
+
 
 	@ModelAttribute
 	public JfZg get(@RequestParam(required=false) String id) {
@@ -53,23 +62,52 @@ public class JfZgController extends BaseController {
 		return entity;
 	}
 	
+	/**
+	 * 通过登录名获取所属区域
+	 * @param request
+	 * @return
+	 */
+	public  String findJfxxByLoginName(HttpServletRequest request) {
+		String loginName ="";
+		if(null != request){
+			loginName = (String) request.getSession().getAttribute("loginName");
+		}
+		List<Office> list = officeService.findByLoginName(loginName);
+		String jfjj ="";
+		if (!list.isEmpty()) {
+			String jfjjName = list.get(0).getName();
+			if(jfjjName.contains(UserUtils.NETWORK_OPERATIONS_BRANCH)) {
+				jfjj = jfjjName;
+			}
+		}
+		return jfjj;
+
+	}
+	
 	@RequiresPermissions("merchant:jfZg:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfZg jfZg, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfZg> page = jfZgService.findPage(new Page<JfZg>(request, response), jfZg); 
 		model.addAttribute("page", page);
-
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+		
+		String jfjj = this.findJfxxByLoginName(request);
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(jfjj);
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfZgList";
 	}
 
+	
 	@RequiresPermissions("merchant:jfZg:view")
 	@RequestMapping(value = "form")
-	public String form(JfZg jfZg, Model model) {
-		model.addAttribute("jfZg", jfZg);
-
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+	public String form(JfZg jfZg, Model model,HttpServletRequest request) {model.addAttribute("jfZg", jfZg);
+	
+		String jfjj = this.findJfxxByLoginName(request);
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(jfjj);
+		
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfZgForm";
 	}
@@ -78,7 +116,7 @@ public class JfZgController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(JfZg jfZg, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, jfZg)){
-			return form(jfZg, model);
+			return form(jfZg, model,null);
 		}
 		jfZgService.save(jfZg);
 		addMessage(redirectAttributes, "保存整改成功");

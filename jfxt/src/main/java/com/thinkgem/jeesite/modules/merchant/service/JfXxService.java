@@ -84,5 +84,20 @@ public class JfXxService extends CrudService<JfXxDao, JfXx> {
 	public void delete(JfXx jfXx) {
 		super.delete(jfXx);
 	}
-	
+	/**
+	 * 查询机房所属区域
+	 */
+	public List<JfXx> findJfjjList(JfXx jfXx) {
+		List<JfXx> JfjjList=super.findJfjjList(jfXx);
+		return JfjjList;
+	}
+	/**
+	 * 网元属性
+	 * @param jfXx
+	 * @return
+	 */
+	public List<JfXx> findJfwzList(JfXx jfXx) {
+		List<JfXx> JfwzList=super.findJfwzList(jfXx);
+		return JfwzList;
+	}
 }

@@ -208,7 +208,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setZgyq(String zgyq) {
 		this.zgyq = zgyq;
 	}
-	@Length(min=0, max=1000, message="整改现场照片长度必须介于 0 和 1000 之间")
+	@Length(min=0, max=4000, message="整改现场照片长度必须介于 0 和 4000 之间")
 	public String getCfxczp() {
 		return cfxczp;
 	}

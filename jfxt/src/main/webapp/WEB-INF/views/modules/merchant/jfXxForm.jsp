@@ -22,6 +22,7 @@
 					}
 				}
 			});
+			
 		});
 	</script>
 </head>
@@ -49,16 +50,8 @@
 		<div class="control-group">
 			<label class="control-label">所属区域：</label>
 			<div class="controls">
-				<form:select path="jfjj" htmlEscape="false" maxlength="255" class="input-xlarge ">
-				<form:option value="" label="请选择"/>
-				<form:option value="苍溪网络运营分局" label="苍溪网络运营分局"/>
-				<form:option value="朝天网络运营分局" label="朝天网络运营分局"/>
-				<form:option value="城区网络运营分局" label="城区网络运营分局"/>
-				<form:option value="剑阁网络运营分局" label="剑阁网络运营分局"/>
-				<form:option value="郊区网络运营分局" label="郊区网络运营分局"/>
-				<form:option value="旺苍网络运营分局" label="旺苍网络运营分局"/>
-				<form:option value="昭化网络运营分局" label="昭化网络运营分局"/>
-				<form:option value="青川网络运营分局" label="青川网络运营分局"/>
+				<form:select path="jfjj" class="input-xlarge required"  cssStyle="width:176px;">
+					<form:options items="${jfjjList}" itemLabel="jfjj" itemValue="jfjj" htmlEscape="false"/>
 				</form:select>
 			</div>
 		</div>

@@ -56,25 +56,20 @@
 			</li>
 			<li>
 			<label class="control-label" >网元属性：</label>
-				<form:select path="jfwz" htmlEscape="false" maxlength="255" class="input-xlarge " style="width: 100px;">
+				<%-- <form:select path="jfwz" htmlEscape="false" maxlength="255" class="input-xlarge " style="width: 100px;">
 				<form:option value="" label="请选择"/>
 				<form:option value="机房" label="机房"/>
 				<form:option value="基站" label="基站"/>
 				<form:option value="线路" label="线路"/>
+				</form:select> --%>
+				<form:select path="jfwz" class="input-xlarge required"  cssStyle="width:176px;">
+					<form:options items="${jfwzList}" itemLabel="jfwz" itemValue="jfwz" htmlEscape="false"/>
 				</form:select>
 			</li>
 			<li>
 			<label class="control-label">所属区域：</label>
-				<form:select path="jfjj" htmlEscape="false" maxlength="255" class="input-xlarge ">
-				<form:option value="" label="请选择"/>
-				<form:option value="苍溪网络运营分局" label="苍溪网络运营分局"/>
-				<form:option value="朝天网络运营分局" label="朝天网络运营分局"/>
-				<form:option value="城区网络运营分局" label="城区网络运营分局"/>
-				<form:option value="剑阁网络运营分局" label="剑阁网络运营分局"/>
-				<form:option value="郊区网络运营分局" label="郊区网络运营分局"/>
-				<form:option value="青川网络运营分局" label="青川网络运营分局"/>
-				<form:option value="旺苍网络运营分局" label="旺苍网络运营分局"/>
-				<form:option value="昭化网络运营分局" label="昭化网络运营分局"/>
+				<form:select path="jfjj" class="input-xlarge required"  cssStyle="width:176px;">
+					<form:options items="${jfjjList}" itemLabel="jfjj" itemValue="jfjj" htmlEscape="false"/>
 				</form:select>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>

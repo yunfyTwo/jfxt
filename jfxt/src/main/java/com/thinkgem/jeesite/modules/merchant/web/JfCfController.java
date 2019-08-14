@@ -114,8 +114,10 @@ public class JfCfController extends BaseController {
 		}
 		jfCf.setCreateDate(new Date());
 		jfCf.setUpdateDate(new Date());
-
-
+		
+		if (jfCf.getCfxczp().startsWith("|")) {
+			jfCf.setCfxczp(jfCf.getCfxczp().substring(1, jfCf.getCfxczp().length()));
+		}
 
 		jfCfService.save(jfCf);
 		addMessage(redirectAttributes, "保存处罚成功");

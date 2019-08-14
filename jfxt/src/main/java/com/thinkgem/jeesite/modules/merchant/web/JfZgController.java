@@ -118,6 +118,11 @@ public class JfZgController extends BaseController {
 		if (!beanValidator(model, jfZg)){
 			return form(jfZg, model,null);
 		}
+		
+		if (jfZg.getCfxczp().startsWith("|")) {
+			jfZg.setCfxczp(jfZg.getCfxczp().substring(1, jfZg.getCfxczp().length()));
+		}
+		
 		jfZgService.save(jfZg);
 		addMessage(redirectAttributes, "保存整改成功");
 		return "redirect:"+Global.getAdminPath()+"/merchant/jfZg/?repage";

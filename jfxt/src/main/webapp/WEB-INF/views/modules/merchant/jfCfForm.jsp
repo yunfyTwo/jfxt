@@ -40,6 +40,12 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">巡检人员：</label>
+			<div class="controls">
+				<form:input path="kzzd3" value="${loginName}" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">处罚网元：</label>
 			<div class="controls">
 				<form:select path="cfjf" class="input-xlarge required"  cssStyle="width:176px;">
@@ -109,12 +115,6 @@
 			<%--<label class="control-label">扩展字段2：</label>--%>
 			<%--<div class="controls">--%>
 				<%--<form:input path="kzzd2" htmlEscape="false" maxlength="255" class="input-xlarge "/>--%>
-			<%--</div>--%>
-		<%--</div>--%>
-		<%--<div class="control-group">--%>
-			<%--<label class="control-label">扩展字段3：</label>--%>
-			<%--<div class="controls">--%>
-				<%--<form:input path="kzzd3" htmlEscape="false" maxlength="255" class="input-xlarge "/>--%>
 			<%--</div>--%>
 		<%--</div>--%>
 		<%--<div class="control-group">--%>

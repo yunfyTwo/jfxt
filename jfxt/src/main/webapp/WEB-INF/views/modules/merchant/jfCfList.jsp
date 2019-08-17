@@ -58,6 +58,9 @@
 				<form:input path="cftzd" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
 
+			<li>巡检人员：
+				<form:input path="kzzd3" htmlEscape="false" maxlength="255" class="input-medium"/>
+			</li>
 			<li>&nbsp;&nbsp;&nbsp;处罚网元：
 				<form:select path="cfjf" class="input-xlarge required"  cssStyle="width:176px;">
 					<form:option value="" label="请选择"/>
@@ -99,6 +102,7 @@
 		<thead>
 			<tr>
 				<th>处罚通知单号</th>
+				<th>巡检人员</th>
 				<th>处罚网元</th>
 				<th>日期</th>
 				<th>处罚对象</th>
@@ -115,6 +119,9 @@
 				<%--</td>--%>
 				<td>
 						${jfCf.cftzd}
+				</td>
+				<td>
+						${jfCf.kzzd3}
 				</td>
 				<td>
 					${jfCf.cfjf.name}

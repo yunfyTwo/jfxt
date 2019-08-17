@@ -271,7 +271,7 @@
             function (data) {
                 if(data.code == 1) {
                     var obj = data.data;
-                    $("#userName").text(obj.loginName);
+                    $("#userName").text(obj.name);
                 } else {
                     $.toast(data.msg,'forbidden', 8000);
                 }

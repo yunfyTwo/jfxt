@@ -200,6 +200,14 @@
         </div>
     </div>
 </div>
+<div class="weui-cells__title">巡检人</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="" rows="1" id="kzzd4" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
 <!-- <div class="weui-cells" id="btnSubmit" style="display: none">
     <a href="#"  class="weui-btn weui-btn_primary" onclick="saveZG()">提交</a>
 
@@ -293,6 +301,7 @@
                     $("#contentDescription").val(obj.contentDescription);//整治批次
                     $("#kzzd2").val(obj.kzzd2);//是否整改完成
                     $("#kzzd3").val(obj.kzzd3);//整改花费费用
+                    $("#kzzd4").val(obj.kzzd4);//巡检人员
                     
                     //图片展示，需要判断是否是多张
                     if(obj.cfxczp!=null){

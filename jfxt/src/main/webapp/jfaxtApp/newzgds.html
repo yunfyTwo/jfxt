@@ -237,12 +237,47 @@
 				</div>
 			</div>
 		</div>
+		<div class="weui-cells__title">巡检人</div>
+		<div class="weui-cells ">
+		    <div class="weui-cell">
+		        <div class="weui-cell__bd">
+		            <textarea class="weui-textarea" placeholder="" rows="1" id="userName" readonly="readonly"></textarea>
+		        </div>
+		    </div>
+		</div>
 		<div class="weui-cells">
 			<a href="#" class="weui-btn weui-btn_primary" onclick="saveZg()">提交</a>
 
 		</div>
 	</body>
+<script type="text/javascript">
 
+	var permissions = "";
+	function perCenter(){
+        //获取存储在本地的用户Id
+        var storage=window.localStorage;
+        var userId = storage.getItem("loginName");
+        permissions = storage.getItem("permissions");
+        findUser(userId);
+    }
+
+    //查询登录用户
+    function findUser(userId){
+        $.post(
+            getContextPath()+"/app/findUser",
+            {
+                "id": userId
+            },
+            function (data) {
+                if(data.code == 1) {
+                    var obj = data.data;
+                    $("#userName").text(obj.loginName);
+                } else {
+                    $.toast(data.msg,'forbidden', 8000);
+                }
+            });
+    }
+</script>
 	<script type="text/javascript">
 		$(function() {
 			var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
@@ -273,7 +308,7 @@
 			$gallery.on("click", function() {
 				$gallery.fadeOut(100);
 			});
-
+			perCenter();
 		});
 	</script>
 	<script>
@@ -358,6 +393,7 @@
 	        jfZG.contentDescription = $("#contentDescription").val();//整治批次
 	        jfZG.kzzd2 = $("#kzzd2").val();//是否整改完成
 	        jfZG.kzzd3 = $("#kzzd3").val();//整改花费费用
+	        jfZG.kzzd4 = $("#userName").val();//登录名
 	        
 	        var storage = window.localStorage;
 			var userId = storage.getItem("loginName");
@@ -370,17 +406,16 @@
 			}
 			
 	        
-		 if(imgArr.length > 4) {
+		 //if(imgArr.length > 4) {
 				imgUrls = imgArr.join("|");
 				jfZG.cfxczp = imgUrls;
-			} else{
-         		alert("图片至少五张");
-       			return; 
-         	} 
+			//} else{
+         		//alert("图片至少五张");
+       			//return; 
+         	//} 
 			if(imgUrls != "") {
 				jfZG.cfxczp = imgUrls;
 			}
-//			alert(jfZG);
 			$.post(
 				getContextPath() + "/app/saveZgd",
 				jfZG,

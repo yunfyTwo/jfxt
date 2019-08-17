@@ -56,12 +56,7 @@
 			</li>
 			<li>
 			<label class="control-label" >网元属性：</label>
-				<%-- <form:select path="jfwz" htmlEscape="false" maxlength="255" class="input-xlarge " style="width: 100px;">
-				<form:option value="" label="请选择"/>
-				<form:option value="机房" label="机房"/>
-				<form:option value="基站" label="基站"/>
-				<form:option value="线路" label="线路"/>
-				</form:select> --%>
+			
 				<form:select path="jfwz" class="input-xlarge required"  cssStyle="width:176px;">
 					<form:options items="${jfwzList}" itemLabel="jfwz" itemValue="jfwz" htmlEscape="false"/>
 				</form:select>
@@ -128,7 +123,7 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
-	<!-- <div id="fade" class="black_overlay"  onClick="closeImgWindow()"/> -->
+	
 	<div class="img_content" id="imgContent">
 	<div style="margin-left: 10px;margin-top: 10px;"><img src="" style="width:400px; height:500px" id="imgCon"></div>
 	<div  class="colse_btn" onclick="col()">关闭</div>

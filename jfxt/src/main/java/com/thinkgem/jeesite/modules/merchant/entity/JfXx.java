@@ -100,7 +100,7 @@ public class JfXx extends DataEntity<JfXx> {
 		this.jfjj = jfjj;
 	}
 	
-	@Length(min=0, max=1000, message="现场图片长度必须介于 0 和 1000 之间")
+	@Length(min=0, max=4000, message="现场图片长度必须介于 0 和 4000 之间")
 	public String getJfxctp() {
 		return jfxctp;
 	}

@@ -102,7 +102,12 @@ public class JfZgController extends BaseController {
 	@RequiresPermissions("merchant:jfZg:view")
 	@RequestMapping(value = "form")
 	public String form(JfZg jfZg, Model model,HttpServletRequest request) {model.addAttribute("jfZg", jfZg);
-	
+	    String loginName = (String) request.getSession().getAttribute("loginName");//系统登录人name
+	    if(jfZg.getKzzd4()==null){
+	    	  model.addAttribute("loginName", loginName);
+	    }else{
+	    	model.addAttribute("loginName", jfZg.getKzzd4());
+	    }
 		String jfjj = this.findJfxxByLoginName(request);
 		JfXx jfXx= new JfXx();
 		jfXx.setJfjj(jfjj);
@@ -116,7 +121,7 @@ public class JfZgController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(JfZg jfZg, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, jfZg)){
-			return form(jfZg, model,null);
+			return form(jfZg, model,null );
 		}
 		
 		if (jfZg.getCfxczp().startsWith("|")) {

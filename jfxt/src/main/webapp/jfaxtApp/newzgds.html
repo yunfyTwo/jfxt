@@ -406,13 +406,13 @@
 			}
 			
 	        
-		 //if(imgArr.length > 4) {
+		 if(imgArr.length > 4) {
 				imgUrls = imgArr.join("|");
 				jfZG.cfxczp = imgUrls;
-			//} else{
-         		//alert("图片至少五张");
-       			//return; 
-         	//} 
+			} else{
+         		alert("图片至少五张");
+       			return; 
+         	} 
 			if(imgUrls != "") {
 				jfZG.cfxczp = imgUrls;
 			}

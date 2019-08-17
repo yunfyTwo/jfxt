@@ -62,6 +62,9 @@
 			<if test="kzzd2 != null and kzzd2 != ''">
 				AND a.kzzd2 = #{kzzd2}
 			</if>
+			<if test="kzzd4 != null and kzzd4 != ''">
+				AND a.kzzd4 = #{kzzd4}
+			</if>
 			<if test="zgdh != null and zgdh != ''">
 				AND a.zgdh LIKE 
 					<if test="dbName == 'oracle'">'%'||#{zgdh}||'%'</if>

@@ -27,7 +27,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private String kzzd1;		// 扩展字段1
 	private String kzzd2;	   // 是否已经整改
 	private String kzzd3;		// 整改费用
-	private String kzzd4;		// 扩展字段4
+	private String kzzd4;		// 当前登录用户
 	private Date startDate;		// 开始日期
 	private Date overDate;		// 结束日期
 	private String isSafetyHazard;		// 是否存在安全隐患

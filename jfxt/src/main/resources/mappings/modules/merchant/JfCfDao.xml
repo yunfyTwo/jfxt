@@ -54,6 +54,9 @@
 			<if test="cftzd != null and cftzd != ''">
 				AND a.cftzd = #{cftzd}
 			</if>
+			<if test="kzzd3 != null and kzzd3 != ''">
+				AND a.kzzd3 = #{kzzd3}
+			</if>
 			<if test="startDate != null and startDate != ''">
 				AND
 				DATE_FORMAT(a.cfrq, '%Y-%m-%d') &gt;= DATE_FORMAT(#{startDate}, '%Y-%m-%d')

@@ -132,7 +132,7 @@ public class JfCf extends DataEntity<JfCf> {
 		this.cfqxyyz = cfqxyyz;
 	}
 	
-	@Length(min=0, max=1000, message="处罚原因描述长度必须介于 0 和 1000 之间")
+	@Length(min=0, max=4000, message="处罚原因描述长度必须介于 0 和 4000 之间")
 	public String getCfyyms() {
 		return cfyyms;
 	}

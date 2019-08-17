@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
 import com.thinkgem.jeesite.modules.sys.entity.Office;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.OfficeService;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -29,7 +31,9 @@ import com.thinkgem.jeesite.modules.merchant.entity.JfCf;
 import com.thinkgem.jeesite.modules.merchant.service.JfCfService;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 处罚Controller
@@ -48,6 +52,10 @@ public class JfCfController extends BaseController {
 	
 	@Autowired
 	private OfficeService officeService;
+	
+
+	@Autowired
+	private SystemService systemService;
 
 	@ModelAttribute
 	public JfCf get(@RequestParam(required=false) String id) {
@@ -61,13 +69,18 @@ public class JfCfController extends BaseController {
 		return entity;
 	}
 	
+	
 	/**
 	 * 通过登录名获取所属区域
 	 * @param request
 	 * @return
 	 */
-	public  String findJfxxByLoginName(HttpServletRequest request) {
-		String loginName = String.valueOf(request.getSession().getAttribute("loginName"));
+	public  Map<String,String> findJfxxByLoginName(HttpServletRequest request) {
+		Map<String,String> userMap = new HashMap<String,String>();
+		String loginName ="";
+		if(null != request){
+			loginName = (String) request.getSession().getAttribute("loginName");
+		}
 		List<Office> list = officeService.findByLoginName(loginName);
 		String jfjj ="";
 		if (!list.isEmpty()) {
@@ -76,7 +89,12 @@ public class JfCfController extends BaseController {
 				jfjj = jfjjName;
 			}
 		}
-		return jfjj;
+		User user = systemService.getUserByLoginName(loginName);
+		String name = user.getName();//登录姓名
+		userMap.put("jfjj", jfjj);
+		userMap.put("name", name);
+		userMap.put("userMap", "userMap");
+		return userMap;
 
 	}
 	
@@ -86,9 +104,9 @@ public class JfCfController extends BaseController {
 	public String list(JfCf jfCf, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfCf> page = jfCfService.findPage(new Page<JfCf>(request, response), jfCf); 
 		model.addAttribute("page", page);
-		String jfjj = this.findJfxxByLoginName(request);
+		Map<String,String> userMap = this.findJfxxByLoginName(request);
 		JfXx jfXx= new JfXx();
-		jfXx.setJfjj(jfjj);
+		jfXx.setJfjj(userMap.get("jfjj"));
 		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfCfList";
@@ -98,9 +116,14 @@ public class JfCfController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(JfCf jfCf, Model model, HttpServletRequest request) {
 		model.addAttribute("jfCf", jfCf);
-		String jfjj = this.findJfxxByLoginName(request);
+		Map<String,String> userMap = this.findJfxxByLoginName(request);
+		if( StringUtils.isBlank(jfCf.getKzzd3())){
+			model.addAttribute("loginName", userMap.get("name"));
+		}else{
+			model.addAttribute("loginName", jfCf.getKzzd3());
+		}
 		JfXx jfXx= new JfXx();
-		jfXx.setJfjj(jfjj);
+		jfXx.setJfjj(userMap.get("jfjj"));
 		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfCfForm";

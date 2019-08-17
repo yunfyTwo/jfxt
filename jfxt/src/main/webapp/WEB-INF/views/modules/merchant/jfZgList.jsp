@@ -73,6 +73,11 @@
 			<li><label>单号：</label>
 				<form:input path="zgdh" htmlEscape="false" maxlength="55" class="input-medium"/>
 			</li>
+			<li><label>巡检人：</label>
+				<form:input path="kzzd4" htmlEscape="false" maxlength="55" class="input-medium"/>
+			</li>
+			</ul>
+			<ul class="ul-form">
 			<li><label>日期：</label>
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					   value="<fmt:formatDate value="${jfZg.startDate}" pattern="yyyy-MM-dd"/>"
@@ -111,6 +116,7 @@
 		<thead>
 			<tr>
 				<th>整改网元</th>
+				<th>巡检人员</th>
 				<th>整改单号</th>
 				<th>日期</th>
 				<th>整改要求</th>
@@ -141,6 +147,7 @@
 					<td>
 						${jfZg.zgjf.name}
 					</td>
+					<td>${jfZg.kzzd4}</td>
 				<td>
 					${jfZg.zgdh}
 				</td>

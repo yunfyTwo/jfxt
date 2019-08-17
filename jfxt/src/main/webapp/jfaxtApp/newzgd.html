@@ -234,6 +234,14 @@
 				</div>
 			</div>
 		</div>
+		<div class="weui-cells__title">巡检人</div>
+		<div class="weui-cells ">
+		    <div class="weui-cell">
+		        <div class="weui-cell__bd">
+		            <textarea class="weui-textarea" placeholder="" rows="1" id="userName" readonly="readonly"></textarea>
+		        </div>
+		    </div>
+		</div>
 		<div class="weui-cells" id="btnSubmit" style="display: none;">
 			<a href="#" class="weui-btn weui-btn_primary" onclick="saveZg(0)">提交</a>
 		</div>
@@ -246,7 +254,7 @@
 	var dataedit1 = 'merchant:jfCf:edit';//处罚
 	var permissions = "";
 	function perCenter(){
-        //获取存储在本地的会员Id
+        //获取存储在本地的用户Id
         var storage=window.localStorage;
         var userId = storage.getItem("loginName");
         permissions = storage.getItem("permissions");
@@ -271,6 +279,7 @@
                 if(data.code == 1) {
                     var obj = data.data;
                     $("#user_name").text(obj.loginName);
+                    $("#userName").text(obj.name);
                     $("#user_nameTp").text(obj.name);
                     $("#user_id").val(obj.id);
                 } else {
@@ -399,6 +408,7 @@
 	        jfZG.opticalCableContent = $("#opticalCableContent").val();//整治批次
 	        jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
 	        jfZG.contentDescription = $("#contentDescription").val();//整治批次
+	        jfZG.kzzd4 = $("#userName").val();//巡检人员
 	        var isUpdate =$("#kzzd2").val();
 	        jfZG.kzzd2 = isUpdate;//是否整改完成
 	        if("是"==isUpdate){
@@ -425,7 +435,6 @@
 			if(imgUrls != "") {
 				jfZG.cfxczp = imgUrls;
 			}
-//			alert(jfZG);
 			$.post(
 				getContextPath() + "/app/saveZgd",
 				jfZG,

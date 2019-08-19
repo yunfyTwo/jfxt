@@ -18,6 +18,14 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
  */
 public class JfZg extends DataEntity<JfZg> {
 	
+	public String getJfName() {
+		return jfName;
+	}
+
+	public void setJfName(String jfName) {
+		this.jfName = jfName;
+	}
+
 	private static final long serialVersionUID = 1L;
 	private JfXx zgjf;		// 整改机房
 	private String zgdh;		// 整改单号
@@ -42,6 +50,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private String needRemediation;		// 是否需要环境整治
 	private String contentDescription;		// 环境整治内容描述（门、窗、墙面等）
 	private String userId;      //当前登录用户Id
+	private String jfName;      //整改机房名称
 	
 
 	public String getIsCutOverContent() {

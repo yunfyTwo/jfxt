@@ -18,7 +18,7 @@
 		a.kzzd1 AS "kzzd1",
 		a.kzzd2 AS "kzzd2",
 		a.kzzd3 AS "kzzd3",
-		a.kzzd4 AS "kzzd4",
+		IFNULL(a.kzzd4,u.name) AS "kzzd4",
 		b.name as "zgjf.name",
 		a.is_Safety_Hazard AS "isSafetyHazard",
 		a.brief_Descri_ption AS "briefDescription",

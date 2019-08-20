@@ -16,6 +16,13 @@
     <script src="html5plus://ready"></script>
     <script src="js/jquery-weui.js"></script>
     <script src="js/common.js"></script>
+    <style>
+        .weui-uploader__file_status:before{background: none;}
+        /*图片预览时会用到，将图片放到最上面一层*/
+        .weui-photo-browser-modal{
+            z-index: 999;
+        }
+    </style>
 </head>
 <body ontouchstart>
 <div class="weui_btn_primary weui-header ">
@@ -444,7 +451,8 @@
                     if(data.code == 1) {
                         var obj = data.data;
                         imgArr.push(obj);
-                        $('#img2x').append('<img src="'+ getFilePath() + obj +'" style="width: 100px;height: 80px;margin-left:15px;"/>');
+                        var index = imgArr.length-1;
+                         $('#img2x').append('<img src="'+ getFilePath() + obj +'" style="width: 100px;height: 80px;margin-left:15px;" onclick="zoomPic('+index+')"/>');
                         //$('#img2x').append('<li class="weui-uploader__input-box" style="background-image:url(' + getFilePath() + obj + ')">');
                     } else {
                         alert(data.msg);
@@ -575,6 +583,28 @@
                     $.toast(data.msg,'forbidden', 8000);
                 }
             });
+    }
+</script>
+<script src="js/jquery-weui2.js"></script>
+<script src="js/swiper.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    function zoomPic(index) {
+        var imgs = imgArr;
+        var realImgs = new Array();
+        for(var i = 0;i <imgs.length ;i ++){
+            if(imgs[i] != ""){
+            	console.log(getFilePath()+imgs[i])
+            	var url = getFilePath()+imgs[i];
+                realImgs.push(url);
+            }
+        }
+
+        var bsImg = $.photoBrowser({
+            items: realImgs,
+            initIndex:index
+        });
+        bsImg.open(index);
     }
 </script>
 </html>

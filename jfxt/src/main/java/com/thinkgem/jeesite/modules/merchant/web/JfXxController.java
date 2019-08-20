@@ -78,27 +78,15 @@ public class JfXxController extends BaseController {
 	@RequiresPermissions("merchant:jfXx:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfXx jfXx, HttpServletRequest request, HttpServletResponse response, Model model) {
-		String jfjj = this.findJfxxByLoginName(request);
+		String jfjj = this.findJfxxByLoginName(request);//管理员此处为空
 		String initJfxx = jfXx.getJfjj();//查询条件
-		if(StringUtils.isNotEmpty(initJfxx)){
+		if(StringUtils.isNotEmpty(initJfxx)&& StringUtils.isEmpty(jfjj)){
 			jfXx.setJfjj(initJfxx);
 		}else{
 			jfXx.setJfjj(jfjj);
 		}
 		Page<JfXx> page = jfXxService.findPage(new Page<JfXx>(request, response), jfXx); 
 		model.addAttribute("page", page);
-		//机房所属区域
-		List<JfXx> jfjjList=jfXxService.findJfjjList(jfXx);
-		
-		if(StringUtils.isEmpty(jfjj)){
-			jfjjList=jfXxService.findJfjjList(new JfXx());
-		}else{
-			jfjjList=jfXxService.findJfjjList(jfXx);
-		}
-		model.addAttribute("jfjjList", jfjjList);
-		//机房位置-网元属性
-		List<JfXx> jfwzList=jfXxService.findJfwzList(jfXx);
-		model.addAttribute("jfwzList", jfwzList);
 		return "modules/merchant/jfXxList";
 	}
 

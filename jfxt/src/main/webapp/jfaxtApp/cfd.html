@@ -24,12 +24,12 @@
 </div>
 <div class="kong2"></div>
 <div class="weui-cells">
-    <div class="weui-cell">
+    <!-- <div class="weui-cell" style="display: none">
         <div class="weui-cell__hd"><label class="weui-label">单号</label></div>
         <div class="weui-cell__bd">
             <span style="border: 0px;" value="" id="cftzd"></span>
         </div>
-    </div>
+    </div> -->
     <div class="weui-cell">
         <div class="weui-cell__hd"><label for="years-monthes" class="weui-label">日期</label></div>
         <div class="weui-cell__bd">
@@ -49,7 +49,7 @@
         </div>
     </div>
 </div>
-<div class="weui-cells__title">处罚人</div>
+<div class="weui-cells__title">巡检人员</div>
 <div class="weui-cells weui-cells_radio">
     <label class="weui-cell weui-check__label" for="x12">
         <input id="user_id" value="" style="display: none">
@@ -113,10 +113,10 @@
         </div>
     </div>
 </div>
-<div class="weui-cells" id="btnSubmit" style="display: none">
+<!-- <div class="weui-cells" id="btnSubmit" style="display: none">
     <a href="#"  class="weui-btn weui-btn_primary" onclick="saveCf()">提交</a>
 
-</div>
+</div> -->
 </body>
 <script>
     $(function() {
@@ -268,7 +268,7 @@
             function (data) {
                 if(data.code == 1) {
                     var obj = data.data;
-                    $("#user_name").text(obj.name);
+                   // $("#user_name").text(obj.name);
                     $("#user_id").val(obj.id);
                 } else {
                     $.toast(data.msg,'forbidden', 8000);
@@ -315,6 +315,7 @@
                 if(data.code == 1) {
                     var  obj = data.data;
                     $("#cfId").val(obj.id);
+                    $("#user_name").text(obj.kzzd3);
                     $("#cftzd").text(obj.cftzd);
                     // var date = obj.cfrq;
                     // var newDate=/\d{4}-\d{1,2}-\d{1,2}/g.exec(date);
@@ -502,6 +503,7 @@
         jfCf.cfdx = $("#cfdx_ids").val();		// 处罚对象
         jfCf.cftd = $("#cftd_ids").val();		// 处罚梯度      //jfCf.cfqxyyz = $().val();		// 处罚权限拥有者
         jfCf.cfyyms = $("#cfyyms").val();		// 处罚原因描述
+        jfCf.kzzd3= $("#user_name").val();		//巡检人
           
         if(imgArr.length > 0) {
             imgUrls = imgArr.join("|");

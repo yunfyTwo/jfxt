@@ -56,4 +56,9 @@ public class OfficeService extends TreeService<OfficeDao, Office> {
 		UserUtils.removeCache(UserUtils.CACHE_OFFICE_LIST);
 	}
 	
+	@Transactional(readOnly = false)
+	public List<Office> findByLoginName(String loginName) {
+		return dao.findByLoginName(loginName);
+	}
+	
 }

@@ -218,7 +218,7 @@
         findUser(userId);
         //findGg(id);
         
-        findAlljf();
+        findAlljf(userId);
     });
 
 //打开新窗口填写整改单
@@ -316,12 +316,12 @@
 //  };
     
         //查询所有网元
-    function findAlljf(){
+    function findAlljf(userId){
        var jfId =  $("#jf_ids").val();
             $.post(
-                getContextPath()+"/app/jfList",
+                getContextPath()+"/app/jfListByUserId",
                 {
-
+                	"userId":userId
                 },
                 function (data) {
                     if(data.code == 1) {
@@ -562,10 +562,10 @@
              imgUrls = imgArr.join("|");
              jfXjgc.xczp = imgUrls;
          }
-//       else{
-//       	alert("图片至少五张");
-//     	return;
-//       }
+      else{
+      	alert("图片至少五张");
+    	return;
+       }
         if(imgUrls != "") {
             jfXjgc.xczp = imgUrls;
         }

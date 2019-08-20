@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
+import com.thinkgem.jeesite.modules.sys.entity.Office;
+import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.service.OfficeService;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +31,9 @@ import com.thinkgem.jeesite.modules.merchant.entity.JfCf;
 import com.thinkgem.jeesite.modules.merchant.service.JfCfService;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 处罚Controller
@@ -41,6 +49,13 @@ public class JfCfController extends BaseController {
 
 	@Autowired
 	private JfXxService jfXxService;
+	
+	@Autowired
+	private OfficeService officeService;
+	
+
+	@Autowired
+	private SystemService systemService;
 
 	@ModelAttribute
 	public JfCf get(@RequestParam(required=false) String id) {
@@ -54,23 +69,62 @@ public class JfCfController extends BaseController {
 		return entity;
 	}
 	
+	
+	/**
+	 * 通过登录名获取所属区域
+	 * @param request
+	 * @return
+	 */
+	public  Map<String,String> findJfxxByLoginName(HttpServletRequest request) {
+		Map<String,String> userMap = new HashMap<String,String>();
+		String loginName ="";
+		if(null != request){
+			loginName = (String) request.getSession().getAttribute("loginName");
+		}
+		List<Office> list = officeService.findByLoginName(loginName);
+		String jfjj ="";
+		if (!list.isEmpty()) {
+			String jfjjName = list.get(0).getName();
+			if(jfjjName.contains(UserUtils.NETWORK_OPERATIONS_BRANCH)) {
+				jfjj = jfjjName;
+			}
+		}
+		User user = systemService.getUserByLoginName(loginName);
+		String name = user.getName();//登录姓名
+		userMap.put("jfjj", jfjj);
+		userMap.put("name", name);
+		userMap.put("userMap", "userMap");
+		return userMap;
+
+	}
+	
+	
 	@RequiresPermissions("merchant:jfCf:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfCf jfCf, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfCf> page = jfCfService.findPage(new Page<JfCf>(request, response), jfCf); 
 		model.addAttribute("page", page);
-
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+		Map<String,String> userMap = this.findJfxxByLoginName(request);
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(userMap.get("jfjj"));
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfCfList";
 	}
 
 	@RequiresPermissions("merchant:jfCf:view")
 	@RequestMapping(value = "form")
-	public String form(JfCf jfCf, Model model) {
+	public String form(JfCf jfCf, Model model, HttpServletRequest request) {
 		model.addAttribute("jfCf", jfCf);
-
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+		Map<String,String> userMap = this.findJfxxByLoginName(request);
+		if( StringUtils.isBlank(jfCf.getKzzd3())){
+			model.addAttribute("loginName", userMap.get("name"));
+		}else{
+			model.addAttribute("loginName", jfCf.getKzzd3());
+		}
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(userMap.get("jfjj"));
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfCfForm";
 	}
@@ -79,12 +133,14 @@ public class JfCfController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(JfCf jfCf, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, jfCf)){
-			return form(jfCf, model);
+			return form(jfCf, model,null);
 		}
 		jfCf.setCreateDate(new Date());
 		jfCf.setUpdateDate(new Date());
-
-
+		
+		if (jfCf.getCfxczp().startsWith("|")) {
+			jfCf.setCfxczp(jfCf.getCfxczp().substring(1, jfCf.getCfxczp().length()));
+		}
 
 		jfCfService.save(jfCf);
 		addMessage(redirectAttributes, "保存处罚成功");

@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
+import com.thinkgem.jeesite.modules.sys.entity.Office;
+import com.thinkgem.jeesite.modules.sys.service.OfficeService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +42,8 @@ public class JfXjgcController extends BaseController {
 	private JfXjgcService jfXjgcService;
 	@Autowired
 	private JfXxService jfXxService;
+	@Autowired
+	private OfficeService officeService;
 	
 	@ModelAttribute
 	public JfXjgc get(@RequestParam(required=false) String id) {
@@ -51,21 +57,46 @@ public class JfXjgcController extends BaseController {
 		return entity;
 	}
 	
+	/**
+	 * 通过登录名获取所属区域
+	 * @param request
+	 * @return
+	 */
+	public  String findJfxxByLoginName(HttpServletRequest request) {
+		String loginName = String.valueOf(request.getSession().getAttribute("loginName"));
+		List<Office> list = officeService.findByLoginName(loginName);
+		String jfjj ="";
+		if (!list.isEmpty()) {
+			String jfjjName = list.get(0).getName();
+			if(jfjjName.contains(UserUtils.NETWORK_OPERATIONS_BRANCH)) {
+				jfjj = jfjjName;
+			}
+		}
+		return jfjj;
+
+	}
+	
 	@RequiresPermissions("merchant:jfXjgc:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfXjgc jfXjgc, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfXjgc> page = jfXjgcService.findPage(new Page<JfXjgc>(request, response), jfXjgc);
 		model.addAttribute("page", page);
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+		String jfjj = this.findJfxxByLoginName(request);
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(jfjj);
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfXjgcList";
 	}
 
 	@RequiresPermissions("merchant:jfXjgc:view")
 	@RequestMapping(value = "form")
-	public String form(JfXjgc jfXjgc, Model model) {
+	public String form(JfXjgc jfXjgc, Model model,HttpServletRequest request) {
 		model.addAttribute("jfXjgc", jfXjgc);
-		List<JfXx> jfXxList=jfXxService.findList(new JfXx());
+		String jfjj = this.findJfxxByLoginName(request);
+		JfXx jfXx= new JfXx();
+		jfXx.setJfjj(jfjj);
+		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
 		return "modules/merchant/jfXjgcForm";
 	}
@@ -74,7 +105,7 @@ public class JfXjgcController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(JfXjgc jfXjgc, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, jfXjgc)){
-			return form(jfXjgc, model);
+			return form(jfXjgc, model,null);
 		}
 		if(StringUtils.isBlank(jfXjgc.getXjsftg())){
 			jfXjgc.setXjsftg("0");

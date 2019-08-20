@@ -62,6 +62,9 @@
 			<if test="kzzd2 != null and kzzd2 != ''">
 				AND a.kzzd2 = #{kzzd2}
 			</if>
+			<if test="kzzd4 != null and kzzd4 != ''">
+				AND a.kzzd4 = #{kzzd4}
+			</if>
 			<if test="zgdh != null and zgdh != ''">
 				AND a.zgdh LIKE 
 					<if test="dbName == 'oracle'">'%'||#{zgdh}||'%'</if>
@@ -74,6 +77,12 @@
 			</if>
 			<if test="overDate != null and overDate != ''">
 				AND DATE_FORMAT(#{overDate}, '%Y-%m-%d') &gt;= DATE_FORMAT(a.zgrq, '%Y-%m-%d')
+			</if>
+			<if test="isCutOverContent != null and isCutOverContent!= ''">
+				AND a.is_Cut_Over_Content = #{isCutOverContent}
+			</if>
+			<if test="opticalCableContent != null and opticalCableContent!= ''">
+				AND a.optical_Cable_Content = #{opticalCableContent}
 			</if>
 			${sqlMap.dsf}
 		</where>

@@ -27,7 +27,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private String kzzd1;		// 扩展字段1
 	private String kzzd2;	   // 是否已经整改
 	private String kzzd3;		// 整改费用
-	private String kzzd4;		// 扩展字段4
+	private String kzzd4;		// 当前登录用户
 	private Date startDate;		// 开始日期
 	private Date overDate;		// 结束日期
 	private String isSafetyHazard;		// 是否存在安全隐患
@@ -35,10 +35,10 @@ public class JfZg extends DataEntity<JfZg> {
 	private String reason;		// 隐患原因
 	private String isODF;		// 是否有ODF架/柜
 	private String isCutOver;		// 是否需要网络设备整治割接
-	private String isCutOverContent;		// 网络设备整治割接内容描述
+	private String isCutOverContent;		// 隐患级别
 	private String isOpticalCable;		// 是否需要光缆割接
 	private String opticalCableCutting;		// 光缆割接量（条/芯）
-	private String opticalCableContent;		// 光缆整治割接内容描述
+	private String opticalCableContent;		// 整治批次
 	private String needRemediation;		// 是否需要环境整治
 	private String contentDescription;		// 环境整治内容描述（门、窗、墙面等）
 	private String userId;      //当前登录用户Id
@@ -208,14 +208,13 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setZgyq(String zgyq) {
 		this.zgyq = zgyq;
 	}
-	
-	@Length(min=0, max=1000, message="整改现场照片长度必须介于 0 和 1000 之间")
+	@Length(min=0, max=4000, message="整改现场照片长度必须介于 0 和 4000 之间")
 	public String getCfxczp() {
 		return cfxczp;
 	}
-
+	
 	public void setCfxczp(String cfxczp) {
-		this.cfxczp = cfxczp;
+		this.cfxczp = cfxczp.replace("/jfxt/userfiles/", "/userfiles/");
 	}
 	
 	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")

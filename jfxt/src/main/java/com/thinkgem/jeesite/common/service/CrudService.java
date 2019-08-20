@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.common.service;
 
 import java.util.List;
 
+import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.sys.entity.Dict;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import com.thinkgem.jeesite.common.persistence.Page;
  */
 @Transactional(readOnly = true)
 public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>> extends BaseService {
+	
 	
 	/**
 	 * 持久层对象
@@ -88,6 +90,20 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	@Transactional(readOnly = false)
 	public void delete(T entity) {
 		dao.delete(entity);
+	}
+	/**
+	 * 查询列表数据
+	 * @param entity
+	 * @return
+	 */
+	public List<T> findJfjjList(T entity) {
+		return dao.findJfjjList(entity);
+	}
+	/*
+	 *查询网元属性 
+	 */
+	public List<T> findJfwzList(T entity) {
+		return dao.findJfwzList(entity);
 	}
 
 }

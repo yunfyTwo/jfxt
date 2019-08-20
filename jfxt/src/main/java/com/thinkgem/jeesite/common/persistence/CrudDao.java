@@ -81,5 +81,18 @@ public interface CrudDao<T> extends BaseDao {
 	 * @return
 	 */
 	public int delete(T entity);
+	/**
+	 * 查询所属区域
+	 * @param entity
+	 * @return
+	 */
+	public List<T> findJfjjList(T entity);
+	
+	/**
+	 * 查询网元属性
+	 * @param entity
+	 * @return
+	 */
+	public List<T> findJfwzList(T entity);
 	
 }

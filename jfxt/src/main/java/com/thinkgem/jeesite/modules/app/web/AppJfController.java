@@ -10,10 +10,13 @@ import com.thinkgem.jeesite.modules.app.util.AppResult;
 import com.thinkgem.jeesite.modules.merchant.entity.*;
 import com.thinkgem.jeesite.modules.merchant.service.*;
 import com.thinkgem.jeesite.modules.sys.entity.Dict;
-import com.thinkgem.jeesite.modules.sys.entity.Role;
+import com.thinkgem.jeesite.modules.sys.entity.Office;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.DictService;
+import com.thinkgem.jeesite.modules.sys.service.OfficeService;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +56,8 @@ public class AppJfController {
     private DictService dictService;
     @Autowired
     private JfZgService jfZgService;
-
+    @Autowired
+	private OfficeService officeService;
     /**
      * 保存整改单过程
      *
@@ -173,7 +177,7 @@ public class AppJfController {
 
 
     /**
-     * 网元列表
+               *  网元列表
      *
      * @param
      * @return
@@ -189,7 +193,35 @@ public class AppJfController {
             return AppResult.writeResultFailure("获取网元列表失败");
         }
     }
-
+    
+    /**
+              * 根据登录userId称获取所属区域的网元列表
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("/jfListByUserId")
+    @ResponseBody
+    public Object jfListByLoginName(HttpServletResponse response,String userId) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        try {
+        	User appUser = systemService.getUser(userId);
+        	String loginName = appUser.getLoginName();
+        	List<Office> list = officeService.findByLoginName(loginName);
+        	JfXx jfXx = new JfXx();
+    		if (!list.isEmpty()) {
+    			String jfjjName = list.get(0).getName();
+    			if(jfjjName.contains(UserUtils.NETWORK_OPERATIONS_BRANCH)) {
+    				jfXx.setUserId(userId);
+    				}
+    			}
+        	List<JfXx> jfXxs = jfXxService.findList(jfXx);
+            return AppResult.writeResultRep(jfXxs, "获取网元列表成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AppResult.writeResultFailure("返回公告详情失败");
+        }
+    }
 
     /**
      * 整改单详情

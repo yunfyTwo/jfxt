@@ -26,8 +26,17 @@ public class JfXx extends DataEntity<JfXx> {
 	private String kzzd2;		// 扩展字段2
 	private String kzzd3;		// 扩展字段3
 	private String kzzd4;		// 扩展字段4
+	private String userId;		// 登陆用户ID
 
 	private String limit;//app分页
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getLimit () {
 		return limit;
@@ -91,7 +100,7 @@ public class JfXx extends DataEntity<JfXx> {
 		this.jfjj = jfjj;
 	}
 	
-	@Length(min=0, max=1000, message="现场图片长度必须介于 0 和 1000 之间")
+	@Length(min=0, max=4000, message="现场图片长度必须介于 0 和 4000 之间")
 	public String getJfxctp() {
 		return jfxctp;
 	}

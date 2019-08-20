@@ -104,7 +104,7 @@
 				<td>
 					<c:if test="${not empty jfXjgc.xctps}">
 						<c:forEach items="${jfXjgc.xctps}" var="jfimg">
-							<img src="${jfimg}" width="40px" height="50px" onclick="showImg(this.src)">
+							<img src="${jfimg}" style="width:20px; height:20px" onclick="showImg(this.src)">
 						</c:forEach>	
 					</c:if>
 					<c:if test="${empty jfXjgc.xctps}">
@@ -121,7 +121,7 @@
 					${jfXjgc.xjdf}
 				</td>
 				<shiro:hasPermission name="merchant:jfXjgc:edit"><td>
-    				<%--<a href="${ctx}/merchant/jfXjgc/form?id=${jfXjgc.id}">修改</a>--%>
+    				<a href="${ctx}/merchant/jfXjgc/form?id=${jfXjgc.id}">修改</a>
 					<a href="${ctx}/merchant/jfXjgc/delete?id=${jfXjgc.id}" onclick="return confirmx('确认要删除该巡检过程吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
@@ -129,9 +129,8 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
-	<!-- <div id="fade" class="black_overlay"  onClick="closeImgWindow()"/> -->
 	<div class="img_content" id="imgContent">
-	<div style="margin-left: 10px;margin-top: 10px;"><img src="" width="400px" height="500px" id="imgCon"></div>
+	<div style="margin-left: 10px;margin-top: 10px;"><img src="" style="width:400px; height:500px" id="imgCon"></div>
 	<div  class="colse_btn" onclick="col()">关闭</div>
 </body>
 </html>

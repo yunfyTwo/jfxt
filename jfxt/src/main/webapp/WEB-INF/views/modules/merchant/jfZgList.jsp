@@ -73,6 +73,11 @@
 			<li><label>单号：</label>
 				<form:input path="zgdh" htmlEscape="false" maxlength="55" class="input-medium"/>
 			</li>
+			<li><label>巡检人：</label>
+				<form:input path="kzzd4" htmlEscape="false" maxlength="55" class="input-medium"/>
+			</li>
+			</ul>
+			<ul class="ul-form">
 			<li><label>日期：</label>
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					   value="<fmt:formatDate value="${jfZg.startDate}" pattern="yyyy-MM-dd"/>"
@@ -82,6 +87,24 @@
 					   value="<fmt:formatDate value="${jfZg.overDate}" pattern="yyyy-MM-dd"/>"
 					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 
+			</li>
+			<li><label>隐患级别：</label>
+				<form:select path="isCutOverContent" class="input-xlarge"  cssStyle="width:80px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="特级" label="特级"/>
+					<form:option value="紧急" label="紧急"/>
+					<form:option value="重要" label="重要"/>
+					<form:option value="一般 " label="一般"/>
+				</form:select> 
+			</li>
+			<li><label>整治批次：</label>
+				<form:select path="opticalCableContent" class="input-xlarge"  cssStyle="width:80px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="1" label="1"/>
+					<form:option value="2" label="2"/>
+					<form:option value="3" label="3"/>
+					<form:option value="4 " label="4"/>
+				</form:select> 
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -93,6 +116,7 @@
 		<thead>
 			<tr>
 				<th>整改网元</th>
+				<th>巡检人员</th>
 				<th>整改单号</th>
 				<th>日期</th>
 				<th>整改要求</th>
@@ -102,10 +126,10 @@
 				<th>隐患原因</th>
 				<th>是否有ODF架/柜</th>
 				<th>是否需要网络设备整治割接</th>
-				<th>网络设备整治割接内容描述</th>
+				<th>隐患级别</th>
 				<th>是否需要光缆割接</th>
 				<th>光缆割接量（条/芯）</th>
-				<th>光缆整治割接内容描述</th>
+				<th>整治批次</th>
 				<th>是否需要环境整治</th>
 				<th>环境整治内容描述（门、窗、墙面等）</th>
 				<th>是否已整改</th>
@@ -123,6 +147,7 @@
 					<td>
 						${jfZg.zgjf.name}
 					</td>
+					<td>${jfZg.kzzd4}</td>
 				<td>
 					${jfZg.zgdh}
 				</td>
@@ -135,7 +160,7 @@
 				<td>
 					<c:if test="${not empty jfZg.xctps}">
 						<c:forEach items="${jfZg.xctps}" var="jfimg">
-							<img src="${jfimg}" width="40px" height="50px" onclick="showImg(this.src)">
+							<img src="${jfimg}" style="width:20px; height:20px" onclick="showImg(this.src)">
 						</c:forEach>	
 					</c:if>
 					<c:if test="${empty jfZg.xctps}">
@@ -158,7 +183,7 @@
 
 
 					<shiro:hasPermission name="merchant:jfZg:edit"><td>
-    				<%--<a href="${ctx}/merchant/jfZg/form?id=${jfZg.id}">修改</a>--%>
+    				<a href="${ctx}/merchant/jfZg/form?id=${jfZg.id}">修改</a>
 					<a href="${ctx}/merchant/jfZg/delete?id=${jfZg.id}" onclick="return confirmx('确认要删除该整改吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
@@ -166,9 +191,8 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
-	<!-- <div id="fade" class="black_overlay"  onClick="closeImgWindow()"/> -->
 	<div class="img_content" id="imgContent">
-	<div style="margin-left: 10px;margin-top: 10px;"><img src="" width="400px" height="500px" id="imgCon"></div>
+	<div style="margin-left: 10px;margin-top: 10px;"><img src="" style="width:400px; height:500px" id="imgCon"></div>
 	<div  class="colse_btn" onclick="col()">关闭</div>
 </div>
 </body>

@@ -55,18 +55,16 @@
 				<form:input path="name" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
 			<li>
+			<label class="control-label" >网元属性：</label>
+			
+				<form:select path="jfwz" class="input-xlarge required"  cssStyle="width:176px;">
+					<form:options items="${jfwzList}" itemLabel="jfwz" itemValue="jfwz" htmlEscape="false"/>
+				</form:select>
+			</li>
+			<li>
 			<label class="control-label">所属区域：</label>
-				<form:select path="jfjj" htmlEscape="false" maxlength="255" class="input-xlarge ">
-				<form:option value="" label="请选择"/>
-				<form:option value="苍溪网络运营分局" label="苍溪网络运营分局"/>
-				<form:option value="朝天网运分局" label="朝天网运分局"/>
-				<form:option value="城区网络运营分局" label="城区网络运营分局"/>
-				<form:option value="剑阁网络运营分局" label="剑阁网络运营分局"/>
-				<form:option value="郊区网络运营分局" label="郊区网络运营分局"/>
-				<form:option value="青川网运分局" label="青川网运分局"/>
-				<form:option value="旺苍网络运营分局" label="旺苍网络运营分局"/>
-				<form:option value="昭化网络运营分局" label="昭化网络运营分局"/>
-				<form:option value="青川运营分局" label="青川运营分局"/>
+				<form:select path="jfjj" class="input-xlarge required"  cssStyle="width:176px;">
+					<form:options items="${jfjjList}" itemLabel="jfjj" itemValue="jfjj" htmlEscape="false"/>
 				</form:select>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
@@ -79,7 +77,7 @@
 			<tr>
 				<th>编号</th>
 				<th>网元名称</th>
-				<th>费用</th>
+				<th>网元属性</th>
 				<th>所属区域</th>
 				<th>问题描述</th>
 				<th>现场图片</th>
@@ -109,7 +107,7 @@
 				<td>
 					<c:if test="${not empty jfXx.xctps}">
 						<c:forEach items="${jfXx.xctps}" var="jfimg">
-							<img src="${jfimg}" width="40px" height="50px" onclick="showImg(this.src)">
+							<img src="${jfimg}" style="width:20px; height:20px" onclick="showImg(this.src)">
 						</c:forEach>	
 					</c:if>
 					<c:if test="${empty jfXx.xctps}">
@@ -125,7 +123,7 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
-	<!-- <div id="fade" class="black_overlay"  onClick="closeImgWindow()"/> -->
+	
 	<div class="img_content" id="imgContent">
 	<div style="margin-left: 10px;margin-top: 10px;"><img src="" style="width:400px; height:500px" id="imgCon"></div>
 	<div  class="colse_btn" onclick="col()">关闭</div>

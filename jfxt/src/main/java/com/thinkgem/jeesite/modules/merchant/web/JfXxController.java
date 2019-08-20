@@ -3,6 +3,9 @@
  */
 package com.thinkgem.jeesite.modules.merchant.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +24,9 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
+import com.thinkgem.jeesite.modules.sys.entity.Office;
+import com.thinkgem.jeesite.modules.sys.service.OfficeService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 网元信息Controller
@@ -34,6 +40,11 @@ public class JfXxController extends BaseController {
 	@Autowired
 	private JfXxService jfXxService;
 	
+	@Autowired
+	private OfficeService officeService;
+	
+	
+	
 	@ModelAttribute
 	public JfXx get(@RequestParam(required=false) String id) {
 		JfXx entity = null;
@@ -45,19 +56,67 @@ public class JfXxController extends BaseController {
 		}
 		return entity;
 	}
+	/**
+	 * 通过登录名获取所属区域
+	 * @param request
+	 * @return
+	 */
+	public  String findJfxxByLoginName(HttpServletRequest request) {
+		String loginName = String.valueOf(request.getSession().getAttribute("loginName"));
+		List<Office> list = officeService.findByLoginName(loginName);
+		String jfjj ="";
+		if (!list.isEmpty()) {
+			String jfjjName = list.get(0).getName();
+			if(jfjjName.contains(UserUtils.NETWORK_OPERATIONS_BRANCH)) {
+				jfjj = jfjjName;
+			}
+		}
+		return jfjj;
+
+	}
 	
 	@RequiresPermissions("merchant:jfXx:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfXx jfXx, HttpServletRequest request, HttpServletResponse response, Model model) {
+		String jfjj = this.findJfxxByLoginName(request);
+		String initJfxx = jfXx.getJfjj();//查询条件
+		if(StringUtils.isNotEmpty(initJfxx)){
+			jfXx.setJfjj(initJfxx);
+		}else{
+			jfXx.setJfjj(jfjj);
+		}
 		Page<JfXx> page = jfXxService.findPage(new Page<JfXx>(request, response), jfXx); 
 		model.addAttribute("page", page);
+		//机房所属区域
+		List<JfXx> jfjjList=jfXxService.findJfjjList(jfXx);
+		
+		if(StringUtils.isEmpty(jfjj)){
+			jfjjList=jfXxService.findJfjjList(new JfXx());
+		}else{
+			jfjjList=jfXxService.findJfjjList(jfXx);
+		}
+		model.addAttribute("jfjjList", jfjjList);
+		//机房位置-网元属性
+		List<JfXx> jfwzList=jfXxService.findJfwzList(jfXx);
+		model.addAttribute("jfwzList", jfwzList);
 		return "modules/merchant/jfXxList";
 	}
 
 	@RequiresPermissions("merchant:jfXx:view")
 	@RequestMapping(value = "form")
-	public String form(JfXx jfXx, Model model) {
+	public String form(JfXx jfXx, Model model,HttpServletRequest request) {
+		String jfjj = this.findJfxxByLoginName(request);
+		jfXx.setJfjj(jfjj);
 		model.addAttribute("jfXx", jfXx);
+		//机房所属区域
+		List<JfXx> jfjjList=jfXxService.findJfjjList(jfXx);
+		if(!StringUtils.isEmpty(jfjj)){
+			List<JfXx> jd  =  new ArrayList<JfXx>();
+			jd.add(jfjjList.get(0));
+			model.addAttribute("jfjjList", jd);
+		}else{
+			model.addAttribute("jfjjList", jfjjList);
+		}
 		return "modules/merchant/jfXxForm";
 	}
 
@@ -65,7 +124,7 @@ public class JfXxController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(JfXx jfXx, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, jfXx)){
-			return form(jfXx, model);
+			return form(jfXx, model,null);
 		}
 		jfXxService.save(jfXx);
 		addMessage(redirectAttributes, "保存网元信息成功");

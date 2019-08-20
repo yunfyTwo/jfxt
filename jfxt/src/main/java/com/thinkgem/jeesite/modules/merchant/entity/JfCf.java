@@ -132,7 +132,7 @@ public class JfCf extends DataEntity<JfCf> {
 		this.cfqxyyz = cfqxyyz;
 	}
 	
-	@Length(min=0, max=1000, message="处罚原因描述长度必须介于 0 和 1000 之间")
+	@Length(min=0, max=4000, message="处罚原因描述长度必须介于 0 和 4000 之间")
 	public String getCfyyms() {
 		return cfyyms;
 	}
@@ -145,9 +145,9 @@ public class JfCf extends DataEntity<JfCf> {
 	public String getCfxczp() {
 		return cfxczp;
 	}
-
+	
 	public void setCfxczp(String cfxczp) {
-		this.cfxczp = cfxczp;
+		this.cfxczp = cfxczp.replace("/jfxt/userfiles/", "/userfiles/");
 	}
 	
 	@Length(min=0, max=255, message="扩展字段1长度必须介于 0 和 255 之间")

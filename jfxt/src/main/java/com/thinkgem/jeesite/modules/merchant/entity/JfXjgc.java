@@ -106,13 +106,13 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 		this.xjry = xjry;
 	}
 	
-	@Length(min=0, max=1000, message="现场图片长度必须介于 0 和 1000 之间")
+	@Length(min=0, max=4000, message="现场图片长度必须介于 0 和 4000 之间")
 	public String getXczp() {
 		return xczp;
 	}
-
+	
 	public void setXczp(String xczp) {
-		this.xczp = xczp;
+		this.xczp = xczp.replace("/jfxt/userfiles/", "/userfiles/");
 	}
 	
 	@Length(min=0, max=1000, message="整改判断长度必须介于 0 和 1000 之间")

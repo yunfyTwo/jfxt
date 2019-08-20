@@ -50,7 +50,7 @@
         </div>
     </div>
 </div>
-<div class="weui-cells__title">处罚人</div>
+<div class="weui-cells__title">巡检人员</div>
 <div class="weui-cells weui-cells_radio">
     <label class="weui-cell weui-check__label" for="x12">
         <input id="user_id" value="" style="display: none">
@@ -159,7 +159,7 @@
         perCenter();
         
         //c初始化网元选项
-        findAlljf();
+        findAlljf(userId);
     	
     	//初始化处罚对象和处罚梯度
     	findDict();
@@ -321,7 +321,8 @@
                     // if(permissions.indexOf(dataedit)>-1){
                     //     $("#btnSubmit").show();
                     // }
-                    $("#user_name").text(obj.loginName);
+                    //$("#user_name").text(obj.loginName);
+                    $("#user_name").text(obj.name);
                     $("#user_nameTp").text(obj.name);
                     $("#user_id").val(obj.id);
                 } else {
@@ -330,12 +331,12 @@
             });
     }
     //查询所有网元
-    function findAlljf(){
+    function findAlljf(userId){
        var jfId =  $("#jf_ids").val();
             $.post(
-                getContextPath()+"/app/jfList",
+                getContextPath()+"/app/jfListByUserId",
                 {
-
+                	"userId":userId
                 },
                 function (data) {
                     if(data.code == 1) {
@@ -538,12 +539,14 @@
         jfCf.cfdx = $("#cfdx_ids").val();		// 处罚对象
         jfCf.cftd = $("#cftd_ids").val();		// 处罚梯度      //jfCf.cfqxyyz = $().val();		// 处罚权限拥有者
         jfCf.cfyyms = $("#cfyyms").val();		// 处罚原因描述
-        jfCf.createBy= $("#user_id").val();		//处罚人
+        jfCf.createBy= $("#user_id").val();		//创建人id
         jfCf.kzzd1 = xjId;
         jfCf.kzzd2 = zgId;
         jfCf.userId = userId;
+        jfCf.kzzd3= $("#user_name").text();		//巡检人
         
-        if(!ggId&&!xjId&&!zgId){
+        
+       if(!ggId&&!xjId&&!zgId){
         	if(imgArr.length > 4) {
 	            imgUrls = imgArr.join("|");//把‘|’拼接到图片路径后面
 	            jfCf.cfxczp = imgUrls;
@@ -551,7 +554,7 @@
 	         	alert("图片至少五张");
 	       	return;
 	         }
-        }
+        } 
         
        	//说明只有一张或者没有图片
     	if(imgUrls != "") {

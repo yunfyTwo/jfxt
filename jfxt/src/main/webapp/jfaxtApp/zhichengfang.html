@@ -40,17 +40,12 @@
     </div>
 </div>
 
+
 <div class="weui-cells cfd " id="cfd_lists">
 
 </div>
 <div class="weui-cells zgd  " id="zgd_lists">
 
-    <!--<a class="weui-cell weui-cell_access" href="zgd.html">
-        <div class="weui-cell__bd">
-            <p>23456231（单号）</p>
-        </div>
-        <div class="weui-cell__ft">2019-03-10</div>
-    </a>-->
 </div>
 </body>
 <script type="text/javascript">
@@ -121,7 +116,9 @@
                 if (data.code == 1) {
                     //查询成功
                     zgList = data.data;
-                    var list_html = '';
+                    var list_html = '<div style="align:center;">' +
+				                    '<input id="jfName" style="height:24px;" class="weui-cell__bd" type="text"/>' + 
+				                    '<input type="button" style="height:24px;" value="查询" onclick= "searchJfjjs()" />' + '</div>' ;
                     if (zgList.length > 0) {
                         for (var i = 0; i < zgList.length; i++) {
                             var obj = zgList[i];
@@ -178,5 +175,51 @@
     });
 
 
+</script>
+
+<script >
+
+//条件查询整改表
+	function searchJfjjs(){
+        var jfZg = {};
+        var storage = window.localStorage;
+        var userId = storage.getItem("loginName");
+        jfZg.userId = userId;
+       
+		var jfName = $("#jfName").val();
+		jfZg.jfName = jfName;
+		  //整改单的列表查询
+        $.post(
+            getContextPath() + "/app/zgList",
+            jfZg,
+            function (data) {
+                if (data.code == 1) {
+                    //查询成功
+                    zgList = data.data;
+                    var list_html = '<div class="weui-cell__bd">' +
+				                    '<input id="jfName"  style="height:24px;" class="weui-cell__bd" type="text"/>' + 
+				                    '<input type="button" style="height:24px;" value="查询" onclick= "searchJfjjs()" align="right"/>' + '</div>' ;
+				                    if (zgList.length > 0) {
+                        for (var i = 0; i < zgList.length; i++) {
+                            var obj = zgList[i];
+                            list_html +=
+                                '<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
+                                '<div class="weui-cell__bd">' +
+                                '<p>' + obj.zgjf.name + '</p>' +
+                                '</div>' +
+                                '<div class="weui-cell__ft">' + obj.zgrq + '</div>' +
+                                '</a>'
+                        }
+                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+                    }
+                    $("#zgd_lists").html(list_html);
+                } else {
+                    $.toast(data.msg, 'forbidden', 8000);
+                }
+                $("#jfName").val(jfName);
+            });
+	}
+	
+	
 </script>
 </html>

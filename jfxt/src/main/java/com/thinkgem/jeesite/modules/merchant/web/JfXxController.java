@@ -4,7 +4,9 @@
 package com.thinkgem.jeesite.modules.merchant.web;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -78,7 +80,10 @@ public class JfXxController extends BaseController {
 	@RequiresPermissions("merchant:jfXx:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(JfXx jfXx, HttpServletRequest request, HttpServletResponse response, Model model) {
-		String jfjj = this.findJfxxByLoginName(request);//管理员此处为空
+		String jfjj ="";
+		if(request!=null ){
+			jfjj = this.findJfxxByLoginName(request);//管理员此处为空
+		}
 		String initJfxx = jfXx.getJfjj();//查询条件
 		if(StringUtils.isNotEmpty(initJfxx)&& StringUtils.isEmpty(jfjj)){
 			jfXx.setJfjj(initJfxx);
@@ -93,7 +98,10 @@ public class JfXxController extends BaseController {
 	@RequiresPermissions("merchant:jfXx:view")
 	@RequestMapping(value = "form")
 	public String form(JfXx jfXx, Model model,HttpServletRequest request) {
-		String jfjj = this.findJfxxByLoginName(request);
+		String jfjj = "";
+		if(request!=null ){
+			jfjj = this.findJfxxByLoginName(request);//管理员此处为空
+		}
 		jfXx.setJfjj(jfjj);
 		model.addAttribute("jfXx", jfXx);
 		//机房所属区域

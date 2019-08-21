@@ -104,7 +104,10 @@ public class JfCfController extends BaseController {
 	public String list(JfCf jfCf, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfCf> page = jfCfService.findPage(new Page<JfCf>(request, response), jfCf); 
 		model.addAttribute("page", page);
-		Map<String,String> userMap = this.findJfxxByLoginName(request);
+		Map<String,String> userMap =new HashMap<String,String>();
+		if(request!=null ){
+			userMap = this.findJfxxByLoginName(request);//管理员此处为空
+		}
 		JfXx jfXx= new JfXx();
 		jfXx.setJfjj(userMap.get("jfjj"));
 		List<JfXx> jfXxList=jfXxService.findList(jfXx);
@@ -116,7 +119,10 @@ public class JfCfController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(JfCf jfCf, Model model, HttpServletRequest request) {
 		model.addAttribute("jfCf", jfCf);
-		Map<String,String> userMap = this.findJfxxByLoginName(request);
+		Map<String,String> userMap =new HashMap<String,String>();
+		if(request!=null ){
+			userMap = this.findJfxxByLoginName(request);//管理员此处为空
+		}
 		if( StringUtils.isBlank(jfCf.getKzzd3())){
 			model.addAttribute("loginName", userMap.get("name"));
 		}else{

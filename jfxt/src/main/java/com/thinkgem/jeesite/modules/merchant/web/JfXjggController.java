@@ -83,7 +83,10 @@ public class JfXjggController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(JfXjgg jfXjgg, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfXjgg> page = jfXjggService.findPage(new Page<JfXjgg>(request, response), jfXjgg);
-		String jfjj = this.findJfxxByLoginName(request);
+		String jfjj = "";
+		if(request!=null ){
+			jfjj = this.findJfxxByLoginName(request);//管理员此处为空
+		}
 		JfXx jfXx = new JfXx();
 		jfXx.setJfjj(jfjj);
 		List<JfXx> jfXxList=jfXxService.findList(jfXx);
@@ -97,7 +100,10 @@ public class JfXjggController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(JfXjgg jfXjgg, Model model,HttpServletRequest request) {
 		model.addAttribute("jfXjgg", jfXjgg);
-		String jfjj = this.findJfxxByLoginName(request);
+		String jfjj = "";
+		if(request!=null ){
+			jfjj = this.findJfxxByLoginName(request);//管理员此处为空
+		}
 		JfXx jfXx = new JfXx();
 		jfXx.setJfjj(jfjj);
 		List<JfXx> jfXxList=jfXxService.findList(jfXx);

@@ -102,8 +102,10 @@ public class JfZgController extends BaseController {
 	public String list(JfZg jfZg, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<JfZg> page = jfZgService.findPage(new Page<JfZg>(request, response), jfZg); 
 		model.addAttribute("page", page);
-		
-		Map<String,String> userMap = this.findJfxxByLoginName(request);
+		Map<String,String> userMap= new HashMap<String,String>();
+		if(request!=null){
+			userMap = this.findJfxxByLoginName(request);
+		}
 		JfXx jfXx= new JfXx();
 		jfXx.setJfjj(userMap.get("jfjj"));
 		List<JfXx> jfXxList=jfXxService.findList(jfXx);
@@ -115,7 +117,10 @@ public class JfZgController extends BaseController {
 	@RequiresPermissions("merchant:jfZg:view")
 	@RequestMapping(value = "form")
 	public String form(JfZg jfZg, Model model,HttpServletRequest request) {model.addAttribute("jfZg", jfZg);
-		Map<String,String> userMap = this.findJfxxByLoginName(request);
+		Map<String,String> userMap= new HashMap<String,String>();
+		if(request!=null){
+			userMap = this.findJfxxByLoginName(request);
+		}
 		if( StringUtils.isBlank(jfZg.getKzzd4())){
 			model.addAttribute("loginName", userMap.get("name"));
 		}else{

@@ -46,7 +46,24 @@
 </div>-->
 
 <div class="weui-cells__title">网元</div>
-<div class="weui-cells ">
+    <div class="weui-search-bar" id="searchBar">
+	    <form class="weui-search-bar__form" onkeydown="if(event.keyCode==13) return false;">
+	        <div class="weui-search-bar__box">
+	            <i class="weui-icon-search"></i>
+	            <input type="search" class="weui-search-bar__input" id="searchInput"  placeholder="请选择网元"
+	                   required="">
+	            <a href="javascript:clear()" class="weui-icon-clear" id="searchClear"></a>
+	        </div>
+	        <label class="weui-search-bar__label" id="searchText" onclick="OnsearchText()">
+	            <i class="weui-icon-search"></i>
+	            <span>请选择网元</span>
+	        </label>
+	    </form>
+	    <a href="javascript:cancel()" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+ 	</div>
+    <input type="text" value="" id="jf_ids" style="display: none;"/>
+	<div class="content" style="display:none;"></div>
+<!-- <div class="weui-cells ">
     <div class="weui-cell weui-cell_select">
         <div class="weui-cell__bd" id="cfjf">
             <input type="text" value="" id="jf_ids" style="display: none;"/>
@@ -54,7 +71,7 @@
             </select>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="weui-cells__title">巡检人</div>
 <div class="weui-cells weui-cells_radio">
@@ -321,7 +338,7 @@
 //              }
 //          });
 //  };
-    
+
         //查询所有网元
     function findAlljf(userId){
        var jfId =  $("#jf_ids").val();
@@ -333,25 +350,66 @@
                 function (data) {
                     if(data.code == 1) {
                         var arr = data.data;
-                        var jfXx_list = "<option selected value='0' value=''>请选择网元</option>";
+                       /*  var jfXx_list = "<option selected value='0' value=''>请选择网元</option>"; */
+                       var contentHtml = '';
                         for (var i = 0; i < arr.length; i++) {
                             var obj = arr[i];
                             var jfID = obj.id;
-                            var str="";
+                            /*   var str="";
                             if(jfID==jfId){
                                 str="<option selected value='1' value='"+obj.id+"'>"+obj.name+"</option>";
                             }else{
                                 str="<option value='"+obj.id+"'>"+obj.name+"</option>";
-                            }
-                            jfXx_list+=str;
+                            } 
+                            jfXx_list+=str;*/
+                            contentHtml += '<div class="weui-cell"><div class="weui-cell__bd" onclick="selectedJf('+obj.id+',\''+obj.name+'\')"><p>'+obj.name+'</p></div></div>'
                         }
-                        $("#jfXx_list").html(jfXx_list);
+                        //$("#jfXx_list").html(jfXx_list);
+                        $(".content").html(contentHtml);
                     } else {
                         $.toast(data.msg,'forbidden', 8000);
                     }
                 });
     }
-    
+       
+    //选中网元
+    function selectedJf(a, b) {
+        $("#jf_ids").val(a);
+        $("#searchInput").attr('placeholder',b);
+        cancel();
+    }
+ // 显示搜索内容
+	function sousuo(InputVal){
+        //var userId = window.localStorage.getItem("loginName");
+        //findAlljf(userId);
+		var text = InputVal
+        $('.content>.weui-cell').each(function () {
+            var $self = $(this);
+            var flag = $self.text().search(text);
+            if (flag > -1) {
+                $self.css("display", "");
+            } else {
+                $self.css("display", "none");
+            }
+        });			
+	}		
+	// 点击取消时显示所有
+	function cancel(){
+	    $(".content").hide();
+	}
+	// 点击X清除显示所有
+	function clear(){
+		$(".content").html('');
+	}
+
+	// 输入值时执行
+    $('#searchInput').bind('input propertychange', function() {
+        sousuo($("#searchInput").val())
+    });
+	function OnsearchText(){
+		$(".content").show();
+	}
+
 
       //显隐整改单  
 //     $('.sczp').css('display','none');
@@ -449,10 +507,6 @@
 
     }
 
-    //选中网元
-    function selectedJf(a) {
-        $("#jf_ids").val(a);
-    }
     //图片上传
     function uploadImg(imgPath) {
         var image = new Image();

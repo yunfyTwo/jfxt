@@ -47,19 +47,19 @@
 
 <div class="weui-cells__title">网元</div>
     <div class="weui-search-bar" id="searchBar">
-	    <form class="weui-search-bar__form" onkeydown="if(event.keyCode==13) return false;">
+	    <form class="weui-search-bar__form" onclick="onsearchText()">
 	        <div class="weui-search-bar__box">
 	            <i class="weui-icon-search"></i>
 	            <input type="search" class="weui-search-bar__input" id="searchInput"  placeholder="请选择网元"
 	                   required="">
 	            <a href="javascript:clear()" class="weui-icon-clear" id="searchClear"></a>
 	        </div>
-	        <label class="weui-search-bar__label" id="searchText" onclick="OnsearchText()">
+	        <label class="weui-search-bar__label" id="searchText">
 	            <i class="weui-icon-search"></i>
 	            <span>请选择网元</span>
 	        </label>
 	    </form>
-	    <a href="javascript:cancel()" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+
  	</div>
     <input type="text" value="" id="jf_ids" style="display: none;"/>
 	<div class="content" style="display:none;"></div>
@@ -115,6 +115,13 @@
                     <a data-num = "2" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "3" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "4" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                     <a data-num = "5" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                    <a data-num = "6" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                    <a data-num = "7" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                    <a data-num = "8" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                     <a data-num = "9" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                    <a data-num = "10" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+          
                 </div>
             <div id='fen' class="weui_cells_title" style="display: none"></div>
         </div>
@@ -192,21 +199,21 @@
         });
 
         //评分js
-        var arr = ["1","2","3","4","5"];
+        var arr = ["1","2","3","4","5","6","7","8","9","10"];
         var num = -1;
         $(".weui-rater a").mouseover(function(){
             var thisL = $(this).index();
             for(var i = 0;i < thisL;i++){
                 $(".weui-rater a").eq(i).addClass('checked');
             }
-            for(var i = thisL; i < 5;i++){
+            for(var i = thisL; i < 11;i++){
                 $(".weui-rater a").eq(i).removeClass('checked');
             }
             $(this).addClass('checked');
         })
         $(".weui-rater a").mouseout(function(){
             var thisL = $(this).index();
-            for(var i = thisL; i < 5;i++){
+            for(var i = thisL; i < 11;i++){
                 $(".weui-rater a").eq(i).removeClass('checked');
             }
         })
@@ -375,7 +382,7 @@
     //选中网元
     function selectedJf(a, b) {
         $("#jf_ids").val(a);
-        $("#searchInput").attr('placeholder',b);
+		$("#searchInput").val(b);
         cancel();
     }
  // 显示搜索内容
@@ -399,14 +406,15 @@
 	}
 	// 点击X清除显示所有
 	function clear(){
-		$(".content").html('');
+		$(".content").hide();
 	}
 
 	// 输入值时执行
     $('#searchInput').bind('input propertychange', function() {
         sousuo($("#searchInput").val())
     });
-	function OnsearchText(){
+
+	function onsearchText(){
 		$(".content").show();
 	}
 

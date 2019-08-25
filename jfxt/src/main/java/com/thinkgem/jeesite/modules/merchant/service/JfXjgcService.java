@@ -66,7 +66,7 @@ public class JfXjgcService extends CrudService<JfXjgcDao, JfXjgc> {
 							String sj=imgs[j];
 							if(StringUtils.isNotBlank(sj)){
 							StringBuffer img=new StringBuffer(sj);
-							//img.insert(0,"/jfxt");
+							img.insert(0,"/jfxt");
 								list.add(img.toString());
 							}
 						}

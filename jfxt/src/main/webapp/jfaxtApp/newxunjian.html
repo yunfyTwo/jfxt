@@ -110,20 +110,19 @@
         <div class="weui-cell__hd"><label class="weui-label">打分</label></div>
         <div class="weui-cell__bd">
                 <div class="weui-rater">
-                    <a data-num = "0" class="weui-rater-box checked"> <span class="weui-rater-inner">★</span> </a>
-                    <a data-num = "1" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                    <a data-num = "1" class="weui-rater-box checked"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "2" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "3" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "4" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
-                     <a data-num = "5" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                    <a data-num = "5" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "6" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "7" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "8" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
-                     <a data-num = "9" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
+                    <a data-num = "9" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
                     <a data-num = "10" class="weui-rater-box"> <span class="weui-rater-inner">★</span> </a>
-          
                 </div>
             <div id='fen' class="weui_cells_title" style="display: none"></div>
+            <div id='fenshu' class="weui_cells_title" style="display: none"></div>
         </div>
     </div>
 </div>
@@ -206,14 +205,14 @@
             for(var i = 0;i < thisL;i++){
                 $(".weui-rater a").eq(i).addClass('checked');
             }
-            for(var i = thisL; i < 11;i++){
+            for(var i = thisL; i < 10;i++){
                 $(".weui-rater a").eq(i).removeClass('checked');
             }
             $(this).addClass('checked');
         })
         $(".weui-rater a").mouseout(function(){
             var thisL = $(this).index();
-            for(var i = thisL; i < 11;i++){
+            for(var i = thisL; i < 10;i++){
                 $(".weui-rater a").eq(i).removeClass('checked');
             }
         })
@@ -229,6 +228,7 @@
             $(this).addClass('checked');
             num = thisL+1;
             $("#fenshu").val(num);
+            $("#fen").val(num);
             console.log(num);
         })
 
@@ -271,7 +271,7 @@
       		alert("请填写整改判断！");
       		return;
      	 }
-      	var fenshu = $("#fen").text();
+      	var fenshu = $("#fen").val();
       	if(fenshu==null || fenshu==''){
       		fenshu = 1;
      	}

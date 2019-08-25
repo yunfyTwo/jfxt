@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>巡检过程</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.css">
+    <link rel="stylesheet" href="css/demos.css">
+    <link rel="stylesheet" href="css/icon.css">
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/fastclick.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/swipe.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/jquery-weui.js"></script>
+</head>
+<body ontouchstart>
+
+<div class="weui_btn_primary weui-header ">
+    <div class="weui-header-left"> <a href="index1.html" class="icon icon-109 f-white"></a>  </div>
+    <h1 class="weui-header-title">巡检过程</h1>
+</div>
+	<div class="weui-pull-to-refresh__layer">
+      <div class='weui-pull-to-refresh__arrow'></div>
+      <div class='weui-pull-to-refresh__preloader'></div>
+      <div class="down">下拉刷新</div>
+      <div class="up">释放刷新</div>
+      <div class="refresh">正在刷新</div>
+    </div>
+<div class="kong2"></div>
+<div class="weui-cells" id="xjgcXq_lists">
+
+
+
+</div>
+</body>
+<script type="text/javascript">
+	
+	var arr;
+	
+    $(function (){
+        onLoad();
+         FastClick.attach(document.body);
+    });
+    function onLoad() {
+    	var jfxjgc={};
+    	var storage = window.localStorage;
+    	var userId = storage.getItem("loginName");
+    	jfxjgc.userId = userId;
+    	
+        $.post(
+            getContextPath()+"/app/xjgcList",
+            jfxjgc,
+            function (data) {
+                if(data.code == 1) {
+                	//查询成功
+                    arr = data.data;
+                    var list_html = '';
+                    if(arr.length>5){
+                    	for (var i = 0; i <5; i++) {
+                        var obj = arr[i];
+                        list_html +=
+                                        '<a class="weui-cell weui-cell_access" href="xjgcXq.html?id='+obj.id+'">'+
+                                        '<div class="weui-cell__bd">'+
+                                        '<p>'+obj.xjjf.name+'</p>'+
+                                        '</div>'+
+                                        '<div class="weui-cell__ft">'+obj.xjsj+'</div>'+
+                                        '</a>'
+                     }
+             			list_html+='<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
+                    }else{
+                    	for (var i = 0; i < arr.length; i++) {
+                        var obj = arr[i];
+                        list_html +=
+                                        '<a class="weui-cell weui-cell_access" href="xjgcXq.html?id='+obj.id+'">'+
+                                        '<div class="weui-cell__bd">'+
+                                        '<p>'+obj.xjjf.name+'</p>'+
+                                        '</div>'+
+                                        '<div class="weui-cell__ft">'+obj.xjsj+'</div>'+
+                                        '</a>'
+                    }
+                    	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+                    }
+                    $("#xjgcXq_lists").html(list_html);
+                } else {
+                    $.toast(data.msg,'forbidden', 8000);
+                }
+            });
+    }
+    
+       $(document.body).pullToRefresh(function() {
+        setTimeout(function() {
+        	//刷新后的逻辑
+        	var xjgclists="";
+        	for (var i = 0; i < arr.length; i++) {
+                        var obj = arr[i];
+                        xjgclists +=
+                                        '<a class="weui-cell weui-cell_access" href="xjgcXq.html?id='+obj.id+'">'+
+                                        '<div class="weui-cell__bd">'+
+                                        '<p>'+obj.xjjf.name+'</p>'+
+                                        '</div>'+
+                                        '<div class="weui-cell__ft">'+obj.xjsj+'</div>'+
+                                        '</a>'
+                    }
+                    	xjgclists+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+         $("#xjgcXq_lists").html(xjgclists);
+          $(document.body).pullToRefreshDone();
+        }, 1000);
+      });
+      
+
+   
+      
+</script>
+
+</html>

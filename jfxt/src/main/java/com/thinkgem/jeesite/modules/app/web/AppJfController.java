@@ -280,7 +280,47 @@ public class AppJfController {
             return AppResult.writeResultFailure("获取处罚单列表失败");
         }
     }
-
+    
+    /**
+     * 巡检过程单详情
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("/xjgcDetail")
+    @ResponseBody
+    public Object xjgcDetail(HttpServletResponse response,String id) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        try {
+        	JfXjgc xjgcDetail = jfXjgcService.get(id);
+            return AppResult.writeResultRep(xjgcDetail, "返回处罚单详情成功");
+        } catch (Exception e) {
+            return AppResult.writeResultFailure("返回处罚单详情失败");
+        }
+    }
+    /**
+     * 巡检过程列表
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("/xjgcList")
+    @ResponseBody
+    public Object xjgcList(HttpServletResponse response,HttpServletRequest request , JfXjgc jfxjgc) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        try {
+            if(jfxjgc!=null && StringUtils.isNotBlank(jfxjgc.getUserId())){
+                User user = systemService.getUser(jfxjgc.getUserId());
+                jfxjgc.setCurrentUser(user);
+            }
+            Page<JfXjgc> page = jfXjgcService.findPage(new Page<JfXjgc>(request, response), jfxjgc);
+            List<JfXjgc> jfxjgcs = page.getList();
+            return AppResult.writeResultRep(jfxjgcs, "获取巡检过程列表失败");
+        } catch (Exception e) {
+            return AppResult.writeResultFailure("获取巡检过程列表失败");
+        }
+    }
+    
     /**
      * 整改单列表
      *

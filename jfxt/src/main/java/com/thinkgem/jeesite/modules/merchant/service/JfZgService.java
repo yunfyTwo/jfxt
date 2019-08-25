@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.merchant.entity.JfCf;
+import com.thinkgem.jeesite.modules.merchant.entity.JfXjgc;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -87,6 +89,14 @@ public class JfZgService extends CrudService<JfZgDao, JfZg> {
 	@Transactional(readOnly = false)
 	public void delete(JfZg jfZg) {
 		super.delete(jfZg);
+	}
+	
+	/*
+	 * 巡检过程
+	 */
+	public List<JfZg> findJfxjgcList(JfXjgc jfxjgc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

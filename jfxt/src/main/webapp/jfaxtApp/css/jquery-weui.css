@@ -2195,6 +2195,7 @@ button.swiper-pagination-bullet {
   overflow: hidden;
 }
 .weui-photo-browser-modal .photo-container img {
+  height: 75%;
   max-width: 100%;
   margin-top: -30px;
 }

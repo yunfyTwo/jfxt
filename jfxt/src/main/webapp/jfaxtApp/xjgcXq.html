@@ -15,6 +15,7 @@
     <script src="js/swipe.js"></script>
     <script src="html5plus://ready"></script>
     <script src="js/common.js"></script>
+    <script src="js/back.js"></script>
     <style>
 	        .weui-uploader__file_status:before{background: none;}
 	        /*图片预览时会用到，将图片放到最上面一层*/
@@ -121,7 +122,9 @@
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
+            <font color="red"> 
             <textarea class="weui-textarea" placeholder="巡检打分" rows="1" id="xjdf" readonly="readonly"></textarea>
+             </font>
         </div>
     </div>
 </div>
@@ -265,12 +268,41 @@
                     $("#cftzd").text(obj.cftzd);
                     $("#xjsj").val(obj.xjsj);
                     $("#zgpd").val(obj.zgpd);
-                    $("#xjsftg").val(obj.xjsftg);
-                    $("#xjdf").val(obj.xjdf);
+                    var isTg = obj.xjsftg;
+                    if("1"==isTg){
+                    	$("#xjsftg").val('是');
+                    }else{
+                    	$("#xjsftg").val('否');
+                    }
+                    
+                    //$("#xjdf").val(obj.xjdf);
+                    var isdf = obj.xjdf;
+                    
+                    if("10"==isdf){
+                    	$("#xjdf").val('★★★★★★★★★★');
+                    }else if("9"==isdf){
+                    	$("#xjdf").val('★★★★★★★★★');
+                    }else if("8"==isdf){
+                    	$("#xjdf").val('★★★★★★★★');
+                    }else if("7"==isdf){
+                    	$("#xjdf").val('★★★★★★★');
+                    }else if("6"==isdf){
+                    	$("#xjdf").val('★★★★★★');
+                    }else if("5"==isdf){
+                    	$("#xjdf").val('★★★★★');
+                    }else if("4"==isdf){
+                    	$("#xjdf").val('★★★★');
+                    }else if("3"==isdf){
+                    	$("#xjdf").val('★★★');
+                    }else if("2"==isdf){
+                    	$("#xjdf").val('★★');
+                    }else {
+                    	$("#xjdf").val('★');
+                    }
                     //图片展示，需要判断是否是多张
                     if(obj.xczp!=null){
                     	imgArr=obj.xczp.split("|");
-                    	for (var i = 1; i < imgArr.length; i++) {
+                    	for (var i = 0; i < imgArr.length; i++) {
                     		 var obj = imgArr[i];
                     	$('#img2x').append('<img src="'+ getFilePath() + obj+'" style="width: 100px;height: 80px;margin-left:15px;" onclick="zoomPic('+i+')"/>');
                     	}

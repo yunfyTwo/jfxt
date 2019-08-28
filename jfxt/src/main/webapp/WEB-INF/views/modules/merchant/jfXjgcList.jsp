@@ -117,9 +117,43 @@
 				<td>
 					${fns:getDictLabel(jfXjgc.xjsftg, 'yes_no', '')}
 				</td>
+				
+				
 				<td>
-					${jfXjgc.xjdf}
+				<c:if test="${jfXjgc.xjdf=='10'}">
+				 ★★★★★★★★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='9'}">
+				 ★★★★★★★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='8'}">
+				 ★★★★★★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='7'}">
+				 ★★★★★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='6'}">
+				 ★★★★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='5'}">
+				★★★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='4'}">
+				 ★★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='3'}">
+				 ★★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='2'}">
+				 ★★
+				</c:if>
+				<c:if test="${jfXjgc.xjdf=='1'}">
+				 ★
+				</c:if>
+				
 				</td>
+				
+				
 				<shiro:hasPermission name="merchant:jfXjgc:edit"><td>
     				<a href="${ctx}/merchant/jfXjgc/form?id=${jfXjgc.id}">修改</a>
 					<a href="${ctx}/merchant/jfXjgc/delete?id=${jfXjgc.id}" onclick="return confirmx('确认要删除该巡检过程吗？', this.href)">删除</a>

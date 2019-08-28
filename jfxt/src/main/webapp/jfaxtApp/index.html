@@ -21,13 +21,13 @@
             <img src="images/logo.png" alt="">
         </div>
         <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">账号</label></div>
+            <div class="weui-cell__hd"><label class="weui-label"><img src="images/tuandui.png" width="35" height="35" /></label></div>
             <div class="weui-cell__bd">
-                <input id='loginName'  class="weui-input" type="text"  placeholder="请输入账号">
+                <input id='loginName'  class="weui-input" type="text"  placeholder="请输入用户名">
             </div>
         </div>
         <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+            <div class="weui-cell__hd"><label class="weui-label"><img src="images/gengduo.png" width="35" height="35" /></label></div>
             <div class="weui-cell__bd">
                 <input id='password' class="weui-input" type="password"  placeholder="请输入密码">
             </div>
@@ -126,4 +126,23 @@
 <script>
     $('.wcs').height($('body').height());
 </script>
+<script>
+document.addEventListener('plusready', function(a) {
+            var first = null;
+            plus.key.addEventListener('backbutton', function() {
+                    //首次按键，提示‘再按一次退出应用’
+                    if (!first) {
+                        first = new Date().getTime();
+                        console.log('再按一次退出应用');//用自定义toast提示最好
+                        setTimeout(function() {
+                            first = null;
+                        }, 1000);
+                    } else {
+                        if (new Date().getTime() - first < 1000) {
+                            plus.runtime.quit();
+                        }
+                    }
+                }, false);
+        });
+ </script>
 </html>

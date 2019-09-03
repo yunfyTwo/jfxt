@@ -59,8 +59,10 @@
 			
 					<form:select path="jfwz" htmlEscape="false" maxlength="255" class="input-xlarge " style="width: 100px;">
 						<form:option value="" label="请选择"/>
-						<form:option value="机房" label="机房"/>
-						<form:option value="基站" label="基站"/>
+						<form:option value="B类机房" label="B类机房"/>
+						<form:option value="C类机房" label="C类机房"/>
+						<form:option value="D类机房" label="D类机房"/>
+						<form:option value="自留基站" label="自留基站"/>
 						<form:option value="线路" label="线路"/>
 					</form:select>
 			</li>

@@ -98,7 +98,7 @@
                                 '<div class="weui-cell__bd">' +
                                 '<p>' + obj.cfjf.name + '</p>' +
                                 '</div>' +
-                                '<div class="weui-cell__ft">' + obj.cfrq + '</div>' +
+                                '<div class="weui-cell__ft">' + obj.cfrqMs+'<font color="red">'+'&nbsp&nbsp&nbsp&nbsp&nbsp'+"待整治"+ '</font>' + '</div>' +
                                 '</a>'
                         }
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
@@ -123,12 +123,18 @@
                     if (zgList.length > 0) {
                         for (var i = 0; i < zgList.length; i++) {
                             var obj = zgList[i];
+                            var falg="";
+                            if(obj.kzzd2=="是"){
+                            	falg='<font color="green"> 已整改</font>';
+                            }else{
+                            	falg='<font color="red"> 未整改 </font>';
+                            }
                             list_html +=
                                 '<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
                                 '<div class="weui-cell__bd">' +
-                                '<p>' + obj.zgjf.name + '</p>' +
+                                '<p>' + obj.zgjf.name +'</p>' +
                                 '</div>' +
-                                '<div class="weui-cell__ft">' + obj.zgrq + '</div>' +
+                                '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
                                 '</a>'
                         }
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
@@ -151,7 +157,7 @@
                     '<div class="weui-cell__bd">' +
                     '<p>' + obj.cfjf.name + '</p>' +
                     '</div>' +
-                    '<div class="weui-cell__ft">' + obj.cfrq + '</div>' +
+                    '<div class="weui-cell__ft">' + obj.cfrqMs +'<font color="red">'+'&nbsp&nbsp&nbsp&nbsp&nbsp'+"待整治"+ '</font>' + '</div>' +
                     '</a>'
             }
             cflists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
@@ -160,13 +166,19 @@
             var zglists = "";
             for (var i = 0; i < zgList.length; i++) {
                 var obj = zgList[i];
+                 var falg="";
+                            if(obj.kzzd2=="是"){
+                            	falg='<font color="green"> 已整改</font>';
+                            }else{
+                            	falg='<font color="red"> 未整改 </font>';
+                            }
                 zglists +=
                     '<a class="weui-cell weui-cell_access" href="zgd.html?cfid=' + obj.id + '">' +
                     '<div class="weui-cell__bd">' +
                     '<p>' + obj.zgjf.name + '</p>' +
                     '</div>' +
-                    '<div class="weui-cell__ft">' + obj.zgrq + '</div>' +
-                    '</a>'
+                    '<div class="weui-cell__ft">' + obj.zgrqMs+'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg + '</div>' +
+                                '</a>'
             }
             zglists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
             $("#zgd_lists").html(zglists);
@@ -197,18 +209,25 @@
                 if (data.code == 1) {
                     //查询成功
                     zgList = data.data;
+                    
                     var list_html = '<div class="weui-cell__bd">' +
 				                    '<input id="jfName"  style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>' + 
 				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" align="right"/>' + '</div>' ;
 				                    if (zgList.length > 0) {
                         for (var i = 0; i < zgList.length; i++) {
                             var obj = zgList[i];
+                            var falg="";
+                            if(obj.kzzd2=="是"){
+                            	falg='<font color="green"> 已整改</font>';
+                            }else{
+                            	falg='<font color="red"> 未整改 </font>';
+                            }
                             list_html +=
                                 '<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
                                 '<div class="weui-cell__bd">' +
                                 '<p>' + obj.zgjf.name + '</p>' +
                                 '</div>' +
-                                '<div class="weui-cell__ft">' + obj.zgrq + '</div>' +
+                                '<div class="weui-cell__ft">' + obj.zgrqMs+'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg + '</div>' +
                                 '</a>'
                         }
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';

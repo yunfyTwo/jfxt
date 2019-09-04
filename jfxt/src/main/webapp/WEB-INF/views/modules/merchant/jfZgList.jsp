@@ -107,7 +107,7 @@
 				</form:select> 
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="clearfix"></li>
+			<li style="color:red" class="clearfix">满足条件的记录数：${count}条</li>
 		</ul>
 	</form:form>
 	

@@ -107,6 +107,7 @@
 				<th>日期</th>
 				<th>处罚对象</th>
 				<th>处罚梯度</th>
+				<th>处罚金额（元）</th>
 				<th>处罚现场照片</th>
 				<shiro:hasPermission name="merchant:jfCf:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -134,6 +135,9 @@
 				</td>
 				<td>
 					${fns:getDictLabel(jfCf.cftd, 'cftd', '')}
+				</td>
+				<td>
+					${jfCf.kzzd4}
 				</td>
 				<td>
 					<c:if test="${not empty jfCf.xctps}">

@@ -21,6 +21,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	private static final long serialVersionUID = 1L;
 	private JfXx xjjf;		// 巡检机房
 	private Date xjsj;		// 巡检时间
+	private String xjsjMs;		// 巡检时间
 	private User xjry;		// 巡检人员
 	private String xczp;		// 现场图片
 	private String zgpd;		// 整改判断
@@ -38,6 +39,14 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	private Date overDate;		// 结束日期
 
 	private String limit;//app分页
+	
+	public String getXjsjMs() {
+		return xjsjMs;
+	}
+
+	public void setXjsjMs(String xjsjMs) {
+		this.xjsjMs = xjsjMs;
+	}
 
 	public String getLimit () {
 		return limit;

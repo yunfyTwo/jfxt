@@ -91,6 +91,15 @@
         </div>
     </div>
 </div>
+<div class="weui-cells__title">处罚金额（元）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入处罚金额" rows="1" id="kzzD4"></textarea>
+            <div class="weui-textarea-counter"><span>0</span>/200</div>
+        </div>
+    </div>
+</div>	
 <div class="weui-gallery" id="gallery">
     <span class="weui-gallery__img" id="galleryImg"></span>
 </div>
@@ -334,6 +343,7 @@
                     $("#cfdx").val(obj.cfdx);
                     $("#cftd_ids").val(obj.cftd);
                     $("#cftd").val(obj.cftd);
+                    $("#kzzD4").val(obj.kzzd4);
                      //处罚原因
                     $("#cfyyms").val(obj.cfyyms);
                     //图片展示，需要判断是否是多张
@@ -513,7 +523,7 @@
         jfCf.cftd = $("#cftd_ids").val();		// 处罚梯度      //jfCf.cfqxyyz = $().val();		// 处罚权限拥有者
         jfCf.cfyyms = $("#cfyyms").val();		// 处罚原因描述
         jfCf.kzzd3= $("#user_name").val();		//巡检人
-          
+         jfCf.kzzd4= $("#kzzD4").val();		//处罚金额 
         if(imgArr.length > 0) {
             imgUrls = imgArr.join("|");
             jfCf.cfxczp = imgUrls;

@@ -59,15 +59,22 @@
                 	//查询成功
                     arr = data.data;
                     var list_html = '';
+                    
                     if(arr.length>5){
                     	for (var i = 0; i <5; i++) {
                         var obj = arr[i];
+                        var xjsftgs="";
+                            if(obj.xjsftg=="1"){
+                            	xjsftgs='<font color="green"> 无需整改</font>';
+                            }else{
+                            	xjsftgs='<font color="red"> 需整改 </font>';
+                            }
                         list_html +=
                                         '<a class="weui-cell weui-cell_access" href="xjgcXq.html?id='+obj.id+'">'+
                                         '<div class="weui-cell__bd">'+
                                         '<p>'+obj.xjjf.name+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.xjsj+'</div>'+
+                                        '<div class="weui-cell__ft">'+obj.xjsjMs+'&nbsp&nbsp&nbsp&nbsp'+xjsftgs+'</div>'+
                                         '</a>'
                      }
              			list_html+='<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
@@ -79,7 +86,7 @@
                                         '<div class="weui-cell__bd">'+
                                         '<p>'+obj.xjjf.name+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.xjsj+'</div>'+
+                                        '<div class="weui-cell__ft">'+obj.xjsjMs+'</div>'+
                                         '</a>'
                     }
                     	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
@@ -97,12 +104,18 @@
         	var xjgclists="";
         	for (var i = 0; i < arr.length; i++) {
                         var obj = arr[i];
+                        var xjsftgs="";
+                            if(obj.xjsftg=="1"){
+                            	xjsftgs='<font color="green"> 无整改</font>';
+                            }else{
+                            	xjsftgs='<font color="red"> 需整改 </font>';
+                            }
                         xjgclists +=
                                         '<a class="weui-cell weui-cell_access" href="xjgcXq.html?id='+obj.id+'">'+
                                         '<div class="weui-cell__bd">'+
                                         '<p>'+obj.xjjf.name+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.xjsj+'</div>'+
+                                        '<div class="weui-cell__ft">'+obj.xjsjMs+'&nbsp&nbsp&nbsp&nbsp'+xjsftgs+'</div>'+
                                         '</a>'
                     }
                     	xjgclists+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';

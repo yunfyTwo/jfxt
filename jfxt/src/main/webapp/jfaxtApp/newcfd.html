@@ -111,6 +111,15 @@
         </div>
     </div>
 </div>
+<div class="weui-cells__title">处罚金额（元）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入处罚金额" rows="1" id="kzzD4"></textarea>
+            <div class="weui-textarea-counter"><span>0</span>/200</div>
+        </div>
+    </div>
+</div>	
 <div id="cfdxczp">
 	<div class="weui-gallery" id="gallery">
 	    <span class="weui-gallery__img" id="galleryImg"></span>
@@ -616,7 +625,7 @@
         jfCf.kzzd2 = zgId;
         jfCf.userId = userId;
         jfCf.kzzd3= $("#user_name").text();		//巡检人
-        
+        jfCf.kzzd4= $("#kzzD4").val();	
         
        if(!ggId&&!xjId&&!zgId){
         	if(imgArr.length > 4) {

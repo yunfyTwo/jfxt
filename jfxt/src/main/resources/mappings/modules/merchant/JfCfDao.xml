@@ -7,6 +7,7 @@
 		a.cfjf AS "cfjf.id",
 		a.cftzd AS "cftzd",
 		a.cfrq AS "cfrq",
+		DATE_FORMAT(a.cfrq,'%Y-%m-%d')AS "cfrqMs" ,
 		a.cfdx AS "cfdx",
 		a.cftd AS "cftd",
 		a.cfqxyyz AS "cfqxyyz",

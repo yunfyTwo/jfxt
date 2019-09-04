@@ -22,6 +22,7 @@ public class JfCf extends DataEntity<JfCf> {
 	private JfXx cfjf;		// 处罚机房
 	private String cftzd;		// 处罚通知单号
 	private Date cfrq;		// 日期
+	private String cfrqMs;		// 日期描述
 	private String cfdx;		// 处罚对象
 	private String cftd;		// 处罚梯度
 	private String cfqxyyz;		// 处罚权限拥有者
@@ -39,6 +40,14 @@ public class JfCf extends DataEntity<JfCf> {
 	private Date overDate;		// 结束日期
 
 	private String limit;//app分页
+	
+	public String getCfrqMs() {
+		return cfrqMs;
+	}
+
+	public void setCfrqMs(String cfrqMs) {
+		this.cfrqMs = cfrqMs;
+	}
 
 	public String getLimit () {
 		return limit;

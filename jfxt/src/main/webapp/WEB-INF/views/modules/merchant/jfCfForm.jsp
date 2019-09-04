@@ -92,6 +92,13 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">处罚金额（元）：</label>
+			<div class="controls">
+				<form:input path="kzzd4" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">处罚现场照片：</label>
 			<div class="controls">
 				<form:hidden id="cfxczp" path="cfxczp" htmlEscape="false" class="input-xlarge" cssStyle="border: 0px;"

@@ -7,6 +7,7 @@
 		a.zgjf AS "zgjf.id",
 		a.zgdh AS "zgdh",
 		a.zgrq AS "zgrq",
+		DATE_FORMAT(a.zgrq,'%Y-%m-%d')AS "zgrqMs", 
 		a.zgyq AS "zgyq",
 		a.cfxczp AS "cfxczp",
 		a.create_by AS "createBy.id",

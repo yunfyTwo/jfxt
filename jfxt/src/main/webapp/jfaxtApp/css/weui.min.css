@@ -260,7 +260,7 @@ a {
 }
 
 .weui-btn_primary {
-	background-color: #1aad19
+	background-color: #005bea
 }
 
 .weui-btn_primary:not(.weui-btn_disabled):visited {
@@ -320,8 +320,8 @@ a {
 }
 
 .weui-btn_plain-primary {
-	color: #1aad19;
-	border: 1px solid #1aad19
+	color: #005bea;
+	border: 1px solid #005bea
 }
 
 .weui-btn_plain-primary:not(.weui-btn_plain-disabled):active {
@@ -462,7 +462,7 @@ input.weui-btn_plain-primary {
 	margin-bottom: .3em;
 	padding-left: 15px;
 	padding-right: 15px;
-	color: #999;
+	color: red;
 	font-size: 14px
 }
 
@@ -2535,7 +2535,7 @@ input[type=search]::-webkit-search-results-decoration {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
 	flex: 1;
-	color: #1aad19
+	color: #005bea
 }
 
 .weui-picker__action:first-child {
@@ -2852,7 +2852,7 @@ input[type=search]::-webkit-search-results-decoration {
 
 .weui-slider__track {
 	height: 2px;
-	background-color: #1aad19;
+	background-color: #005bea;
 	width: 0
 }
 

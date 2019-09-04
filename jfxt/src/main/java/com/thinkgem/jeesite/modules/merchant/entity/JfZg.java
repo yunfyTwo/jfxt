@@ -30,6 +30,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private JfXx zgjf;		// 整改机房
 	private String zgdh;		// 整改单号
 	private Date zgrq;		// 日期
+	private String zgrqMs;		// 日期描述
 	private String zgyq;		// 整改要求
 	private String cfxczp;		// 整改现场照片
 	private String kzzd1;		// 扩展字段1
@@ -51,6 +52,15 @@ public class JfZg extends DataEntity<JfZg> {
 	private String contentDescription;		// 环境整治内容描述（门、窗、墙面等）
 	private String userId;      //当前登录用户Id
 	private String jfName;      //整改机房名称
+	
+	public String getZgrqMs() {
+		return zgrqMs;
+	}
+
+	public void setZgrqMs(String zgrqMs) {
+		this.zgrqMs = zgrqMs;
+	}
+
 	
 
 	public String getIsCutOverContent() {

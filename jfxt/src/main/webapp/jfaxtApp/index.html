@@ -1,148 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>登录</title>
-    <link rel="stylesheet" href="css/weui.min.css">
-    <link rel="stylesheet" href="css/jquery-weui.css">
-    <link rel="stylesheet" href="css/demos.css">
-    <script src="js/jquery-2.1.4.js"></script>
-    <script src="js/fastclick.js"></script>
-    <script src="js/zepto.min.js"></script>
-    <script src="js/swipe.js"></script>
-    <script src="js/common.js"></script>
-</head>
-<body ontouchstart>
-    <div class="weui-cells weui-cells_form wcs" id="loginDiv">
-        <div class="kong"></div>
-        <div class="weui-cell wc">
-            <img src="images/logo.png" alt="">
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label"><img src="images/tuandui.png" width="35" height="35" /></label></div>
-            <div class="weui-cell__bd">
-                <input id='loginName'  class="weui-input" type="text"  placeholder="请输入用户名">
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label"><img src="images/gengduo.png" width="35" height="35" /></label></div>
-            <div class="weui-cell__bd">
-                <input id='password' class="weui-input" type="password"  placeholder="请输入密码">
-            </div>
-        </div>
-        <div class="weui-cell dl">
-            <input class="weui-btn weui-btn_primary" type="button" value="登录"  onclick="login()"/>
-            <!--<input class="weui-btn weui-btn_primary"    href="index1.html" value="登录"/>-->
-        </div>
-    </div>
-</body>
 
-<script type="text/javascript"> 
-	$(function(){
-		$("#loginDiv").hide();
-		var loginName = localStorage.getItem("loginName");		
-		if(loginName){
-            $.post(
-                getContextPath()+"/app/getPermissions",
-                {
-                    "id": loginName
-                },
-                function (data) {
-                    if(data.code == 1) {
-                        var obj = data.data;
-                        localStorage.removeItem("permissions");
-                        localStorage.setItem("permissions",obj.permissions);
-                        // $.toast(data.msg, 'forbidden', 8000);
-                        $.toast(data.msg);
-                        window.location.href = "index1.html";
-                    } else {
-                        $.toast("登录失效,请重新登录",'forbidden', 8000);
-                        window.location.href = "index.html";
-                    }
-                });
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<!--图标样式-->
+		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+		<!--布局框架-->
+		<link rel="stylesheet" type="text/css" href="css/util.css">
+
+		<!--主要样式-->
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<title>登录</title>
+
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/zepto.min.js"></script>
+		<script src="js/swipe.js"></script>
+		<script src="js/common.js"></script>
+	</head>
+
+	<body>
+		<div class="limiter">
+			<div class="container-login100" style="background-image: url('images/img-01.jpg');">
+				<div class="wrap-login100 p-t-190 p-b-70 ">
+					<form class="login100-form validate-form">
+						<div class="login100-form-avatar">
+							<img src="images/avatar-01.jpg" alt="AVATAR">
+						</div>
+
+						<div class="text-effect p-t-20 p-b-45">
+							<span>网</span>
+							<span>络</span>
+							<span>隐</span>
+							<span>患</span>
+							<span>整</span>
+							<span>治</span>
+							<span>监</span>
+							<span>管</span>
+							<span>系</span>
+							<span>统</span>
+						</div>
+
+						<div class="wrap-input100 validate-input m-b-10" data-validate="请输入用户名">
+							<input id='loginName' class="input100" type="text" name="username" placeholder="请输入用户名" autocomplete="off">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+                            <i class="fa fa-user"></i>
+                        </span>
+						</div>
+
+						<div class="wrap-input100 validate-input m-b-10" data-validate="请输入密码">
+							<input id='password' class="input100" type="password" name="pass" placeholder="请输入密码">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+                            <i class="fa fa-lock"></i>
+                        </span>
+						</div>
+                        <div class="text-center w-p-20">
+							<a href="" class="txt1">记住密码</a>
+						</div>
+						<div class="text-center w-p-20">
+							<a href="" class="txt1">忘记密码？</a>
+						</div>
+						<div class="container-login100-form-btn w-full p-t-25 p-b-20">
+							<button type="button" class="login100-form-btn" onclick="login()">登 录</button>
+						</div>
+						
+						
+						
+                       <div class="login100-form-titles " >中国电信股份有限公司广元分公司
+                      <br />版权所有 </div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script src="vendor/jquery/jquery-1.12.4.min.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
+
+	<script type="text/javascript">
+		$(function() {
+			$("#loginDiv").hide();
+			var loginName = localStorage.getItem("loginName");
+			if(loginName) {
+				$.post(
+					getContextPath() + "/app/getPermissions", {
+						"id": loginName
+					},
+					function(data) {
+						if(data.code == 1) {
+							var obj = data.data;
+							localStorage.removeItem("permissions");
+							localStorage.setItem("permissions", obj.permissions);
+							// $.toast(data.msg, 'forbidden', 8000);
+							$.toast(data.msg);
+							window.location.href = "index1.html";
+						} else {
+							$.toast("登录失效,请重新登录", 'forbidden', 8000);
+							window.location.href = "index.html";
+							
+						}
+					});
+			}
+			$("#loginDiv").show();
+		});
+
+		function login() {
+
+			var loginName = $("#loginName").val();
+			var password = $("#password").val();
+			if(loginName.length != 0 || password.length != 0) {
+				$.post(
+					getContextPath() + "/app/toLogin", {
+						"loginName": loginName,
+						"password": password
+					},
+					function(data) {
+						if(data.code == 1) {
+							var obj = data.data;
+							localStorage.setItem("loginName", obj.id);
+							localStorage.removeItem("permissions");
+							localStorage.setItem("permissions", obj.permissions);
+							// $.toast(data.msg, 'forbidden', 8000);
+							$.toast(data.msg);
+							window.location.href = "index1.html";
+						} else {
+							$.toast(data.msg, 'forbidden', 8000);
+							alert("用户名或密码错误！");
+						}
+					});
+			} else {
+				alert("用户名或密码不能为空！");
+			}
 		}
-		$("#loginDiv").show();
-	});
+		// 	function login(){
+		// 		var loginName = $("#loginName").val();
+		//         var password = $("#password").val();
+		// 		$.ajax({
+		//                 type: "post",
+		//                 url: getContextPath()+"/api/jf/login",
+		//                 data:JSON.stringify(
+		//                     {
+		//                     'loginName': loginName,
+		//                     'password': password
+		//                     }
+		//                 ),
+		//                 dataType: "jsonp",
+		//                 contentType: "application/json",
+		//                 async:false,
+		//                 success: function(data){
+		//                     if(data.code == 1){
+		//                     	window.location.href = "index1.html";
+		//                     }
+		//                 }
+		//            });
+		// 	}
 
-	function login() {
-
-     var loginName = $("#loginName").val();
-     var password = $("#password").val();
-     if(loginName.length!=0 || password.length!=0){
-         $.post(
-             getContextPath()+"/app/toLogin",
-             {
-                 "loginName": loginName,
-                 "password": password
-             },
-             function (data) {
-                 if(data.code == 1) {
-                     var obj = data.data;
-                     localStorage.setItem("loginName",obj.id);
-                     localStorage.removeItem("permissions");
-                     localStorage.setItem("permissions",obj.permissions);
-                     // $.toast(data.msg, 'forbidden', 8000);
-                     $.toast(data.msg);
-                     window.location.href = "index1.html";
-                 } else {
-                     $.toast(data.msg,'forbidden', 8000);
-                 }
-             });
-     }else {
-            alert("用户名或密码不能为空！");
-     }
-     }
-// 	function login(){
-// 		var loginName = $("#loginName").val();
-//         var password = $("#password").val();
-// 		$.ajax({
-//                 type: "post",
-//                 url: getContextPath()+"/api/jf/login",
-//                 data:JSON.stringify(
-//                     {
-//                     'loginName': loginName,
-//                     'password': password
-//                     }
-//                 ),
-//                 dataType: "jsonp",
-//                 contentType: "application/json",
-//                 async:false,
-//                 success: function(data){
-//                     if(data.code == 1){
-//                     	window.location.href = "index1.html";
-//                     }
-//                 }
-//            });
-// 	}
-	 
+		$(function() {
+			FastClick.attach(document.body);
+		});
+	</script>
+	<script src="js/jquery-weui.js"></script>
+	<script>
+		$('.wcs').height($('body').height());
+	</script>
 	
-    $(function() {
-        FastClick.attach(document.body) ;
-    });
-</script>
-<script src="js/jquery-weui.js"></script>
-<script>
-    $('.wcs').height($('body').height());
-</script>
-<script>
-document.addEventListener('plusready', function(a) {
-            var first = null;
-            plus.key.addEventListener('backbutton', function() {
-                    //首次按键，提示‘再按一次退出应用’
-                    if (!first) {
-                        first = new Date().getTime();
-                        console.log('再按一次退出应用');//用自定义toast提示最好
-                        setTimeout(function() {
-                            first = null;
-                        }, 1000);
-                    } else {
-                        if (new Date().getTime() - first < 1000) {
-                            plus.runtime.quit();
-                        }
-                    }
-                }, false);
-        });
- </script>
+	<script>
+		document.addEventListener('plusready', function(a) {
+			var first = null;
+			plus.key.addEventListener('backbutton', function() {
+				//首次按键，提示‘再按一次退出应用’
+				if(!first) {
+					first = new Date().getTime();
+					console.log('再按一次退出应用'); //用自定义toast提示最好
+					setTimeout(function() {
+						first = null;
+					}, 1000);
+				} else {
+					if(new Date().getTime() - first < 1000) {
+						plus.runtime.quit();
+					}
+				}
+			}, false);
+		});
+	</script>
+
+
 </html>

@@ -6,6 +6,7 @@
 		a.id AS "id",
 		a.xjjf AS "xjjf.id",
 		a.xjsj AS "xjsj",
+		DATE_FORMAT(a.xjsj,'%Y-%m-%d')AS "xjsjMs" ,
 		a.xjry AS "xjry.id",
 		a.xczp AS "xczp",
 		a.zgpd AS "zgpd",

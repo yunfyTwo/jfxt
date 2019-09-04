@@ -110,6 +110,8 @@ public class JfZgController extends BaseController {
 		jfXx.setJfjj(userMap.get("jfjj"));
 		List<JfXx> jfXxList=jfXxService.findList(jfXx);
 		model.addAttribute("jfXxList", jfXxList);
+		long count =page.getCount();
+		model.addAttribute("count", count);
 		return "modules/merchant/jfZgList";
 	}
 

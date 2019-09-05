@@ -92,6 +92,8 @@ public class JfXxController extends BaseController {
 		}
 		Page<JfXx> page = jfXxService.findPage(new Page<JfXx>(request, response), jfXx); 
 		model.addAttribute("page", page);
+		long count =page.getCount();
+		model.addAttribute("count", count);
 		return "modules/merchant/jfXxList";
 	}
 

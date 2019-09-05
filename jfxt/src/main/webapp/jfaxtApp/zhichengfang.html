@@ -1,245 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>支撑方</title>
-    <link rel="stylesheet" href="css/weui.min.css">
-    <link rel="stylesheet" href="css/jquery-weui.css">
-    <link rel="stylesheet" href="css/demos.css">
-    <link rel="stylesheet" href="css/icon.css">
-    <script src="js/jquery-2.1.4.js"></script>
-    <script src="js/jquery-weui.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/fastclick.js"></script>
-    <script src="js/zepto.min.js"></script>
-    <script src="js/swipe.js"></script>
-    <script src="js/back.js"></script>
-</head>
-<body ontouchstart>
-<div class="weui_btn_primary weui-header ">
-    <div class="weui-header-left"><a href="index1.html" class="icon icon-109 f-white"></a></div>
-    <h1 class="weui-header-title">支撑方</h1>
-</div>
-<div class="weui-pull-to-refresh__layer">
-    <div class='weui-pull-to-refresh__arrow'></div>
-    <div class='weui-pull-to-refresh__preloader'></div>
-    <div class="down">下拉刷新</div>
-    <div class="up">释放刷新</div>
-    <div class="refresh">正在刷新</div>
-</div>
-<div class="kong2"></div>
-<div class="weui_tab " style="height:44px;"><!--tab-fixed添加顶部-->
-    <div class="weui_navbar" style="height:44px;">
-        <div class="weui_navbar_item  tab-green ">
-            处罚单
-        </div>
-        <div class="weui_navbar_item">
-            整改单
-        </div>
-    </div>
-</div>
 
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>支撑方</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link rel="stylesheet" href="css/icon.css">
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/zepto.min.js"></script>
+		<script src="js/swipe.js"></script>
+		<script src="js/back.js"></script>
+	</head>
 
-<div class="weui-cells cfd " id="cfd_lists">
+	<body ontouchstart>
+		<div class="weui_btn_primary weui-header ">
+			<div class="weui-header-left">
+				<a href="index1.html" class="icon icon-109 f-white"></a>
+			</div>
+			<h1 class="weui-header-title">支撑方</h1>
+		</div>
+		<div class="weui-pull-to-refresh__layer">
+			<div class='weui-pull-to-refresh__arrow'></div>
+			<div class='weui-pull-to-refresh__preloader'></div>
+			<div class="down">下拉刷新</div>
+			<div class="up">释放刷新</div>
+			<div class="refresh">正在刷新</div>
+		</div>
+		<div class="kong2"></div>
+		<div class="weui_tab " style="height:44px;">
+			<!--tab-fixed添加顶部-->
+			<div class="weui_navbar" style="height:44px;">
+				<div class="weui_navbar_item  tab-green ">
+					处罚单
+				</div>
+				<div class="weui_navbar_item">
+					整改单
+				</div>
+			</div>
+		</div>
 
-</div>
-<div class="weui-cells zgd  " id="zgd_lists">
+		<div class="weui-cells cfd " id="cfd_lists">
 
-</div>
-</body>
-<script type="text/javascript">
+		</div>
+		<div class="weui-cells zgd  " id="zgd_lists">
 
-    $(function () {
-        onLoad();
-    });
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			onLoad();
+		});
+	</script>
 
-</script>
+	<script>
+		$('.zgd').hide();
+		$('.weui_navbar_item').on('click', function() {
+			$(this).addClass('tab-green').siblings().removeClass('tab-green');
+		});
+		$('.weui_navbar_item:first-child').on('click', function() {
+			$('.cfd').show();
+			$('.zgd').hide();
+		});
+		$('.weui_navbar_item:last-child').on('click', function() {
+			$('.cfd').hide();
+			$('.zgd').show();
+		});
 
-<script>
-    $('.zgd').hide();
-    $('.weui_navbar_item').on('click', function () {
-        $(this).addClass('tab-green').siblings().removeClass('tab-green');
-    });
-    $('.weui_navbar_item:first-child').on('click', function () {
-        $('.cfd').show();
-        $('.zgd').hide();
-    });
-    $('.weui_navbar_item:last-child').on('click', function () {
-        $('.cfd').hide();
-        $('.zgd').show();
-    });
+		var zgList;
+		var cfList;
 
-    var zgList;
-    var cfList;
+		function onLoad() {
+			var jfCf = {};
+			var jfZg = {};
+			var storage = window.localStorage;
+			var userId = storage.getItem("loginName");
+			jfCf.userId = userId;
+			jfZg.userId = userId;
+			//处罚单的列表查询
+			$.post(
+				getContextPath() + "/app/cfList",
+				jfCf,
+				function(data) {
+					if(data.code == 1) {
+						//查询成功
+						cfList = data.data;
+						var list_html = '';
+						if(cfList.length > 0) {
+							for(var i = 0; i < cfList.length; i++) {
+								var obj = cfList[i];
+								list_html +=
+									'<a class="weui-cell weui-cell_access" href="cfd.html?cfid=' + obj.id + '">' +
+									'<div class="weui-cell__bd">' +
+									'<p>' + obj.cfjf.name + '</p>' +
+									'</div>' +
+									'<div class="weui-cell__ft">' + obj.cfrqMs + '<font color="red">' + '&nbsp&nbsp&nbsp&nbsp&nbsp' + "待整治" + '</font>' + '</div>' +
+									'</a>'
+							}
+							list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+						}
+						$("#cfd_lists").html(list_html);
+					} else {
+						$.toast(data.msg, 'forbidden', 8000);
+					}
+				});
 
-    function onLoad() {
-        var jfCf = {};
-        var jfZg = {};
-        var storage = window.localStorage;
-        var userId = storage.getItem("loginName");
-        jfCf.userId = userId;
-        jfZg.userId = userId;
-        //处罚单的列表查询
-        $.post(
-            getContextPath() + "/app/cfList",
-            jfCf,
-            function (data) {
-                if (data.code == 1) {
-                    //查询成功
-                    cfList = data.data;
-                    var list_html = '';
-                    if (cfList.length > 0) {
-                        for (var i = 0; i < cfList.length; i++) {
-                            var obj = cfList[i];
-                            list_html +=
-                                '<a class="weui-cell weui-cell_access" href="cfd.html?cfid=' + obj.id + '">' +
-                                '<div class="weui-cell__bd">' +
-                                '<p>' + obj.cfjf.name + '</p>' +
-                                '</div>' +
-                                '<div class="weui-cell__ft">' + obj.cfrqMs+'<font color="red">'+'&nbsp&nbsp&nbsp&nbsp&nbsp'+"待整治"+ '</font>' + '</div>' +
-                                '</a>'
-                        }
-                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-                    }
-                    $("#cfd_lists").html(list_html);
-                } else {
-                    $.toast(data.msg, 'forbidden', 8000);
-                }
-            });
+			//整改单的列表查询
+			$.post(
+				getContextPath() + "/app/zgList",
+				jfZg,
+				function(data) {
+					if(data.code == 1) {
+						//查询成功
+						zgList = data.data;
+						var list_html = '<div style="align:center;">' +
+							'<input id="jfName" style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>' +
+							'<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" />' + '</div>';
+						if(zgList.length > 0) {
+							for(var i = 0; i < zgList.length; i++) {
+								var obj = zgList[i];
+								var falg = "";
+								if(obj.kzzd2 == "是") {
+									falg = '<font color="green"> 已整改</font>';
+								} else {
+									falg = '<font color="red"> 未整改 </font>';
+								}
+								list_html +=
+									'<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
+									'<div class="weui-cell__bd">' +
+									'<p>' + obj.zgjf.name + '</p>' +
+									'</div>' +
+									'<div class="weui-cell__ft">' + obj.zgrqMs + '&nbsp&nbsp&nbsp&nbsp&nbsp' + falg + '</div>' +
+									'</a>'
+							}
+							list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+						}
+						$("#zgd_lists").html(list_html);
+					} else {
+						$.toast(data.msg, 'forbidden', 8000);
+					}
+				});
+		}
 
-        //整改单的列表查询
-        $.post(
-            getContextPath() + "/app/zgList",
-            jfZg,
-            function (data) {
-                if (data.code == 1) {
-                    //查询成功
-                    zgList = data.data;
-                    var list_html = '<div style="align:center;">' +
-				                    '<input id="jfName" style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>'+ 
-				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" />' + '</div>' ;
-                    if (zgList.length > 0) {
-                        for (var i = 0; i < zgList.length; i++) {
-                            var obj = zgList[i];
-                            var falg="";
-                            if(obj.kzzd2=="是"){
-                            	falg='<font color="green"> 已整改</font>';
-                            }else{
-                            	falg='<font color="red"> 未整改 </font>';
-                            }
-                            list_html +=
-                                '<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
-                                '<div class="weui-cell__bd">' +
-                                '<p>' + obj.zgjf.name +'</p>' +
-                                '</div>' +
-                                '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
-                                '</a>'
-                        }
-                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-                    }
-                    $("#zgd_lists").html(list_html);
-                } else {
-                    $.toast(data.msg, 'forbidden', 8000);
-                }
-            });
-    }
+		$(document.body).pullToRefresh(function() {
+			setTimeout(function() {
+				//刷新后的逻辑
+				var cflists = "";
+				for(var i = 0; i < cfList.length; i++) {
+					var obj = cfList[i];
+					cflists +=
+						'<a class="weui-cell weui-cell_access" href="cfd.html?cfid=' + obj.id + '">' +
+						'<div class="weui-cell__bd">' +
+						'<p>' + obj.cfjf.name + '</p>' +
+						'</div>' +
+						'<div class="weui-cell__ft">' + obj.cfrqMs + '<font color="red">' + '&nbsp&nbsp&nbsp&nbsp&nbsp' + "待整治" + '</font>' + '</div>' +
+						'</a>'
+				}
+				cflists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+				$("#cfd_lists").html(cflists);
+				$(document.body).pullToRefreshDone();
+			}, 1000);
+		});
 
-    $(document.body).pullToRefresh(function () {
-        setTimeout(function () {
-            //刷新后的逻辑
-            var cflists = "";
-            for (var i = 0; i < cfList.length; i++) {
-                var obj = cfList[i];
-                cflists +=
-                    '<a class="weui-cell weui-cell_access" href="cfd.html?cfid=' + obj.id + '">' +
-                    '<div class="weui-cell__bd">' +
-                    '<p>' + obj.cfjf.name + '</p>' +
-                    '</div>' +
-                    '<div class="weui-cell__ft">' + obj.cfrqMs +'<font color="red">'+'&nbsp&nbsp&nbsp&nbsp&nbsp'+"待整治"+ '</font>' + '</div>' +
-                    '</a>'
-            }
-            cflists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-            $("#cfd_lists").html(cflists);
+		$(document.body).pullToRefresh(function() {
+			setTimeout(function() {
+				//刷新后的逻辑
+				var zglists = "";
+				for(var i = 0; i < zgList.length; i++) {
+					var obj = zgList[i];
+					var falg = "";
+					if(obj.kzzd2 == "是") {
+						falg = '<font color="green"> 已整改</font>';
+					} else {
+						falg = '<font color="red"> 未整改 </font>';
+					}
+					zglists +=
+						'<a class="weui-cell weui-cell_access" href="zgd.html?cfid=' + obj.id + '">' +
+						'<div class="weui-cell__bd">' +
+						'<p>' + obj.zgjf.name + '</p>' +
+						'</div>' +
+						'<div class="weui-cell__ft">' + obj.zgrqMs + '&nbsp&nbsp&nbsp&nbsp&nbsp' + falg + '</div>' +
+						'</a>'
+				}
+				zglists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+				$("#zgd_lists").html(zglists);
 
-            var zglists = "";
-            for (var i = 0; i < zgList.length; i++) {
-                var obj = zgList[i];
-                 var falg="";
-                            if(obj.kzzd2=="是"){
-                            	falg='<font color="green"> 已整改</font>';
-                            }else{
-                            	falg='<font color="red"> 未整改 </font>';
-                            }
-                zglists +=
-                    '<a class="weui-cell weui-cell_access" href="zgd.html?cfid=' + obj.id + '">' +
-                    '<div class="weui-cell__bd">' +
-                    '<p>' + obj.zgjf.name + '</p>' +
-                    '</div>' +
-                    '<div class="weui-cell__ft">' + obj.zgrqMs+'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg + '</div>' +
-                                '</a>'
-            }
-            zglists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-            $("#zgd_lists").html(zglists);
+				$(document.body).pullToRefreshDone();
+			}, 1000);
+		});
+	</script>
 
-            $(document.body).pullToRefreshDone();
-        }, 1000);
-    });
+	<script>
+		//条件查询整改表
+		function searchJfjjs() {
+			var jfZg = {};
+			var storage = window.localStorage;
+			var userId = storage.getItem("loginName");
+			jfZg.userId = userId;
 
+			var jfName = $("#jfName").val();
+			jfZg.jfName = jfName;
+			//整改单的列表查询
+			$.post(
+				getContextPath() + "/app/zgList",
+				jfZg,
+				function(data) {
+					if(data.code == 1) {
+						//查询成功
+						zgList = data.data;
 
-</script>
+						var list_html = '<div class="weui-cell__bd">' +
+							'<input id="jfName"  style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>' +
+							'<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" align="right"/>' + '</div>';
+						if(zgList.length > 0) {
+							for(var i = 0; i < zgList.length; i++) {
+								var obj = zgList[i];
+								var falg = "";
+								if(obj.kzzd2 == "是") {
+									falg = '<font color="green"> 已整改</font>';
+								} else {
+									falg = '<font color="red"> 未整改 </font>';
+								}
+								list_html +=
+									'<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
+									'<div class="weui-cell__bd">' +
+									'<p>' + obj.zgjf.name + '</p>' +
+									'</div>' +
+									'<div class="weui-cell__ft">' + obj.zgrqMs + '&nbsp&nbsp&nbsp&nbsp&nbsp' + falg + '</div>' +
+									'</a>'
+							}
+							list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+						}
+						$("#zgd_lists").html(list_html);
+					} else {
+						$.toast(data.msg, 'forbidden', 8000);
+					}
+					$("#jfName").val(jfName);
+				});
+		}
+	</script>
 
-<script >
-
-//条件查询整改表
-	function searchJfjjs(){
-        var jfZg = {};
-        var storage = window.localStorage;
-        var userId = storage.getItem("loginName");
-        jfZg.userId = userId;
-       
-		var jfName = $("#jfName").val();
-		jfZg.jfName = jfName;
-		  //整改单的列表查询
-        $.post(
-            getContextPath() + "/app/zgList",
-            jfZg,
-            function (data) {
-                if (data.code == 1) {
-                    //查询成功
-                    zgList = data.data;
-                    
-                    var list_html = '<div class="weui-cell__bd">' +
-				                    '<input id="jfName"  style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>' + 
-				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" align="right"/>' + '</div>' ;
-				                    if (zgList.length > 0) {
-                        for (var i = 0; i < zgList.length; i++) {
-                            var obj = zgList[i];
-                            var falg="";
-                            if(obj.kzzd2=="是"){
-                            	falg='<font color="green"> 已整改</font>';
-                            }else{
-                            	falg='<font color="red"> 未整改 </font>';
-                            }
-                            list_html +=
-                                '<a class="weui-cell weui-cell_access" href="zgd.html?zgid=' + obj.id + '">' +
-                                '<div class="weui-cell__bd">' +
-                                '<p>' + obj.zgjf.name + '</p>' +
-                                '</div>' +
-                                '<div class="weui-cell__ft">' + obj.zgrqMs+'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg + '</div>' +
-                                '</a>'
-                        }
-                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-                    }
-                    $("#zgd_lists").html(list_html);
-                } else {
-                    $.toast(data.msg, 'forbidden', 8000);
-                }
-                $("#jfName").val(jfName);
-            });
-	}
-	
-	
-</script>
 </html>

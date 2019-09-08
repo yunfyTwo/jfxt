@@ -95,6 +95,7 @@
             <select class="weui-select" name="select1" onchange="se(this,'messages')">
             	<option value="0">请选择是否整改</option>
                 <option value="1">整改</option>
+                <option value="3">已整改完成</option>
                 <option value="2">不整改</option>
             </select>
         </div>
@@ -429,6 +430,12 @@
                $('.zhenggai').css('display','block');
                $('.sczp').css('display','none');
                $("#zgjg").val("0");
+               $('.tijiao').css('display','none');
+           }
+           if(a == '已整改完成'){
+               $('.zhenggai').css('display','block');
+               $('.sczp').css('display','none');
+               $("#zgjg").val("1");
                $('.tijiao').css('display','none');
            }
            if(a == '不整改'){

@@ -63,6 +63,7 @@
 
  	</div>
     <input type="text" value="" id="jf_ids" style="display: none;"/>
+    <input type="text" value="" id="jf_wz" style="display: none;"/>
 	<div class="content" style="display:none;"></div>
 <!-- <div class="weui-cells ">
     <div class="weui-cell weui-cell_select">
@@ -302,8 +303,12 @@
 			            function (data) {
 			                if(data.code == 1) {
 			                	$.toast(data.msg,'forbidden', 8000);
-			                    	var url = "newzgds.html?ggid="+jf_id+"&&xunjianid="+data.data.id+"&&jf_id="+jf_id;
-         							window.open(url);
+			                	if ($("#jf_wz").val() == '线路') {
+			                		window.open("newxlzgds.html?ggid="+jf_id+"&&xunjianid="+data.data.id+"&&jf_id="+jf_id);
+			                	} else {
+			                		window.open("newzgds.html?ggid="+jf_id+"&&xunjianid="+data.data.id+"&&jf_id="+jf_id);
+			                	}
+         							
 			                } else {
 			                    $.toast(data.msg,'forbidden', 8000);
 			                }
@@ -370,7 +375,7 @@
                                 str="<option value='"+obj.id+"'>"+obj.name+"</option>";
                             } 
                             jfXx_list+=str;*/
-                            contentHtml += '<div class="weui-cell"><div class="weui-cell__bd" onclick="selectedJf('+obj.id+',\''+obj.name+'\')"><p>'+obj.name+'</p></div></div>'
+                            contentHtml += '<div class="weui-cell"><div class="weui-cell__bd" onclick="selectedJf('+obj.id+',\''+obj.name+'\',\''+obj.jfwz+'\')"><p>'+obj.name+'</p></div></div>'
                         }
                         //$("#jfXx_list").html(jfXx_list);
                         $(".content").html(contentHtml);
@@ -381,7 +386,8 @@
     }
        
     //选中网元
-    function selectedJf(a, b) {
+    function selectedJf(a, b, c) {
+    	$("#jf_wz").val(c);
         $("#jf_ids").val(a);
 		$("#searchInput").val(b);
         cancel();

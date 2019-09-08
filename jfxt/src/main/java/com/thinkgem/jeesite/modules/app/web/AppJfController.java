@@ -57,6 +57,8 @@ public class AppJfController {
     @Autowired
     private JfZgService jfZgService;
     @Autowired
+    private JfXlZgService jfXlZgService;
+    @Autowired
 	private OfficeService officeService;
     /**
      * 保存整改单过程
@@ -107,6 +109,49 @@ public class AppJfController {
         }
     }
 
+    
+    @RequestMapping("/saveXlZgd")
+    @ResponseBody
+    public Object saveXlZgd(HttpServletResponse response,JfXlZg jfXlZg){
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        try {
+            User user = null;
+            if(StringUtils.isNotBlank(jfXlZg.getUserId())){
+                user = systemService.getUser(jfXlZg.getUserId());
+                jfXlZg.setCreateBy(user);
+            }else {
+                return AppResult.writeResultRep(null,"未登录或登录失效");
+            }
+
+            if (jfXlZg.getId()==null|| jfXlZg.getId()==""){//新整改单
+                String tzd=""+new Date().getTime();
+                jfXlZg.setZgdh(tzd);//生成新的单号
+            }
+            JfXjgc jfXjgc = new JfXjgc();
+            if (jfXlZg.getKzzd1()!=null && !"newzgd".equals(jfXlZg.getKzzd1())){
+                String xjId=jfXlZg.getKzzd1();
+                //查询巡检单进行状态修改以及照片添加
+                jfXjgc=jfXjgcService.get(xjId);
+            }
+                if(jfXlZg.getCfxczp() !=null) {
+                	jfXjgc.setXczp(jfXlZg.getCfxczp());//照片
+                }
+                //2019-05-16 chelly add  整改同时开具处罚单 则整改单与巡检结果暂时不生效
+                if("cfd".equals(jfXlZg.getKzzd2())){
+                	jfXlZg.setDelFlag("1");
+                }else{
+                    jfXjgc.setDelFlag("0");
+                }
+
+                jfXjgcService.save(jfXjgc);
+           
+            //保存整改单
+            jfXlZgService.save(jfXlZg);
+            return AppResult.writeResultRep(jfXlZg,"保存整改单成功");
+        } catch (Exception e) {
+            return AppResult.writeResultFailure("保存整改单失败");
+        }
+    }
 
     /**
      * 保存处罚单过程
@@ -142,9 +187,16 @@ public class AppJfController {
             if(jfCf.getKzzd2()!=null && !"".equals(jfCf.getKzzd2())){
                 String zgId = jfCf.getKzzd2();
                 JfZg jfZg = jfZgService.get(zgId);
-                jfCf.setCfxczp(jfZg.getCfxczp());
-                jfZg.setDelFlag("0");
-                jfZgService.save(jfZg);
+                if (jfZg != null) {
+                    jfCf.setCfxczp(jfZg.getCfxczp());
+                    jfZg.setDelFlag("0");
+                    jfZgService.save(jfZg);
+                } else {
+                	JfXlZg jfXlZg = jfXlZgService.get(zgId);
+                	jfXlZg.setCfxczp(jfXlZg.getCfxczp());
+                	jfXlZg.setDelFlag("0");
+                	jfXlZgService.save(jfXlZg);
+                }
             }
 
             jfCfService.save(jfCf);

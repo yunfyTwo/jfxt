@@ -36,6 +36,7 @@
 <div class="weui-cells weui-cells_radio">
     <label class="weui-cell weui-check__label" for="x11">
         <input  id="jf_xx_id" value="" style="display: none">
+        <input  id="jf_wz" value="" style="display: none">
         <div class="weui-cell__bd" id="jf_xx">
 
         </div>
@@ -264,8 +265,11 @@
 			                if(data.code == 1) {
                                 // $.toast(data.msg, 'forbidden', 8000);
                                 $.toast(data.msg);
-			                    	var url = "newzgd.html?ggid="+id+"&&xunjianid="+data.data.id;
-         							window.open(url);
+                                if ($("#jf_wz").val() == '线路') {
+                                	window.open("newxlzgd.html?ggid="+id+"&&xunjianid="+data.data.id);
+                                } else {
+                                	window.open("newzgd.html?ggid="+id+"&&xunjianid="+data.data.id);
+                                }
 			                } else {
 			                    $.toast(data.msg,'forbidden', 8000);
 			                }
@@ -302,6 +306,7 @@
                     var obj = data.data;
                     $("#jf_xx").text(obj.name);
                     $("#jf_xx_id").val(obj.id);
+                    $("#jf_wz").val(obj.jfwz);
                 } else {
                     $.toast(data.msg,'forbidden', 8000);
                 }

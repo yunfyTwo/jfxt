@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.merchant.dao.JfXlZgDao">
+    
+	<sql id="jfXlZgColumns">
+		a.id AS "id",
+		a.zgjf AS "zgjf.id",
+		a.zgdh AS "zgdh",
+		a.zgrq AS "zgrq",
+		a.zgwt AS "zgwt",
+		a.cfxczp AS "cfxczp",
+		a.zgfs AS "zgfs",
+		a.xjgl AS "xjgl",
+		a.ghdx AS "ghdx",
+		a.ghdg AS "ghdg",
+		a.dgfz AS "dgfz",
+		a.xjlx AS "xjlx",
+		a.ghlx AS "ghlx",
+	    a.ghgl AS "ghgl",
+		a.iszg AS "iszg",
+		a.ygfy AS "ygfy",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.kzzd1 AS "kzzd1",
+		a.kzzd2 AS "kzzd2",
+		a.kzzd3 AS "kzzd3",
+		IFNULL(a.kzzd4,u.name) AS "kzzd4",
+		b.name as "zgjf.name",
+		a.is_Safety_Hazard AS "isSafetyHazard",
+		a.brief_Descri_ption AS "briefDescription",
+		a.reason AS "reason",
+		o.id AS "createBy.office.id",
+		o.name AS "createBy.office.name"
+	</sql>
+	
+	<sql id="jfXlZgJoins">
+		left join jf_xx b on b.id=a.zgjf
+		JOIN sys_user u ON u.id = a.create_by
+		JOIN sys_office o ON o.id = u.office_id
+	</sql>
+    
+	<select id="get" resultType="JfXlZg">
+		SELECT 
+			<include refid="jfXlZgColumns"/>
+		FROM jf_xl_zg a
+		<include refid="jfXlZgJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="JfXlZg">
+		SELECT 
+			<include refid="jfXlZgColumns"/>
+		FROM jf_xl_zg a
+		<include refid="jfXlZgJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="zgjf != null and zgjf.id != null and zgjf.id!= ''">
+				AND a.zgjf = #{zgjf.id}
+			</if>
+			<if test="jfName != null and jfName!= ''">
+				AND a.zgjf in (SELECT a.Id FROM jf_xx a WHERE a.name like concat('%',#{jfName},'%'))
+			</if>
+			<if test="kzzd2 != null and kzzd2 != ''">
+				AND a.kzzd2 = #{kzzd2}
+			</if>
+			<if test="kzzd4 != null and kzzd4 != ''">
+				AND a.kzzd4 = #{kzzd4}
+			</if>
+			<if test="zgdh != null and zgdh != ''">
+				AND a.zgdh LIKE 
+					<if test="dbName == 'oracle'">'%'||#{zgdh}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{zgdh}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{zgdh},'%')</if>
+			</if>
+			<if test="startDate != null and startDate != ''">
+				AND
+				DATE_FORMAT(a.zgrq, '%Y-%m-%d') &gt;= DATE_FORMAT(#{startDate}, '%Y-%m-%d')
+			</if>
+			<if test="overDate != null and overDate != ''">
+				AND DATE_FORMAT(#{overDate}, '%Y-%m-%d') &gt;= DATE_FORMAT(a.zgrq, '%Y-%m-%d')
+			</if>
+			${sqlMap.dsf}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+		<if test="limit != null and limit != ''">
+			limit ${limit},10
+		</if>
+	</select>
+	
+	<select id="findAllList" resultType="JfXlZg">
+		SELECT 
+			<include refid="jfXlZgColumns"/>
+		FROM jf_xl_zg a
+		<include refid="jfXlZgJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO jf_xl_zg(
+			id,
+			zgjf,
+			zgdh,
+			zgrq,
+			zgwt,
+			cfxczp,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			kzzd1,
+			kzzd2,
+			kzzd3,
+			kzzd4,
+			is_Safety_Hazard,
+			brief_Descri_ption,
+			reason,
+			zgfs,
+			xjgl,
+			ghdx,
+			ghdg,
+			dgfz,
+			xjlx,
+			ghlx,
+			ghgl,
+			iszg,
+			ygfy
+		) VALUES (
+			#{id},
+			#{zgjf.id},
+			#{zgdh},
+			#{zgrq},
+			#{zgwt},
+			#{cfxczp},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{kzzd1},
+			#{kzzd2},
+			#{kzzd3},
+			#{kzzd4},
+			#{isSafetyHazard},
+			#{briefDescription},
+			#{reason},
+			#{zgfs},
+			#{xjgl},
+			#{ghdx},
+			#{ghdg},
+			#{dgfz},
+			#{xjlx},
+			#{ghlx},
+			#{ghgl},
+			#{iszg},
+			#{ygfy}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE jf_xl_zg SET 	
+			zgjf = #{zgjf.id},
+			zgdh = #{zgdh},
+			zgrq = #{zgrq},
+			zgyq = #{zgyq},
+			cfxczp = #{cfxczp},
+			create_by = #{createBy.id},
+			create_date = #{createDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			del_flag = #{delFlag},
+			kzzd1 = #{kzzd1},
+			kzzd2 = #{kzzd2},
+			kzzd3 = #{kzzd3},
+			kzzd4 = #{kzzd4},
+			is_Safety_Hazard = #{isSafetyHazard},
+			brief_Descri_ption = #{briefDescription},
+			reason = #{reason},
+			zgfs = #{zgfs},
+			xjgl = #{xjgl},
+			ghdx = #{ghdx},
+			ghdg = #{ghdg},
+			dgfz = #{dgfz},
+			xjlx = #{xjlx},
+			ghlx = #{ghlx},
+			ghgl = #{ghgl},
+			iszg = #{iszg},
+			ygfy = #{ygfy}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE jf_xl_zg SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

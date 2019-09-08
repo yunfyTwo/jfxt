@@ -30,25 +30,17 @@
 	<body ontouchstart>
 		<div class="weui_btn_primary weui-header ">
 			<div class="weui-header-left">
-				<a href="#" onClick="toXunjian()" class="icon icon-109 f-white"></a>
+				<a href="zgdxlzs.html" onClick="toXunjian()" class="icon icon-109 f-white"></a>
 			</div>
-			<h1 class="weui-header-title">新整改单</h1>
+			<h1 class="weui-header-title">新增整改单</h1>
 			<input type="text" value="" style="display: none" id="zgId">
-			<!--<div class="weui-header-right"><a class="icon icon-22 f-white"></a></div>-->
 		</div>
 		<div class="kong2"></div>
 		<div class="weui-cells">
-			<!--<div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">单号</label></div>
-        <div class="weui-cell__bd">
-          <span style="border: 0px;" value=""  id="zgdh"></span>
-        </div>
-    </div>-->
 			<div class="weui-cell">
 				<div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
 				<div class="weui-cell__bd">
-					<input class="weui-input" id="years-monthes" type="text" value="" placeholder="请填写整改期时间" readonly="readonly">
-					<!--<input class="weui-input" type="date" value=" " id="cfrq">-->
+					<input class="weui-input" id="years-monthes" type="text" value="" placeholder="请填写整改日期" readonly="readonly">
 				</div>
 			</div>
 		</div>
@@ -57,140 +49,89 @@
 			<div class="weui-cell__bd" id="cfjf">
 				<input type="text" value="" id="jf_id" style="display: none;" />
 				<input class="weui-input" id="jf_name" type="text" value="" readonly="readonly">
-				<!--<input class="weui-input" type="date" value=" " id="cfrq">-->
 			</div>
 		</div>
-		<!--<div class="weui-cells__title">网元</div>
-<div class="weui-cells ">
-      <div class="weui-cell ">
-        <div class="weui-cell__bd" id="cfjf">
-            
-             <input class="weui-input" id="jf_name" type="text" value="" readonly="readonly" >
-        </div>
-    </div>
-</div>-->
-
-<div class="weui-cells__title">安全隐患</div>
-<div class="weui-cells__title">是否存在安全隐患</div>
-<div class="weui-cells" id="messages">
-    <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd" >
-            <select class="weui-select" name="select1" id="isSafetyHazard" onchange="se(this,'messages')">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">隐患简要说明</div>
+		
+<div class="weui-cells__title">问题情况</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入简要说明" rows="3" id="briefDescription"></textarea>
+            <textarea class="weui-textarea" placeholder="请输入问题情况" rows="3" id="zgwt"></textarea>
             <div class="weui-textarea-counter"><span>0</span>/200</div>
         </div>
     </div>
 </div>
 
-<div class="weui-cells__title">隐患原因</div>
+<div class="weui-cells__title">处理方式</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入隐患原因" rows="3" id="reason"></textarea>
-            <div class="weui-textarea-counter"><span>0</span>/200</div>
+            <textarea class="weui-textarea" placeholder="请输入处理方式" rows="1" id="zgfs"></textarea>
         </div>
     </div>
 </div>
 
-<div class="weui-cells__title">设备类整治</div>
-<div class="weui-cells__title">是否有ODF架/柜</div>
-<div class="weui-cells" id="messages">
-    <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd" >
-            <select class="weui-select" name="select1"  id="isODF" onchange="se(this,'messages')">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">是否需要网络设备整治割接</div>
-<div class="weui-cells" id="messages">
-    <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd" >
-            <select class="weui-select" name="select1" id="isCutOver" onchange="se(this,'messages')">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title" style="display: none;">隐患级别</div>
-<div class="weui-cells" id="messages" style="display: none;">
-    <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="隐患级别" rows="3" id="isCutOverContent"></textarea>
-            <div class="weui-textarea-counter"><span>0</span>/200</div>
-        </div>
-    </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">光缆类整治</div>
-<div class="weui-cells__title">是否需要光缆割接</div>
-<div class="weui-cells" id="messages">
-    <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd" >
-            <select class="weui-select" name="select1" id="isOpticalCable" onchange="se(this,'messages')">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">光缆割接量（条/芯）</div>
+<div class="weui-cells__title">需新建杆路（km）</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入光缆割接量" rows="3" id="opticalCableCutting"></textarea>
-            <div class="weui-textarea-counter"><span>0</span>/200</div>
+            <textarea class="weui-textarea" placeholder="请输入需新建杆路（km）" rows="1" id="xjgl"></textarea>
         </div>
     </div>
 </div>
 
-<div class="weui-cells__title" style="display: none;">整治批次</div>
-<div class="weui-cells " style="display: none;">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入整治批次" rows="3" id="opticalCableContent"></textarea>
-            <div class="weui-textarea-counter"><span>0</span>/200</div>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">环境类整治</div>
-<div class="weui-cells__title">是否需要环境整治</div>
-<div class="weui-cells" id="messages">
-    <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd" >
-            <select class="weui-select" name="select1" id="needRemediation" onchange="se(this,'messages')">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">环境整治内容描述（门、窗、墙面等）</div>
+<div class="weui-cells__title">更换吊线（km）</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入环境整治内容描述" rows="3" id="contentDescription"></textarea>
-            <div class="weui-textarea-counter"><span>0</span>/200</div>
+            <textarea class="weui-textarea" placeholder="请输入更换吊线（km）" rows="1" id="ghdx"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<div class="weui-cells__title">更换电杆（根）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入更换电杆（根）" rows="1" id="ghdg"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<div class="weui-cells__title">扶正（偏杆/倒杆）（根）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入扶正杆数（根）" rows="1" id="dgfz"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">新建拉线（条）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入新建拉线（条）" rows="1" id="xjlx"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">更换拉线（条）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入更换拉线（条）" rows="1" id="ghlx"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">需更换光缆（km）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入需更换光缆（km）" rows="1" id="ghgl"></textarea>
         </div>
     </div>
 </div>
@@ -199,24 +140,21 @@
 <div class="weui-cells" id="messages">
     <div class="weui-cell weui-cell_select">
         <div class="weui-cell__bd" >
-            <select class="weui-select" name="select1" id="kzzd2" onchange="se(this,'messages')">
+            <select class="weui-select" name="select1"  id="iszg" onchange="se(this,'messages')">
                 <option value="是">是</option>
                 <option value="否">否</option>
             </select>
         </div>
     </div>
 </div>
-
-<div class="weui-cells__title">整改费用</div>
+<div class="weui-cells__title">预估费用</div>
 <div class="weui-cells ">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="若已产生整改费用 ，请输入整改费用" rows="1" id="kzzd3"></textarea>
-            <div class="weui-textarea-counter"><span>0</span>/200</div>
+            <textarea class="weui-textarea" placeholder="请输入预估费用" rows="1" id="ygfy"></textarea>
         </div>
     </div>
-</div>
-
+</div>	
 		<div class="weui-gallery" id="gallery">
 			<span class="weui-gallery__img" id="galleryImg"></span>
 		</div>
@@ -236,15 +174,6 @@
 			<input type="button" value="清空图片" onclick="deleteImg()" />
 		</div>
 
-		<div class="weui-cells__title">整改要求描述</div>
-		<div class="weui-cells ">
-			<div class="weui-cell">
-				<div class="weui-cell__bd">
-					<textarea class="weui-textarea" placeholder="请输入整改要求" rows="3" id="zgyqms"></textarea>
-					<div class="weui-textarea-counter"><span>0</span>/200</div>
-				</div>
-			</div>
-		</div>
 		<div class="weui-cells__title">巡检人</div>
 		<div class="weui-cells ">
 		    <div class="weui-cell">
@@ -253,19 +182,29 @@
 		        </div>
 		    </div>
 		</div>
-		<div class="weui-cells">
-			<a href="#" class="weui-btn weui-btn_primary" onclick="saveZg()">提交</a>
-
+		<div class="weui-cells" id="btnSubmit" style="display: none;">
+			<a href="#" class="weui-btn weui-btn_primary" onclick="saveZg(0)">提交</a>
+		</div>
+		<div class="weui-cells" id="btnSubmit1" style="display: none;">
+			<a href="#" class="weui-btn weui-btn_primary" onclick="saveZg(1)">提交并填写处罚单</a>
 		</div>
 	</body>
 <script type="text/javascript">
-
+	var dataedit = 'merchant:jfXlZG:edit'; //整改权限
+	var dataedit1 = 'merchant:jfCf:edit';//处罚
 	var permissions = "";
 	function perCenter(){
         //获取存储在本地的用户Id
         var storage=window.localStorage;
         var userId = storage.getItem("loginName");
         permissions = storage.getItem("permissions");
+		if(permissions.indexOf(dataedit1)>0){
+			$("#btnSubmit1").show();
+		}else{
+			if(permissions.indexOf(dataedit)>-1){
+				$("#btnSubmit").show();
+			}
+		}
         findUser(userId);
     }
 
@@ -279,7 +218,10 @@
             function (data) {
                 if(data.code == 1) {
                     var obj = data.data;
+                    $("#user_name").text(obj.loginName);
                     $("#userName").text(obj.name);
+                    $("#user_nameTp").text(obj.name);
+                    $("#user_id").val(obj.id);
                 } else {
                     $.toast(data.msg,'forbidden', 8000);
                 }
@@ -322,19 +264,41 @@
 	<script>
 		//获取路径中的整改单的id
 		var id = GetArgsFromHref("ggid");
-		var jf_id = GetArgsFromHref("jf_id");//无公告的巡检机房名
-		if(jf_id != "undefined" && jf_id != ""){
-			$("#jf_name").val(jf_id);
-		}
-		var xjId = GetArgsFromHref("xunjianid");
+		function xlzgdDetail(){
+        $.post(
+            getContextPath()+"/app/xlzgdDetail",
+            {
+                "id":id
+            },
+            function (data) {
+                if(data.code == 1) {
+                    var  obj = data.data;
+                    $("#ggid").val(obj.id);//id
+                    $("#zgdh").text(obj.zgdh);//单号
+                    $("#years-monthes").val(obj.zgrq);//日期
+                    $("#jf_id").val(obj.zgjf.id);//网元
+                    
+                     //处罚原因
+                    $("#zgwt").val(obj.zgwt);//是否存在安全隐患
+                    $("#zgfs").val(obj.zgfs);//隐患简要说明
+                    $("#xjgl").val(obj.xjgl);//隐患原因
+                    $("#ghdx").val(obj.ghdx);//是否有ODF架/柜
+                    $("#ghdg").val(obj.ghdg);//是否需要网络设备整治割接
+                    $("#dgfz").val(obj.dgfz);//隐患级别
+                    $("#xjlx").val(obj.xjlx);//是否需要光缆割接
+                    $("#ghlx").val(obj.ghlx);//光缆割接量（条/芯）
+                    $("#ghgl").val(obj.ghgl);//整治批次
+                    $("#iszg").val(obj.iszg);//光缆割接量（条/芯）
+                    $("#ygfy").val(obj.ygfy);//整治批次
+                    $("#imgFile").val(obj.cfxczp);//是否整改完成
+                    $("#zgyqms").val(obj.zgyqms);//整改花费费用
+                    $("#kzzd4").val(obj.kzzd4);//巡检人员
+		
 		//初始化页面
 		$(function() {
 			FastClick.attach(document.body);
-		//根据参数显示整改网元
-		if(xjId != "undefined" && xjId != ""){//无公告的巡检没有id
-			findGg(xjId);
-		}
-		
+			//根据参数显示整改网元
+		findGg(id);
 		});
 	</script>
 	<script>
@@ -342,13 +306,14 @@
 		var displayValues = $("#years-monthes").val();
 
 		function toXunjian() {
-			window.location.href = "index1.html";
+			//重新跳转到巡检页面，并携带之前巡检页面的ggid
+			window.location.href = "xunjian.html?ggid=" + id;
 		}
 
 		  //查询公告以及对应网元
 	    function findGg(id){
 	        $.post(
-	            getContextPath()+"/app/findJfInfo",
+	            getContextPath()+"/app/findJfbygg",
 	            {
 	                "id": id
 	            },
@@ -378,59 +343,73 @@
 		var imgUrls = "";
 
 		//保存整改单
-		function saveZg() {
-			//提交整改单的信息进行保存
-			var jfZG = {};
-			jfZG.id = $("#zgId").val(); // 整改单ID
-			jfZG.zgjf = $("#zgjf.name").val(); // 整改网元
-			jfZG.zgdh = $("#zgdh").text(); // 整改单号
-			var sedDate = $("#years-monthes").val();
-			jfZG.zgrq = new Date(sedDate); // 日期
-			jfZG.zgyq = $("#zgyqms").val(); // 处罚原因描述
-			
-			jfZG.isSafetyHazard = $("#isSafetyHazard").val();//是否存在安全隐患
-	        jfZG.briefDescription = $("#briefDescription").val();//隐患简要说明
-	        jfZG.reason = $("#reason").val();//隐患原因
-	        jfZG.isODF = $("#isODF").val();//是否有ODF架/柜
-	        jfZG.isCutOver = $("#isCutOver").val();//是否需要网络设备整治割接
-	        jfZG.isCutOverContent = $("#isCutOverContent").val();//隐患级别
-	        jfZG.isOpticalCable = $("#isOpticalCable").val();//是否需要光缆割接
-	        jfZG.opticalCableCutting = $("#opticalCableCutting").val();//光缆割接量（条/芯）
-	        jfZG.opticalCableContent = $("#opticalCableContent").val();//整治批次
-	        jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
-	        jfZG.contentDescription = $("#contentDescription").val();//整治批次
-	        jfZG.kzzd2 = $("#kzzd2").val();//是否整改完成
-	        jfZG.kzzd3 = $("#kzzd3").val();//整改花费费用
-	        jfZG.kzzd4 = $("#userName").val();//登录名
-	        
-	        var storage = window.localStorage;
-			var userId = storage.getItem("loginName");
-			jfZG.userId = userId; //当前登录用户ID
-	        
-			if(xjId!=null && ""!=xjId && xjId != "undefined"){
-				jfZG.kzzd1=xjId;//将巡检单和整改单绑定
-			}else{
-				jfZG.kzzd1="newzgd";
+		function saveZg(type) {
+			var isZg = $("#iszg").val();
+			var zgwt = $("#zgwt").val(); // 整改要求描述
+			if(isZg=='否' && zgwt==null){
+				$("#kzzd3").val("");
+				alert("请填写问题情况");
+				return;
 			}
 			
+			var sedDate = $("#years-monthes").val();
+			if(sedDate==null && sedDate==''){
+				alert("请填写整改日期");
+				return;
+			}
+			
+			//提交整改单的信息进行保存
+			var jfXlZG = {};
+			jfXlZG.id = $("#zgId").val(); // 整改单ID
+			jfXlZG.zgjf = $("#jf_id").val(); // 整改网元
+			
+			jfXlZG.zgrq = new Date(sedDate); // 日期
+			jfXlZG.zgwt = $("#zgwt").val(); // 整改要求描述
+			jfXlZG.zgfs = $("#zgfs").val();
+	        jfXlZG.xjgl = $("#xjgl").val();
+	        jfXlZG.ghdx = $("#ghdx").val();//隐患原因
+	        jfXlZG.ghdg = $("#ghdg").val();//是否有ODF架/柜
+	        jfXlZG.dgfz = $("#dgfz").val();//是否需要网络设备整治割接
+	        jfXlZG.xjlx = $("#xjlx").val();//隐患级别
+	        jfXlZG.ghlx = $("#ghlx").val();//是否需要光缆割接
+	        jfXlZG.ghgl = $("#ghgl").val();//光缆割接量（条/芯）
+	        jfXlZG.iszg = $("#iszg").val();//整治批次
+	        jfXlZG.ygfy = $("#ygfy").val();//光缆割接量（条/芯）
+	        jfXlZG.kzzd4 = $("#userName").val();//巡检人员
 	        
-		 if(imgArr.length > 4) {
+			var storage = window.localStorage;
+			var userId = storage.getItem("loginName");
+			jfXlZG.userId = userId; //当前登录用户ID
+			
+  			if(xjId!=null && type==1){
+				jfXlZG.kzzd1=xjId;//将巡检单和整改单绑定
+				jfXlZG.kzzd2 = "cfd";//该字段不为空则开具处罚单
+			}
+			
+			if(imgArr.length > 4) {
 				imgUrls = imgArr.join("|");
-				jfZG.cfxczp = imgUrls;
+				jfXlZG.cfxczp = imgUrls;
 			} else{
-         		alert("图片至少五张");
-       			return; 
-         	} 
+	         	alert("图片至少五张");
+	       		return;
+	         } 
 			if(imgUrls != "") {
-				jfZG.cfxczp = imgUrls;
+				jfXlZG.cfxczp = imgUrls;
 			}
 			$.post(
-				getContextPath() + "/app/saveZgd",
-				jfZG,
+				getContextPath() + "/app/saveXlZgd",
+				jfXlZG,
 				function(data) {
 					if(data.code == 1) {
-						$.toast(data.msg, 'forbidden', 8000);
-						window.location.href = "index1.html";
+						// $.toast(data.msg, 'forbidden', 8000);
+						$.toast(data.msg);
+						if(type==1){
+							var url = "newcfd.html?ggid="+id+"&&xunjianid="+xjId+"&&zgid="+data.data.id;
+							window.open(url);
+						}else {
+							window.location.href = "index1.html";
+						}
+//						window.location.href = "index1.html";
 					} else {
 						$.toast(data.msg, 'forbidden', 8000);
 					}
@@ -625,4 +604,5 @@
 	        bsImg.open(index);
 	    }
 	</script>
+
 </html>

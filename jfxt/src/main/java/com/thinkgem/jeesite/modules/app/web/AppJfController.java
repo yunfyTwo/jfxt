@@ -334,6 +334,48 @@ public class AppJfController {
     }
     
     /**
+     * 线路整改单详情
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("/xlzgdDetail")
+    @ResponseBody
+    public Object xlzgdDetail(HttpServletResponse response,String id) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        try {
+        	JfXlZg xlzgdDetail = jfXlZgService.get(id);
+            return AppResult.writeResultRep(xlzgdDetail, "返回线路整改单详情成功");
+        } catch (Exception e) {
+            return AppResult.writeResultFailure("返回线路整改单详情失败");
+        }
+    }
+    /**
+     * 线路整改单列表
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("/xlzgdList")
+    @ResponseBody
+    public Object xlzgdList(HttpServletResponse response,HttpServletRequest request , JfXlZg xlzg) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        try {
+            if(xlzg!=null && StringUtils.isNotBlank(xlzg.getUserId())){
+                User user = systemService.getUser(xlzg.getUserId());
+                xlzg.setCurrentUser(user);
+            }
+            Page<JfXlZg> page = jfXlZgService.findPage(new Page<JfXlZg>(request, response), xlzg);
+            List<JfXlZg> xlzgs = page.getList();
+            return AppResult.writeResultRep(xlzgs, "获取线路整改单列表失败");
+        } catch (Exception e) {
+            return AppResult.writeResultFailure("获取线路整改单列表失败");
+        }
+    }
+    
+    
+    
+    /**
      * 巡检过程单详情
      *
      * @param

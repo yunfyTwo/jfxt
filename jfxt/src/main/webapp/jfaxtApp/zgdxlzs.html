@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>机房整改单</title>
+    <title>线路整改单</title>
     <link rel="stylesheet" href="css/weui.min.css">
     <link rel="stylesheet" href="css/jquery-weui.css">
     <link rel="stylesheet" href="css/demos.css">
@@ -21,7 +21,7 @@
 
 <div class="weui_btn_primary weui-header ">
     <div class="weui-header-left"> <a href="index1.html" class="icon icon-109 f-white"></a>  </div>
-    <h1 class="weui-header-title">机房整改单</h1>
+    <h1 class="weui-header-title">线路整改单</h1>
 </div>
 	<div class="weui-pull-to-refresh__layer">
       <div class='weui-pull-to-refresh__arrow'></div>
@@ -31,7 +31,7 @@
       <div class="refresh">正在刷新</div>
     </div>
 <div class="kong2"></div>
-<div class="weui-cells" id="zgd_lists">
+<div class="weui-cells" id="xlzgd_list">
 
 
 
@@ -46,42 +46,42 @@
          FastClick.attach(document.body);
     });
     function onLoad() {
-    	var jfZg = {};
+    	var jfxlZg = {};
     	var storage = window.localStorage;
     	var userId = storage.getItem("loginName");
-    	jfZg.userId = userId;
+    	jfxlZg.userId = userId;
     	
         //整改单的列表查询
         $.post(
-            getContextPath() + "/app/zgList",
-            jfZg,
+            getContextPath() + "/app/xlzgdList",
+            jfxlZg,
             function (data) {
                 if (data.code == 1) {
                     //查询成功
-                    zgList = data.data;
+                    xlzgdList = data.data;
                     var list_html = '<div style="align:center;">' +
 				                    '<input id="jfName" style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>'+ 
 				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" />' + '</div>' ;
-                    if (zgList.length > 0) {
-                        for (var i = 0; i < zgList.length; i++) {
-                            var obj = zgList[i];
+                    if (xlzgdList.length > 0) {
+                        for (var i = 0; i < xlzgdList.length; i++) {
+                            var obj = xlzgdList[i];
                             var falg="";
-                            if(obj.kzzd2=="是"){
+                            if(obj.iszg=="是"){
                             	falg='<font color="green"> 已整改</font>';
                             }else{
                             	falg='<font color="red"> 未整改 </font>';
                             }
                             list_html +=
-                                '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgid=' + obj.id + '">' +
+                                '<a class="weui-cell weui-cell_access" href="xlzgdsyck.html?ggid=' + obj.id + '">' +
                                 '<div class="weui-cell__bd">' +
                                 '<p>' + obj.zgjf.name +'</p>' +
                                 '</div>' +
-                                '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
+                                '<div class="weui-cell__ft">' + obj.zgrq +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
                                 '</a>'
                         }
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
                     }
-                    $("#zgd_lists").html(list_html);
+                    $("#xlzgd_list").html(list_html);
                 } else {
                     $.toast(data.msg, 'forbidden', 8000);
                 }
@@ -101,7 +101,7 @@
                             	falg='<font color="red"> 未整改 </font>';
                             }
                 zglists +=
-                    '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgid=' + obj.id + '">' +
+                    '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgId=' + obj.id + '">' +
                     '<div class="weui-cell__bd">' +
                     '<p>' + obj.zgjf.name + '</p>' +
                     '</div>' +

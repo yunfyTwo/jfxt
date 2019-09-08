@@ -835,7 +835,7 @@ body {
   position: relative;
 }
 .weui-tabbar__item.weui-bar__item--on .weui-tabbar__label {
-  color: #005bea;
+  color: #33b4ff;
 }
 .weui-navbar__item {
   color: #888;
@@ -920,7 +920,7 @@ body {
   box-sizing: border-box;
   height: 2.2rem;
   line-height: 2.2rem;
-  color: #005bea;
+  color: #33b4ff;
   z-index: 1;
   padding: 0 .5rem;
 }
@@ -1360,7 +1360,7 @@ body {
   background: #e3e3e3;
 }
 .picker-calendar-day.picker-calendar-day-selected span {
-  background: #005bea;
+  background: #33b4ff;
   color: #fff;
 }
 .picker-calendar-day span {
@@ -1705,7 +1705,7 @@ button.swiper-pagination-bullet {
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #005bea;
+  background: #33b4ff;
 }
 .swiper-pagination-white .swiper-pagination-bullet-active {
   background: #fff;
@@ -2230,7 +2230,7 @@ button.swiper-pagination-bullet {
   opacity: 1;
 }
 .color-primary {
-  color: #005bea;
+  color: #33b4ff;
 }
 .color-danger,
 .color-error {
@@ -2250,7 +2250,7 @@ button.swiper-pagination-bullet {
   color: white;
 }
 .bg-primary {
-  background-color: #005bea;
+  background-color: #33b4ff;
 }
 .bg-danger,
 .bg-error {
@@ -2300,7 +2300,7 @@ button.swiper-pagination-bullet {
   line-height: 21px;
   display: inline-block;
   position: relative;
-  border: 1px solid #005bea;
+  border: 1px solid #33b4ff;
   border-radius: 50%;
   vertical-align: -6px;
 }
@@ -2310,7 +2310,7 @@ button.swiper-pagination-bullet {
   position: absolute;
   height: 1px;
   width: 11px;
-  background-color: #005bea;
+  background-color: #33b4ff;
   left: 50%;
   top: 50%;
   margin-left: -5.5px;
@@ -2325,7 +2325,7 @@ button.swiper-pagination-bullet {
   display: none;
 }
 .weui-count .weui-count__increase {
-  background-color: #005bea;
+  background-color: #33b4ff;
 }
 .weui-count .weui-count__increase:after,
 .weui-count .weui-count__increase:before {

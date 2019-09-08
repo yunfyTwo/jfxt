@@ -153,7 +153,7 @@ footer a {
   -webkit-box-sizing: border-box;
 }
 .weui_btn_primary {
-  background-color: #005bea;
+  background-color: #33b4ff;
 }
 .weui-header .weui-header-left a, .weui-header .weui-header-left button, .weui-header .weui-header-right a, .weui-header .weui-header-right button {
   float: left;
@@ -184,6 +184,7 @@ footer a {
   color: #FFF;
 }
 .weui-header .weui-header-title, .weui-header h1 {
+	font-family: monospace;
   margin: 0 88px;
   margin-left: 100px;
   line-height: 40px;
@@ -290,8 +291,8 @@ footer a {
 }
 .weui_navbar_item.tab-green {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border-bottom: 3px solid #005bea;
-  color: #005bea;
+  border-bottom: 3px solid #33b4ff;
+  color: #33b4ff;
 }
 
 .weui-gallery__img{z-index: 9999;}

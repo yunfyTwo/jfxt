@@ -51,6 +51,8 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/merchant/jfZg/list">整改列表</a></li>
 		<%--<shiro:hasPermission name="merchant:jfZg:edit"><li><a href="${ctx}/merchant/jfZg/form">整改添加</a></li></shiro:hasPermission>--%>
+	
+		
 	</ul>
 	
 	<form:form id="searchForm" modelAttribute="jfZg" action="${ctx}/merchant/jfZg/list" method="post" class="breadcrumb form-search">

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>整改单</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.css">
+    <link rel="stylesheet" href="css/demos.css">
+    <link rel="stylesheet" href="css/icon.css">
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/fastclick.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/swipe.js"></script>
+    <script src="html5plus://ready"></script>
+    <script src="js/common.js"></script>
+    <script src="js/back.js"></script>
+    <style>
+        .weui-uploader__file_status:before{background: none;}
+        /*图片预览时会用到，将图片放到最上面一层*/
+        .weui-photo-browser-modal{
+            z-index: 999;
+        }
+    </style>
+</head>
+<body ontouchstart>
+<div class="weui_btn_primary weui-header ">
+    <div class="weui-header-left"> <a href="zgdsyck.html#zgd_lists" class="icon icon-109 f-white"></a>  </div>
+    <h1 class="weui-header-title">整改单</h1>
+    <input type="text" value="" style="display: none" id="zgId">
+    <!--<div class="weui-header-right"><a class="icon icon-22 f-white"></a></div>-->
+</div>
+<div class="kong2"></div>
+<div class="weui-cells">
+    <div class="weui-cell" style="display: none">
+        <div class="weui-cell__hd"><label class="weui-label">单号</label></div>
+        <div class="weui-cell__bd">
+          <span style="border: 0px;" value=""  id="zgdh"></span>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="years-monthes" class="weui-label">日期</label></div>
+        <div class="weui-cell__bd">
+        	<input class="weui-input" id="years-monthes" type="text" value="" readonly="readonly" >
+            <!--<input class="weui-input" type="date" value="">-->
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">网元</div>
+<div class="weui-cells ">
+      <div class="weui-cell weui-cell_select">
+        <div class="weui-cell__bd" id="cfjf">
+            <input type="text" value="" id="jf_id" style="display: none;"/>
+            <select class="weui-select"  onchange="selectedJf(this.value)"  name="jfLists" id="jfXx_list">
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">安全隐患</div>
+
+<div class="weui-cells__title">是否存在安全隐患</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否存在安全隐患" rows="1" id="isSafetyHazard" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">隐患简要说明</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="简要说明" rows="2" id="briefDescription" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">隐患原因</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="隐患原因" rows="2" id="reason" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<div class="weui-cells__title">设备类整治</div>
+<div class="weui-cells__title">是否有ODF架/柜</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否有ODF架/柜" rows="1" id="isODF" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">是否需要网络设备整治割接</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否需要网络设备整治割接" rows="1" id="isCutOver" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title"  style="display: none;">隐患级别</div>
+<div class="weui-cells " style="display: none;">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="隐患级别" rows="2" id="isCutOverContent" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">光缆类整治</div>
+<div class="weui-cells__title">是否需要光缆割接</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否需要光缆割接" rows="1" id="isOpticalCable" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">光缆割接量（条/芯）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="光缆割接量" rows="3" id="opticalCableCutting" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title" style="display: none;">整治批次</div>
+<div class="weui-cells " style="display: none;">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="整治批次" rows="3" id="opticalCableContent" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">环境类整治</div>
+<div class="weui-cells__title">是否需要环境整治</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea"  rows="1" id="needRemediation" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">环境整治内容描述（门、窗、墙面等）</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="环境整治内容描述" rows="2" id="contentDescription" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<div class="weui-gallery" id="gallery">
+    <span class="weui-gallery__img" id="galleryImg"></span>
+</div>
+<div class="weui-cells__title">上传整改现场照片</div>
+<div class="weui-cells sczp">
+    <div class="weui-uploader__bd" id="addImg" style="display: none">
+        <ul class="weui-uploader__files" id="zgimg">
+        </ul>
+        <div class="weui-uploader__input-box">
+            <form id="uploadImgForm">
+                <div id="img">
+                    <div class="weui-uploader__input" type="file" id="imgFile" name="imgFile" accept="image/jpg,image/jpeg,image/png,image/gif" multiple></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="clearImg" style="display: none">
+      <input type="button" value="清空图片" onclick="deleteImg()"/>
+    </div>
+</div>
+
+<div class="weui-cells__title">整改要求描述</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="整改要求" rows="3" id="zgyqms"></textarea>
+            <div class="weui-textarea-counter"><span>0</span>/200</div>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">是否已整改</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="是否已整改" rows="1" id="kzzd2" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">整改花费费用</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="整改花费费用" rows="1" id="kzzd3" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">巡检人</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="" rows="1" id="kzzd4" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<!-- <div class="weui-cells" id="btnSubmit" style="display: none">
+    <a href="#"  class="weui-btn weui-btn_primary" onclick="saveZG()">提交</a>
+
+</div> -->
+</body>
+
+<script>
+    $(function() {
+        FastClick.attach(document.body) ;
+    });
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+            $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+            $uploaderInput = $("#uploaderInput"),
+            $uploaderFiles = $("#uploaderFiles")
+        ;
+
+        $uploaderInput.on("change", function(e){
+            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
+            for (var i = 0, len = files.length; i < len; ++i) {
+                var file = files[i];
+
+                if (url) {
+                    src = url.createObjectURL(file);
+                } else {
+                    src = e.target.result;
+                }
+
+                $uploaderFiles.append($(tmpl.replace('#url#', src)));
+            }
+        });
+        $uploaderFiles.on("click", "li", function(){
+            $galleryImg.attr("style", this.getAttribute("style"));
+            $gallery.fadeIn(100);
+        });
+        $gallery.on("click", function(){
+            $gallery.fadeOut(100);
+        });
+        
+        zgDetail();
+        perCenter();
+        
+    });
+
+    function perCenter() {
+        var storage = window.localStorage;
+        var permissions = storage.getItem("permissions");
+        var dataedit = "merchant:jfZg:edit"; //整改权限
+        if(permissions.indexOf(dataedit)>-1){
+            $("#btnSubmit").show();
+            $("#clearImg").show();
+            $("#addImg").show();
+        }
+    }
+
+</script>
+
+<script>
+	//获取路径中的整改单的id
+	var id = GetArgsFromHref("zgid");
+	
+	function zgDetail(){
+        $.post(
+            getContextPath()+"/app/zgDetail",
+            {
+                "id":id
+            },
+            function (data) {
+                if(data.code == 1) {
+                    var  obj = data.data;
+                    $("#zgId").val(obj.id);//id
+                    $("#zgdh").text(obj.zgdh);//单号
+                    $("#years-monthes").val(obj.zgrq);//日期
+                    $("#jf_id").val(obj.zgjf.id);//网元
+                    
+                     //处罚原因
+                    $("#zgyqms").val(obj.zgyq);
+                    $("#isSafetyHazard").val(obj.isSafetyHazard);//是否存在安全隐患
+                    $("#briefDescription").val(obj.briefDescription);//隐患简要说明
+                    $("#reason").val(obj.reason);//隐患原因
+                    $("#isODF").val(obj.isODF);//是否有ODF架/柜
+                    $("#isCutOver").val(obj.isCutOver);//是否需要网络设备整治割接
+                    $("#isCutOverContent").val(obj.isCutOverContent);//隐患级别
+                    $("#isOpticalCable").val(obj.isOpticalCable);//是否需要光缆割接
+                    $("#opticalCableCutting").val(obj.opticalCableCutting);//光缆割接量（条/芯）
+                    $("#opticalCableContent").val(obj.opticalCableContent);//整治批次
+                    $("#needRemediation").val(obj.needRemediation);//光缆割接量（条/芯）
+                    $("#contentDescription").val(obj.contentDescription);//整治批次
+                    $("#kzzd2").val(obj.kzzd2);//是否整改完成
+                    $("#kzzd3").val(obj.kzzd3);//整改花费费用
+                    $("#kzzd4").val(obj.kzzd4);//巡检人员
+                    
+                    //图片展示，需要判断是否是多张
+                    if(obj.cfxczp!=null){
+                    	imgArr=obj.cfxczp.split("|");//分割如片存储路径字符串
+                    	for (var i = 0; i < imgArr.length; i++) {
+                    		 var obj = imgArr[i];
+                    	$('#zgimg').append('<img src="'+ getFilePath() + obj+'" style="width: 100px;height: 80px;margin-left:15px;" onclick="zoomPic('+i+')"/>');
+                    	}
+                    }
+                   
+                    findAlljf();
+//                  var dictCfdx = "cfdx";
+//                  findDict(dictCfdx);
+//                  var dictCftd = "cftd";
+//                  findDict1(dictCftd);
+                } else {
+                    $.toast(data.msg,'forbidden', 8000);
+                }
+            });
+    };
+	
+	  //选中网元
+    function selectedJf(a) {
+        $("#jf_id").val(a);
+    }
+    
+    //查询所有网元
+    function findAlljf(){
+       var jfId =  $("#jf_id").val();
+            $.post(
+                getContextPath()+"/app/jfList",
+                {
+
+                },
+                function (data) {
+                    if(data.code == 1) {
+                        var arr = data.data;
+                        var jfXx_list = '';
+                        for (var i = 0; i < arr.length; i++) {
+                            var obj = arr[i];
+                            var jfID = obj.id;
+                            var str="";
+                            if(jfID==jfId){
+                                str="<option selected value='1' value='"+obj.id+"'>"+obj.name+"</option>";
+                            }else{
+                                str="<option value='"+obj.id+"'>"+obj.name+"</option>";
+                            }
+                            jfXx_list+=str;
+                        }
+                        $("#jfXx_list").html(jfXx_list);
+                    } else {
+                        $.toast(data.msg,'forbidden', 8000);
+                    }
+                });
+    }
+    
+    //保存整改单
+    function saveZG(){
+        var jfZG = {};
+        jfZG.id = $("#zgId").val();		// 整改单ID
+        jfZG.zgjf = $("#jf_id").val();		// 整改网元
+        jfZG.zgdh = $("#zgdh").text();		// 整改单号
+        var sedDate = $("#years-monthes").val();
+        jfZG.zgrq = new Date(sedDate);		// 日期
+        jfZG.zgyq = $("#zgyqms").val();		// 处罚原因描述
+        jfZG.isSafetyHazard = $("#isSafetyHazard").val();//是否存在安全隐患
+        jfZG.briefDescription = $("#briefDescription").val();//隐患简要说明
+        jfZG.reason = $("#reason").val();//隐患原因
+        jfZG.isODF = $("#isODF").val();//是否有ODF架/柜
+        jfZG.isCutOver = $("#isCutOver").val();//是否需要网络设备整治割接
+        jfZG.isCutOverContent = $("#isCutOverContent").val();//隐患级别
+        jfZG.isOpticalCable = $("#isOpticalCable").val();//是否需要光缆割接
+        jfZG.opticalCableCutting = $("#opticalCableCutting").val();//光缆割接量（条/芯）
+        jfZG.opticalCableContent = $("#opticalCableContent").val();//整治批次
+        jfZG.needRemediation = $("#needRemediation").val();//光缆割接量（条/芯）
+        jfZG.contentDescription = $("#contentDescription").val();//整治批次
+
+        jfZG.userId = userId;
+          
+        if(imgArr.length > 0) {
+            imgUrls = imgArr.join("|");
+            jfZG.cfxczp = imgUrls;
+        }else{
+         	alert("图片至少五张");
+       	return;
+         }
+        if(imgUrls != "") {
+            jfZG.cfxczp = imgUrls;
+        }
+        $.post(
+            getContextPath()+"/app/saveZgd",
+
+            jfZG,
+
+            function (data) {
+                if(data.code == 1) {
+                    // $.toast(data.msg, 'forbidden', 8000);
+                    $.toast(data.msg);
+                    window.location.href = "zhichengfang.html";
+                } else {
+                    $.toast(data.msg,'forbidden', 8000);
+                }
+            });
+    }
+    
+    //以下是调用相机以及图片上传等操作
+     if(window.plus) {
+        plusReady();
+    } else {
+        document.addEventListener("plusready", plusReady, false);
+    }
+    // 扩展API准备完成后要执行的操作
+    function plusReady() {
+        var ws = plus.webview.currentWebview();
+        //pw回车可输出plus.webview // ... code
+    }
+
+    //点击事件，弹出选择摄像头和相册的选项
+    $("#imgFile").click(
+        function showActionSheet() {
+            var bts = [{
+                title: "拍照"
+            }, {
+                title: "从相册选择"
+            }];
+
+            plus.nativeUI.actionSheet({
+                    cancel: "取消",
+                    buttons: bts
+                },
+                function(e) {
+                    if(e.index == 1) {
+                        getImage();
+                    } else if(e.index == 2) {
+                        galleryImgs();
+                    }
+                }
+            );
+        }
+    );
+
+    //调用相机拍照
+    function getImage() {
+        var cmr = plus.camera.getCamera();
+        cmr.captureImage(function(p) {
+            plus.io.resolveLocalFileSystemURL(p, function(entry) {
+                //转为base64并提交到后台
+                uploadImg(entry.toLocalURL());
+                //compressImage(entry.toLocalURL(),entry.name);
+            }, function(e) {
+                plus.nativeUI.toast("读取拍照文件错误：" + e.message);
+            });
+        }, function(e) {}, {
+            filter: 'image'
+        });
+    }
+    //从相册选择照片
+    function galleryImgs() {
+        plus.gallery.pick(function(p) {
+            plus.io.resolveLocalFileSystemURL(p, function(entry) {
+                //转为base64并提交到后台
+                uploadImg(entry.toLocalURL());
+                //compressImage(entry.toLocalURL(),entry.name);
+            }, function(e) {
+                plus.nativeUI.toast("读取拍照文件错误：" + e.message);
+            });
+        }, function(e) {}, {
+            filename: "_doc/camera/",
+            filter: "image"
+        });
+
+    }
+
+    //图片上传
+    function uploadImg(imgPath) {
+        var image = new Image();
+        image.onload = function() {
+            var imgData = getBase64Image(image);
+            var formData = new FormData($("#uploadImgForm")[0]);
+            $.post(
+                getContextPath() + "/app/uploadImg", {
+                    "imgData": imgData,
+                },
+                function(data) {
+                    if(data.code == 1) {
+                        var obj = data.data;
+                        imgArr.push(obj);
+                        var index = imgArr.length-1;
+                        $('#zgimg').append('<img src="'+ getFilePath() + obj +'" style="width: 100px;height: 80px;margin-left:15px;" onclick="zoomPic('+index+')"/>');
+                        //$('#img2x').append('<li class="weui-uploader__input-box" style="background-image:url(' + getFilePath() + obj + ')">');
+                    } else {
+                        alert(data.msg);
+                    }
+
+                });
+        }
+        image.src = imgPath;
+        image.style.width = "60px";
+        image.style.height = "60px";
+    }
+
+    //将图片压缩转成base64
+    function getBase64Image(img) {
+
+        var canvas = document.createElement("canvas");
+        var width = img.width;
+        var height = img.height;
+
+        if(width > height) {
+            if(width > 100) {
+                height = Math.round(height *= 800 / width);
+                width = 400;
+            }
+        } else {
+            if(height > 100) {
+                width = Math.round(width *= 800 / height);
+                height = 400;
+            }
+        }
+        canvas.width = width; /*设置新的图片的宽度*/
+        canvas.height = height; /*设置新的图片的长度*/
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height); /*绘图*/
+        var dataURL = canvas.toDataURL("image/png", 1);
+        return dataURL.replace("data:image/png;base64,", "");
+    }
+
+    //删除图片
+    function deleteImg() {
+        if(imgArr.length > 0) {
+            imgUrls = imgArr.join(",");
+        } else {
+            return;
+        }
+        $.post(getContextPath() + "/app/deleteImg", {
+                imgUrls: imgUrls,
+            },
+            function(data) {
+                //失败
+                if(data.code == 0) {
+                    $.toast(data.msg, 'forbidden', 2000);
+                } else {
+                    imgArr = new Array();
+                    $('#img2x').html("");
+                    $.toast(data.msg);
+                }
+            });
+    }
+
+	
+</script>
+<script src="js/jquery-weui2.js"></script>
+	<script src="js/swiper.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+	    function zoomPic(index) {
+	        var imgs = imgArr;
+	        var realImgs = new Array();
+	        for(var i = 0;i <imgs.length ;i ++){
+	            if(imgs[i] != ""){
+	            	console.log(getFilePath()+imgs[i])
+	            	var url = getFilePath()+imgs[i];
+	                realImgs.push(url);
+	            }
+	        }
+	
+	        var bsImg = $.photoBrowser({
+	            items: realImgs,
+	            initIndex:index
+	        });
+	        bsImg.open(index);
+	    }
+	</script>
+</html>

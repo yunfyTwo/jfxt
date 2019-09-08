@@ -127,7 +127,7 @@ a {
 
 .weui-icon-success {
 	font-size: 23px;
-	color: #09bb07
+	color: #33b4ff
 }
 
 .weui-icon-waiting {
@@ -148,7 +148,7 @@ a {
 .weui-icon-success-circle,
 .weui-icon-success-no-circle {
 	font-size: 23px;
-	color: #09bb07
+	color: #33b4ff
 }
 
 .weui-icon-waiting-circle {
@@ -164,11 +164,11 @@ a {
 .weui-icon-download,
 .weui-icon-info-circle {
 	font-size: 23px;
-	color: #09bb07
+	color: #33b4ff
 }
 
 .weui-icon-safe-success {
-	color: #09bb07
+	color: #33b4ff
 }
 
 .weui-icon-safe-warn {
@@ -260,7 +260,7 @@ a {
 }
 
 .weui-btn_primary {
-	background-color: #005bea
+	background-color: #33b4ff
 }
 
 .weui-btn_primary:not(.weui-btn_disabled):visited {
@@ -320,8 +320,8 @@ a {
 }
 
 .weui-btn_plain-primary {
-	color: #005bea;
-	border: 1px solid #005bea
+	color: #33b4ff;
+	border: 1px solid #33b4ff
 }
 
 .weui-btn_plain-primary:not(.weui-btn_plain-disabled):active {
@@ -625,7 +625,7 @@ input.weui-btn_plain-primary {
 .weui-cells_radio .weui-check:checked+.weui-icon-checked:before {
 	display: block;
 	content: "\EA08";
-	color: #09bb07;
+	color: #33b4ff;
 	font-size: 16px
 }
 
@@ -642,7 +642,7 @@ input.weui-btn_plain-primary {
 
 .weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before {
 	content: "\EA06";
-	color: #09bb07
+	color: #33b4ff
 }
 
 .weui-label {
@@ -1407,7 +1407,7 @@ button.weui-vcode-btn {
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon,
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon>i,
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
-	color: #09bb07
+	color: #33b4ff
 }
 
 .weui-tabbar__icon {
@@ -1541,7 +1541,7 @@ i.weui-tabbar__icon {
 .weui-progress__inner-bar {
 	width: 0;
 	height: 100%;
-	background-color: #09bb07
+	background-color: #33b4ff
 }
 
 .weui-progress__opr {
@@ -1773,14 +1773,14 @@ a.weui-media-box:active {
 	position: relative;
 	float: left;
 	padding: 20px 10px;
-	width: 33.33333333%;
+	width: 33.3333333333%;
 	box-sizing: border-box
 }
 
 .weui-grid:before {
 	top: 0;
 	width: 1px;
-	border-right: 1px solid #d9d9d9;
+	border-right: 0px solid #d9d9d9;
 	-webkit-transform-origin: 100% 0;
 	transform-origin: 100% 0;
 	-webkit-transform: scaleX(.5);
@@ -1799,7 +1799,7 @@ a.weui-media-box:active {
 .weui-grid:after {
 	left: 0;
 	height: 1px;
-	border-bottom: 1px solid #d9d9d9;
+	border-bottom: 0px solid #d9d9d9;
 	-webkit-transform-origin: 0 100%;
 	transform-origin: 0 100%;
 	-webkit-transform: scaleY(.5);
@@ -2473,7 +2473,7 @@ a.weui-media-box:active {
 	display: none;
 	margin-left: 10px;
 	line-height: 28px;
-	color: #09bb07;
+	color: #33b4ff;
 	white-space: nowrap
 }
 
@@ -2535,7 +2535,7 @@ input[type=search]::-webkit-search-results-decoration {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
 	flex: 1;
-	color: #005bea
+	color: #33b4ff
 }
 
 .weui-picker__action:first-child {
@@ -2782,7 +2782,7 @@ input[type=search]::-webkit-search-results-decoration {
 	vertical-align: middle;
 	text-decoration: inherit;
 	content: "\EA08";
-	color: #09bb07;
+	color: #33b4ff;
 	font-size: 13px;
 	position: absolute;
 	top: 50%;
@@ -2852,7 +2852,7 @@ input[type=search]::-webkit-search-results-decoration {
 
 .weui-slider__track {
 	height: 2px;
-	background-color: #005bea;
+	background-color: #33b4ff;
 	width: 0
 }
 

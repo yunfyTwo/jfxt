@@ -1,0 +1,63 @@
+.btn {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 8.333333333333334px;
+  padding: 10px 25px;
+  border-radius: 2px;
+  line-height: normal;
+  font-size: 16px;
+  color: #fff;
+  background: #fff;
+}
+/* block buttons */
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.flex > .btn {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 3px;
+}
+.flex > .btn:last-child {
+  margin-right: 0;
+}
+.max-w {
+  max-width: 600px;
+}  
+.btn-icon {
+  will-change: width, transform;
+  width: 0;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  fill: #fff;
+  background: rgba(0,0,0,0.15);
+  margin-left: 0;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+          transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-icon--vis {
+  width: 24px;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  margin-left: 8.333333333333334px;
+}                

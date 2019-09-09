@@ -72,11 +72,11 @@
                             	falg='<font color="red"> 未整改 </font>';
                             }
                             list_html +=
-                                '<a class="weui-cell weui-cell_access" href="xlzgdsyck.html?ggid=' + obj.id + '">' +
+                                '<a class="weui-cell weui-cell_access" href="zgdxlsyck.html?ggid=' + obj.id + '">' +
                                 '<div class="weui-cell__bd">' +
                                 '<p>' + obj.zgjf.name +'</p>' +
                                 '</div>' +
-                                '<div class="weui-cell__ft">' + obj.zgrq +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
+                                '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
                                 '</a>'
                         }
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
@@ -91,25 +91,25 @@
        $(document.body).pullToRefresh(function () {
         setTimeout(function () {
             //刷新后的逻辑
-            var zglists = "";
-            for (var i = 0; i < zgList.length; i++) {
-                var obj = zgList[i];
+            var xlzgdlists = "";
+            for (var i = 0; i < xlzgdList.length; i++) {
+                var obj = xlzgdList[i];
                  var falg="";
                             if(obj.kzzd2=="是"){
                             	falg='<font color="green"> 已整改</font>';
                             }else{
                             	falg='<font color="red"> 未整改 </font>';
                             }
-                zglists +=
-                    '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgId=' + obj.id + '">' +
-                    '<div class="weui-cell__bd">' +
+                xlzgdlists +=
+                    '<a class="weui-cell weui-cell_access" href="zgdxlsyck.html?ggid=' + obj.id + '">' +
+                                '<div class="weui-cell__bd">' +
                     '<p>' + obj.zgjf.name + '</p>' +
                     '</div>' +
-                    '<div class="weui-cell__ft">' + obj.zgrqMs+'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg + '</div>' +
+                    '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
                                 '</a>'
             }
-            zglists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-            $("#zgd_lists").html(zglists);
+            xlzgdlists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+            $("#zgd_lists").html(xlzgdlists);
 
             $(document.body).pullToRefreshDone();
         }, 1000);

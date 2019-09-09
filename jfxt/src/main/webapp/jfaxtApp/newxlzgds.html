@@ -144,6 +144,7 @@
     <div class="weui-cell weui-cell_select">
         <div class="weui-cell__bd" >
             <select class="weui-select" name="select1"  id="iszg" onchange="se(this,'messages')">
+            	<option value="">请选择是否整改完成</option>
                 <option value="是">是</option>
                 <option value="否">否</option>
             </select>
@@ -318,9 +319,15 @@
 
 		var imgArr = new Array(); //保存多图片路径
 		var imgUrls = "";
-
+		
 		//保存整改单
 		function saveZg() {
+			
+			var isZg = $("#iszg").val();
+			if(isZg == "" || isZg==null){
+				alert("请选择是否整改完成");
+				return;
+			}
 			//提交整改单的信息进行保存
 			var jfXlZG = {};
 			jfXlZG.id = $("#zgId").val(); // 整改单ID

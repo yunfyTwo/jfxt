@@ -200,6 +200,7 @@
     <div class="weui-cell weui-cell_select">
         <div class="weui-cell__bd" >
             <select class="weui-select" name="select1" id="kzzd2" onchange="se(this,'messages')">
+            	<option value="">请选择是否整改完成</option>
                 <option value="是">是</option>
                 <option value="否">否</option>
             </select>
@@ -379,10 +380,15 @@
 
 		//保存整改单
 		function saveZg() {
+			var kzzd2 = $("#kzzd2").val();
+			if(kzzd2 == "" || kzzd2==null){
+				alert("请选择是否整改完成");
+				return;
+			}
 			//提交整改单的信息进行保存
 			var jfZG = {};
 			jfZG.id = $("#zgId").val(); // 整改单ID
-			jfZG.zgjf = $("#zgjf.name").val(); // 整改网元
+			jfZG.zgjf = $("#jf_id").val(); // 整改网元
 			jfZG.zgdh = $("#zgdh").text(); // 整改单号
 			var sedDate = $("#years-monthes").val();
 			jfZG.zgrq = new Date(sedDate); // 日期

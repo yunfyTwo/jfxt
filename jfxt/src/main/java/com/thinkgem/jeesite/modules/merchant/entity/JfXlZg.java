@@ -17,6 +17,9 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	private String id;		// 编号
 	private String zgdh;		// 整改单号
 	private Date zgrq;		// 日期
+	private String zgrqMs;		// 日期描述
+	
+
 	private String zgwt;		// 问题情况
 	private String cfxczp;		// 整改现场照片
 	private String kzzd1;		// 扩展字段1
@@ -294,6 +297,12 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setJfName(String jfName) {
 		this.jfName = jfName;
 	}
-	
+	public String getZgrqMs() {
+		return zgrqMs;
+	}
+
+	public void setZgrqMs(String zgrqMs) {
+		this.zgrqMs = zgrqMs;
+	}
 	
 }

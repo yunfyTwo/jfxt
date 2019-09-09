@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<title>整改单</title>
+		<title>线路详情</title>
 		<link rel="stylesheet" href="css/weui.min.css">
 		<link rel="stylesheet" href="css/jquery-weui.css">
 		<link rel="stylesheet" href="css/demos.css">
@@ -30,9 +30,9 @@
 	<body ontouchstart>
 		<div class="weui_btn_primary weui-header ">
 			<div class="weui-header-left">
-				<a href="zgdxlzs.html" onClick="toXunjian()" class="icon icon-109 f-white"></a>
+				<a href="zgdxlsy.html" onClick="toXunjian()" class="icon icon-109 f-white"></a>
 			</div>
-			<h1 class="weui-header-title">新增整改单</h1>
+			<h1 class="weui-header-title">线路详情</h1>
 			<input type="text" value="" style="display: none" id="zgId">
 		</div>
 		<div class="kong2"></div>
@@ -44,12 +44,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="weui-cell">
-			<div class="weui-cell__hd"><label for="" class="weui-label">网元</label></div>
-			<div class="weui-cell__bd" id="cfjf">
-				<input type="text" value="" id="jf_id" style="display: none;" />
-				<input class="weui-input" id="jf_name" type="text" value="" readonly="readonly">
-			</div>
+		<div class="weui-cells__title">巡检网元</div>
+		<div class="weui-cells ">
+		    <div class="weui-cell">
+		        <div class="weui-cell__bd">
+		            <textarea class="weui-textarea" placeholder="巡检网元" rows="1" id="xjgcName" readonly="readonly"></textarea>
+		        </div>
+		    </div>
 		</div>
 		
 <div class="weui-cells__title">问题情况</div>
@@ -158,20 +159,20 @@
 		<div class="weui-gallery" id="gallery">
 			<span class="weui-gallery__img" id="galleryImg"></span>
 		</div>
-		<div class="weui-cells__title">上传整改现场照片</div>
+		<div class="weui-cells__title">现场照片</div>
 		<div class="weui-cells sczp">
 			<div class="weui-uploader__bd">
-				<ul class="weui-uploader__files" id="zgimg">
+				<ul class="weui-uploader__files" id="img2x">
 				</ul>
-				<div class="weui-uploader__input-box">
+				<!-- <div class="weui-uploader__input-box">
 					<form id="uploadImgForm">
 						<div id="img">
 							<div class="weui-uploader__input" type="file" id="imgFile" name="imgFile" accept="image/jpg,image/jpeg,image/png,image/gif" multiple></div>
 						</div>
 					</form>
-				</div>
+				</div> -->
 			</div>
-			<input type="button" value="清空图片" onclick="deleteImg()" />
+			<!-- <input type="button" value="清空图片" onclick="deleteImg()" /> -->
 		</div>
 
 		<div class="weui-cells__title">巡检人</div>
@@ -182,12 +183,7 @@
 		        </div>
 		    </div>
 		</div>
-		<div class="weui-cells" id="btnSubmit" style="display: none;">
-			<a href="#" class="weui-btn weui-btn_primary" onclick="saveZg(0)">提交</a>
-		</div>
-		<div class="weui-cells" id="btnSubmit1" style="display: none;">
-			<a href="#" class="weui-btn weui-btn_primary" onclick="saveZg(1)">提交并填写处罚单</a>
-		</div>
+		
 	</body>
 <script type="text/javascript">
 	var dataedit = 'merchant:jfXlZG:edit'; //整改权限
@@ -259,12 +255,13 @@
 				$gallery.fadeOut(100);
 			});
 			perCenter();
+			xlzgdDetail();
 		});
-	</script>
-	<script>
+
 		//获取路径中的整改单的id
-		var id = GetArgsFromHref("ggid");
+		
 		function xlzgdDetail(){
+			var id = GetArgsFromHref("ggid");
         $.post(
             getContextPath()+"/app/xlzgdDetail",
             {
@@ -293,6 +290,21 @@
                     $("#imgFile").val(obj.cfxczp);//是否整改完成
                     $("#zgyqms").val(obj.zgyqms);//整改花费费用
                     $("#kzzd4").val(obj.kzzd4);//巡检人员
+                    $("#xjgcName").val(obj.zgjf.name);
+                    
+                    //图片展示，需要判断是否是多张
+                    if(obj.cfxczp!=null){
+                    	imgArr=obj.cfxczp.split("|");
+                    	for (var i = 0; i < imgArr.length; i++) {
+                    		 var obj = imgArr[i];
+                    	$('#img2x').append('<img src="'+ getFilePath() + obj+'" style="width: 100px;height: 80px;margin-left:15px;" onclick="zoomPic('+i+')"/>');
+                    	}
+                    }
+                    }
+                
+            });
+            
+		};
 		
 		//初始化页面
 		$(function() {

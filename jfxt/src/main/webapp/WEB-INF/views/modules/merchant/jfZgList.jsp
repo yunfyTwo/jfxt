@@ -118,6 +118,7 @@
 		<thead>
 			<tr>
 				<th>整改网元</th>
+				<th>网元属性</th>
 				<th>巡检人员</th>
 				<th>整改单号</th>
 				<th>日期</th>
@@ -148,6 +149,9 @@
 				<%--</a></td>--%>
 					<td>
 						${jfZg.zgjf.name}
+					</td>
+					<td>
+						${jfZg.zgjf.jfwz}
 					</td>
 					<td>${jfZg.kzzd4}</td>
 				<td>

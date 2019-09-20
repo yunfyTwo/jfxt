@@ -53,12 +53,19 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li>&nbsp;&nbsp;&nbsp;处罚网元：
+			<li>&nbsp;&nbsp;&nbsp;巡检网元：
 				<form:select path="xjjf" class="input-xlarge"  cssStyle="width:176px;">
 					<form:option value="" label="请选择"/>
 					<form:options items="${jfXxList}" itemLabel="name" itemValue="id" htmlEscape="false"/>
 				</form:select>
 			</li>
+			<%--  <li>&nbsp;&nbsp;&nbsp;网元属性：
+				<form:select path="xjjf" class="input-xlarge"  cssStyle="width:176px;">
+					<form:option value="" label="请选择"/>
+					<form:options items="${jfXxList}" itemLabel="jfwz" itemValue="id" htmlEscape="false"/>
+				</form:select>
+			</li>  --%>
+			<li>
 			<li>&nbsp;&nbsp;&nbsp;巡检时间：
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					   value="<fmt:formatDate value="${jfXjgc.startDate}" pattern="yyyy-MM-dd"/>"
@@ -77,6 +84,7 @@
 		<thead>
 			<tr>
 				<th>巡检网元</th>
+				<th>网元属性</th>
 				<th>巡检时间</th>
 				<th>巡检人员</th>
 				<th>现场图片</th>
@@ -96,8 +104,13 @@
 						${jfXjgc.xjjf.name}
 				</td>
 				<td>
+					${jfXjgc.xjjf.jfwz}
+				</td>
+				
+				<td>
 					<fmt:formatDate value="${jfXjgc.xjsj}" pattern="yyyy-MM-dd"/>
 				</td>
+				
 				<td>
 					${jfXjgc.xjry.name}
 				</td>

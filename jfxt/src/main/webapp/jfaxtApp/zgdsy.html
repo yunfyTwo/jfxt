@@ -57,7 +57,14 @@
         </div>
     </div>
 </div>
-
+<div class="weui-cells__title">网元属性</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="网元属性" rows="1" id="zgdJfwz" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
 <div class="weui-cells__title">安全隐患</div>
 
 <div class="weui-cells__title">是否存在安全隐患</div>
@@ -293,7 +300,7 @@
                     $("#zgdh").text(obj.zgdh);//单号
                     $("#years-monthes").val(obj.zgrq);//日期
                     $("#jf_id").val(obj.zgjf.id);//网元
-                    
+                    $("#zgdJfwz").val(obj.zgjf.jfwz);
                      //处罚原因
                     $("#zgyqms").val(obj.zgyq);
                     $("#isSafetyHazard").val(obj.isSafetyHazard);//是否存在安全隐患
@@ -371,6 +378,7 @@
         var jfZG = {};
         jfZG.id = $("#zgId").val();		// 整改单ID
         jfZG.zgjf = $("#jf_id").val();		// 整改网元
+        
         jfZG.zgdh = $("#zgdh").text();		// 整改单号
         var sedDate = $("#years-monthes").val();
         jfZG.zgrq = new Date(sedDate);		// 日期

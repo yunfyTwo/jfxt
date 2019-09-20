@@ -5,6 +5,7 @@
 	<sql id="jfZgColumns">
 		a.id AS "id",
 		a.zgjf AS "zgjf.id",
+		b.jfwz as "zgjf.jfwz",
 		a.zgdh AS "zgdh",
 		a.zgrq AS "zgrq",
 		DATE_FORMAT(a.zgrq,'%Y-%m-%d')AS "zgrqMs", 

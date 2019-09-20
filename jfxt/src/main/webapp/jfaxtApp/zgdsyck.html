@@ -62,8 +62,8 @@
                     var list_html = '<div style="align:center;">' +
 				                    '<input id="jfName" style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>'+ 
 				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" />' + '</div>' ;
-                    if (zgList.length > 0) {
-                        for (var i = 0; i < zgList.length; i++) {
+                    if (zgList.length > 5) {
+                        for (var i = 0; i < 5; i++) {
                             var obj = zgList[i];
                             var falg="";
                             if(obj.kzzd2=="是"){
@@ -74,15 +74,36 @@
                             list_html +=
                                 '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgid=' + obj.id + '">' +
                                 '<div class="weui-cell__bd">' +
-                                '<p>' + obj.zgjf.name +'</p>' +
+                                '<p>' + obj.zgjf.name +'<br/>'+obj.zgjf.jfwz+'</p>' +
+                                '</div>' +
+                                '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
+                                '</a>'
+                        }
+                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
+                    
+                    
+                } else {
+                	for (var i = 0; i < zgList.length; i++) {
+                            var obj = zgList[i];
+                            var falg="";
+                            if(obj.kzzd2=="是"){
+                            	falg='<font color="green"> 已整改</font>';
+                            }else{
+                            	falg='<font color="red"> 未整改 </font>';
+                            }
+                            list_html +=
+                                '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgid=' + obj.id + '">' +
+                                '<div class="weui-cell__bd">' +
+                                '<p>' + obj.zgjf.name +'<br/>'+obj.zgjf.jfwz+'</p>' +
                                 '</div>' +
                                 '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
                                 '</a>'
                         }
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-                    }
-                    $("#zgd_lists").html(list_html);
-                } else {
+                       }
+                        $("#zgd_lists").html(list_html);
+                   }else{
+                    
                     $.toast(data.msg, 'forbidden', 8000);
                 }
             });
@@ -103,7 +124,7 @@
                 zglists +=
                     '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgid=' + obj.id + '">' +
                     '<div class="weui-cell__bd">' +
-                    '<p>' + obj.zgjf.name + '</p>' +
+                    '<p>' + obj.zgjf.name +'<br/>'+obj.zgjf.jfwz+ '</p>' +
                     '</div>' +
                     '<div class="weui-cell__ft">' + obj.zgrqMs+'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg + '</div>' +
                                 '</a>'
@@ -154,7 +175,7 @@
                             list_html +=
                                 '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgid=' + obj.id + '">' +
                                 '<div class="weui-cell__bd">' +
-                                '<p>' + obj.zgjf.name + '</p>' +
+                                '<p>' + obj.zgjf.name +'<br/>'+obj.zgjf.jfwz+ '</p>' +
                                 '</div>' +
                                 '<div class="weui-cell__ft">' + obj.zgrqMs+'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg + '</div>' +
                                 '</a>'

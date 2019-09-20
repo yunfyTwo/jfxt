@@ -26,7 +26,7 @@
 </head>
 <body ontouchstart>
 <div class="weui_btn_primary weui-header ">
-    <div class="weui-header-left"> <a href="index1.html" class="icon icon-109 f-white"></a>  </div>
+    <div class="weui-header-left"> <a href="chufa.html" class="icon icon-109 f-white"></a>  </div>
     <h1 class="weui-header-title">处罚单</h1>
     <input type="text" value="" style="display: none" id="cfId">
 </div>
@@ -54,6 +54,15 @@
             <input type="text" value="" id="jf_ids" style="display: none;"/>
             <select class="weui-select"  onchange="selectedJf(this.value)"  name="jfLists" id="jfXx_list">
             </select>
+        </div>
+    </div>
+</div>
+
+<div class="weui-cells__title">网元属性</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="网元属性" rows="1" id="xjgcJfwz" readonly="readonly"></textarea>
         </div>
     </div>
 </div>
@@ -91,6 +100,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="weui-cells__title">处罚金额（元）</div>
 <div class="weui-cells ">
     <div class="weui-cell">
@@ -338,7 +349,7 @@
                     // var newDate=/\d{4}-\d{1,2}-\d{1,2}/g.exec(date);
                     $("#years-monthes").val(obj.cfrq);
                     $("#jf_ids").val(obj.cfjf.id);
-
+                    $("#xjgcJfwz").val(obj.cfjf.jfwz);
                     $("#cfdx_ids").val(obj.cfdx);
                     $("#cfdx").val(obj.cfdx);
                     $("#cftd_ids").val(obj.cftd);

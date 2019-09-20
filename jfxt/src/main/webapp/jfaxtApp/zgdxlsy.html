@@ -62,8 +62,28 @@
                     var list_html = '<div style="align:center;">' +
 				                    '<input id="jfName" style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>'+ 
 				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" />' + '</div>' ;
-                    if (xlzgdList.length > 0) {
-                        for (var i = 0; i < xlzgdList.length; i++) {
+                    if (xlzgdList.length > 5) {
+                        for (var i = 0; i < 5; i++) {
+                            var obj = xlzgdList[i];
+                            var falg="";
+                            if(obj.iszg=="是"){
+                            	falg='<font color="green"> 已整改</font>';
+                            }else{
+                            	falg='<font color="red"> 未整改 </font>';
+                            }
+                            list_html +=
+                                '<a class="weui-cell weui-cell_access" href="zgdxlsyck.html?ggid=' + obj.id + '">' +
+                                '<div class="weui-cell__bd">' +
+                                '<p>' + obj.zgjf.name +'</p>' +
+                                '</div>' +
+                                '<div class="weui-cell__ft">' + obj.zgrqMs +'&nbsp&nbsp&nbsp&nbsp&nbsp'+falg+ '</div>' +
+                                '</a>'
+                        }
+                        list_html += '<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
+                    
+                  
+                }else{
+                	for (var i = 0; i < xlzgdList.length; i++) {
                             var obj = xlzgdList[i];
                             var falg="";
                             if(obj.iszg=="是"){
@@ -82,7 +102,7 @@
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
                     }
                     $("#xlzgd_list").html(list_html);
-                } else {
+                }else {
                     $.toast(data.msg, 'forbidden', 8000);
                 }
             });
@@ -95,7 +115,7 @@
             for (var i = 0; i < xlzgdList.length; i++) {
                 var obj = xlzgdList[i];
                  var falg="";
-                            if(obj.kzzd2=="是"){
+                            if(obj.iszg=="是"){
                             	falg='<font color="green"> 已整改</font>';
                             }else{
                             	falg='<font color="red"> 未整改 </font>';
@@ -109,7 +129,7 @@
                                 '</a>'
             }
             xlzgdlists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-            $("#zgd_lists").html(xlzgdlists);
+            $("#xlzgd_list").html(xlzgdlists);
 
             $(document.body).pullToRefreshDone();
         }, 1000);

@@ -26,7 +26,7 @@
 </head>
 <body ontouchstart>
 <div class="weui_btn_primary weui-header ">
-    <div class="weui-header-left"> <a href="index1.html" class="icon icon-109 f-white"></a>  </div>
+    <div class="weui-header-left"> <a href="xjgc.html" class="icon icon-109 f-white"></a>  </div>
     <h1 class="weui-header-title">巡检过程</h1>
     <input type="text" value="" style="display: none" id="xjgcId">
 </div>
@@ -54,6 +54,14 @@
     <div class="weui-cell">
         <div class="weui-cell__bd">
             <textarea class="weui-textarea" placeholder="巡检网元" rows="1" id="xjgcName" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+<div class="weui-cells__title">网元属性</div>
+<div class="weui-cells ">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="网元属性" rows="1" id="xjgcJfwz" readonly="readonly"></textarea>
         </div>
     </div>
 </div>
@@ -264,6 +272,7 @@
                     var  obj = data.data;
                     $("#xjgcId").val(obj.id);//id
                     $("#xjgcName").val(obj.xjjf.name);
+                     $("#xjgcJfwz").val(obj.xjjf.jfwz);
                     $("#user_name").text(obj.xjry.name);
                     $("#cftzd").text(obj.cftzd);
                     $("#xjsj").val(obj.xjsj);

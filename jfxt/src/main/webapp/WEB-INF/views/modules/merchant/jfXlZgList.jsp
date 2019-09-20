@@ -95,7 +95,7 @@
 				<th>更换拉线（条）</th>
 				<th>需更换光缆（km）</th>
 				<th>是否已整改</th>
-				<th>预估费用（万元）</th>
+				<th>预估费用（元）</th>
 				<th>备注</th>
 				<shiro:hasPermission name="merchant:jfXlZg:edit"><th>操作</th></shiro:hasPermission>
 			</tr>

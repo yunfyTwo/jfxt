@@ -104,6 +104,7 @@
 				<th>处罚通知单号</th>
 				<th>巡检人员</th>
 				<th>处罚网元</th>
+				<th>网元属性</th>
 				<th>日期</th>
 				<th>处罚对象</th>
 				<th>处罚梯度</th>
@@ -126,6 +127,9 @@
 				</td>
 				<td>
 					${jfCf.cfjf.name}
+				</td>
+				<td>
+					${jfCf.cfjf.jfwz}
 				</td>
 				<td>
 					<fmt:formatDate value="${jfCf.cfrq}" pattern="yyyy-MM-dd"/>

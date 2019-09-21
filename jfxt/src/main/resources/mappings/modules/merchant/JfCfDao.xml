@@ -53,6 +53,9 @@
 			<if test="cfjf != null and cfjf.id != null and cfjf.id!= ''">
 				AND a.cfjf = #{cfjf.id}
 			</if>
+			<if test="cfjf != null and cfjf.jfwz != null and cfjf.jfwz!= ''">
+				AND b.jfwz = #{cfjf.jfwz}
+			</if>
 			<if test="cftzd != null and cftzd != ''">
 				AND a.cftzd = #{cftzd}
 			</if>

@@ -67,6 +67,17 @@
 					<form:options items="${jfXxList}" itemLabel="name" itemValue="id" htmlEscape="false"/>
 				</form:select>
 			</li>
+			<li>&nbsp;&nbsp;&nbsp;网元属性：
+				<form:select path="cfjf.jfwz" class="input-xlarge required"  cssStyle="width:176px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="B类机房" label="B类机房"/>
+						<form:option value="C类机房" label="C类机房"/>
+						<form:option value="D类机房" label="D类机房"/>
+						<form:option value="自留基站" label="自留基站"/>
+						<form:option value="线路" label="线路"/>
+				</form:select>
+			</li>
+			
 			<li>&nbsp;&nbsp;&nbsp;
 				日期：
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"

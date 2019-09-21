@@ -65,6 +65,16 @@
 					<form:options items="${jfXxList}" itemLabel="name" itemValue="id" htmlEscape="false"/>
 				</form:select>
 			</li>
+			<li><label>网元属性：</label>
+				<form:select path="zgjf.jfwz" class="input-xlarge"  cssStyle="width:150px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="B类机房" label="B类机房"/>
+						<form:option value="C类机房" label="C类机房"/>
+						<form:option value="D类机房" label="D类机房"/>
+						<form:option value="自留基站" label="自留基站"/>
+				</form:select>
+			</li>
+			
 			<li><label>是否已整改：</label>
 				<form:select path="kzzd2" class="input-xlarge"  cssStyle="width:80px;">
 					<form:option value="" label="请选择"/>

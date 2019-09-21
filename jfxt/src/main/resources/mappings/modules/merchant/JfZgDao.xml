@@ -61,6 +61,9 @@
 			<if test="zgjf != null and zgjf.id != null and zgjf.id!= ''">
 				AND a.zgjf = #{zgjf.id}
 			</if>
+			<if test="zgjf != null and zgjf.jfwz != null and zgjf.jfwz!= ''">
+				AND b.jfwz = #{zgjf.jfwz}
+			</if>
 			<if test="jfName != null and jfName!= ''">
 				AND a.zgjf in (SELECT a.Id FROM jf_xx a WHERE a.name like concat('%',#{jfName},'%'))
 			</if>

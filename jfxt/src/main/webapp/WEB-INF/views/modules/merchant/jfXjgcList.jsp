@@ -69,6 +69,13 @@
 						<form:option value="线路" label="线路"/>
 				</form:select>
 			</li>  
+			<li>&nbsp;&nbsp;&nbsp;巡检是否通过：
+				<form:select path="xjsftg" class="input-xlarge"  cssStyle="width:176px;">
+					<form:option value="" label="请选择"/>
+						<form:option value="1" label="是"/>
+						<form:option value="0" label="否"/>
+				</form:select>
+			</li>
 			<li>
 			<li>&nbsp;&nbsp;&nbsp;巡检时间：
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"

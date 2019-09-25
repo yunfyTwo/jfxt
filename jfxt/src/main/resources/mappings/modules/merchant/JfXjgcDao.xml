@@ -57,6 +57,10 @@
 			<if test="xjjf!= null  and xjjf.jfwz != '' and xjjf.jfwz != null ">
 				AND b.jfwz = #{xjjf.jfwz}
 			</if>
+			<if test="xjsftg!= null  and xjsftg != ''  ">
+				AND a.xjsftg = #{xjsftg}
+			</if>
+			
 			<if test="startDate != null and startDate != ''">
 				AND
 				DATE_FORMAT(a.xjsj, '%Y-%m-%d') &gt;= DATE_FORMAT(#{startDate}, '%Y-%m-%d')

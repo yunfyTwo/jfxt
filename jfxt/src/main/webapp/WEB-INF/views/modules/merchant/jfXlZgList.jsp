@@ -46,7 +46,7 @@
 				</form:select>
 			</li>
 			<li><label>是否已整改：</label>
-				<form:select path="kzzd2" class="input-xlarge"  cssStyle="width:80px;">
+				<form:select path="iszg" class="input-xlarge"  cssStyle="width:80px;">
 					<form:option value="" label="请选择"/>
 					<form:option value="是" label="是"/>
 					<form:option value="否" label="否"/>

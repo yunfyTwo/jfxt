@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>商品信息管理</title>
+	<title>网元商品信息管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -19,8 +19,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/merchant/jfSpxx/list">商品信息列表</a></li>
-		<shiro:hasPermission name="merchant:jfSpxx:edit"><li><a href="${ctx}/merchant/jfSpxx/form">商品信息添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/merchant/jfSpxx/list">网元商品信息列表</a></li>
+		<shiro:hasPermission name="merchant:jfSpxx:edit"><li><a href="${ctx}/merchant/jfSpxx/form">网元商品信息添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="jfSpxx" action="${ctx}/merchant/jfSpxx/list" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -46,6 +46,16 @@
 				<th>产品名称</th>
 				<th>产品编号</th>
 				<th>产品型号</th>
+				<th>重量</th>
+				<th>供应商</th>
+				<th>成本价</th>
+				<th>售价上限</th>
+				<th>售价下限</th>
+				<th>折扣</th>
+				<th>库存量</th>
+				<th>数量</th>
+				<th>有效期</th>
+				<th>价格更新时间</th>
 				<shiro:hasPermission name="merchant:jfSpxx:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -60,6 +70,36 @@
 				</td>
 				<td>
 					${jfSpxx.cpxh}
+				</td>
+				<td>
+					${jfSpxx.cpzl}
+				</td>
+				<td>
+					${jfSpxx.cpgys}
+				</td>
+				<td>
+					${jfSpxx.cpcbj}
+				</td>
+				<td>
+					${jfSpxx.cpsjsx}
+				</td>
+				<td>
+					${jfSpxx.cpsjxx}
+				</td>
+				<td>
+					${jfSpxx.cpzk}
+				</td>
+				<td>
+					${jfSpxx.cpkcl}
+				</td>
+				<td>
+					${jfSpxx.cpsl}
+				</td>
+				<td>
+					${jfSpxx.cpyxq}
+				</td>
+				<td>
+					<fmt:formatDate value="${jfSpxx.cpjggxsj}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="merchant:jfSpxx:edit"><td>
     				<a href="${ctx}/merchant/jfSpxx/form?id=${jfSpxx.id}">修改</a>

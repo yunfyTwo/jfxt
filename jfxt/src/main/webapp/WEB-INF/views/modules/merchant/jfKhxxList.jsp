@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>客户信息管理</title>
+	<title>网元客户信息管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -19,8 +19,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/merchant/jfKhxx/list">客户信息列表</a></li>
-		<shiro:hasPermission name="merchant:jfKhxx:edit"><li><a href="${ctx}/merchant/jfKhxx/form">客户信息添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/merchant/jfKhxx/list">网元客户信息列表</a></li>
+		<shiro:hasPermission name="merchant:jfKhxx:edit"><li><a href="${ctx}/merchant/jfKhxx/form">网元客户信息添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="jfKhxx" action="${ctx}/merchant/jfKhxx/list" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

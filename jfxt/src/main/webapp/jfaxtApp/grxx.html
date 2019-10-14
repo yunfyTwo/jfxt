@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>个人资料</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link rel="stylesheet" href="css/icon.css">
+		<!--    <link rel="stylesheet" href="css/new_file.css">
+-->
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/zepto.min.js"></script>
+		<script src="js/swipe.js"></script>
+		<script src="js/common.js"></script>
+        <script src="js/back.js"></script>
+	</head>
+
+	<body ontouchstart>
+
+		<div class="weui_btn_primary weui-header ">
+			<div class="weui-header-left">
+				<a href="index1.html" onClick="" class="icon icon-109 f-white"></a>
+			</div>
+			<h1 class="weui-header-title">个人资料</h1>
+			<input type="text" value="" style="display: none" id="zgId">
+		</div>
+
+		<div class="kong2"></div>
+				
+				<div id="tab5" class="weui-tab__bd-item">
+					<div class="weui-cells">
+						<div class="weui-cell">
+							<input id="user_id" value="" style="display: none">
+							<div class="weui-cell__hd"><label class="weui-label">登录名：</label></div>
+							<div class="weui-cell__bd" id="user_name">
+
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">密码：</label></div>
+							<div class="weui-cell__bd" id="mobilePassword">
+
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">姓名：</label></div>
+							<div class="weui-cell__bd" id="user_nameTp">
+
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">工号：</label></div>
+							<div class="weui-cell__bd" id="no">
+
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">邮箱：</label></div>
+							<div class="weui-cell__bd" id="email">
+
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">电话：</label></div>
+							<div class="weui-cell__bd" id="phone">
+
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">手机：</label></div>
+							<div class="weui-cell__bd" id="mobile">
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">备注：</label></div>
+							<div class="weui-cell__bd" id="remarks">
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-2.1.4.js"></script>
+
+	<script src="js/jquery-weui.js"></script>
+	<script type="text/javascript">
+		var dataedit = 'merchant:jfCf:edit'; //处罚单按钮权限
+		var permissions = "";
+		$(function() {
+			onLoad();
+			perCenter();
+		});
+
+		function perCenter() {
+			//获取存储在本地的会员Id
+			var storage = window.localStorage;
+			var userId = storage.getItem("loginName");
+			permissions = storage.getItem("permissions");
+			findUser(userId);
+		}
+
+		//查询登录用户
+		function findUser(userId) {
+			$.post(
+				getContextPath() + "/app/findUser", {
+					"id": userId
+				},
+				function(data) {
+					if(data.code == 1) {
+						var obj = data.data;
+						$("#user_name").text(obj.loginName);
+						$("#user_nameTp").text(obj.name);
+						$("#user_id").val(obj.id);
+						$("#mobilePassword").text(obj.mobilePassword); //密码
+						$("#no").text(obj.no); //工号
+						$("#email").text(obj.email); //邮箱
+						$("#phone").text(obj.phone);//电话
+						$("#mobile").text(obj.mobile);//手机
+						$("#remarks").text(obj.remarks);//备注
+					} else {
+						$.toast(data.msg, 'forbidden', 8000);
+					}
+				});
+		}
+
+		
+
+		function onLoad() {
+			$.post(
+				getContextPath() + "/app/newggList", {
+
+				},
+				function(data) {
+					if(data.code == 1) {
+						var arr = data.data;
+						var list_html = '';
+						for(var i = 0; i < arr.length; i++) {
+							var obj = arr[i];
+							list_html += ''
+						}
+						$("#ggList").html(list_html);
+					} else {
+						$.toast(data.msg, 'forbidden', 8000);
+					}
+				});
+		}
+	</script>
+</html>

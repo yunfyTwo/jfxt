@@ -70,6 +70,21 @@
 			<if test="kzzd2 != null and kzzd2 != ''">
 				AND a.kzzd2 = #{kzzd2}
 			</if>
+			<if test="isSafetyHazard != null and isSafetyHazard != ''">
+				AND a.is_Safety_Hazard = #{isSafetyHazard}
+			</if>
+			<if test="isODF != null and isODF != ''">
+				AND a.is_ODF = #{isODF}
+			</if>
+			<if test="isCutOver != null and isCutOver != ''">
+				AND a.is_Cut_Over = #{isCutOver}
+			</if>
+			<if test="needRemediation != null and needRemediation != ''">
+				AND a.need_Remediation = #{needRemediation}
+			</if>
+			<if test="isOpticalCable != null and isOpticalCable != ''">
+				AND a.is_Optical_Cable = #{isOpticalCable}
+			</if>
 			<if test="kzzd4 != null and kzzd4 != ''">
 				AND a.kzzd4 = #{kzzd4}
 			</if>

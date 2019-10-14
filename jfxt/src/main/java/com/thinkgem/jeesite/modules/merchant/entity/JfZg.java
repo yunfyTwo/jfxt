@@ -10,6 +10,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 
 /**
  * 整改Entity
@@ -17,10 +18,10 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
  * @version 2019-04-11
  */
 public class JfZg extends DataEntity<JfZg> {
-	
 	public String getJfName() {
 		return jfName;
 	}
+	
 
 	public void setJfName(String jfName) {
 		this.jfName = jfName;
@@ -53,6 +54,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private String userId;      //当前登录用户Id
 	private String jfName;      //整改机房名称
 	
+    
 	public String getZgrqMs() {
 		return zgrqMs;
 	}
@@ -62,7 +64,7 @@ public class JfZg extends DataEntity<JfZg> {
 	}
 
 	
-
+	@ExcelField(title="隐患级别", align=2, sort=25)
 	public String getIsCutOverContent() {
 		return isCutOverContent;
 	}
@@ -79,7 +81,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setBriefDescription(String briefDescription) {
 		this.briefDescription = briefDescription;
 	}
-
+	@ExcelField(title="隐患原因", align=2, sort=25)
 	public String getReason() {
 		return reason;
 	}
@@ -87,7 +89,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-
+	@ExcelField(title="是否有ODF架/柜", align=2, sort=25)
 	public String getIsODF() {
 		return isODF;
 	}
@@ -95,7 +97,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setIsODF(String isODF) {
 		this.isODF = isODF;
 	}
-
+	@ExcelField(title="是否需要网络设备整治割接", align=2, sort=25)
 	public String getIsCutOver() {
 		return isCutOver;
 	}
@@ -103,7 +105,8 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setIsCutOver(String isCutOver) {
 		this.isCutOver = isCutOver;
 	}
-
+	
+	@ExcelField(title="是否需要光缆割接", align=2, sort=25)
 	public String getIsOpticalCable() {
 		return isOpticalCable;
 	}
@@ -111,7 +114,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setIsOpticalCable(String isOpticalCable) {
 		this.isOpticalCable = isOpticalCable;
 	}
-
+	@ExcelField(title="光缆割接量（条/芯）", align=2, sort=25)
 	public String getOpticalCableCutting() {
 		return opticalCableCutting;
 	}
@@ -119,7 +122,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setOpticalCableCutting(String opticalCableCutting) {
 		this.opticalCableCutting = opticalCableCutting;
 	}
-
+	@ExcelField(title="整治批次", align=2, sort=25)
 	public String getOpticalCableContent() {
 		return opticalCableContent;
 	}
@@ -127,7 +130,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setOpticalCableContent(String opticalCableContent) {
 		this.opticalCableContent = opticalCableContent;
 	}
-
+	@ExcelField(title="是否需要环境整治", align=2, sort=25)
 	public String getNeedRemediation() {
 		return needRemediation;
 	}
@@ -135,7 +138,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setNeedRemediation(String needRemediation) {
 		this.needRemediation = needRemediation;
 	}
-
+	@ExcelField(title="环境整治内容描述（门、窗、墙面等）", align=2, sort=25)
 	public String getContentDescription() {
 		return contentDescription;
 	}
@@ -143,7 +146,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setContentDescription(String contentDescription) {
 		this.contentDescription = contentDescription;
 	}
-
+	@ExcelField(title="是否存在安全隐患", align=2, sort=25)
 	public String getIsSafetyHazard() {
 		return isSafetyHazard;
 	}
@@ -192,7 +195,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public JfZg(String id){
 		super(id);
 	}
-
+	@ExcelField(title="整改机房", align=2, sort=1)
 	public JfXx getZgjf() {
 		return zgjf;
 	}
@@ -202,6 +205,7 @@ public class JfZg extends DataEntity<JfZg> {
 	}
 	
 	@Length(min=0, max=255, message="整改单号长度必须介于 0 和 255 之间")
+	@ExcelField(title="整改单号", align=2, sort=2)
 	public String getZgdh() {
 		return zgdh;
 	}
@@ -211,6 +215,7 @@ public class JfZg extends DataEntity<JfZg> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="整改日期", align=2, sort=4)
 	public Date getZgrq() {
 		return zgrq;
 	}
@@ -220,6 +225,7 @@ public class JfZg extends DataEntity<JfZg> {
 	}
 	
 	@Length(min=0, max=1000, message="整改要求长度必须介于 0 和 1000 之间")
+	@ExcelField(title="整改要求", align=2, sort=5)
 	public String getZgyq() {
 		return zgyq;
 	}
@@ -246,6 +252,7 @@ public class JfZg extends DataEntity<JfZg> {
 	}
 	
 	@Length(min=0, max=255, message="扩展字段2长度必须介于 0 和 255 之间")
+	@ExcelField(title="是否已整改", align=2, sort=3)
 	public String getKzzd2() {
 		return kzzd2;
 	}
@@ -255,6 +262,7 @@ public class JfZg extends DataEntity<JfZg> {
 	}
 	
 	@Length(min=0, max=255, message="扩展字段3长度必须介于 0 和 255 之间")
+	@ExcelField(title="费用", align=2, sort=25)
 	public String getKzzd3() {
 		return kzzd3;
 	}
@@ -264,6 +272,7 @@ public class JfZg extends DataEntity<JfZg> {
 	}
 	
 	@Length(min=0, max=255, message="扩展字段4长度必须介于 0 和 255 之间")
+	@ExcelField(title="巡检人员", align=2, sort=2)
 	public String getKzzd4() {
 		return kzzd4;
 	}
@@ -271,7 +280,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public void setKzzd4(String kzzd4) {
 		this.kzzd4 = kzzd4;
 	}
-
+   
 	public String getUserId() {
 		return userId;
 	}

@@ -45,6 +45,30 @@
         
 
 	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btnExport").click(function(){
+				top.$.jBox.confirm("确认要导出整改单数据吗？（仅导出当前页数据，如需导出全部请在页面最下方(“30”数字处)输入要导出的条数按回车即可）","系统提示",function(v,h,f){
+					if(v=="ok"){
+						$("#searchForm").attr("action","${ctx}/merchant/jfZg/export");
+						$("#searchForm").submit();
+					}
+				},{buttonsFocus:1});
+				top.$('.jbox-body .jbox-icon').css('top','55px');
+			});
+			/* $("#btnImport").click(function(){
+				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true}, 
+					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
+			}); */
+		});
+		function page(n,s){
+			if(n) $("#pageNo").val(n);
+			if(s) $("#pageSize").val(s);
+			$("#searchForm").attr("action","${ctx}/merchant/jfZg/list");
+			$("#searchForm").submit();
+	    	return false;
+	    }
+	</script>
 </head>
 <body>
 
@@ -118,7 +142,47 @@
 					<form:option value="4 " label="4"/>
 				</form:select> 
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li><label>是否存在安全隐患：</label>
+				<form:select path="isSafetyHazard" class="input-xlarge"  cssStyle="width:80px;height: 50px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select> 
+			</li>
+			<li><label>是否有ODF架/柜：</label>
+				<form:select path="isODF" class="input-xlarge"  cssStyle="width:80px;height: 50px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select> 
+			</li>
+			</ul>
+			<ul class="ul-form">
+			<li><label>是否需要网络设备整治割接：</label>
+				<form:select path="isCutOver" class="input-xlarge"  cssStyle="width:80px;height: 90px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select> 
+			</li>
+			
+			
+			<li><label>是否需要环境整治：</label>
+				<form:select path="needRemediation" class="input-xlarge"  cssStyle="width:80px;height: 50px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select> 
+			</li>
+			<li><label>是否需要光缆割接：</label>
+				<form:select path="isOpticalCable" class="input-xlarge"  cssStyle="width:80px;height: 50px;">
+					<form:option value="" label="请选择"/>
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select> 
+			</li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page()"/>
+			<input id="btnExport" class="btn btn-primary" type="button" value="导出"/></li>
 			<li style="color:red" class="clearfix">满足条件的记录数：${count}条</li>
 		</ul>
 	</form:form>

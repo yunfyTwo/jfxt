@@ -81,6 +81,16 @@
 							<div class="weui-cell__bd" id="remarks">
 							</div>
 						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">归属部门：</label></div>
+							<div class="weui-cell__bd" id="office">
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label class="weui-label">角色权限：</label></div>
+							<div class="weui-cell__bd" id="roleNames">
+							</div>
+						</div>
 					</div>
 
 				</div>
@@ -115,6 +125,7 @@
 				function(data) {
 					if(data.code == 1) {
 						var obj = data.data;
+						console.log(data);
 						$("#user_name").text(obj.loginName);
 						$("#user_nameTp").text(obj.name);
 						$("#user_id").val(obj.id);
@@ -124,6 +135,8 @@
 						$("#phone").text(obj.phone);//电话
 						$("#mobile").text(obj.mobile);//手机
 						$("#remarks").text(obj.remarks);//备注
+						$("#office").text(obj.officeName);//归属部门
+						$("#roleNames").text(obj.roleNames);//角色权限
 					} else {
 						$.toast(data.msg, 'forbidden', 8000);
 					}

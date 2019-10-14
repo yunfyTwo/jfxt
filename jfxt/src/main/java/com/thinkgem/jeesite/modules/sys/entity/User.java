@@ -62,7 +62,15 @@ public class User extends DataEntity<User> {
 
 	private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
+	private String  officeName;	// 部门
 
+	public String getOfficeName() {
+		return officeName;
+	}
+
+	public void setOfficeName(String officeName) {
+		this.officeName = officeName;
+	}
 
 	public User() {
 		super();

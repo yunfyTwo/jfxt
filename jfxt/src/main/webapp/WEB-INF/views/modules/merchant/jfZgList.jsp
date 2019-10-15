@@ -194,6 +194,7 @@
 				<th>整改网元</th>
 				<th>网元属性</th>
 				<th>巡检人员</th>
+				<th style="color: red;">是否已整改</th>
 				<th>整改单号</th>
 				<th>日期</th>
 				<th>整改要求</th>
@@ -209,7 +210,6 @@
 				<th>整治批次</th>
 				<th>是否需要环境整治</th>
 				<th>环境整治内容描述（门、窗、墙面等）</th>
-				<th>是否已整改</th>
 				<th>整改费用</th>
 				<shiro:hasPermission name="merchant:jfZg:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -228,6 +228,7 @@
 						${jfZg.zgjf.jfwz}
 					</td>
 					<td>${jfZg.kzzd4}</td>
+					<td style="color: red;">${jfZg.kzzd2}</td>
 				<td>
 					${jfZg.zgdh}
 				</td>
@@ -258,7 +259,6 @@
 					<td>${jfZg.opticalCableContent}</td>
 					<td>${jfZg.needRemediation}</td>
 					<td>${jfZg.contentDescription}</td>
-					<td>${jfZg.kzzd2}</td>
 					<td>${jfZg.kzzd3}</td>
 
 

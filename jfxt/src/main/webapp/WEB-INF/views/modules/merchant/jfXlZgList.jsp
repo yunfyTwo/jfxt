@@ -82,6 +82,7 @@
 			<tr>
 				<th>整改线路</th>
 				<th>巡检人员</th>
+			    <th style="color: red;">是否已整改</th>
 				<th>整改单号</th>
 				<th>日期</th>
 				<th>问题情况</th>
@@ -94,7 +95,6 @@
 				<th>新建拉线（条）</th>
 				<th>更换拉线（条）</th>
 				<th>需更换光缆（km）</th>
-				<th>是否已整改</th>
 				<th>预估费用（元）</th>
 				<th>备注</th>
 				<shiro:hasPermission name="merchant:jfXlZg:edit"><th>操作</th></shiro:hasPermission>
@@ -106,6 +106,7 @@
 			<tr>
 				<td>${jfXlZg.zgjf.name}</td>
 				<td>${jfXlZg.kzzd4}</td>
+				<td style="color: red;">${jfXlZg.iszg}</td>
 				<td>${jfXlZg.zgdh}</td>
 				<td><fmt:formatDate value="${jfXlZg.zgrq}" pattern="yyyy-MM-dd"/></td>
 				<td>${jfXlZg.zgwt}</td>
@@ -127,7 +128,6 @@
 				<td>${jfXlZg.xjlx}</td>
 				<td>${jfXlZg.ghlx}</td>
 				<td>${jfXlZg.ghgl}</td>
-				<td>${jfXlZg.iszg}</td>
 				<td>${jfXlZg.ygfy}</td>
 				<td>${jfXlZg.remarks}</td>
 

@@ -747,7 +747,7 @@ body {
 }
 .weui-pull-to-refresh__layer {
   height: 30px;
-  line-height: 30px;
+  line-height: 150px;
   padding: 10px;
   text-align: center;
 }

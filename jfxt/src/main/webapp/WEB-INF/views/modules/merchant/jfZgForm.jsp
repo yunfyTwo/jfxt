@@ -78,12 +78,17 @@
 
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">是否存在安全隐患：</label>
 			<div class="controls">
-				<form:textarea path="isSafetyHazard" htmlEscape="false" rows="1" maxlength="10" class="input-xlarge "/>
+				<form:select path="isSafetyHazard" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">隐患简要说明：</label>
 			<div class="controls">
@@ -96,18 +101,26 @@
 				<form:textarea path="reason" htmlEscape="false" rows="4" maxlength="1000" class="input-xlarge "/>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">是否有ODF架/柜：</label>
 			<div class="controls">
-				<form:textarea path="isODF" htmlEscape="false" rows="1" maxlength="10" class="input-xlarge "/>
+				<form:select path="isODF" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">是否需要网络设备整治割接：</label>
 			<div class="controls">
-				<form:textarea path="isCutOver" htmlEscape="false" rows="1" maxlength="10" class="input-xlarge "/>
+				<form:select path="isCutOver" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">隐患级别：</label>
 			<div class="controls">
@@ -120,12 +133,17 @@
 				</form:select>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">是否需要光缆割接：</label>
 			<div class="controls">
-				<form:textarea path="isOpticalCable" htmlEscape="false" rows="1" maxlength="10" class="input-xlarge "/>
+				<form:select path="isOpticalCable" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">光缆割接量（条/芯）：</label>
 			<div class="controls">
@@ -144,12 +162,18 @@
 				</form:select>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">是否需要环境整治：</label>
 			<div class="controls">
-				<form:textarea path="needRemediation" htmlEscape="false" rows="1" maxlength="100" class="input-xlarge "/>
+				<form:select path="needRemediation" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select>
 			</div>
 		</div>
+		
+		
 		<div class="control-group">
 			<label class="control-label">环境整治内容描述（门、窗、墙面等）：</label>
 			<div class="controls">
@@ -164,9 +188,12 @@
 			<%--</div>--%>
 		<%--</div>--%>
 		<div class="control-group">
-			<label class="control-label">是否已整改：</label>
+			<label class="control-label" style="color: red;">是否已整改：</label>
 			<div class="controls">
-				<form:input path="kzzd2" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				<form:select path="kzzd2" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
+					<form:option value="是" label="是"/>
+					<form:option value="否" label="否"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">

@@ -100,7 +100,7 @@
 				<th>巡检人员</th>
 				<th>现场图片</th>
 				<th>整改判断</th>
-				<th>巡检是否通过</th>
+				<th style="color: red;">巡检是否通过</th>
 				<th>巡检打分</th>
 				<shiro:hasPermission name="merchant:jfXjgc:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -138,7 +138,7 @@
 				<td>
 					${jfXjgc.zgpd}
 				</td>
-				<td>
+				<td style="color: red;">
 					${fns:getDictLabel(jfXjgc.xjsftg, 'yes_no', '')}
 				</td>
 				

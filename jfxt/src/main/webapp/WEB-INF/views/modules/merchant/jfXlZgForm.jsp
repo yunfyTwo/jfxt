@@ -127,7 +127,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">是否已整改：</label>
+			<label class="control-label" style="color: red;">是否已整改：</label>
 			<div class="controls">
 				<form:select path="iszg" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
 					<form:option value="是" label="是"/>

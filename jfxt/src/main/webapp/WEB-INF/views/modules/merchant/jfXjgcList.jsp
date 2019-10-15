@@ -43,6 +43,30 @@
         }
 
 	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btnExport").click(function(){
+				top.$.jBox.confirm("确认要导出巡检过程数据吗？（仅导出当前页数据，如需导出全部请在页面最下方(“30”数字处)输入要导出的条数按回车即可）","系统提示",function(v,h,f){
+					if(v=="ok"){
+						$("#searchForm").attr("action","${ctx}/merchant/jfXjgc/export");
+						$("#searchForm").submit();
+					}
+				},{buttonsFocus:1});
+				top.$('.jbox-body .jbox-icon').css('top','55px');
+			});
+			/* $("#btnImport").click(function(){
+				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true}, 
+					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
+			}); */
+		});
+		function page(n,s){
+			if(n) $("#pageNo").val(n);
+			if(s) $("#pageSize").val(s);
+			$("#searchForm").attr("action","${ctx}/merchant/jfXjgc/list");
+			$("#searchForm").submit();
+	    	return false;
+	    }
+	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
@@ -86,7 +110,8 @@
 					   value="<fmt:formatDate value="${jfXjgc.overDate}" pattern="yyyy-MM-dd"/>"
 					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page()"/>
+			<input id="btnExport" class="btn btn-primary" type="button" value="导出"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>

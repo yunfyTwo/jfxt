@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 
 
 public class JfXlZg extends DataEntity<JfXlZg> {
@@ -68,6 +69,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	}
 
 	@Length(min=0, max=255, message="整改单号长度必须介于 0 和 255 之间")
+	@ExcelField(title="整改单号", align=2, sort=40)
 	public String getZgdh() {
 		return zgdh;
 	}
@@ -77,6 +79,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="日期", align=2, sort=50)
 	public Date getZgrq() {
 		return zgrq;
 	}
@@ -122,6 +125,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	}
 	
 	@Length(min=0, max=255, message="扩展字段4长度必须介于 0 和 255 之间")
+	@ExcelField(title="巡检人员", align=2, sort=20)
 	public String getKzzd4() {
 		return kzzd4;
 	}
@@ -129,7 +133,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setKzzd4(String kzzd4) {
 		this.kzzd4 = kzzd4;
 	}
-
+    
 	public String getUserId() {
 		return userId;
 	}
@@ -153,7 +157,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	@ExcelField(title="问题情况", align=2, sort=60)
 	public String getZgwt() {
 		return zgwt;
 	}
@@ -201,7 +205,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-
+	@ExcelField(title="处理方式", align=2, sort=70)
 	public String getZgfs() {
 		return zgfs;
 	}
@@ -209,7 +213,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setZgfs(String zgfs) {
 		this.zgfs = zgfs;
 	}
-
+	@ExcelField(title="需新建杆路（km）", align=2, sort=80)
 	public String getXjgl() {
 		return xjgl;
 	}
@@ -217,7 +221,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setXjgl(String xjgl) {
 		this.xjgl = xjgl;
 	}
-
+	@ExcelField(title="更换吊线（km）", align=2, sort=90)
 	public String getGhdx() {
 		return ghdx;
 	}
@@ -225,7 +229,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setGhdx(String ghdx) {
 		this.ghdx = ghdx;
 	}
-
+	@ExcelField(title="更换电杆（根）", align=2, sort=100)
 	public String getGhdg() {
 		return ghdg;
 	}
@@ -233,7 +237,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setGhdg(String ghdg) {
 		this.ghdg = ghdg;
 	}
-
+	@ExcelField(title="扶正（偏杆/倒杆）", align=2, sort=110)
 	public String getDgfz() {
 		return dgfz;
 	}
@@ -241,7 +245,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setDgfz(String dgfz) {
 		this.dgfz = dgfz;
 	}
-
+	@ExcelField(title="新建拉线（条）", align=2, sort=120)
 	public String getXjlx() {
 		return xjlx;
 	}
@@ -249,7 +253,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setXjlx(String xjlx) {
 		this.xjlx = xjlx;
 	}
-
+	@ExcelField(title="更换拉线（条）", align=2, sort=130)
 	public String getGhlx() {
 		return ghlx;
 	}
@@ -257,7 +261,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setGhlx(String ghlx) {
 		this.ghlx = ghlx;
 	}
-
+	@ExcelField(title="需更换光缆（km）", align=2, sort=140)
 	public String getGhgl() {
 		return ghgl;
 	}
@@ -265,7 +269,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setGhgl(String ghgl) {
 		this.ghgl = ghgl;
 	}
-
+	@ExcelField(title="是否已整改", align=2, sort=30)
 	public String getIszg() {
 		return iszg;
 	}
@@ -273,7 +277,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setIszg(String iszg) {
 		this.iszg = iszg;
 	}
-
+	@ExcelField(title="费用", align=2, sort=150)
 	public String getYgfy() {
 		return ygfy;
 	}
@@ -281,7 +285,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setYgfy(String ygfy) {
 		this.ygfy = ygfy;
 	}
-
+	@ExcelField(title="备注", align=2, sort=160)
 	public String getRemarks() {
 		return remarks;
 	}
@@ -289,7 +293,7 @@ public class JfXlZg extends DataEntity<JfXlZg> {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-
+	@ExcelField(title="整改机房", align=2, sort=10)
 	public String getJfName() {
 		return jfName;
 	}

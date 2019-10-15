@@ -8,6 +8,7 @@
 		a.xjsj AS "xjsj",
 		DATE_FORMAT(a.xjsj,'%Y-%m-%d')AS "xjsjMs" ,
 		b.jfwz as "xjjf.jfwz",
+		b.jfwz as "xjgcWysx",
 		a.xjry AS "xjry.id",
 		a.xczp AS "xczp",
 		a.zgpd AS "zgpd",
@@ -24,7 +25,9 @@
 		a.kzzd3 AS "kzzd3",
 		a.kzzd4 AS "kzzd4",
 		b.name as "xjjf.name",
+		b.name as "xjgcName",
 		c.name as "xjry.name",
+		c.name as "xjgcRyName",
 		o.id AS "createBy.office.id",
 		o.name AS "createBy.office.name"
 	</sql>

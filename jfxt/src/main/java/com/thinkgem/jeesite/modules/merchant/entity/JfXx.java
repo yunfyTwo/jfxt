@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.merchant.entity;
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 
 import java.util.List;
 
@@ -27,9 +28,16 @@ public class JfXx extends DataEntity<JfXx> {
 	private String kzzd3;		// 扩展字段3
 	private String kzzd4;		// 扩展字段4
 	private String userId;		// 登陆用户ID
-
+	private String remarks;		// 问题描述
 	private String limit;//app分页
-	
+	@ExcelField(title="问题描述", align=2, sort=50)
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -65,6 +73,7 @@ public class JfXx extends DataEntity<JfXx> {
 	}
 
 	@Length(min=0, max=255, message="网元名称长度必须介于 0 和 255 之间")
+	@ExcelField(title="网元名称", align=2, sort=10)
 	public String getName() {
 		return name;
 	}
@@ -74,6 +83,7 @@ public class JfXx extends DataEntity<JfXx> {
 	}
 	
 	@Length(min=0, max=255, message="位置长度必须介于 0 和 255 之间")
+	@ExcelField(title="网元属性", align=2, sort=20)
 	public String getJfwz() {
 		return jfwz;
 	}
@@ -83,6 +93,7 @@ public class JfXx extends DataEntity<JfXx> {
 	}
 	
 	@Length(min=0, max=255, message="编号长度必须介于 0 和 255 之间")
+	@ExcelField(title="编号", align=2, sort=30)
 	public String getJfbh() {
 		return jfbh;
 	}
@@ -92,6 +103,7 @@ public class JfXx extends DataEntity<JfXx> {
 	}
 	
 	@Length(min=0, max=255, message="所属区域长度必须介于 0 和 255 之间")
+	@ExcelField(title="所属区域", align=2, sort=40)
 	public String getJfjj() {
 		return jfjj;
 	}

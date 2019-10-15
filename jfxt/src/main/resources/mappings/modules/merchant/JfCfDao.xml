@@ -9,6 +9,7 @@
 		a.cfrq AS "cfrq",
 		DATE_FORMAT(a.cfrq,'%Y-%m-%d')AS "cfrqMs" ,
 		b.jfwz as "cfjf.jfwz",
+		b.jfwz as "xjgcWysx",
 		a.cfdx AS "cfdx",
 		a.cftd AS "cftd",
 		a.cfqxyyz AS "cfqxyyz",
@@ -25,6 +26,7 @@
 		a.kzzd3 AS "kzzd3",
 		a.kzzd4 AS "kzzd4",
 		b.name as "cfjf.name",
+		b.name as "cfwyName",
 		o.id AS "createBy.office.id",
 		o.name AS "createBy.office.name"
 	</sql>

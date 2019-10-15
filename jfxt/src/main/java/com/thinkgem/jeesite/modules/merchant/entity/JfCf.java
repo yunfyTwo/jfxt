@@ -10,6 +10,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 
 /**
  * 处罚Entity
@@ -33,8 +34,27 @@ public class JfCf extends DataEntity<JfCf> {
 	private String kzzd3;		// 扩展字段3
 	private String kzzd4;		// 扩展字段4
 	private String userId;      //当前登录用户Id
+	private String cfwyName;      //处罚网元（导出专用）
+	private String xjgcWysx;      //巡检过程人员名字（导出数据用）
+	@ExcelField(title="网元属性", align=2, sort=40)
+	public String getXjgcWysx() {
+		return xjgcWysx;
+	}
+
+	public void setXjgcWysx(String xjgcWysx) {
+		this.xjgcWysx = xjgcWysx;
+	}
 
 	private List<String> xctps;
+	
+	@ExcelField(title="处罚网元", align=2, sort=30)
+	public String getCfwyName() {
+		return cfwyName;
+	}
+
+	public void setCfwyName(String cfwyName) {
+		this.cfwyName = cfwyName;
+	}
 
 	private Date startDate;		// 开始日期
 	private Date overDate;		// 结束日期
@@ -87,7 +107,7 @@ public class JfCf extends DataEntity<JfCf> {
 	public JfCf(String id){
 		super(id);
 	}
-
+	
 	public JfXx getCfjf() {
 		return cfjf;
 	}
@@ -97,6 +117,7 @@ public class JfCf extends DataEntity<JfCf> {
 	}
 	
 	@Length(min=0, max=255, message="处罚通知单号长度必须介于 0 和 255 之间")
+	@ExcelField(title="处罚通知单号", align=2, sort=10)
 	public String getCftzd() {
 		return cftzd;
 	}
@@ -106,6 +127,7 @@ public class JfCf extends DataEntity<JfCf> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="处罚日期", align=2, sort=50)
 	public Date getCfrq() {
 		return cfrq;
 	}
@@ -115,6 +137,7 @@ public class JfCf extends DataEntity<JfCf> {
 	}
 	
 	@Length(min=0, max=64, message="处罚对象长度必须介于 0 和 64 之间")
+	@ExcelField(title="处罚对象", align=2, sort=60, dictType="cfdx")
 	public String getCfdx() {
 		return cfdx;
 	}
@@ -124,6 +147,7 @@ public class JfCf extends DataEntity<JfCf> {
 	}
 	
 	@Length(min=0, max=64, message="处罚梯度长度必须介于 0 和 64 之间")
+	@ExcelField(title="处罚梯度", align=2, sort=70, dictType="cftd")
 	public String getCftd() {
 		return cftd;
 	}
@@ -178,6 +202,7 @@ public class JfCf extends DataEntity<JfCf> {
 	}
 	
 	@Length(min=0, max=255, message="扩展字段3长度必须介于 0 和 255 之间")
+	@ExcelField(title="巡检人员", align=2, sort=20)
 	public String getKzzd3() {
 		return kzzd3;
 	}
@@ -187,6 +212,7 @@ public class JfCf extends DataEntity<JfCf> {
 	}
 	
 	@Length(min=0, max=255, message="扩展字段4长度必须介于 0 和 255 之间")
+	@ExcelField(title="处罚金额", align=2, sort=80)
 	public String getKzzd4() {
 		return kzzd4;
 	}

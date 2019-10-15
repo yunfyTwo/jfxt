@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.merchant.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
+import com.thinkgem.jeesite.modules.merchant.entity.JfZg;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
 import com.thinkgem.jeesite.modules.sys.entity.Office;
 import com.thinkgem.jeesite.modules.sys.service.OfficeService;
@@ -17,12 +18,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.modules.merchant.entity.JfXjgc;
 import com.thinkgem.jeesite.modules.merchant.service.JfXjgcService;
 
@@ -56,7 +60,27 @@ public class JfXjgcController extends BaseController {
 		}
 		return entity;
 	}
-	
+	/**
+	 * 导出巡检过程数据
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequiresPermissions("merchant:jfXjgc:view")
+    @RequestMapping(value = "export", method=RequestMethod.POST)
+    public String exportFile(JfXjgc jfXjgc, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+            String fileName = "巡检过程"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
+            Page<JfXjgc> page = jfXjgcService.findPage(new Page<JfXjgc>(request, response, -1), jfXjgc);
+    		new ExportExcel("巡检过程", JfXjgc.class).setDataList(page.getList()).write(response, fileName).dispose();
+    		return null;
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导出用户失败！失败信息："+e.getMessage());
+		}
+		return "redirect:" + adminPath + "/merchant/jfXjgc/list?repage";
+    }
 	/**
 	 * 通过登录名获取所属区域
 	 * @param request

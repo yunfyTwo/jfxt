@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import org.hibernate.validator.constraints.Length;
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 
 import java.util.Date;
 import java.util.List;
@@ -32,7 +33,36 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	private String kzzd3;		// 扩展字段3
 	private String kzzd4;		// 扩展字段4
 	private String userId;      //当前登录用户Id
+	private String xjgcName;      //巡检网元名字（导出数据用）
+	private String xjgcRyName;      //巡检过程人员名字（导出数据用）
+	private String xjgcWysx;      //巡检过程人员名字（导出数据用）
+	@ExcelField(title="网元属性", align=2, sort=20)
+	public String getXjgcWysx() {
+		return xjgcWysx;
+	}
 
+	public void setXjgcWysx(String xjgcWysx) {
+		this.xjgcWysx = xjgcWysx;
+	}
+
+	@ExcelField(title="巡检网元", align=2, sort=10)
+	public String getXjgcName() {
+		return xjgcName;
+	}
+
+	public void setXjgcName(String xjgcName) {
+		this.xjgcName = xjgcName;
+	}
+	@ExcelField(title="巡检人员", align=2, sort=40)
+	public String getXjgcRyName() {
+		return xjgcRyName;
+	}
+
+	public void setXjgcRyName(String xjgcRyName) {
+		this.xjgcRyName = xjgcRyName;
+	}
+
+	
 	private List<String> xctps;//多图片存储
 
 	private Date startDate;		// 开始日期
@@ -88,7 +118,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	public JfXjgc(String id){
 		super(id);
 	}
-
+	
 	public JfXx getXjjf() {
 		return xjjf;
 	}
@@ -99,6 +129,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="巡检时间", align=2, sort=30)
 	public Date getXjsj() {
 		return xjsj;
 	}
@@ -106,7 +137,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	public void setXjsj(Date xjsj) {
 		this.xjsj = xjsj;
 	}
-
+	
 	public User getXjry() {
 		return xjry;
 	}
@@ -125,6 +156,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	}
 	
 	@Length(min=0, max=1000, message="整改判断长度必须介于 0 和 1000 之间")
+	@ExcelField(title="整改判断", align=2, sort=50)
 	public String getZgpd() {
 		return zgpd;
 	}
@@ -134,6 +166,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	}
 	
 	@Length(min=0, max=1, message="巡检是否通过长度必须介于 0 和 1 之间")
+	@ExcelField(title="巡检是否通过", align=2, sort=60, dictType="yes_no")
 	public String getXjsftg() {
 		return xjsftg;
 	}
@@ -143,6 +176,7 @@ public class JfXjgc extends DataEntity<JfXjgc> {
 	}
 	
 	@Length(min=0, max=64, message="巡检打分长度必须介于 0 和 64 之间")
+	@ExcelField(title="巡检打分", align=2, sort=60)
 	public String getXjdf() {
 		return xjdf;
 	}

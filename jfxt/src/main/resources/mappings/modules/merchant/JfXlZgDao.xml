@@ -31,6 +31,7 @@
 		a.kzzd3 AS "kzzd3",
 		IFNULL(a.kzzd4,u.name) AS "kzzd4",
 		b.name as "zgjf.name",
+		b.name as "jfName", 
 		a.is_Safety_Hazard AS "isSafetyHazard",
 		a.brief_Descri_ption AS "briefDescription",
 		a.reason AS "reason",

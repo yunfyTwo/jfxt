@@ -62,13 +62,20 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">网元属性：</label>
 			<div class="controls">
-				<form:input path="jfwz" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+				<form:select path="jfwz" htmlEscape="false" maxlength="10" class="input-xlarge " style="width: 100px;">
+					<form:option value="B类机房" label="B类机房"/>
+						<form:option value="C类机房" label="C类机房"/>
+						<form:option value="D类机房" label="D类机房"/>
+						<form:option value="自留基站" label="自留基站"/>
+						<form:option value="线路" label="线路"/>
+				</form:select>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">问题描述：</label>
 			<div class="controls">

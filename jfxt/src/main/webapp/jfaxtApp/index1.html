@@ -387,10 +387,17 @@
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
-						<a class="weui-cell weui-cell_access" onclick="alert('版本号：2019.10.14')"">
+						<a class="weui-cell weui-cell_access" href="javascript:;" id='show-alert' >
 							<img src="images/grzx2.png" style="height: 20px;width: 20px;">
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;版本号</p>
+							</div>
+							<div class="weui-cell__ft"></div>
+						</a>
+						<a class="weui-cell weui-cell_access" href="http://39.97.246.149:8080/jfxt/jfaxtApp/unpackage/release/jfxt.apk">
+							<img src="images/grzx5.png" style="height: 20px;width: 20px;">
+							<div class="weui-cell__bd">
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;下载最新版本</p>
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
@@ -656,5 +663,9 @@
 			background: #ffffff
 		}
 	</style>
-
+      <script>
+      $(document).on("click", "#show-alert", function() {
+        $.alert("更新于2019年10月16日！", "当前版本！");
+      });
+      </script>
 </html>

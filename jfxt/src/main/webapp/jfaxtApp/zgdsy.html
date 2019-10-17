@@ -46,6 +46,13 @@
             <!--<input class="weui-input" type="date" value="">-->
         </div>
     </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="zgsxrq" class="weui-label">整改时限</label></div>
+        <div class="weui-cell__bd">
+        	<input class="weui-input" id="zgsxrq" type="text" value="" readonly="readonly" >
+            <!--<input class="weui-input" type="date" value="">-->
+        </div>
+    </div>
 </div>
 <div class="weui-cells__title">网元</div>
 <div class="weui-cells ">
@@ -299,6 +306,7 @@
                     $("#zgId").val(obj.id);//id
                     $("#zgdh").text(obj.zgdh);//单号
                     $("#years-monthes").val(obj.zgrq);//日期
+                    $("#zgsxrq").val(obj.zgsxrq);//日期
                     $("#jf_id").val(obj.zgjf.id);//网元
                     $("#zgdJfwz").val(obj.zgjf.jfwz);
                      //处罚原因

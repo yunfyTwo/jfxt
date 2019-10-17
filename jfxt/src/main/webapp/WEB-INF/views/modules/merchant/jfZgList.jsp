@@ -190,7 +190,7 @@
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page()"/>
 			<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
-			<!-- <input id="btnImport" class="btn btn-primary" type="button" value="导入"/> --></li>
+			<!-- <input id="btnImport" class="btn btn-primary" type="button" value="导入"/> --> </li>
 			<li style="color:red" class="clearfix">满足条件的记录数：${count}条</li>
 		</ul>
 	</form:form>
@@ -204,7 +204,8 @@
 				<th>巡检人员</th>
 				<th style="color: red;">是否已整改</th>
 				<th>整改单号</th>
-				<th>日期</th>
+				<th>整改日期</th>
+				<th>整改时限</th>
 				<th>整改要求</th>
 				<th>整改现场照片</th>
 				<th>是否存在安全隐患</th>
@@ -242,6 +243,9 @@
 				</td>
 				<td>
 					<fmt:formatDate value="${jfZg.zgrq}" pattern="yyyy-MM-dd"/>
+				</td>
+				<td>
+					<fmt:formatDate value="${jfZg.zgsxrq}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${jfZg.zgyq}

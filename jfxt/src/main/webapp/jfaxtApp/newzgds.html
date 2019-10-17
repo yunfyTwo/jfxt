@@ -51,6 +51,13 @@
 					<!--<input class="weui-input" type="date" value=" " id="cfrq">-->
 				</div>
 			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd"><label for="" class="weui-label">整改时限</label></div>
+				<div class="weui-cell__bd">
+					<input class="weui-input" id="zgsxrq" type="text" value="" placeholder="请填写整改时限" readonly="readonly">
+					<!--<input class="weui-input" type="date" value=" " id="cfrq">-->
+				</div>
+			</div>
 		</div>
 		<div class="weui-cell">
 			<div class="weui-cell__hd"><label for="" class="weui-label">网元</label></div>
@@ -341,6 +348,7 @@
 	<script>
 		//时间日期的值
 		var displayValues = $("#years-monthes").val();
+		var displayValue = $("#zgsxrq").val();
 
 		function toXunjian() {
 			window.location.href = "index1.html";
@@ -364,7 +372,7 @@
 	            });
 	    };
 		
-		//初始化处罚单日期
+		//初始化整改单日期
 		$("#years-monthes").datetimePicker({
 			title: "选择日期时间",
 			min: '2015-12-10',
@@ -374,7 +382,16 @@
 				console.log(values);
 			}
 		});
-
+//初始化整改单期限日期
+		$("#zgsxrq").datetimePicker({
+			title: "选择日期时间",
+			min: '2015-12-10',
+			max: '2050-10-01',
+			onChange: function(picker, values, displayValues) {
+				values = $("#zgsxrq").val();
+				console.log(values);
+			}
+		});
 		var imgArr = new Array(); //保存多图片路径
 		var imgUrls = "";
 
@@ -392,6 +409,8 @@
 			jfZG.zgdh = $("#zgdh").text(); // 整改单号
 			var sedDate = $("#years-monthes").val();
 			jfZG.zgrq = new Date(sedDate); // 日期
+			var sedDate = $("#zgsxrq").val();
+			jfZG.zgsxrq = new Date(sedDate); // 日期
 			jfZG.zgyq = $("#zgyqms").val(); // 处罚原因描述
 			
 			jfZG.isSafetyHazard = $("#isSafetyHazard").val();//是否存在安全隐患

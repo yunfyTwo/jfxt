@@ -123,14 +123,14 @@ public class JfZgController extends BaseController {
 					jfZgService.save(jfZg);
 					successNum++;
 				}catch(ConstraintViolationException ex){
-					failureMsg.append("<br/>网元整改单 "+jfZg.getJfName()+" 导入失败：");
+					failureMsg.append("<br/>网元整改单 "+jfZg.getZgjf()+" 导入失败：");
 					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");  //告诉你出错原因
 					for (String message : messageList){
 						failureMsg.append(message+"; ");
 						failureNum++;
 					}
 				}catch (Exception ex) {
-					failureMsg.append("<br/>网元信息 "+jfZg.getJfName()+" 导入失败："+ex.getMessage());
+					failureMsg.append("<br/>网元信息 "+jfZg.getZgjf()+" 导入失败："+ex.getMessage());
 				}
 			}
 			if (failureNum>0){

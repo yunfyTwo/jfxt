@@ -50,7 +50,7 @@
 						</div>
 
                   
-
+                    <HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">
 						<a href="gonggao.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g1.png" alt="">
@@ -78,7 +78,7 @@
 								巡检过程
 							</p>
 						</a>
-
+<!--<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">-->
                         <a href="zgdsyck.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g8.png" alt="">
@@ -114,13 +114,14 @@
 								更多
 							</p>
 						</a>
-
-						<!--<HR align=center width=300 color=#987cb9 SIZE=1 style="width: 100%;">-->
 					</div>
+					<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">
+					<a href="gonggao.html">
 					<div class="weui-cells__title">
-						<img src="images/gonggaotp.jpg" style="width: 50px;" />
+						<img src="images/gonggaotp.png" style="width: 50px;" />
+						<p>最新公告：</p>
 					</div>
-
+					</a>
 					<!--公告列表-->
 					<div id="ggList">
 					</div>
@@ -401,6 +402,20 @@
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
+						<a class="weui-cell weui-cell_access open-popup"  class="weui-btn weui-btn_primary open-popup" href="javascript:;" data-target="#full" >
+							<img src="images/v13.png" style="height: 20px;width: 20px;">
+							<div class="weui-cell__bd">
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;关于</p>
+							</div>
+							<div class="weui-cell__ft"></div>
+						</a>
+						<!--<a class="weui-cell weui-cell_access open-popup"  class="weui-btn weui-btn_primary open-popup" href="javascript:;" data-target="#half"" >
+							<img src="images/dh1.png" style="height: 20px;width: 20px;">
+							<div class="weui-cell__bd">
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;首页</p>
+							</div>
+							<div class="weui-cell__ft"></div>
+						</a>-->
 						<a class="weui-cell weui-cell_access" id="sd2">
 							<img src="images/grzx4.png" style="height: 20px;width: 20px;">
 							<div class="weui-cell__bd">
@@ -665,7 +680,120 @@
 	</style>
       <script>
       $(document).on("click", "#show-alert", function() {
-        $.alert("更新于2019年10月16日！", "当前版本！");
+        $.alert("更新于2019年10月17日！", "当前版本！");
       });
       </script>
+      
+      <!--点击显示全屏-->
+      <div id="full" class='weui-popup__container' style="transform:translateY(5%);-ms-transform:translateY(5%);-webkit-transform:translateY(5%);">
+      <div class="weui-popup__overlay"></div>
+      <div class="weui-popup__modal">
+        <header class='demos-header'>
+          <h2 class="demos-second-title">网络隐患监管系统APP</h2>
+          <p class="demos-sub-title">By  @2019/10/17</p>
+        </header>
+        <article class="weui-article">
+          <h1></h1>
+          <section>
+            <h2 class="title"></h2>
+            <section>
+              <h3></h3>
+              <p>
+                                      使用手机浏览器扫码下载
+              </p>
+              <p>
+                <img src="images/erweima.jpg" alt="">
+                <img src="" alt="">
+              </p>
+            </section>
+          </section>
+        </article>
+        <a href="javascript:;" class="weui-btn weui-btn_primary close-popup">关闭</a>
+      </div>
+    </div>
+    <!--点击显示底部-->
+    <div id="half" class='weui-popup__container popup-bottom'>
+      <div class="weui-popup__overlay"></div>
+      <div class="weui-popup__modal">
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <a href="javascript:;" class="picker-button close-popup">关闭</a>
+            <h1 class="title">首页</h1>
+          </div>
+        </div>
+        <div class="modal-content">
+          <div class="weui-grids" style="
+    position: relative;
+    float: left;
+    padding: 20px 10px;
+    width: 100%;
+    box-sizing: border-box;transform:translateY(-50%);/**上移元素**/
+	-ms-transform:translateY(-50%);
+	-webkit-transform:translateY(-10%);
+
+">
+            <a href="gonggao.html" class="weui-grid js_grid" data-id="dialog">
+              <div class="weui-grid__icon">
+                <img src="images/g1.png" alt="">
+              </div>
+              <p class="weui-grid__label">
+                公告
+              </p>
+            </a>
+            <a href="chufa.html" class="weui-grid js_grid" data-id="progress">
+              <div class="weui-grid__icon">
+                <img src="images/g2.png" alt="">
+              </div>
+              <p class="weui-grid__label">
+                处罚单
+              </p>
+            </a>
+            <a href="xjgc.html" class="weui-grid js_grid" data-id="msg">
+              <div class="weui-grid__icon">
+                <img src="images/g3.png" alt="">
+              </div>
+              <p class="weui-grid__label">
+                巡检过程
+              </p>
+            </a>
+            <a href="zgdsyck.html" class="weui-grid js_grid" data-id="dialog">
+              <div class="weui-grid__icon">
+                <img src="images/g7.png" alt="">
+              </div>
+              <p class="weui-grid__label">
+                机房整改单
+              </p>
+            </a>
+            <a href="zgdxlsy.html" class="weui-grid js_grid" data-id="progress">
+              <div class="weui-grid__icon">
+                <img src="images/g8.png" alt="">
+              </div>
+              <p class="weui-grid__label">
+                线路整改单
+              </p>
+            </a>
+            <a href="gengduo.html" class="weui-grid js_grid" data-id="msg">
+              <div class="weui-grid__icon">
+                <img src="images/g5.png" alt="">
+              </div>
+              <p class="weui-grid__label">
+                更多
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+  $(function() {
+    FastClick.attach(document.body);
+  });
+</script>
+    <script>
+      $(document).on("open", ".weui-popup-modal", function() {
+        console.log("open popup");
+      }).on("close", ".weui-popup-modal", function() {
+        console.log("close popup");
+      });
+    </script>
 </html>

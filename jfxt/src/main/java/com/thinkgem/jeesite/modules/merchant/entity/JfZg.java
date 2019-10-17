@@ -25,6 +25,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private JfXx zgjf;		// 整改机房
 	private String zgdh;		// 整改单号
 	private Date zgrq;		// 日期
+	private Date zgsxrq;       //整改时限日期
 	private String zgrqMs;		// 日期描述
 	private String zgyq;		// 整改要求
 	private String cfxczp;		// 整改现场照片
@@ -49,7 +50,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private String jfName;      //整改网元名称
 	private String Wysx;      //网元属性（仅限导出功能使用）
 	
-	@ExcelField(title="整改网元", align=2, sort=10,fieldType=RoleListType.class)
+	
 	public String getJfName() {
 		return jfName;
 	}
@@ -61,7 +62,15 @@ public class JfZg extends DataEntity<JfZg> {
 	public String getWysx() {
 		return Wysx;
 	}
-
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="整改时限", align=2, sort=61)
+	public Date getZgsxrq() {
+		return zgsxrq;
+	}
+	
+	public void setZgsxrq(Date zgsxrq) {
+		this.zgsxrq = zgsxrq;
+	}
 
 	public void setWysx(String wysx) {
 		Wysx = wysx;
@@ -210,7 +219,7 @@ public class JfZg extends DataEntity<JfZg> {
 	public JfZg(String id){
 		super(id);
 	}
-	
+	@ExcelField(title="整改网元", align=2, sort=10,value="zgjf.name",fieldType=RoleListType.class)
 	public JfXx getZgjf() {
 		return zgjf;
 	}

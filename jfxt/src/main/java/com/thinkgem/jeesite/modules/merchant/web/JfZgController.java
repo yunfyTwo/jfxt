@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.merchant.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 
 import com.thinkgem.jeesite.modules.merchant.entity.JfXx;
 import com.thinkgem.jeesite.modules.merchant.service.JfXxService;
@@ -17,14 +18,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Lists;
+import com.thinkgem.jeesite.common.beanvalidator.BeanValidators;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
+import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
 import com.thinkgem.jeesite.modules.merchant.entity.JfZg;
 import com.thinkgem.jeesite.modules.merchant.service.JfZgService;
 import com.thinkgem.jeesite.modules.sys.entity.Office;
@@ -93,6 +98,75 @@ public class JfZgController extends BaseController {
 		}
 		return "redirect:" + adminPath + "/merchant/jfZg/list?repage";
     }
+	 /**
+	 * 导入网元整改单数据
+	 * @param file
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequiresPermissions("merchant:jfZg:edit")
+    @RequestMapping(value = "import", method=RequestMethod.POST)
+    public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
+		if(Global.isDemoMode()){
+			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			return "redirect:" + adminPath + "/merchant/jfZg/?repage";
+		}
+		try {
+			int successNum = 0;
+			int failureNum = 0;
+			StringBuilder failureMsg = new StringBuilder();
+			ImportExcel ei = new ImportExcel(file, 1, 0);
+			List<JfZg> list = ei.getDataList(JfZg.class);
+			for (JfZg jfZg : list){                
+				try{
+					//jfZgService.saveImport(jfZg);
+					jfZgService.save(jfZg);
+					successNum++;
+				}catch(ConstraintViolationException ex){
+					failureMsg.append("<br/>网元整改单 "+jfZg.getJfName()+" 导入失败：");
+					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");  //告诉你出错原因
+					for (String message : messageList){
+						failureMsg.append(message+"; ");
+						failureNum++;
+					}
+				}catch (Exception ex) {
+					failureMsg.append("<br/>网元信息 "+jfZg.getJfName()+" 导入失败："+ex.getMessage());
+				}
+			}
+			if (failureNum>0){
+				failureMsg.insert(0, "，失败 "+failureNum+" 条信息，导入信息如下：");
+			}
+			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条信息"+failureMsg);
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导入网元整改单失败！失败信息："+e.getMessage());
+		}
+		return "redirect:" + adminPath + "/merchant/jfZg/list?repage";
+    }
+	
+	/**
+	 * 下载导入网元整改单模板
+	 * @param response
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequiresPermissions("merchant:jfZg:view")
+    @RequestMapping(value = "import/template")
+    public String importFileTemplate(HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+            String fileName = "网元整改单导入模板.xlsx";
+    		List<JfZg> list = Lists.newArrayList(); 
+    		JfZg jfZg = new JfZg();
+    		    jfZg.setJfName("11");
+    		list.add(jfZg);
+    		new ExportExcel("网元整改单数据", JfZg.class, 2).setDataList(list).write(response, fileName).dispose();
+    		return null;
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息："+e.getMessage());
+		}
+		return "redirect:" + adminPath + "/merchant:jfZg/list?repage";
+
+	}
+	
 	/**
 	 * 通过登录名获取所属区域
 	 * @param request

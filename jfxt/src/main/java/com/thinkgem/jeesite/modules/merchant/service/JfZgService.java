@@ -98,5 +98,14 @@ public class JfZgService extends CrudService<JfZgDao, JfZg> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/**
+	 * 整改导入专用
+	 * @param jfZg
+	 */
+	@Transactional(readOnly = false)
+	public void saveImport(JfZg jfZg) {
+		dao.saveImport(jfZg);
+		
+	}
 	
 }

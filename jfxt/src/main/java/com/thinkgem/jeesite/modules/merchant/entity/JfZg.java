@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
+import com.thinkgem.jeesite.common.utils.excel.fieldtype.RoleListType;
 
 /**
  * 整改Entity
@@ -48,7 +49,7 @@ public class JfZg extends DataEntity<JfZg> {
 	private String jfName;      //整改网元名称
 	private String Wysx;      //网元属性（仅限导出功能使用）
 	
-	@ExcelField(title="整改网元", align=2, sort=10)
+	@ExcelField(title="整改网元", align=2, sort=10,fieldType=RoleListType.class)
 	public String getJfName() {
 		return jfName;
 	}

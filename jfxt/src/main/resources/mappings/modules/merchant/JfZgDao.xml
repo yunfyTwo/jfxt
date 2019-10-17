@@ -202,6 +202,66 @@
 		)
 	</insert>
 	
+	<insert id="saveImport">
+		INSERT INTO jf_zg(
+			id,
+			zgjf,
+			zgdh,
+			zgrq,
+			zgyq,
+			cfxczp,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			kzzd1,
+			kzzd2,
+			kzzd3,
+			kzzd4,
+			is_Safety_Hazard,
+			brief_Descri_ption,
+			reason,
+			is_ODF,
+			is_Cut_Over,
+			is_Cut_Over_Content,
+			is_Optical_Cable,
+			optical_Cable_Cutting,
+			optical_Cable_Content,
+			need_Remediation,
+			content_Description 
+		) VALUES (
+			#{id},
+			#{jfName},
+			#{zgdh},
+			#{zgrq},
+			#{zgyq},
+			#{cfxczp},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{kzzd1},
+			#{kzzd2},
+			#{kzzd3},
+			#{kzzd4},
+			#{isSafetyHazard},
+			#{briefDescription},
+			#{reason},
+			#{isODF},
+			#{isCutOver},
+			#{isCutOverContent},
+			#{isOpticalCable},
+			#{opticalCableCutting},
+			#{opticalCableContent},
+			#{needRemediation},
+			#{contentDescription
+		)
+	</insert>
+	
 	<update id="update">
 		UPDATE jf_zg SET 	
 			zgjf = #{zgjf.id},

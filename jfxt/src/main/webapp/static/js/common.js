@@ -5,7 +5,7 @@ function getContextPath() {
     // return "http://in.anssy.com:8086/publicity";
 
 
-    return "http://116.255.175.24:8888/jfxt";
+    return "http://39.97.246.149:8080/jfxt";
     // return "http://192.168.1.64:8080/jfxt";
 }
 

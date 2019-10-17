@@ -11,4 +11,4 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}${fns:getAdminPath()}"/>
 <c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>
 <%--<c:set var="loc" value="http://192.168.1.64:8080${pageContext.request.contextPath}"/>--%>
-<c:set var="loc" value="http://116.255.175.24:8888${pageContext.request.contextPath}"/>
+<c:set var="loc" value="http://39.97.246.149:8080${pageContext.request.contextPath}"/>

@@ -14,5 +14,8 @@ import com.thinkgem.jeesite.modules.merchant.entity.JfZg;
  */
 @MyBatisDao
 public interface JfZgDao extends CrudDao<JfZg> {
+
+	void saveImport(JfZg jfZg);
+
 	
 }

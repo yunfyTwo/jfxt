@@ -68,9 +68,15 @@
                 if (data.code == 1) {
                     //查询成功
                     zgList = data.data;
-                    var list_html = '<div style="align:center;">' +
-				                    '<input id="jfName" style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>'+ 
-				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" />' + '</div>' ;
+                    var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
+                                    '<form class="weui-search-bar__form" action="#">'+
+                                    '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
+				                    '<input type="search" class="weui-search-bar__input" id="jfName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
+				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
+				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
+				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'</div>'+
+				                    '<input type="button" style="height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
                     if (zgList.length > 5) {
                         for (var i = 0; i < 5; i++) {
                             var obj = zgList[i];
@@ -89,8 +95,6 @@
                                 '</a>'
                         }
                         list_html += '<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
-                    
-                    
                 } else {
                 	for (var i = 0; i < zgList.length; i++) {
                             var obj = zgList[i];
@@ -130,7 +134,7 @@
                             }else{
                             	falg='<font color="red"> 未整改 </font>';
                             }
-                zglists +=
+                zglists += 
                     '<a class="weui-cell weui-cell_access" href="zgdsy.html?zgid=' + obj.id + '">' +
                     '<div class="weui-cell__bd">' +
                     '<p>' + obj.zgjf.name +'<br/>'+obj.zgjf.jfwz+ '</p>' +
@@ -169,9 +173,15 @@
                     //查询成功
                     zgList = data.data;
                     
-                    var list_html = '<div class="weui-cell__bd">' +
-				                    '<input id="jfName"  style="height:40px;width:80%;" class="weui-cell__bd" type="text"/>' + 
-				                    '<input type="button" style="height:44px;width:50px;" value="查询" onclick= "searchJfjjs()" align="right"/>' + '</div>' ;
+                    var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
+                                    '<form class="weui-search-bar__form" action="#">'+
+                                    '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
+				                    '<input type="search" class="weui-search-bar__input" id="jfName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
+				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
+				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
+				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'</div>'+
+				                    '<input type="button" style="height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
 				                    if (zgList.length > 0) {
                         for (var i = 0; i < zgList.length; i++) {
                             var obj = zgList[i];
@@ -201,4 +211,5 @@
 	
 	
 </script>
+
 </html>

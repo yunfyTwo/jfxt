@@ -65,7 +65,15 @@
                 if(data.code == 1) {
                 	//查询成功
                     arr = data.data;
-                    var list_html = '';
+                    var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
+                                    '<form class="weui-search-bar__form" action="#">'+
+                                    '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
+				                    '<input type="search" class="weui-search-bar__input" id="xjgcName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
+				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
+				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
+				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'<div class="weui-search-bar">'+
+				                    '<input type="button" style="border-radius: 70px;border: 1px solid #DBDBDB;height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
                     
                     if(arr.length>5){
                     	for (var i = 0; i <5; i++) {
@@ -135,5 +143,62 @@
    
       
 </script>
+<script >
 
+//条件查询巡检过程
+	function searchJfjjs(){
+        var jfxjgc={};
+    	var storage = window.localStorage;
+    	var userId = storage.getItem("loginName");
+    	jfxjgc.userId = userId;
+       
+		var xjgcName = $("#xjgcName").val();
+		jfxjgc.xjgcName = xjgcName;
+		  //巡检过程的列表查询
+        $.post(
+            getContextPath() + "/app/xjgcList",
+            jfxjgc,
+            function (data) {
+                if (data.code == 1) {
+                    //查询成功
+                    arr = data.data;
+                    console.log(data);
+                    var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
+                                    '<form class="weui-search-bar__form" action="#">'+
+                                    '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
+				                    '<input type="search" class="weui-search-bar__input" id="xjgcName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
+				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
+				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
+				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'<div class="weui-search-bar">'+
+				                    '<input type="button" style="border-radius: 70px;border: 1px solid #DBDBDB;height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
+				                    if (arr.length > 0) {
+                        for (var i = 0; i <arr.length; i++) {
+                        var obj = arr[i];
+                        var xjsftgs="";
+                            if(obj.xjsftg=="1"){
+                            	xjsftgs='<font color="green"> 无需整改</font>';
+                            }else{
+                            	xjsftgs='<font color="red"> 需整改 </font>';
+                            }
+                        list_html +=
+                                        '<a class="weui-cell weui-cell_access" href="xjgcXq.html?id='+obj.id+'">'+
+                                        '<div class="weui-cell__bd">'+
+                                        '<p>'+obj.xjjf.name+'<br/>'+obj.xjjf.jfwz+'</p>'+
+                                        '</div>'+
+                                        '<div class="weui-cell__ft">'+obj.xjsjMs+'&nbsp&nbsp&nbsp&nbsp'+xjsftgs+'</div>'+
+                                        '</a>'
+                     }
+                    	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+                    }
+                    $("#xjgcXq_lists").html(list_html);
+                } else {
+                    $.toast(data.msg, 'forbidden', 8000);
+                }
+                $("#xjgcName").val(xjgcName);
+            });
+	}
+	
+	
+</script>
 </html>

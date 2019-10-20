@@ -28,163 +28,167 @@
 	</head>
 
 	<body ontouchstart>
-		<div class="weui_btn_primary weui-header ">
-			<div class="weui-header-left">
-				<a href="zgdxlsy.html" onClick="toXunjian()" class="icon icon-109 f-white"></a>
+	<div class="weui_btn_primary weui-header ">
+		<div class="weui-header-left">
+			<a href="zgdxlsy.html" onClick="toXunjian()" class="icon icon-109 f-white"></a>
+		</div>
+		<h1 class="weui-header-title">线路整改单详情</h1>
+		<input type="text" value="" style="display: none" id="zgId">
+	</div>
+	<div class="kong2"></div>
+	<div class="weui-cells"></div>
+	<div class="weui-cell" style="">
+		<div class="weui-cell__hd"><label class="weui-label" style="color: red;">整改单号</label></div>
+		<div class="weui-cell__bd">
+			<span style="border: 0px;" value="" id="zgdh"></span>
+		</div>
+	</div>
+	<div class="weui-cell">
+		<div class="weui-cell__hd"><label for="" class="weui-label" style="color: red;">日期</label></div>
+		<div class="weui-cell__bd">
+			<input class="weui-input" id="years-monthes" type="text" value="" placeholder="请填写整改日期" readonly="readonly">
+		</div>
+	</div>
+
+	<div class="weui-cells__title">巡检网元</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="巡检网元" rows="1" id="xjgcName" readonly="readonly"></textarea>
 			</div>
-			<h1 class="weui-header-title">线路整改单详情</h1>
-			<input type="text" value="" style="display: none" id="zgId">
 		</div>
-		<div class="kong2"></div>
-		<div class="weui-cells">
-			<div class="weui-cell">
-				<div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
-				<div class="weui-cell__bd">
-					<input class="weui-input" id="years-monthes" type="text" value="" placeholder="请填写整改日期" readonly="readonly">
-				</div>
+	</div>
+
+	<div class="weui-cells__title">问题情况</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入问题情况" rows="3" id="zgwt"></textarea>
+				<div class="weui-textarea-counter"><span>0</span>/200</div>
 			</div>
 		</div>
-		<div class="weui-cells__title">巡检网元</div>
-		<div class="weui-cells ">
-		    <div class="weui-cell">
-		        <div class="weui-cell__bd">
-		            <textarea class="weui-textarea" placeholder="巡检网元" rows="1" id="xjgcName" readonly="readonly"></textarea>
-		        </div>
-		    </div>
+	</div>
+
+	<div class="weui-cells__title">处理方式</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入处理方式" rows="1" id="zgfs"></textarea>
+			</div>
 		</div>
-		
-<div class="weui-cells__title">问题情况</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入问题情况" rows="3" id="zgwt"></textarea>
-            <div class="weui-textarea-counter"><span>0</span>/200</div>
-        </div>
-    </div>
-</div>
+	</div>
 
-<div class="weui-cells__title">处理方式</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入处理方式" rows="1" id="zgfs"></textarea>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">需新建杆路（km）</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入需新建杆路（km）" rows="1" id="xjgl"></textarea>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">更换吊线（km）</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入更换吊线（km）" rows="1" id="ghdx"></textarea>
-        </div>
-    </div>
-</div>
-
-
-<div class="weui-cells__title">更换电杆（根）</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入更换电杆（根）" rows="1" id="ghdg"></textarea>
-        </div>
-    </div>
-</div>
-
-
-<div class="weui-cells__title">扶正（偏杆/倒杆）（根）</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入扶正杆数（根）" rows="1" id="dgfz"></textarea>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">新建拉线（条）</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入新建拉线（条）" rows="1" id="xjlx"></textarea>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">更换拉线（条）</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入更换拉线（条）" rows="1" id="ghlx"></textarea>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">需更换光缆（km）</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入需更换光缆（km）" rows="1" id="ghgl"></textarea>
-        </div>
-    </div>
-</div>
-
-<div class="weui-cells__title">是否整改完成</div>
-<div class="weui-cells" id="messages">
-    <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd" >
-            <select class="weui-select" name="select1"  id="iszg" onchange="se(this,'messages')">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select>
-        </div>
-    </div>
-</div>
-<div class="weui-cells__title">预估费用</div>
-<div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入预估费用" rows="1" id="ygfy"></textarea>
-        </div>
-    </div>
-</div>	
-		<div class="weui-gallery" id="gallery">
-			<span class="weui-gallery__img" id="galleryImg"></span>
+	<div class="weui-cells__title">需新建杆路（km）</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入需新建杆路（km）" rows="1" id="xjgl"></textarea>
+			</div>
 		</div>
-		<div class="weui-cells__title">现场照片</div>
-		<div class="weui-cells sczp">
-			<div class="weui-uploader__bd">
-				<ul class="weui-uploader__files" id="img2x">
-				</ul>
-				<!-- <div class="weui-uploader__input-box">
+	</div>
+
+	<div class="weui-cells__title">更换吊线（km）</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入更换吊线（km）" rows="1" id="ghdx"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="weui-cells__title">更换电杆（根）</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入更换电杆（根）" rows="1" id="ghdg"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="weui-cells__title">扶正（偏杆/倒杆）（根）</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入扶正杆数（根）" rows="1" id="dgfz"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="weui-cells__title">新建拉线（条）</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入新建拉线（条）" rows="1" id="xjlx"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="weui-cells__title">更换拉线（条）</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入更换拉线（条）" rows="1" id="ghlx"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="weui-cells__title">需更换光缆（km）</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入需更换光缆（km）" rows="1" id="ghgl"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="weui-cells__title">是否整改完成</div>
+	<div class="weui-cells" id="messages">
+		<div class="weui-cell weui-cell_select">
+			<div class="weui-cell__bd">
+				<select class="weui-select" name="select1" id="iszg" onchange="se(this,'messages')">
+					<option value="是">是</option>
+					<option value="否">否</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="weui-cells__title">预估费用</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="请输入预估费用" rows="1" id="ygfy"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="weui-gallery" id="gallery">
+		<span class="weui-gallery__img" id="galleryImg"></span>
+	</div>
+	<div class="weui-cells__title">现场照片</div>
+	<div class="weui-cells sczp">
+		<div class="weui-uploader__bd">
+			<ul class="weui-uploader__files" id="img2x">
+			</ul>
+			<!-- <div class="weui-uploader__input-box">
 					<form id="uploadImgForm">
 						<div id="img">
 							<div class="weui-uploader__input" type="file" id="imgFile" name="imgFile" accept="image/jpg,image/jpeg,image/png,image/gif" multiple></div>
 						</div>
 					</form>
 				</div> -->
-			</div>
-			<!-- <input type="button" value="清空图片" onclick="deleteImg()" /> -->
 		</div>
+		<!-- <input type="button" value="清空图片" onclick="deleteImg()" /> -->
+	</div>
 
-		<div class="weui-cells__title">巡检人</div>
-		<div class="weui-cells ">
-		    <div class="weui-cell">
-		        <div class="weui-cell__bd">
-		            <textarea class="weui-textarea" placeholder="" rows="1" id="userName" readonly="readonly"></textarea>
-		        </div>
-		    </div>
+	<div class="weui-cells__title">巡检人</div>
+	<div class="weui-cells ">
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<textarea class="weui-textarea" placeholder="" rows="1" id="userName" readonly="readonly"></textarea>
+			</div>
 		</div>
-		
-	</body>
+	</div>
+
+</body>
 <script type="text/javascript">
 	var dataedit = 'merchant:jfXlZG:edit'; //整改权限
 	var dataedit1 = 'merchant:jfCf:edit';//处罚

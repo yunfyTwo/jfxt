@@ -64,6 +64,9 @@
 			<if test="kzzd3 != null and kzzd3 != ''">
 				AND a.kzzd3 = #{kzzd3}
 			</if>
+			<if test="cfwyName != null and cfwyName!= ''">
+				AND a.cfjf in (SELECT a.Id FROM jf_xx a WHERE a.name like concat('%',#{cfwyName},'%'))
+			</if>
 			<if test="startDate != null and startDate != ''">
 				AND
 				DATE_FORMAT(a.cfrq, '%Y-%m-%d') &gt;= DATE_FORMAT(#{startDate}, '%Y-%m-%d')

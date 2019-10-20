@@ -63,7 +63,9 @@
 			<if test="xjsftg!= null  and xjsftg != ''  ">
 				AND a.xjsftg = #{xjsftg}
 			</if>
-			
+			<if test="xjgcName != null and xjgcName!= ''">
+				AND a.xjjf in (SELECT a.Id FROM jf_xx a WHERE a.name like concat('%',#{xjgcName},'%'))
+			</if>
 			<if test="startDate != null and startDate != ''">
 				AND
 				DATE_FORMAT(a.xjsj, '%Y-%m-%d') &gt;= DATE_FORMAT(#{startDate}, '%Y-%m-%d')

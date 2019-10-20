@@ -32,28 +32,27 @@
     <!--<div class="weui-header-right"><a class="icon icon-22 f-white"></a></div>-->
 </div>
 <div class="kong2"></div>
-<div class="weui-cells">
-    <div class="weui-cell" style="display: none">
-        <div class="weui-cell__hd"><label class="weui-label">单号</label></div>
+   <div class="weui-cells"></div>
+    <div class="weui-cell" style="">
+        <div class="weui-cell__hd"><label class="weui-label" style="color: red;">整改单号</label></div>
         <div class="weui-cell__bd">
           <span style="border: 0px;" value=""  id="zgdh"></span>
         </div>
     </div>
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="years-monthes" class="weui-label">日期</label></div>
+        <div class="weui-cell__hd"><label for="years-monthes" class="weui-label" style="color: red;">日期</label></div>
         <div class="weui-cell__bd">
         	<input class="weui-input" id="years-monthes" type="text" value="" readonly="readonly" >
             <!--<input class="weui-input" type="date" value="">-->
         </div>
     </div>
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="zgsxrq" class="weui-label">整改时限</label></div>
+        <div class="weui-cell__hd"><label for="zgsxrq" class="weui-label" style="color: red;" >整改时限</label></div>
         <div class="weui-cell__bd">
         	<input class="weui-input" id="zgsxrq" type="text" value="" readonly="readonly" >
             <!--<input class="weui-input" type="date" value="">-->
         </div>
     </div>
-</div>
 <div class="weui-cells__title">网元</div>
 <div class="weui-cells ">
       <div class="weui-cell weui-cell_select">
@@ -72,7 +71,7 @@
         </div>
     </div>
 </div>
-<div class="weui-cells__title">安全隐患</div>
+<div class="weui-cells__title" style="border-radius: 70px; border: 5px solid #DBDBDB;"><b style="color: #3d4145;">安全隐患</b></div>
 
 <div class="weui-cells__title">是否存在安全隐患</div>
 <div class="weui-cells ">
@@ -100,7 +99,7 @@
 </div>
 
 
-<div class="weui-cells__title">设备类整治</div>
+<div class="weui-cells__title" style="border-radius: 70px; border: 5px solid #DBDBDB;"><b style="color: #3d4145;">设备类整治</b></div>
 <div class="weui-cells__title">是否有ODF架/柜</div>
 <div class="weui-cells ">
     <div class="weui-cell">
@@ -128,7 +127,7 @@
     </div>
 </div>
 
-<div class="weui-cells__title">光缆类整治</div>
+<div class="weui-cells__title" style="border-radius: 70px; border: 5px solid #DBDBDB;"><b style="color: #3d4145;">光缆类整治</b></div>
 <div class="weui-cells__title">是否需要光缆割接</div>
 <div class="weui-cells ">
     <div class="weui-cell">
@@ -156,7 +155,7 @@
     </div>
 </div>
 
-<div class="weui-cells__title">环境类整治</div>
+<div class="weui-cells__title" style="border-radius: 70px; border: 5px solid #DBDBDB;"><b style="color: #3d4145;">环境类整治</b></div>
 <div class="weui-cells__title">是否需要环境整治</div>
 <div class="weui-cells ">
     <div class="weui-cell">
@@ -179,22 +178,22 @@
 <div class="weui-gallery" id="gallery">
     <span class="weui-gallery__img" id="galleryImg"></span>
 </div>
-<div class="weui-cells__title">上传整改现场照片</div>
+<div class="weui-cells__title">整改现场照片</div>
 <div class="weui-cells sczp">
     <div class="weui-uploader__bd" id="addImg" style="display: none">
         <ul class="weui-uploader__files" id="zgimg">
         </ul>
-        <div class="weui-uploader__input-box">
+        <!--<div class="weui-uploader__input-box">
             <form id="uploadImgForm">
                 <div id="img">
                     <div class="weui-uploader__input" type="file" id="imgFile" name="imgFile" accept="image/jpg,image/jpeg,image/png,image/gif" multiple></div>
                 </div>
             </form>
-        </div>
+        </div>-->
     </div>
-    <div id="clearImg" style="display: none">
+   <!-- <div id="clearImg" style="display: none">
       <input type="button" value="清空图片" onclick="deleteImg()"/>
-    </div>
+    </div>-->
 </div>
 
 <div class="weui-cells__title">整改要求描述</div>

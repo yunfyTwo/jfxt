@@ -260,6 +260,8 @@ a {
 }
 
 .weui-btn_primary {
+	border-radius: 70px;
+	border: 1px solid #DBDBDB;
 	background-color: #33b4ff
 }
 

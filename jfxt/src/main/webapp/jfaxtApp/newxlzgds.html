@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<title>整改单</title>
+		<title>线路整改单</title>
 		<link rel="stylesheet" href="css/weui.min.css">
 		<link rel="stylesheet" href="css/jquery-weui.css">
 		<link rel="stylesheet" href="css/demos.css">
@@ -32,14 +32,14 @@
 			<div class="weui-header-left">
 				<a href="#" onClick="toXunjian()" class="icon icon-109 f-white"></a>
 			</div>
-			<h1 class="weui-header-title">new整改单</h1>
+			<h1 class="weui-header-title">线路整改单</h1>
 			<input type="text" value="" style="display: none" id="zgId">
 			<!--<div class="weui-header-right"><a class="icon icon-22 f-white"></a></div>-->
 		</div>
 		<div class="kong2"></div>
 		<div class="weui-cells">
 			<div class="weui-cell">
-				<div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+				<div class="weui-cell__hd"><label for="" class="weui-label" style="color: red;">日期</label></div>
 				<div class="weui-cell__bd">
 					<input class="weui-input" id="years-monthes" type="text" value="" placeholder="请填写整改期时间" readonly="readonly">
 					<!--<input class="weui-input" type="date" value=" " id="cfrq">-->
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 		<div class="weui-cell">
-			<div class="weui-cell__hd"><label for="" class="weui-label">网元</label></div>
+			<div class="weui-cell__hd"><label for="" class="weui-label" style="color: red;">网元</label></div>
 			<div class="weui-cell__bd" id="cfjf">
 				<input type="text" value="" id="jf_id" style="display: none;" />
 				<input class="weui-input" id="jf_name" type="text" value="" readonly="readonly">

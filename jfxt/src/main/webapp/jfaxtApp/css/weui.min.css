@@ -1813,8 +1813,8 @@ a.weui-media-box:active {
 }
 
 .weui-grid__icon {
-	width: 70px;
-	height: 60px;
+	width: 50%;
+	height: 50%;
 	margin: 0 auto
 }
 

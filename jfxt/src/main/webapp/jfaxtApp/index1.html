@@ -33,28 +33,37 @@
 		<div class="weui-tab">
 			<div class="weui-tab__bd">
 				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+					
+					<div>
+						    <!--图片轮播-->
+						    <div class="imgBox">
+							     <img class="img-slide img1" src="images/gy1.jpg" alt="1">
+							     <img class="img-slide img2" src="images/gy2.jpg" alt="2">
+							     <img class="img-slide img3" src="images/gy3.jpg" alt="3">
+						    </div>
+						</div>
+					<div class="weui-cells__title">
 					<div style="position:relative">
 						<!--天气预报-->
-						<div  class="mask" ></div><iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=99" width="100%" height="28" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
-					 <span id="time" style="width: 200px; border: 0px solid hsla(0, 0%, 100%, .95); text-align: center"></span>
-					</div>
-					<!--日期-->
+						<div  class="mask" ></div>
+						<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=99" width="160" height="36" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="height: 23px"></iframe>
+						<!--日期-->
+					     <span id="time" style="width: 200px; border: 0px solid hsla(0, 0%, 100%, .95); text-align: center;color: #3D4145;"></span>
 					<div  style="text-align: center;"></div>
-				
+					</div>
+				    </div>
+				    
 					<div class="weui-grids">
-						<!--图片轮播-->
-						<div class="imgBox">
-							<img class="img-slide img1" src="images/gy1.jpg" alt="1">
-							<img class="img-slide img2" src="images/gy2.jpg" alt="2">
-							<img class="img-slide img3" src="images/gy3.jpg" alt="3">
-						</div>
+						
 
                   
                     <HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">
                     
 					<div class="weui-cells__title">
-						
-						<b style="color: #3d4145;">模块分类：</b>
+						<h3>
+						<img src="images/g20.png" style="width: 10px;"/>
+						<strong style="color: #3d4145;">模块分类：</strong>
+						</h3>
 					</div>
 					
 						<a href="gonggao.html" class="weui-grid js_grid">
@@ -78,7 +87,7 @@
 
 						<a href="xjgc.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
-								<img src="images/g3.png" alt="">
+								<img src="images/g5.png" alt="">
 							</div>
 							<p class="weui-grid__label">
 								巡检过程
@@ -114,7 +123,7 @@
 -->
 						<a href="gengduo.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
-								<img src="images/g5.png" alt="">
+								<img src="images/g3.png" alt="">
 							</div>
 							<p class="weui-grid__label">
 								更多
@@ -124,7 +133,10 @@
 					<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">
 					<a href="gonggao.html">
 					<div class="weui-cells__title">
-						<b style="color: #3d4145;">最新公告：</b>
+						<h3>
+						<img src="images/g20.png" style="width: 10px;"/>
+						<strong style="color: #3d4145;">最新公告：</strong>
+						</h3>
 					</div>
 					</a>
 					<!--公告列表-->
@@ -620,7 +632,7 @@
 		/*标题样式*/
 		
 		.imgBox {
-			border-top: 2px solid cadetblue;
+			border-top: 2px solid #d9d9d9;
 			width: 100%;
 			height: 250px;
 			margin: 0 auto;
@@ -676,7 +688,7 @@
 <style>
 	.mask {
 		position: absolute;
-		width: 50%;
+		width: 100%;
 		height: 100%;
 		z-index: 1;
 		filter: alpha(opacity=0);
@@ -686,7 +698,7 @@
 </style>
 <script>
 	$(document).on("click", "#show-alert", function() {
-		$.alert("更新于2019年10月17日！", "当前版本！");
+		$.alert("更新于2019年10月22日！", "当前版本！");
 	});
 </script>
 

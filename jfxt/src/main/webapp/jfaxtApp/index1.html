@@ -10,14 +10,12 @@
 		<link rel="stylesheet" href="css/jquery-weui.css">
 		<link rel="stylesheet" href="css/demos.css">
 		<link rel="stylesheet" href="css/icon.css">
-		<!--    <link rel="stylesheet" href="css/new_file.css">
--->
+		<!--    <link rel="stylesheet" href="css/new_file.css">-->
 		<script src="js/jquery-2.1.4.js"></script>
 		<script src="js/fastclick.js"></script>
 		<script src="js/zepto.min.js"></script>
 		<script src="js/swipe.js"></script>
 		<script src="js/common.js"></script>
-
 	</head>
 
 	<body ontouchstart>
@@ -33,15 +31,20 @@
 		<div class="weui-tab">
 			<div class="weui-tab__bd">
 				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-					
-					<div>
-						    <!--图片轮播-->
-						    <div class="imgBox">
-							     <img class="img-slide img1" src="images/gy1.jpg" alt="1">
-							     <img class="img-slide img2" src="images/gy2.jpg" alt="2">
-							     <img class="img-slide img3" src="images/gy3.jpg" alt="3">
-						    </div>
-						</div>
+					<!--图片展示-->
+					<div class="swiper-container">
+                          <!-- Additional required wrapper -->
+                          <div class="swiper-wrapper">
+                          <!-- Slides -->
+                              <div class="swiper-slide"><img src="images/gy1.jpg" style="height: 256px;"/></div>
+                              <div class="swiper-slide"><img src="images/gy2.jpg" style="height: 256px;"/></div>
+                              <div class="swiper-slide"><img src="images/gy3.jpg" style="height: 256px;"/></div>
+                          </div>
+                           <!-- If we need pagination -->
+                          <div class="swiper-pagination"></div>
+                    </div>
+
+				     	
 					<div class="weui-cells__title">
 					<div style="position:relative">
 						<!--天气预报-->
@@ -484,6 +487,7 @@
 				</a>
 			</div>
 		</div>
+		
 	</body>
 	<script src="js/jquery-2.1.4.js"></script>
 
@@ -607,7 +611,7 @@
 			});
 		});
 	</script>
-
+   <!-- 手机返回键问题-->
 	<script>
 		document.addEventListener('plusready', function(a) {
 			var first = null;
@@ -627,52 +631,45 @@
 			}, false);
 		});
 	</script>
-	//图片轮播
-	<style type="text/css">
-		/*标题样式*/
-		
-		.imgBox {
-			border-top: 2px solid #d9d9d9;
-			width: 100%;
-			height: 250px;
-			margin: 0 auto;
+	<!--图片轮播-->
+<script type="text/javascript">
+	var index = 0;
+	//改变图片
+	function ChangeImg() {
+		index++;
+		var a = document.getElementsByClassName("img-slide");
+		if(index >= a.length) index = 0;
+		for(var i = 0; i < a.length; i++) {
+			a[i].style.display = 'none';
 		}
-		
-		.imgBox img {
-			width: 100%;
-			height: 250px;
-			margin: 0 auto;
-			padding-top: 0px;
-		}
-		
-		.img1 {
-			display: block;
-		}
-		
-		.img2 {
-			display: none;
-		}
-		
-		.img3 {
-			display: none;
-		}
-	</style>
-	<script type="text/javascript">
-		var index = 0;
-		//改变图片
-		function ChangeImg() {
-			index++;
-			var a = document.getElementsByClassName("img-slide");
-			if(index >= a.length) index = 0;
-			for(var i = 0; i < a.length; i++) {
-				a[i].style.display = 'none';
-			}
-			a[index].style.display = 'block';
-		}
-		//设置定时器，每隔两秒切换一张图片
-		setInterval(ChangeImg, 5000);
-	</script>
-	//日期显示
+		a[index].style.display = 'block';
+	}
+	//设置定时器，每隔两秒切换一张图片
+	setInterval(ChangeImg, 5000);
+</script>
+<style>
+	.swiper-container {
+		width: 100%;
+	}
+	
+	.swiper-container img {
+		display: block;
+		width: 100%;
+	}
+</style>
+<script>
+	$(function() {
+		FastClick.attach(document.body);
+	});
+</script>
+<script src="js/swiper.js"></script>
+<script>
+	$(".swiper-container").swiper({
+		loop: true,
+		autoplay: 3000
+	});
+</script>
+	<!--日期显示-->
 <script>
 	function mytime() {
 		var a = new Date();
@@ -684,7 +681,7 @@
 		mytime()
 	}, 1000);
 </script>
-//屏蔽天气预报超链接
+<!--屏蔽天气预报超链接-->
 <style>
 	.mask {
 		position: absolute;
@@ -702,7 +699,7 @@
 	});
 </script>
 
-<!--点击显示全屏-->
+<!--分享二维码-->
 <div id="full" class='weui-popup__container' style="transform:translateY(5%);-ms-transform:translateY(5%);-webkit-transform:translateY(5%);">
 	<div class="weui-popup__overlay"></div>
 	<div class="weui-popup__modal">
@@ -740,16 +737,7 @@
 			</div>
 		</div>
 		<div class="modal-content">
-			<div class="weui-grids" style="
-    position: relative;
-    float: left;
-    padding: 20px 10px;
-    width: 100%;
-    box-sizing: border-box;transform:translateY(-50%);/**上移元素**/
-	-ms-transform:translateY(-50%);
-	-webkit-transform:translateY(-10%);
-
-">
+			<div class="weui-grids" style="position: relative;float: left;padding: 20px 10px;width: 100%;box-sizing: border-box;transform:translateY(-50%);/**上移元素**/-ms-transform:translateY(-50%);-webkit-transform:translateY(-10%);">
 				<a href="gonggao.html" class="weui-grid js_grid" data-id="dialog">
 					<div class="weui-grid__icon">
 						<img src="images/g1.png" alt="">
@@ -814,4 +802,5 @@
 		console.log("close popup");
 	});
 </script>
+
 </html>

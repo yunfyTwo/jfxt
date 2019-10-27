@@ -23,13 +23,13 @@
     </div>
 </body>
 </html>
-<!--<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>测试界面</title>
+    <title>网元列表</title>
     <link rel="stylesheet" href="css/weui.min.css">
     <link rel="stylesheet" href="css/jquery-weui.css">
     <link rel="stylesheet" href="css/demos.css">
@@ -57,7 +57,7 @@
 
 <div class="weui_btn_primary weui-header ">
     <div class="weui-header-left"> <a href="index1.html" class="icon icon-109 f-white"></a>  </div>
-    <h1 class="weui-header-title">测试界面</h1>
+    <h1 class="weui-header-title">网元列表</h1>
 </div>
 	<div class="weui-pull-to-refresh__layer">
       <div class='weui-pull-to-refresh__arrow'></div>
@@ -68,15 +68,11 @@
     </div>
 <div class="kong2"></div>
 <div class="weui-cells" id="jfxx_lists">
-      <div class="weui-loadmore">
-        <i class="weui-loading"></i>
-        <span class="weui-loadmore__tips">正在加载</span>
-      </div>
-       <div class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
-        <span class="weui-loadmore__tips"></span>
-      </div>
-       <div class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
-        <span class="weui-loadmore__tips"></span>
+      <div id="loadDiv"  class="weui-toast weui_loading_toast weui-toast--visible">
+             <div class="weui_loading">
+      	             <i class="weui-loading weui-icon_toast"></i>
+             </div>
+             <p class="weui-toast_content">数据加载中</p>
       </div>
 </div>
 
@@ -103,38 +99,39 @@
                     var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
                                     '<form class="weui-search-bar__form" action="#">'+
                                     '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
-				                    '<input type="search" class="weui-search-bar__input" id="xjgcName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<input type="search" class="weui-search-bar__input" id="name" placeholder="输入网元名称模糊查找" required="">'+ 
 				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
 				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
 				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
 				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'<div class="weui-search-bar">'+
 				                    '<input type="button" style="border-radius: 70px;border: 1px solid #DBDBDB;height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
+				    list_html +='<ul class="weui-media-box__info"><li class="weui-media-box__info__meta weui-media-box__info__meta_extra">当前共'+arr.length+'条</li></ul>'
+
                     if(arr.length>5){
-                    	list_html +='<ul class="weui-media-box__info"><li class="weui-media-box__info__meta weui-media-box__info__meta_extra">当前共'+arr.length+'条</li></ul>'
                     	for (var i = 0; i <5; i++) {
                         var obj = arr[i];
                         list_html +=
-                                       '<a class="weui-cell weui-cell_access" href="wyxxXq.html?id='+obj.id+'">'+
+                                        '<a class="weui-cell weui-cell_access">'+
                                         '<div class="weui-cell__bd">'+
                                         '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.createDate+obj.jfjj+'</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+
                                         '</a>'
                      }
                     	
-             			list_html+='<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多共'+arr.length+'条</a>';
+             			list_html+='<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
                     }else{
                     	for (var i = 0; i < arr.length; i++) {
                         var obj = arr[i];
                         list_html +=
-                                      '<a class="weui-cell weui-cell_access" href="wyxxXq.html?id='+obj.id+'">'+
+                                       '<a class="weui-cell weui-cell_access">'+
                                         '<div class="weui-cell__bd">'+
-                                        '<p>'+obj.name+'</p>'+
+                                        '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.createDate+'</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+ /*class="weui-cell__ft">*/
                                         '</a>'
                     }
-                    	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容共'+arr.length+'条</a>';
+                    	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
                     }
                     $("#jfxx_lists").html(list_html);
                 } else {
@@ -150,7 +147,7 @@
         	 jfxxlists +='<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
                                     '<form class="weui-search-bar__form" action="#">'+
                                     '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
-				                    '<input type="search" class="weui-search-bar__input" id="xjgcName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<input type="search" class="weui-search-bar__input" id="name" placeholder="输入网元名称模糊查找" required="">'+ 
 				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
 				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
 				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
@@ -161,14 +158,14 @@
         	for (var i = 0; i < arr.length; i++) {
                         var obj = arr[i];
                         jfxxlists +=
-                                       '<a class="weui-cell weui-cell_access" href="wyxxXq.html?id='+obj.id+'">'+
+                                        '<a class="weui-cell weui-cell_access" >'+
                                         '<div class="weui-cell__bd">'+
-                                        '<p>'+obj.name+'</p>'+
+                                        '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.createDate+'</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+
                                         '</a>'
                     }
-                    	jfxxlists+='<li class="weui-media-box__info__meta">文字来源</li>';
+        	jfxxlists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
          $("#jfxx_lists").html(jfxxlists);
           $(document.body).pullToRefreshDone();
         }, 1000);
@@ -180,16 +177,15 @@
 </script>
 <script >
 
-//条件查询巡检过程
+//条件查询机房信息
 	function searchJfjjs(){
         var jfXx={};
     	var storage = window.localStorage;
     	var userId = storage.getItem("loginName");
-    	jfXx=.userId = userId;
        
-		var jfXxName = $("#jfXxName").val();
-		jfXx.name = jfXxName;
-		  //巡检过程的列表查询
+		var name = $("#name").val();
+		jfXx.name = name;
+		  //机房信息的列表查询
         $.post(
             getContextPath() + "/app/jfList",
             jfXx,
@@ -201,21 +197,23 @@
                     var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
                                     '<form class="weui-search-bar__form" action="#">'+
                                     '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
-				                    '<input type="search" class="weui-search-bar__input" id="jfXxName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<input type="search" class="weui-search-bar__input" id="name" placeholder="输入网元名称模糊查找" required="">'+ 
 				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
 				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
 				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
 				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'<div class="weui-search-bar">'+
 				                    '<input type="button" style="border-radius: 70px;border: 1px solid #DBDBDB;height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
+				    list_html +='<ul class="weui-media-box__info"><li class="weui-media-box__info__meta weui-media-box__info__meta_extra">当前共'+arr.length+'条</li></ul>'
+
 				                    if (arr.length > 0) {
                         for (var i = 0; i <arr.length; i++) {
                         var obj = arr[i];
                         list_html +=
-                                        '<a class="weui-cell weui-cell_access" href="wyxxXq.html?id='+obj.id+'">'+
+                                         '<a class="weui-cell weui-cell_access" >'+
                                         '<div class="weui-cell__bd">'+
-                                        '<p>'+obj.name+'</p>'+
+                                        '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.createDate+'</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+
                                         '</a>'
                      }
                     	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
@@ -224,11 +222,11 @@
                 } else {
                     $.toast(data.msg, 'forbidden', 8000);
                 }
-                $("#jfXxName").val(jfXxName);
+                $("#name").val(name);
             });
 	}
 	
 	
 </script>
 
-</html>-->
+</html> -->

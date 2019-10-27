@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>处罚单</title>
+    <title>网元列表</title>
     <link rel="stylesheet" href="css/weui.min.css">
     <link rel="stylesheet" href="css/jquery-weui.css">
     <link rel="stylesheet" href="css/demos.css">
@@ -16,12 +16,23 @@
     <script src="js/common.js"></script>
     <script src="js/jquery-weui.js"></script>
     <script src="js/back.js"></script>
+    <style>
+      .placeholder {
+        margin: 5px;
+        padding: 0 10px;
+        background-color: #ebebeb;
+        height: 2.3em;
+        line-height: 2.3em;
+        text-align: center;
+        color: #cfcfcf;
+      }
+    </style>
 </head>
 <body ontouchstart>
 
 <div class="weui_btn_primary weui-header ">
     <div class="weui-header-left"> <a href="index1.html" class="icon icon-109 f-white"></a>  </div>
-    <h1 class="weui-header-title">处罚单</h1>
+    <h1 class="weui-header-title">网元列表</h1>
 </div>
 	<div class="weui-pull-to-refresh__layer">
       <div class='weui-pull-to-refresh__arrow'></div>
@@ -31,26 +42,15 @@
       <div class="refresh">正在刷新</div>
     </div>
 <div class="kong2"></div>
-<div class="weui-cells" id="cfd_lists">
-
-      <!--<div class="weui-loadmore">
-        <i class="weui-loading"></i>
-        <span class="weui-loadmore__tips">正在加载</span>
-      </div>
-      <div class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
-        <span class="weui-loadmore__tips"></span>
-      </div>
-       <div class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
-        <span class="weui-loadmore__tips"></span>
-      </div>-->
+<div class="weui-cells" id="jfxx_lists">
       <div id="loadDiv"  class="weui-toast weui_loading_toast weui-toast--visible">
              <div class="weui_loading">
       	             <i class="weui-loading weui-icon_toast"></i>
              </div>
              <p class="weui-toast_content">数据加载中</p>
       </div>
-
 </div>
+
 </body>
 <script type="text/javascript">
 	
@@ -61,22 +61,20 @@
          FastClick.attach(document.body);
     });
     function onLoad() {
-    	var jfCf={};
+    	var jfXx={};
     	var storage = window.localStorage;
-    	var userId = storage.getItem("loginName");
-    	jfCf.userId = userId;
-    	
         $.post(
-            getContextPath()+"/app/cfList",
-            jfCf,
+            getContextPath()+"/app/jfList",
+            jfXx,
             function (data) {
                 if(data.code == 1) {
                 	//查询成功
                     arr = data.data;
+                    console.log(data);
                     var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
                                     '<form class="weui-search-bar__form" action="#">'+
                                     '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
-				                    '<input type="search" class="weui-search-bar__input" id="cfwyName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<input type="search" class="weui-search-bar__input" id="name" placeholder="输入网元名称模糊查找" required="">'+ 
 				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
 				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
 				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
@@ -88,28 +86,29 @@
                     	for (var i = 0; i <5; i++) {
                         var obj = arr[i];
                         list_html +=
-                                        '<a class="weui-cell weui-cell_access" href="cfd.html?cfid='+obj.id+'">'+
+                                        '<a class="weui-cell weui-cell_access">'+
                                         '<div class="weui-cell__bd">'+
-                                        '<p>'+obj.cfjf.name+'<br/>'+obj.cfjf.jfwz+'</p>'+
+                                        '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+obj.cfrqMs+'</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+
                                         '</a>'
                      }
+                    	
              			list_html+='<a class="weui-btn weui-btn_primary" id="trigger">下拉刷新查看更多</a>';
                     }else{
                     	for (var i = 0; i < arr.length; i++) {
                         var obj = arr[i];
                         list_html +=
-                                        '<a class="weui-cell weui-cell_access" href="cfd.html?cfid='+obj.id+'">'+
+                                       '<a class="weui-cell weui-cell_access">'+
                                         '<div class="weui-cell__bd">'+
-                                        '<p>'+obj.cfjf.name+'<br/>'+obj.cfjf.jfwz+'</p>'+
+                                        '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+ obj.cfrqMs+'<font color="red">'+'&nbsp&nbsp&nbsp&nbsp&nbsp'+"待整治"+ '</font>' + '</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+ /*class="weui-cell__ft">*/
                                         '</a>'
                     }
                     	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
                     }
-                    $("#cfd_lists").html(list_html);
+                    $("#jfxx_lists").html(list_html);
                 } else {
                     $.toast(data.msg,'forbidden', 8000);
                 }
@@ -119,30 +118,30 @@
        $(document.body).pullToRefresh(function() {
         setTimeout(function() {
         	//刷新后的逻辑
-        	var cflists="";
-        	cflists += '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
+        	var jfxxlists="";
+        	 jfxxlists +='<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
                                     '<form class="weui-search-bar__form" action="#">'+
                                     '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
-				                    '<input type="search" class="weui-search-bar__input" id="cfwyName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<input type="search" class="weui-search-bar__input" id="name" placeholder="输入网元名称模糊查找" required="">'+ 
 				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
 				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
 				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
 				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'<div class="weui-search-bar">'+
 				                    '<input type="button" style="border-radius: 70px;border: 1px solid #DBDBDB;height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
-			cflists +='<ul class="weui-media-box__info"><li class="weui-media-box__info__meta weui-media-box__info__meta_extra">当前共'+arr.length+'条</li></ul>'
+			jfxxlists +='<ul class="weui-media-box__info"><li class="weui-media-box__info__meta weui-media-box__info__meta_extra">当前共'+arr.length+'条</li></ul>'
 
         	for (var i = 0; i < arr.length; i++) {
                         var obj = arr[i];
-                        cflists +=
-                                        '<a class="weui-cell weui-cell_access" href="cfd.html?cfid='+obj.id+'">'+
+                        jfxxlists +=
+                                        '<a class="weui-cell weui-cell_access" >'+
                                         '<div class="weui-cell__bd">'+
-                                        '<p>'+obj.cfjf.name+'<br/>'+obj.cfjf.jfwz+'</p>'+
+                                        '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+ obj.cfrqMs+'<font color="red">'+'&nbsp&nbsp&nbsp&nbsp&nbsp'+"待整治"+ '</font>' + '</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+
                                         '</a>'
                     }
-                    	cflists+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
-         $("#cfd_lists").html(cflists);
+        	jfxxlists += '<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
+         $("#jfxx_lists").html(jfxxlists);
           $(document.body).pullToRefreshDone();
         }, 1000);
       });
@@ -153,19 +152,18 @@
 </script>
 <script >
 
-//条件查询处罚表
+//条件查询机房信息
 	function searchJfjjs(){
-        var jfCf={};
+        var jfXx={};
     	var storage = window.localStorage;
     	var userId = storage.getItem("loginName");
-    	jfCf.userId = userId;
        
-		var cfwyName = $("#cfwyName").val();
-		jfCf.cfwyName = cfwyName;
-		  //处罚的列表查询
+		var name = $("#name").val();
+		jfXx.name = name;
+		  //机房信息的列表查询
         $.post(
-            getContextPath() + "/app/cfList",
-            jfCf,
+            getContextPath() + "/app/jfList",
+            jfXx,
             function (data) {
                 if (data.code == 1) {
                     //查询成功
@@ -174,35 +172,36 @@
                     var list_html = '<div class="weui-search-bar" id="searchBar" style="height: 45px;">' +
                                     '<form class="weui-search-bar__form" action="#">'+
                                     '<div class="weui-search-bar__box">'+'<i class="weui-icon-search"></i>'+
-				                    '<input type="search" class="weui-search-bar__input" id="cfwyName" placeholder="输入网元名称模糊查找" required="">'+ 
+				                    '<input type="search" class="weui-search-bar__input" id="name" placeholder="输入网元名称模糊查找" required="">'+ 
 				                    '<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>'+ '</div>'+
 				                    '<label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">'+
 				                    '<i class="weui-icon-search"></i>' +'<span>请输入网元名称</span>' +'</label>'  + '</form>'+ 
 				                    '<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>' + '</div>'+'<div class="weui-search-bar">'+
 				                    '<input type="button" style="border-radius: 70px;border: 1px solid #DBDBDB;height:40px;width:100%;" value="查询" onclick= "searchJfjjs()" />'+ '</div>';
-				   list_html +='<ul class="weui-media-box__info"><li class="weui-media-box__info__meta weui-media-box__info__meta_extra">当前共'+arr.length+'条</li></ul>'
+				    list_html +='<ul class="weui-media-box__info"><li class="weui-media-box__info__meta weui-media-box__info__meta_extra">当前共'+arr.length+'条</li></ul>'
 
 				                    if (arr.length > 0) {
-                        for (var i = 0; i < arr.length; i++) {
+                        for (var i = 0; i <arr.length; i++) {
                         var obj = arr[i];
                         list_html +=
-                                        '<a class="weui-cell weui-cell_access" href="cfd.html?cfid='+obj.id+'">'+
+                                         '<a class="weui-cell weui-cell_access" >'+
                                         '<div class="weui-cell__bd">'+
-                                        '<p>'+obj.cfjf.name+'<br/>'+obj.cfjf.jfwz+'</p>'+
+                                        '<p>'+obj.name+'<br/>'+obj.jfwz+'</p>'+
                                         '</div>'+
-                                        '<div class="weui-cell__ft">'+ obj.cfrqMs+'<font color="red">'+'&nbsp&nbsp&nbsp&nbsp&nbsp'+"待整治"+ '</font>' + '</div>'+
+                                        '<div class="">'+obj.jfjj+'</div>'+
                                         '</a>'
-                    }
+                     }
                     	list_html+='<a class="weui-btn weui-btn_primary" id="trigger">已显示全部内容</a>';
                     }
-                    $("#cfd_lists").html(list_html);
+                    $("#jfxx_lists").html(list_html);
                 } else {
                     $.toast(data.msg, 'forbidden', 8000);
                 }
-                $("#cfwyName").val(cfwyName);
+                $("#name").val(name);
             });
 	}
 	
 	
 </script>
+
 </html>

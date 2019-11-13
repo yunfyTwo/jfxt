@@ -33,42 +33,39 @@
 				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 					<!--图片展示-->
 					<div class="swiper-container">
-                          <!-- Additional required wrapper -->
-                          <div class="swiper-wrapper">
-                          <!-- Slides -->
-                              <div class="swiper-slide"><img src="images/gy1.jpg" style="height: 256px;"/></div>
-                              <div class="swiper-slide"><img src="images/gy2.jpg" style="height: 256px;"/></div>
-                              <div class="swiper-slide"><img src="images/gy3.jpg" style="height: 256px;"/></div>
-                          </div>
-                           <!-- If we need pagination -->
-                          <div class="swiper-pagination"></div>
-                    </div>
-
-				     	
-					<div class="weui-cells__title">
-					<div style="position:relative">
-						<!--天气预报-->
-						<div  class="mask" ></div>
-						<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=99" width="160" height="36" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="height: 23px"></iframe>
-						<!--日期-->
-					     <span id="time" style="width: 200px; border: 0px solid hsla(0, 0%, 100%, .95); text-align: center;color: #3D4145;"></span>
-					<div  style="text-align: center;"></div>
+						<!-- Additional required wrapper -->
+						<div class="swiper-wrapper">
+							<!-- Slides -->
+							<div class="swiper-slide"> <img src="images/gy1.jpg" style="height: 256px;" /></div>
+							<div class="swiper-slide"><img src="images/gy2.jpg" style="height: 256px;" /></div>
+							<div class="swiper-slide"><img src="images/gy3.jpg" style="height: 256px;" /></div>
+						</div>
+						<!-- If we need pagination -->
+						<div class="swiper-pagination"></div>
 					</div>
-				    </div>
-				    
-					<div class="weui-grids">
-						
 
-                  
-                    <HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">
-                    
 					<div class="weui-cells__title">
-						<h3>
+						<div style="position:relative">
+							<!--天气预报-->
+							<div class="mask"></div>
+							<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=99" width="160" height="36" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="height: 23px"></iframe>
+							<!--日期-->
+							<span id="time" style="width: 200px; border: 0px solid hsla(0, 0%, 100%, .95); text-align: center;color: #3D4145;"></span>
+							<div style="text-align: center;"></div>
+						</div>
+					</div>
+
+					<div class="weui-grids">
+
+						<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">
+
+						<div class="weui-cells__title">
+							<h3>
 						<img src="images/g20.png" style="width: 10px;"/>
 						<strong style="color: #3d4145;">模块分类：</strong>
 						</h3>
-					</div>
-					
+						</div>
+
 						<a href="gonggao.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g1.png" alt="">
@@ -77,7 +74,7 @@
 								公告
 							</p>
 						</a>
-                        <!--<a href="wyxxlb.html" class="weui-grid js_grid">
+						<!--<a href="wyxxlb.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g3.png" alt="">
 							</div>
@@ -103,8 +100,8 @@
 								巡检过程
 							</p>
 						</a>
-<!--<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">-->
-                        <a href="zgdsyck.html" class="weui-grid js_grid">
+						<!--<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">-->
+						<a href="zgdsyck.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g8.png" alt="">
 							</div>
@@ -112,7 +109,7 @@
 								机房整改单
 							</p>
 						</a>
-						 <a href="zgdxlsy.html" class="weui-grid js_grid">
+						<a href="zgdxlsy.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g7.png" alt="">
 							</div>
@@ -120,8 +117,7 @@
 								线路整改单
 							</p>
 						</a>
-						
-						
+
 						<!--<a href="zhichengfang.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g4.png" alt="">
@@ -142,12 +138,12 @@
 					</div>
 					<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;">
 					<a href="gonggao.html">
-					<div class="weui-cells__title">
-						<h3>
+						<div class="weui-cells__title">
+							<h3>
 						<img src="images/g20.png" style="width: 10px;"/>
 						<strong style="color: #3d4145;">最新公告：</strong>
 						</h3>
-					</div>
+						</div>
 					</a>
 					<!--公告列表-->
 					<div id="ggList">
@@ -415,15 +411,15 @@
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
-						<a class="weui-cell weui-cell_access" href="javascript:;" id='show-alert' >
+						<a class="weui-cell weui-cell_access" href="javascript:;" id='show-alert'>
 							<img src="images/grzx2.png" style="height: 20px;width: 20px;">
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;版本号</p>
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
-						
-						<a class="weui-cell weui-cell_access open-popup"  class="weui-btn weui-btn_primary open-popup" href="javascript:;" data-target="#full" >
+
+						<a class="weui-cell weui-cell_access open-popup" class="weui-btn weui-btn_primary open-popup" href="javascript:;" data-target="#full">
 							<img src="images/v13.png" style="height: 20px;width: 20px;">
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;分享二维码</p>
@@ -451,6 +447,9 @@
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
+						<!--<div class='demos-content-padded'>
+                                  <a href="javascript:;" id='show-notification' class="weui-btn weui-btn_primary">显示通知</a>
+                        </div>-->
 						<div class="weui-cell">
 							<a href="#" class="weui-btn weui-btn_plain-primary" onclick="outApp()" style="border-radius: 70px;border: 1px solid #DBDBDB;">退出登录</a>
 						</div>
@@ -494,7 +493,7 @@
 				</a>
 			</div>
 		</div>
-		
+
 	</body>
 	<script src="js/jquery-2.1.4.js"></script>
 
@@ -618,7 +617,7 @@
 			});
 		});
 	</script>
-   <!-- 手机返回键问题-->
+	<!-- 手机返回键问题-->
 	<script>
 		document.addEventListener('plusready', function(a) {
 			var first = null;
@@ -639,175 +638,242 @@
 		});
 	</script>
 	<!--图片轮播-->
-<script type="text/javascript">
-	var index = 0;
-	//改变图片
-	function ChangeImg() {
-		index++;
-		var a = document.getElementsByClassName("img-slide");
-		if(index >= a.length) index = 0;
-		for(var i = 0; i < a.length; i++) {
-			a[i].style.display = 'none';
+	<script type="text/javascript">
+		var index = 0;
+		//改变图片
+		function ChangeImg() {
+			index++;
+			var a = document.getElementsByClassName("img-slide");
+			if(index >= a.length) index = 0;
+			for(var i = 0; i < a.length; i++) {
+				a[i].style.display = 'none';
+			}
+			a[index].style.display = 'block';
 		}
-		a[index].style.display = 'block';
-	}
-	//设置定时器，每隔两秒切换一张图片
-	setInterval(ChangeImg, 5000);
-</script>
-<style>
-	.swiper-container {
-		width: 100%;
-	}
-	
-	.swiper-container img {
-		display: block;
-		width: 100%;
-	}
-</style>
-<script>
-	$(function() {
-		FastClick.attach(document.body);
-	});
-</script>
-<script src="js/swiper.js"></script>
-<script>
-	$(".swiper-container").swiper({
-		loop: true,
-		autoplay: 3000
-	});
-</script>
-	<!--日期显示-->
-<script>
-	function mytime() {
-		var a = new Date();
-		var b = a.toLocaleTimeString();
-		var c = a.toLocaleDateString();
-		document.getElementById("time").innerHTML = c + "&nbsp" + b;
-	}
-	setInterval(function() {
-		mytime()
-	}, 1000);
-</script>
-<!--屏蔽天气预报超链接-->
-<style>
-	.mask {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		z-index: 1;
-		filter: alpha(opacity=0);
-		opacity: 0;
-		background: #ffffff
-	}
-</style>
-<script>
-	$(document).on("click", "#show-alert", function() {
-		$.alert("更新于2019年10月22日！", "当前版本！");
-	});
-</script>
+		//设置定时器，每隔两秒切换一张图片
+		setInterval(ChangeImg, 5000);
+	</script>
+	<style>
+		.swiper-container {
+			width: 100%;
+		}
+		
+		.swiper-container img {
+			display: block;
+			width: 100%;
+		}
+	</style>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+		});
+	</script>
+	<script src="js/swiper.js"></script>
+	<script>
+		$(".swiper-container").swiper({
+			loop: true,
+			autoplay: 3000
+		});
+	</script>
+	<!--a标签点击放大-->
+	 <script>
+	 	//不带文字
+	 	var djfd1 = $.photoBrowser({
+        items: [
+          "images/gy1.jpg",
+          "images/gy1.jpg",
+          "images/gy1.jpg",
+          "images/gy1.jpg"
+        ],
 
-<!--分享二维码-->
-<div id="full" class='weui-popup__container' style="transform:translateY(5%);-ms-transform:translateY(5%);-webkit-transform:translateY(5%);">
-	<div class="weui-popup__overlay"></div>
-	<div class="weui-popup__modal">
-		<header class='demos-header'>
-			<h2 class="demos-second-title">网络隐患监管系统APP</h2>
-			<p class="demos-sub-title"></p>
-		</header>
-		<article class="weui-article">
-			<h1></h1>
-			<section>
-				<h2 class="title"></h2>
+        onSlideChange: function(index) {
+          console.log(this, index);
+        },
+
+        onOpen: function() {
+          console.log("onOpen", this);
+        },
+        onClose: function() {
+          console.log("onClose", this);
+        }
+      });
+      $("#djfd1").click(function() {
+        djfd1.open(2);
+      });
+      var djfd2 = $.photoBrowser({
+        items: [
+          {
+            image: "images/gy1.jpg",
+            caption: "尝试 Vue.js 最简单的方法是使用 JSFiddle Hello World 例子。在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看安装教程。"
+          },
+          {
+            image: "images/gy1.jpg",
+            caption: "组件（Component）是 Vue.js 最强大的功能之一。"
+          },
+          {
+            image: "images/gy1.jpg",
+            caption: "组件可以扩展 HTML 元素，封装可重用的代码"
+          },
+          {
+            image: "images/gy1.jpg",
+            caption: "在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。"
+          }
+        ],
+        initIndex: 2
+      });
+      $("#djfd2").click(function() {
+        djfd2.open();
+      });
+    </script>
+    <!--显示通知-->
+    <script>
+      $(document).on("click", "#show-notification", function() {
+        $.noti({
+          title: "网络隐患监管系统！",
+          text: "点击此处下载最新版本！",
+          media: "<img src='./images/present.png' />",
+          data: {
+            message: "点击成功!"
+          },
+          time: 3000,
+          onClick: function(data) {
+            $.alert(data.message);
+          }
+        });
+      });
+    </script>
+	<!--日期显示-->
+	<script>
+		function mytime() {
+			var a = new Date();
+			var b = a.toLocaleTimeString();
+			var c = a.toLocaleDateString();
+			document.getElementById("time").innerHTML = c + "&nbsp" + b;
+		}
+		setInterval(function() {
+			mytime()
+		}, 1000);
+	</script>
+	<!--屏蔽天气预报超链接-->
+	<style>
+		.mask {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			filter: alpha(opacity=0);
+			opacity: 0;
+			background: #ffffff
+		}
+	</style>
+	<script>
+		$(document).on("click", "#show-alert", function() {
+			$.alert("更新于2019年10月22日！", "当前版本！");
+		});
+	</script>
+
+	<!--分享二维码-->
+	<div id="full" class='weui-popup__container' style="transform:translateY(5%);-ms-transform:translateY(5%);-webkit-transform:translateY(5%);">
+		<div class="weui-popup__overlay"></div>
+		<div class="weui-popup__modal">
+			<header class='demos-header'>
+				<h2 class="demos-second-title">网络隐患监管系统APP</h2>
+				<p class="demos-sub-title"></p>
+			</header>
+			<article class="weui-article">
+				<h1></h1>
 				<section>
-					<h3></h3>
-					<p style="padding: 5px 60px;">
-						使用手机浏览器扫码下载
-					</p>
-					<p style="padding: 5px 60px;">
-						<img src="images/erweima.jpg" alt="">
-						<img src="" alt="">
-					</p>
+					<h2 class="title"></h2>
+					<section>
+						<h3></h3>
+						<p style="padding: 5px 60px;">
+							使用手机浏览器扫码下载
+						</p>
+						<p style="padding: 5px 60px;">
+							<img src="images/erweima.jpg" alt="">
+							<img src="" alt="">
+						</p>
+					</section>
 				</section>
-			</section>
-		</article>
-		<a href="javascript:;" class="weui-btn weui-btn_primary close-popup">关闭</a>
-	</div>
-</div>
-<!--点击显示底部-->
-<div id="half" class='weui-popup__container popup-bottom'>
-	<div class="weui-popup__overlay"></div>
-	<div class="weui-popup__modal">
-		<div class="toolbar">
-			<div class="toolbar-inner">
-				<a href="javascript:;" class="picker-button close-popup">关闭</a>
-				<h1 class="title">首页</h1>
-			</div>
-		</div>
-		<div class="modal-content">
-			<div class="weui-grids" style="position: relative;float: left;padding: 20px 10px;width: 100%;box-sizing: border-box;transform:translateY(-50%);/**上移元素**/-ms-transform:translateY(-50%);-webkit-transform:translateY(-10%);">
-				<a href="gonggao.html" class="weui-grid js_grid" data-id="dialog">
-					<div class="weui-grid__icon">
-						<img src="images/g1.png" alt="">
-					</div>
-					<p class="weui-grid__label">
-						公告
-					</p>
-				</a>
-				<a href="chufa.html" class="weui-grid js_grid" data-id="progress">
-					<div class="weui-grid__icon">
-						<img src="images/g2.png" alt="">
-					</div>
-					<p class="weui-grid__label">
-						处罚单
-					</p>
-				</a>
-				<a href="xjgc.html" class="weui-grid js_grid" data-id="msg">
-					<div class="weui-grid__icon">
-						<img src="images/g3.png" alt="">
-					</div>
-					<p class="weui-grid__label">
-						巡检过程
-					</p>
-				</a>
-				<a href="zgdsyck.html" class="weui-grid js_grid" data-id="dialog">
-					<div class="weui-grid__icon">
-						<img src="images/g7.png" alt="">
-					</div>
-					<p class="weui-grid__label">
-						机房整改单
-					</p>
-				</a>
-				<a href="zgdxlsy.html" class="weui-grid js_grid" data-id="progress">
-					<div class="weui-grid__icon">
-						<img src="images/g8.png" alt="">
-					</div>
-					<p class="weui-grid__label">
-						线路整改单
-					</p>
-				</a>
-				<a href="gengduo.html" class="weui-grid js_grid" data-id="msg">
-					<div class="weui-grid__icon">
-						<img src="images/g5.png" alt="">
-					</div>
-					<p class="weui-grid__label">
-						更多
-					</p>
-				</a>
-			</div>
+			</article>
+			<a href="javascript:;" class="weui-btn weui-btn_primary close-popup">关闭</a>
 		</div>
 	</div>
-</div>
-<script>
-	$(function() {
-		FastClick.attach(document.body);
-	});
-</script>
-<script>
-	$(document).on("open", ".weui-popup-modal", function() {
-		console.log("open popup");
-	}).on("close", ".weui-popup-modal", function() {
-		console.log("close popup");
-	});
-</script>
+	<!--点击显示底部-->
+	<div id="half" class='weui-popup__container popup-bottom'>
+		<div class="weui-popup__overlay"></div>
+		<div class="weui-popup__modal">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<a href="javascript:;" class="picker-button close-popup">关闭</a>
+					<h1 class="title">首页</h1>
+				</div>
+			</div>
+			<div class="modal-content">
+				<div class="weui-grids" style="position: relative;float: left;padding: 20px 10px;width: 100%;box-sizing: border-box;transform:translateY(-50%);/**上移元素**/-ms-transform:translateY(-50%);-webkit-transform:translateY(-10%);">
+					<a href="gonggao.html" class="weui-grid js_grid" data-id="dialog">
+						<div class="weui-grid__icon">
+							<img src="images/g1.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+							公告
+						</p>
+					</a>
+					<a href="chufa.html" class="weui-grid js_grid" data-id="progress">
+						<div class="weui-grid__icon">
+							<img src="images/g2.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+							处罚单
+						</p>
+					</a>
+					<a href="xjgc.html" class="weui-grid js_grid" data-id="msg">
+						<div class="weui-grid__icon">
+							<img src="images/g3.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+							巡检过程
+						</p>
+					</a>
+					<a href="zgdsyck.html" class="weui-grid js_grid" data-id="dialog">
+						<div class="weui-grid__icon">
+							<img src="images/g7.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+							机房整改单
+						</p>
+					</a>
+					<a href="zgdxlsy.html" class="weui-grid js_grid" data-id="progress">
+						<div class="weui-grid__icon">
+							<img src="images/g8.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+							线路整改单
+						</p>
+					</a>
+					<a href="gengduo.html" class="weui-grid js_grid" data-id="msg">
+						<div class="weui-grid__icon">
+							<img src="images/g5.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+							更多
+						</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+		});
+	</script>
+	<script>
+		$(document).on("open", ".weui-popup-modal", function() {
+			console.log("open popup");
+		}).on("close", ".weui-popup-modal", function() {
+			console.log("close popup");
+		});
+	</script>
 
 </html>

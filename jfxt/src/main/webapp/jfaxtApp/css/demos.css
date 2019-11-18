@@ -216,7 +216,7 @@ footer a {
 .weui-tabbar{position: fixed;bottom:0;left:0;}
 .kong11{width:100%;height:55px;}
 .kong2{width:100%;height:46px;}
-.weui-header{position: fixed;left:0;top:0;width:100%;z-index: 9999;}
+.weui-header{position: fixed;left:0;top:0;width:100%;z-index: 9999;box-shadow: 0 1px 6px #3d4145;}
 .weui-rater-inner {
   position: relative;
   display: inline-block;

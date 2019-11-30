@@ -30,7 +30,8 @@
 		<div class="kong2"></div>
 		<div class="weui-tab">
 			<div class="weui-tab__bd">
-				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active" >
+					<div class="kong2" style="height: 15px;background-color: #EFEFF4;"></div>
 					<!--图片展示-->
 					<div class="swiper-container">
 						<!-- Additional required wrapper -->
@@ -48,20 +49,19 @@
 						<div style="position:relative">
 							<!--天气预报-->
 							<div class="mask"></div>
-							<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=99" width="160" height="36" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="height: 23px"></iframe>
+							<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=99" width="160" height="36" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="height: 25px"></iframe>
 							<!--日期-->
-							<span id="time" style="width: 200px; border: 0px solid hsla(0, 0%, 100%, .95); text-align: center;color: #3D4145;"></span>
+							<span id="time" style="font-size: 16px;width: 200px; border: 0px solid hsla(0, 0%, 100%, .95); text-align: center;color: #3D4145;"></span>
 							<div style="text-align: center;"></div>
 						</div>
 					</div>
-
 					<div class="weui-grids">
 
 						<!--<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;box-shadow: 0 1px 6px #353535;">-->
 
-						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #353535;">
+						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #d9d9d9;">
 							<h3 >
-						<img src="images/g20.png" style="width: 10px;"/>
+						<i class="icon icon-81" style="color: #353535;" ></i>
 						<strong style="color: #3d4145;">模块分类：</strong>
 						</h3>
 						</div>
@@ -75,14 +75,14 @@
 								公告
 							</p>
 						</a>
-						<!--<a href="wyxxlb.html" class="weui-grid js_grid">
+						<a href="wyxxlb.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
-								<img src="images/g3.png" alt="">
+								<img src="images/g9.png" alt="">
 							</div>
 							<p class="weui-grid__label">
 								网元信息
 							</p>
-						</a>-->
+						</a>
 						<a href="chufa.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
 								<img src="images/g2.png" alt="">
@@ -139,11 +139,11 @@
 					</div>
 <!--					<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;box-shadow: 0 1px 6px #353535;">
 -->					<a href="gonggao.html">
-						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #353535;">
+						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #d9d9d9;">
 							<h3 >
-						<img src="images/g20.png" style="width: 10px;"/>
-						<strong style="color: #3d4145;">最新公告：</strong>
-						</h3>
+						       <i class="icon icon-80" style="color: #353535;" ></i>
+						       <strong style="color: #3d4145;">最新公告：</strong>
+						    </h3>
 						</div>
 					</a>
 					<!--公告列表-->
@@ -395,25 +395,37 @@
 						</a>
 					</div>
 				</div>
-				<div id="tab5" class="weui-tab__bd-item">
+				<div id="tab5" class="weui-tab__bd-item" style="background-color: #EFEFF4;">
 					<div class="weui-cells">
-						<div class="weui-cell">
+						
+						<div class="weui-cell" style="padding: 16px;">
+                                <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+                                 <img src="images/grzx1.png" style="width: 50px;display: block">
+                                  </div>
+                        <div class="weui-cell__bd">
+                          <p id="user_name"></p>
+                           <p id="user_nameTp" style="font-size: 13px;color: #888888;"></p>
+                         </div>
+                        </div>
+						<!--<div class="weui-cell">
 							<input id="user_id" value="" style="display: none">
 							<img src="images/grzx1.png" style="height: 20px;width: 20px;">
 							<div class="weui-cell__hd"><label class="weui-label">&nbsp;&nbsp;&nbsp;&nbsp;账号：</label></div>
 							<div class="weui-cell__bd" id="user_name">
 
 							</div>
-						</div>
+						</div>-->
+						<HR align=center width=300 color=#EFEFF4 SIZE=10 style="width: 100%;">
 						<a class="weui-cell weui-cell_access" href="grxx.html">
-							<img src="images/grzx3.png" style="height: 20px;width: 20px;">
+							<span class="icon icon-99" style="color: #1fc5c5;"></span>
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;个人资料</p>
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
+						<HR align=center width=300 color=#EFEFF4 SIZE=10 style="width: 100%;">
 						<a class="weui-cell weui-cell_access" href="javascript:;" id='show-alert'>
-							<img src="images/grzx2.png" style="height: 20px;width: 20px;">
+							<span class="icon icon-39" style="color: #f76260;"></span>
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;版本号</p>
 							</div>
@@ -421,14 +433,14 @@
 						</a>
 
 						<a class="weui-cell weui-cell_access open-popup" class="weui-btn weui-btn_primary open-popup" href="javascript:;" data-target="#full">
-							<img src="images/v13.png" style="height: 20px;width: 20px;">
+							<span class="icon icon-46" style="color: #f7e460;"></span>
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;分享二维码</p>
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
 						<a class="weui-cell weui-cell_access" href="http://39.97.246.149:8080/jfxt/jfaxtApp/unpackage/release/jfxt.apk">
-							<img src="images/grzx5.png" style="height: 20px;width: 20px;">
+							<span class="icon icon-114" style="color: #10aeff;"></span>
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;下载最新版本</p>
 							</div>
@@ -442,7 +454,7 @@
 							<div class="weui-cell__ft"></div>
 						</a>-->
 						<a class="weui-cell weui-cell_access" id="sd2">
-							<img src="images/grzx4.png" style="height: 20px;width: 20px;">
+							<span class="icon icon-26" style="color: #020608a3;"></span>
 							<div class="weui-cell__bd">
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;清理缓存</p>
 							</div>
@@ -452,18 +464,18 @@
                                   <a href="javascript:;" id='show-notification' class="weui-btn weui-btn_primary">显示通知</a>
                         </div>-->
 						<div class="weui-cell">
-							<a href="#" class="weui-btn weui-btn_plain-primary" onclick="outApp()" style="border-radius: 70px;border: 1px solid #DBDBDB;">退出登录</a>
+							<a href="#" class="weui-btn weui-btn_default" onclick="outApp()" >退出登录</a>
 						</div>
 					</div>
 
 				</div>
 			</div>
+			
 
 			<div class="weui-tabbar" style="box-shadow: 0 1px 20px #353535;">
 				<a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
-					<div class="weui-tabbar__icon">
-						<img src="images/dh1.png">
-					</div>
+					
+					<i class="icon icon-29 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">首页</p>
 				</a>
 				<!--<a href="#tab3" class="weui-tabbar__item">-->
@@ -473,9 +485,7 @@
 				<!--<p class="weui-tabbar__label">处罚</p>-->
 				<!--</a>-->
 				<a id="show-actions" class="weui-tabbar__item">
-					<div class="weui-tabbar__icon">
-						<img src="images/dh3.png" alt="">
-					</div>
+					<i class="icon icon-34 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">新建工作</p>
 				</a>
 				<!-- <a href="#tab4" class="weui-tabbar__item">
@@ -487,9 +497,7 @@
 
         </a>-->
 				<a href="#tab5" class="weui-tabbar__item">
-					<div class="weui-tabbar__icon">
-						<img src="images/dh2.png" alt="">
-					</div>
+					<i class="icon icon-84 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">个人中心</p>
 				</a>
 			</div>
@@ -769,7 +777,7 @@
 	</style>
 	<script>
 		$(document).on("click", "#show-alert", function() {
-			$.alert("更新于2019年10月22日！", "当前版本！");
+			$.alert("更新于2019年11月30日！", "当前版本！");
 		});
 	</script>
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/jquery-weui.css">
     <link rel="stylesheet" href="css/demos.css">
     <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="css/weuix.css">
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/fastclick.js"></script>
     <script src="js/zepto.min.js"></script>
@@ -23,8 +24,27 @@
             z-index: 999;
         }
     </style>
+    <script>
+    	//折叠面板
+        $(function(){
+            $('.collapse .js-category').click(function(){
+                $parent = $(this).parent('li');
+                if($parent.hasClass('js-show')){
+                    $parent.removeClass('js-show');
+                    $(this).children('i').removeClass('icon-35').addClass('icon-74');
+                }else{
+                    $parent.siblings().removeClass('js-show');
+                    $parent.addClass('js-show');
+                    $(this).children('i').removeClass('icon-74').addClass('icon-35');
+                    $parent.siblings().find('i').removeClass('icon-35').addClass('icon-74');
+                }
+            });
+
+        });
+
+    </script>
 </head>
-<body ontouchstart>
+<body ontouchstart >
 <div class="weui_btn_primary weui-header ">
     <div class="weui-header-left"> <a href="zgdsyck.html#zgd_lists" class="icon icon-109 f-white"></a>  </div>
     <h1 class="weui-header-title">机房整改单</h1>
@@ -32,46 +52,49 @@
     <!--<div class="weui-header-right"><a class="icon icon-22 f-white"></a></div>-->
 </div>
 <div class="kong2"></div>
+
+
    <div class="weui-cells"></div>
-    <div class="weui-cell" style="">
-        <div class="weui-cell__hd"><label class="weui-label" style="color: red;">整改单号</label></div>
-        <div class="weui-cell__bd">
-          <span style="border: 0px;" value=""  id="zgdh"></span>
-        </div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="years-monthes" class="weui-label" style="color: red;">日期</label></div>
-        <div class="weui-cell__bd">
-        	<input class="weui-input" id="years-monthes" type="text" value="" readonly="readonly" >
-            <!--<input class="weui-input" type="date" value="">-->
-        </div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="zgsxrq" class="weui-label" style="color: red;" >整改时限</label></div>
-        <div class="weui-cell__bd">
-        	<input class="weui-input" id="zgsxrq" type="text" value="" readonly="readonly" >
-            <!--<input class="weui-input" type="date" value="">-->
-        </div>
-    </div>
+<div class="weui-cells__title">整改单号</div>
+<div class="weui-cell">
+	<div class="weui-cell__bd">
+		<span style="border: 0px;" value="" id="zgdh"></span>
+	</div>
+</div>
+<div class="weui-cells__title">日期</div>
+<div class="weui-cell">
+	<div class="weui-cell__bd">
+		<input class="weui-input" id="years-monthes" type="text" value="" readonly="readonly">
+		<!--<input class="weui-input" type="date" value="">-->
+	</div>
+</div>
+<div class="weui-cells__title">整改时限</div>
+<div class="weui-cell">
+	<div class="weui-cell__bd">
+		<input class="weui-input" id="zgsxrq" type="text" value="" readonly="readonly">
+		<!--<input class="weui-input" type="date" value="">-->
+	</div>
+</div>
 <div class="weui-cells__title">网元</div>
 <div class="weui-cells ">
-      <div class="weui-cell weui-cell_select">
-        <div class="weui-cell__bd" id="cfjf">
-            <input type="text" value="" id="jf_id" style="display: none;"/>
-            <select class="weui-select"  onchange="selectedJf(this.value)"  name="jfLists" id="jfXx_list">
-            </select>
-        </div>
-    </div>
+	<div class="weui-cell weui-cell_select">
+		<div class="weui-cell__bd" id="cfjf">
+			<input type="text" value="" id="jf_id" style="display: none;" />
+			<select class="weui-select" onchange="selectedJf(this.value)" name="jfLists" id="jfXx_list">
+			</select>
+		</div>
+	</div>
 </div>
 <div class="weui-cells__title">网元属性</div>
 <div class="weui-cells ">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="网元属性" rows="1" id="zgdJfwz" readonly="readonly"></textarea>
-        </div>
-    </div>
+	<div class="weui-cell">
+		<div class="weui-cell__bd">
+			<textarea class="weui-textarea" placeholder="网元属性" rows="1" id="zgdJfwz" readonly="readonly"></textarea>
+		</div>
+	</div>
 </div>
-<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">安全隐患</b></div>
+
+<!--<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">安全隐患</b></div>
 
 <div class="weui-cells__title">是否存在安全隐患</div>
 <div class="weui-cells ">
@@ -96,10 +119,56 @@
             <textarea class="weui-textarea" placeholder="隐患原因" rows="2" id="reason" readonly="readonly"></textarea>
         </div>
     </div>
+</div>-->
+<div class="page-bd">
+	<ul class="collapse">
+		<li class="">
+			<div class="weui-flex js-category">
+				<div class="weui-flex__item">安全隐患</div>
+				<i class="icon icon-74"></i>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">是否存在安全隐患</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="是否存在安全隐患" rows="1" id="isSafetyHazard" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">隐患简要说明</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="简要说明" rows="2" id="briefDescription" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">隐患原因</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="隐患原因" rows="2" id="reason" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</li>
+	</ul>
 </div>
 
-
-<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">设备类整治</b></div>
+<!--<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">设备类整治</b></div>
 <div class="weui-cells__title">是否有ODF架/柜</div>
 <div class="weui-cells ">
     <div class="weui-cell">
@@ -125,9 +194,55 @@
             <textarea class="weui-textarea" placeholder="隐患级别" rows="2" id="isCutOverContent" readonly="readonly"></textarea>
         </div>
     </div>
+</div>-->
+<div class="page-bd">
+	<ul class="collapse">
+		<li class="">
+			<div class="weui-flex js-category">
+				<div class="weui-flex__item">设备类整治</div>
+				<i class="icon icon-74"></i>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">是否有ODF架/柜</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="是否有ODF架/柜" rows="1" id="isODF" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">是否需要网络设备整治割接</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="是否需要网络设备整治割接" rows="1" id="isCutOver" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title" style="display: none;">隐患级别</div>
+					<div class="weui-cells " style="display: none;">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="隐患级别" rows="2" id="isCutOverContent" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
 </div>
 
-<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">光缆类整治</b></div>
+<!--<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">光缆类整治</b></div>
 <div class="weui-cells__title">是否需要光缆割接</div>
 <div class="weui-cells ">
     <div class="weui-cell">
@@ -153,9 +268,55 @@
             <textarea class="weui-textarea" placeholder="整治批次" rows="3" id="opticalCableContent" readonly="readonly"></textarea>
         </div>
     </div>
+</div>-->
+<div class="page-bd">
+	<ul class="collapse">
+		<li class="">
+			<div class="weui-flex js-category">
+				<div class="weui-flex__item">光缆类整治</div>
+				<i class="icon icon-74"></i>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">是否需要光缆割接</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="是否需要光缆割接" rows="1" id="isOpticalCable" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">光缆割接量（条/芯）</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="光缆割接量" rows="3" id="opticalCableCutting" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title" style="display: none;">整治批次</div>
+					<div class="weui-cells " style="display: none;">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="整治批次" rows="3" id="opticalCableContent" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
 </div>
 
-<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">环境类整治</b></div>
+<!--<div class="weui-cells__title" style="    box-shadow: 0 1px 10px #353535;"><b style="color: #3d4145;">环境类整治</b></div>
 <div class="weui-cells__title">是否需要环境整治</div>
 <div class="weui-cells ">
     <div class="weui-cell">
@@ -172,8 +333,42 @@
             <textarea class="weui-textarea" placeholder="环境整治内容描述" rows="2" id="contentDescription" readonly="readonly"></textarea>
         </div>
     </div>
-</div>
+</div>-->
 
+<div class="page-bd">
+	<ul class="collapse">
+		<li class="">
+			<div class="weui-flex js-category">
+				<div class="weui-flex__item">环境类整治</div>
+				<i class="icon icon-74"></i>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">是否需要环境整治</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" rows="1" id="needRemediation" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-category js-categoryInner">
+				<div class="weui-cells page-category-content">
+					<div class="weui-cells__title">环境整治内容描述（门、窗、墙面等）</div>
+					<div class="weui-cells ">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="环境整治内容描述" rows="2" id="contentDescription" readonly="readonly"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
 
 <div class="weui-gallery" id="gallery">
     <span class="weui-gallery__img" id="galleryImg"></span>

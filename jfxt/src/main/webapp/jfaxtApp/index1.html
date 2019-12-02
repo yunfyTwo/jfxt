@@ -24,7 +24,7 @@
 			<!--<div class="weui-header-left"> <a class="icon icon-109 f-white"></a>  </div>-->
 
 			<h1 class="weui-header-title">首页</h1>
-			<!--<div class="weui-header-right"><a class="icon icon-22 f-white"></a></div>-->
+			<div class="weui-header-right"><a class="icon icon-22 f-white" href="grxx.html"></a></div>
 		</div>
 
 		<div class="kong2"></div>
@@ -60,20 +60,17 @@
 						<!--<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;box-shadow: 0 1px 6px #353535;">-->
 
 						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #d9d9d9;">
-							<h3 >
-						<i class="icon icon-81" style="color: #353535;" ></i>
-						<strong style="color: #3d4145;">模块分类：</strong>
-						</h3>
+							 <span class="icon icon-81" style="color: #353535;font-size: 19px;"><b>&nbsp;模板分类：</b></span>
 						</div>
-
 						<a href="gonggao.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon" style="position: relative;">
 								<img src="images/g1.png" alt="">
-								<!--<span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;"></span>-->
+								<!--<span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;" id="ggLenght"></span>-->
 							</div>
 							<p class="weui-grid__label">
 								公告
 							</p>
+							
 						</a>
 						<a href="wyxxlb.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
@@ -140,10 +137,7 @@
 <!--					<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;box-shadow: 0 1px 6px #353535;">
 -->					<a href="gonggao.html">
 						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #d9d9d9;">
-							<h3 >
-						       <i class="icon icon-80" style="color: #353535;" ></i>
-						       <strong style="color: #3d4145;">最新公告：</strong>
-						    </h3>
+						       <span class="icon icon-80" style="color: #353535;font-size: 19px;"><b>&nbsp;今日公告：</b></span>
 						</div>
 					</a>
 					<!--公告列表-->
@@ -398,7 +392,6 @@
 				</div>
 				<div id="tab5" class="weui-tab__bd-item" style="background-color: #EFEFF4;">
 					<div class="weui-cells">
-						
 						<div class="weui-cell" style="padding: 16px;">
                                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                                  <img src="images/grzx1.png" style="width: 50px;display: block">
@@ -463,9 +456,13 @@
 						</a>
 						<!--<div class='demos-content-padded'>
                                   <a href="javascript:;" id='show-notification' class="weui-btn weui-btn_primary">显示通知</a>
-                        </div>-->
+                       </div>-->
+                       <HR align=center width=300 color=#EFEFF4 SIZE=10 style="width: 100%;">
 						<div class="weui-cell">
-							<a href="#" class="weui-btn weui-btn_default" onclick="outApp()" >退出登录</a>
+							<a href="#" class="weui-btn weui-btn_default" onclick="outApp()" >
+								<span class="icon icon-112" style="color: #f43530;font-size: 18px;"></span>
+							退出登录
+							</a>
 						</div>
 					</div>
 
@@ -474,7 +471,7 @@
 			
 
 			<div class="weui-tabbar" style="box-shadow: 0 1px 20px #353535;">
-				<a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
+				<a href="#tab1" class="weui-tabbar__item weui-bar__item--on" style="padding: 0px 0 0;">
 					
 					<i class="icon icon-29 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">首页</p>
@@ -485,7 +482,7 @@
 				<!--</div>-->
 				<!--<p class="weui-tabbar__label">处罚</p>-->
 				<!--</a>-->
-				<a id="show-actions" class="weui-tabbar__item">
+				<a id="show-actions" class="weui-tabbar__item" style="padding: 0px 0 0;">
 					<i class="icon icon-34 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">新建工作</p>
 				</a>
@@ -497,7 +494,7 @@
             <p class="weui-tabbar__label">支撑方</p>
 
         </a>-->
-				<a href="#tab5" class="weui-tabbar__item">
+				<a href="#tab5" class="weui-tabbar__item" style="padding: 0px 0 0;">
 					<i class="icon icon-84 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">个人中心</p>
 				</a>
@@ -556,6 +553,8 @@
 				function(data) {
 					if(data.code == 1) {
 						var arr = data.data;
+						$("#ggLenght").text(arr.length);
+						console.log(data);
 						var list_html = '';
 						for(var i = 0; i < arr.length; i++) {
 							var obj = arr[i];
@@ -790,7 +789,7 @@
 				<h2 class="demos-second-title">网络隐患监管系统APP</h2>
 				<p class="demos-sub-title"></p>
 			</header>
-			<article class="weui-article">
+			<article class="weui-article" style="padding: 0px 15px;">
 				<h1></h1>
 				<section>
 					<h2 class="title"></h2>

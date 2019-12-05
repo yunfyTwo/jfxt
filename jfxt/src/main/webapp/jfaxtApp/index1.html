@@ -16,23 +16,45 @@
 		<script src="js/zepto.min.js"></script>
 		<script src="js/swipe.js"></script>
 		<script src="js/common.js"></script>
+		<!--底部导航中间凸起-->
+		<style>
+			.circle {
+				position: fixed;
+				width: 50px;
+				height: 50px;
+				background-color: #33b4ff;
+				bottom: 23px;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				border: 1px solid;
+				border-radius: 50%;
+			}
+			
+			.circle img {
+				position: relative;
+				top: 10px;
+				width: 60%;
+			}
+		</style>
 	</head>
 
 	<body ontouchstart>
 
 		<div class="weui_btn_primary weui-header ">
 			<!--<div class="weui-header-left"> <a class="icon icon-109 f-white"></a>  </div>-->
-
 			<h1 class="weui-header-title">首页</h1>
-			<div class="weui-header-right"><a class="icon icon-22 f-white" href="grxx.html"></a></div>
+			<div class="weui-header-right">
+				<a class="icon icon-22 f-white" href="grxx.html"></a>
+			</div>
 		</div>
 
 		<div class="kong2"></div>
 		<div class="weui-tab">
 			<div class="weui-tab__bd">
-				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active" >
+				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 					<div class="kong2" style="height: 15px;background-color: #EFEFF4;"></div>
-					<!--图片展示-->
+					<!--图片展示以及轮播-->
 					<div class="swiper-container">
 						<!-- Additional required wrapper -->
 						<div class="swiper-wrapper">
@@ -55,12 +77,15 @@
 							<div style="text-align: center;"></div>
 						</div>
 					</div>
+					
+					<!--
+                    	作者：851735851@qq.com
+                    	时间：2019-12-05
+                    	描述：宫格列表
+                    -->
 					<div class="weui-grids">
-
-						<!--<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;box-shadow: 0 1px 6px #353535;">-->
-
 						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #d9d9d9;">
-							 <span class="icon icon-81" style="color: #353535;font-size: 19px;"><b>&nbsp;模板分类：</b></span>
+							<span class="icon icon-81" style="color: #353535;font-size: 19px;"><b>&nbsp;模板分类：</b></span>
 						</div>
 						<a href="gonggao.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon" style="position: relative;">
@@ -70,7 +95,7 @@
 							<p class="weui-grid__label">
 								公告
 							</p>
-							
+
 						</a>
 						<a href="wyxxlb.html" class="weui-grid js_grid">
 							<div class="weui-grid__icon">
@@ -134,103 +159,38 @@
 							</p>
 						</a>
 					</div>
-<!--					<HR align=center width=300 color=#d9d9d9 SIZE=5 style="width: 100%;box-shadow: 0 1px 6px #353535;">
--->					<a href="gonggao.html">
-						<div class="weui-cells__title" style="box-shadow: 0 1px 20px #d9d9d9;">
-						       <span class="icon icon-80" style="color: #353535;font-size: 19px;"><b>&nbsp;今日公告：</b></span>
-						</div>
+
+
+					<a href="gonggao.html">
+						    <div class="weui-cells__title " style="box-shadow: 0 1px 20px #d9d9d9;">
+							     <span class="icon icon-80" style="color: #353535;font-size: 19px;">
+							     	<b>&nbsp;今日公告：
+							     		<!--<span id="ggLenght" class="weui-badge" style="margin-left: -20px;margin-top: -20px;background-color: #353535;"></span>-->
+							     	</b>
+							     </span>
+						    </div>
 					</a>
 					<!--公告列表-->
+					<ul class="weui-media-box__info">
+						<span class="weui-media-box__info__meta weui-media-box__info__meta_extra">今日公告<span id="ggLenght"></span>条
+						</span>
+					</ul>
 					<div id="ggList">
 					</div>
 					<div class="kong11"></div>
 					<div class="kong2"></div>
 				</div>
-				<div id="tab3" class="weui-tab__bd-item">
-					<div class="weui-cells">
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-					</div>
+				<!--<div id="tab3" class="weui-tab__bd-item">
 
-					<!--<div class="weui-cells db">-->
-					<!--<div class="weui-cell ">-->
-					<!--<a class="weui-btn weui-btn_primary " href="cfd.html" >新建处罚单</a>-->
-					<!--</div>-->
-					<!--</div>-->
-				</div>
-				<div id="tab4" class="weui-tab__bd-item">
+					<div class="weui-cells db">
+					<div class="weui-cell ">
+					<a class="weui-btn weui-btn_primary " href="cfd.html" >新建处罚单</a>
+					</div>
+					</div>
+				</div>-->
+				<!--<div id="tab4" class="weui-tab__bd-item">
 					<div class="weui_tab " style="height:44px;">
-						<!--tab-fixed添加顶部-->
+						
 						<div class="weui_navbar" style="height:44px;">
 							<div class="weui_navbar_item  tab-green ">
 								处罚单11
@@ -240,167 +200,24 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="weui-cells cfd">
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="cfd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-					</div>
-					<div class="weui-cells zgd  ">
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-25</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-						<a class="weui-cell weui-cell_access" href="zgd.html">
-							<div class="weui-cell__bd">
-								<p>23456231（单号）</p>
-							</div>
-							<div class="weui-cell__ft">2019-03-10</div>
-						</a>
-					</div>
-				</div>
+				</div>-->
+				
+              <!--
+              	作者：851735851@qq.com
+              	时间：2019-12-05
+              	描述：个人中心
+              -->
 				<div id="tab5" class="weui-tab__bd-item" style="background-color: #EFEFF4;">
 					<div class="weui-cells">
 						<div class="weui-cell" style="padding: 16px;">
-                                <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-                                 <img src="images/grzx1.png" style="width: 50px;display: block">
-                                  </div>
-                        <div class="weui-cell__bd">
-                          <p id="user_name"></p>
-                           <p id="user_nameTp" style="font-size: 13px;color: #888888;"></p>
-                         </div>
-                        </div>
+							<div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+								<img src="images/grzx1.png" style="width: 50px;display: block">
+							</div>
+							<div class="weui-cell__bd">
+								<p id="user_name"></p>
+								<p id="user_nameTp" style="font-size: 13px;color: #888888;"></p>
+							</div>
+						</div>
 						<!--<div class="weui-cell">
 							<input id="user_id" value="" style="display: none">
 							<img src="images/grzx1.png" style="height: 20px;width: 20px;">
@@ -440,13 +257,6 @@
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
-						<!--<a class="weui-cell weui-cell_access open-popup"  class="weui-btn weui-btn_primary open-popup" href="javascript:;" data-target="#half"" >
-							<img src="images/dh1.png" style="height: 20px;width: 20px;">
-							<div class="weui-cell__bd">
-								<p>&nbsp;&nbsp;&nbsp;&nbsp;首页</p>
-							</div>
-							<div class="weui-cell__ft"></div>
-						</a>-->
 						<a class="weui-cell weui-cell_access" id="sd2">
 							<span class="icon icon-26" style="color: #020608a3;"></span>
 							<div class="weui-cell__bd">
@@ -454,37 +264,44 @@
 							</div>
 							<div class="weui-cell__ft"></div>
 						</a>
-						<!--<div class='demos-content-padded'>
-                                  <a href="javascript:;" id='show-notification' class="weui-btn weui-btn_primary">显示通知</a>
-                       </div>-->
-                       <HR align=center width=300 color=#EFEFF4 SIZE=10 style="width: 100%;">
+						<HR align=center width=300 color=#EFEFF4 SIZE=10 style="width: 100%;">
 						<div class="weui-cell">
-							<a href="#" class="weui-btn weui-btn_default" onclick="outApp()" >
-								<span class="icon icon-112" style="color: #f43530;font-size: 18px;"></span>
-							退出登录
+							<a href="#" class="weui-btn weui-btn_default" onclick="outApp()">
+								<span class="icon icon-112" style="color: #f43530;font-size: 18px;"></span> 退出登录
 							</a>
 						</div>
 					</div>
-
 				</div>
+				
+				
 			</div>
-			
-
-			<div class="weui-tabbar" style="box-shadow: 0 1px 20px #353535;">
+            
+            <!--
+            	作者：851735851@qq.com
+            	时间：2019-12-05
+            	描述：底部导航栏
+            -->
+			<div class="weui-tabbar" style="box-shadow: 0 1px 6px #353535;">
 				<a href="#tab1" class="weui-tabbar__item weui-bar__item--on" style="padding: 0px 0 0;">
-					
+
 					<i class="icon icon-29 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">首页</p>
 				</a>
-				<!--<a href="#tab3" class="weui-tabbar__item">-->
-				<!--<div class="weui-tabbar__icon">-->
-				<!--<img src="images/chufa.png" alt="">-->
-				<!--</div>-->
-				<!--<p class="weui-tabbar__label">处罚</p>-->
-				<!--</a>-->
+
+				<!--<a href="#tab3" class="weui-tabbar__item">
+	                <div class="weui-tabbar__icon">
+		                 <img src="images/chufa.png" alt="">
+	                </div>
+	                <p class="weui-tabbar__label">处罚</p>
+                </a>-->
+
 				<a id="show-actions" class="weui-tabbar__item" style="padding: 0px 0 0;">
-					<i class="icon icon-34 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
-					<p class="weui-tabbar__label">新建工作</p>
+					<div class="circle" style="box-shadow: 0 1px 6px #3d4145">
+						<img src="images/jiahao.png" alt="">
+						<!--<i class="icon icon-34 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>-->
+						<p class="weui-tabbar__label" style="padding: 24px 0 0;">新建工作</p>
+						<!--<div class="post">新建工作</div>-->
+					</div>
 				</a>
 				<!-- <a href="#tab4" class="weui-tabbar__item">
 
@@ -492,13 +309,14 @@
                 <img src="images/tuandui.png" alt="">
             </div>
             <p class="weui-tabbar__label">支撑方</p>
-
         </a>-->
 				<a href="#tab5" class="weui-tabbar__item" style="padding: 0px 0 0;">
 					<i class="icon icon-84 f27 weui-tabbar__icon weui-tabbar__label" style="height: 35px;"></i>
 					<p class="weui-tabbar__label">个人中心</p>
 				</a>
 			</div>
+			
+			
 		</div>
 
 	</body>
@@ -507,6 +325,7 @@
 	<script src="js/jquery-weui.js"></script>
 	<script type="text/javascript">
 		var dataedit = 'merchant:jfCf:edit'; //处罚单按钮权限
+	    var xjgcedit = 'merchant:jfXjgc:edit' ;//巡检网元按钮权限
 		var permissions = "";
 		$(function() {
 			onLoad();
@@ -587,7 +406,11 @@
 						text: "巡检网元",
 						className: "color-primary",
 						onClick: function() {
-							location.href = 'newxunjian.html';
+							if(permissions.indexOf(xjgcedit) > -1) {
+								location.href = 'newxunjian.html';
+							} else {
+								$.toast('没有巡检网元权限，请联系管理员', 'forbidden', 8000);
+							}
 						}
 					},
 					{
@@ -597,7 +420,7 @@
 							if(permissions.indexOf(dataedit) > -1) {
 								location.href = 'newcfd.html';
 							} else {
-								$.toast('没有操作权限，请联系管理员', 'forbidden', 8000);
+								$.toast('没有出具处罚单权限，请联系管理员', 'forbidden', 8000);
 							}
 						}
 					}
@@ -605,6 +428,7 @@
 			});
 		});
 	</script>
+
 	<script>
 		$('.zgd').hide();
 		$('.weui_navbar_item').on('click', function() {
@@ -684,73 +508,7 @@
 			autoplay: 3000
 		});
 	</script>
-	<!--a标签点击放大-->
-	 <script>
-	 	//不带文字
-	 	var djfd1 = $.photoBrowser({
-        items: [
-          "images/gy1.jpg",
-          "images/gy1.jpg",
-          "images/gy1.jpg",
-          "images/gy1.jpg"
-        ],
 
-        onSlideChange: function(index) {
-          console.log(this, index);
-        },
-
-        onOpen: function() {
-          console.log("onOpen", this);
-        },
-        onClose: function() {
-          console.log("onClose", this);
-        }
-      });
-      $("#djfd1").click(function() {
-        djfd1.open(2);
-      });
-      var djfd2 = $.photoBrowser({
-        items: [
-          {
-            image: "images/gy1.jpg",
-            caption: "尝试 Vue.js 最简单的方法是使用 JSFiddle Hello World 例子。在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看安装教程。"
-          },
-          {
-            image: "images/gy1.jpg",
-            caption: "组件（Component）是 Vue.js 最强大的功能之一。"
-          },
-          {
-            image: "images/gy1.jpg",
-            caption: "组件可以扩展 HTML 元素，封装可重用的代码"
-          },
-          {
-            image: "images/gy1.jpg",
-            caption: "在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。"
-          }
-        ],
-        initIndex: 2
-      });
-      $("#djfd2").click(function() {
-        djfd2.open();
-      });
-    </script>
-    <!--显示通知-->
-    <script>
-      $(document).on("click", "#show-notification", function() {
-        $.noti({
-          title: "网络隐患监管系统！",
-          text: "点击此处下载最新版本！",
-          media: "<img src='./images/present.png' />",
-          data: {
-            message: "点击成功!"
-          },
-          time: 3000,
-          onClick: function(data) {
-            $.alert(data.message);
-          }
-        });
-      });
-    </script>
 	<!--日期显示-->
 	<script>
 		function mytime() {
@@ -777,7 +535,7 @@
 	</style>
 	<script>
 		$(document).on("click", "#show-alert", function() {
-			$.alert("更新于2019年11月30日！", "当前版本！");
+			$.alert("更新于2019年12月06日！", "当前版本！");
 		});
 	</script>
 
@@ -808,70 +566,7 @@
 			<a href="javascript:;" class="weui-btn weui-btn_primary close-popup">关闭</a>
 		</div>
 	</div>
-	<!--点击显示底部-->
-	<div id="half" class='weui-popup__container popup-bottom'>
-		<div class="weui-popup__overlay"></div>
-		<div class="weui-popup__modal">
-			<div class="toolbar">
-				<div class="toolbar-inner">
-					<a href="javascript:;" class="picker-button close-popup">关闭</a>
-					<h1 class="title">首页</h1>
-				</div>
-			</div>
-			<div class="modal-content">
-				<div class="weui-grids" style="position: relative;float: left;padding: 20px 10px;width: 100%;box-sizing: border-box;transform:translateY(-50%);/**上移元素**/-ms-transform:translateY(-50%);-webkit-transform:translateY(-10%);">
-					<a href="gonggao.html" class="weui-grid js_grid" data-id="dialog">
-						<div class="weui-grid__icon">
-							<img src="images/g1.png" alt="">
-						</div>
-						<p class="weui-grid__label">
-							公告
-						</p>
-					</a>
-					<a href="chufa.html" class="weui-grid js_grid" data-id="progress">
-						<div class="weui-grid__icon">
-							<img src="images/g2.png" alt="">
-						</div>
-						<p class="weui-grid__label">
-							处罚单
-						</p>
-					</a>
-					<a href="xjgc.html" class="weui-grid js_grid" data-id="msg">
-						<div class="weui-grid__icon">
-							<img src="images/g3.png" alt="">
-						</div>
-						<p class="weui-grid__label">
-							巡检过程
-						</p>
-					</a>
-					<a href="zgdsyck.html" class="weui-grid js_grid" data-id="dialog">
-						<div class="weui-grid__icon">
-							<img src="images/g7.png" alt="">
-						</div>
-						<p class="weui-grid__label">
-							机房整改单
-						</p>
-					</a>
-					<a href="zgdxlsy.html" class="weui-grid js_grid" data-id="progress">
-						<div class="weui-grid__icon">
-							<img src="images/g8.png" alt="">
-						</div>
-						<p class="weui-grid__label">
-							线路整改单
-						</p>
-					</a>
-					<a href="gengduo.html" class="weui-grid js_grid" data-id="msg">
-						<div class="weui-grid__icon">
-							<img src="images/g5.png" alt="">
-						</div>
-						<p class="weui-grid__label">
-							更多
-						</p>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<script>
 		$(function() {
 			FastClick.attach(document.body);
